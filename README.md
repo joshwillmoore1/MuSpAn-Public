@@ -1,6 +1,10 @@
 # MuSpAn (Public)
 
-<img width="590" align="center" alt="image" src="https://github.com/user-attachments/assets/d81c1896-e74b-48a6-9391-faa144830093" />
+
+<div align="center">
+  <img width="828" alt="image" src="https://github.com/user-attachments/assets/cdc8b5c3-5dec-4de3-8fad-35f4ccf37f0a" />
+</div>
+
 
 This repository serves as the public-facing counterpart to our private repository for MuSpAn. While the core development happens in a private repository, this public space is designed to foster community engagement, track issues, and host open discussions. To stay updated, any announcements and updates to the project can be found at www.muspan.co.uk
 
