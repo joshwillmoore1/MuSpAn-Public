@@ -20,7 +20,7 @@ In this repository you can:
 We value community contributions and welcome your input. Here’s how you can participate:
 
 1. Open an Issue: Use the Issues tab to report problems or suggest new features.
-2. Join the Discussion: Share your thoughts or questions in the Discussions tab.
+2. Join the Discussion: Share your thoughts or questions in the Discussions tab or on our [Gitter community channel](https://app.gitter.im/#/room/#muspan-community:gitter.im).
 
 
 ## A Note on Contributions
