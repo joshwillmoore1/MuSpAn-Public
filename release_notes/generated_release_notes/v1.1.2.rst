@@ -1,0 +1,35 @@
+v1.1.2
+======
+
+We are excited to announce the release of version **v1.1.2**! This update brings significant improvements, new features, and important bug fixes to enhance functionality, performance, and documentation.
+
+This release is compatible with and has been tested on Python **3.10** to **3.13**.
+
+Optimisations
+-------------
+* **Quadrat Correlation Matrix**: Vectorisation of correlation computation for improved performance.
+* **Proximity Networks**: Network generation has been vectorised and made more efficient, with improved support for node order specification in distance matrices.
+* **Alpha Shapes**: Interior boundary detection now uses chordless cycles and sorts holes by area for improved accuracy and speed.
+* **Matrix Operations**: Optimised `change_some_elements` and `get_c_from_sigma_inv` for better performance.
+
+Bug Fixes
+---------
+* **Moran's I and Getis-Ord**: Populations without required labels were previously included in calculations. This has been corrected—only labeled objects are now considered.
+* **Alpha Shapes**: Fixed hole identification issues in filtered Delaunay triangulation networks.
+* **Proximity Networks**: Local distances now computed correctly when using input shapes.
+
+Documentation
+-------------
+* **Ripley’s K Tutorial**: A new tutorial with annotated schema has been added.
+* **Schema Transparency**: Added visual schemas throughout documentation, including tutorials and installation pages.
+* **Documentation Improvements**: General rewording, typo corrections, and enhanced readability across all main pages.
+* **Status Badges**: Package and test status badges added to the installation page.
+* **Test Suite Report**: Summary of test suite results included in the release notes page.
+* **Package Overview**: Graphical and textual overview of the package structure added to the main documentation.
+* **Citations**: Bibliography and publication list updated.
+
+All tutorials have been updated to reflect the changes in version **v1.1.2**. We appreciate all contributions and feedback that helped shape this release!
+
+For further details, refer to the documentation and upgrade guide.
+
+Thank you for using our software!

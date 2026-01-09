@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Community detection &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/network_analysis/Network methods - 2 - community_detection';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Comparing networks" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html" />
+    <link rel="prev" title="Network filtrations" href="Network%20methods%20-%203%20-%20graph_filtrations.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Community detection</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Community-detection">
+<h1>Community detection<a class="headerlink" href="#Community-detection" title="Link to this heading">#</a></h1>
+<p>Community detection is a powerful technique for analysing spatial networks, offering a variety of methods to uncover meaningful structures. At its core, community detection identifies highly connected subcomponents within a graph, which can reveal important patterns and relationships. The interpretation of these communities depends on the context of the graph, allowing researchers to gain insights into the underlying dynamics of the system being studied.</p>
+<p>In this tutorial, we’ll conduct community detection using our <code class="docutils literal notranslate"><span class="pre">community_detection</span></code> function in the <code class="docutils literal notranslate"><span class="pre">networks</span></code> submodule of MuSpAn.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Set random seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Load example domain dataset</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Aggregation&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualise the example domain, coloring by &#39;Celltype&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Aggregation
+Number of objects: 2000
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_2_2.png" src="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_2_2.png" />
+</div>
+</div>
+<p>Let’s generate a network to run community detection on.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the &#39;Centroid Delaunay&#39; network for the example domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Centroid Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">70</span>
+<span class="p">)</span>
+
+<span class="c1"># Visualise the generated network, coloring by &#39;Celltype&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Centroid Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">figure_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x700 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_4_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_4_1.png" />
+</div>
+</div>
+<p>We perform community detection using the <code class="docutils literal notranslate"><span class="pre">community_detection</span></code> function in the <code class="docutils literal notranslate"><span class="pre">networks</span></code> submodule. Specifically, we use the Louvain community detection method, which aims to optimise modularity—ensuring there are more edges within a community than between different communities. This method has several parameters that can influence the behavior of community detection. We recommend reviewing the Louvain algorithm for a deeper understanding: <a class="reference external" href="https://doi.org/10.1088/1742-5468/2008/10/P10008">https://doi.org/10.1088/1742-5468/2008/10/P10008</a>.</p>
+<p>In particular, the <code class="docutils literal notranslate"><span class="pre">resolution</span></code> parameter plays a key role in controlling the size of the detected communities. A higher resolution value tends to identify smaller, more localised communities, while a lower value results in larger, more global groupings. Adjusting this parameter allows you to tailor the community detection process to your specific needs.</p>
+<p>Let’s see how this communtity detection method runs on our network using the default resolution parameter.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform community detection using the Louvain method with a resolution of 1</span>
+<span class="n">communities_res_1</span><span class="o">=</span><span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">community_detection</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Centroid Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">edge_weight_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">community_method</span><span class="o">=</span><span class="s1">&#39;louvain&#39;</span><span class="p">,</span>
+    <span class="n">community_method_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">community_label_name</span><span class="o">=</span><span class="s1">&#39;Communities : Res = 1&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">community</span> <span class="pre">detection</span></code> function adds the community labels to the objects by default and are stored under the <code class="docutils literal notranslate"><span class="pre">community_label_name</span></code> label name. This output can be used for futher analysis or querying.</p>
+<p>In addition, the output of the function is a dictionary of the communities, where the keys are the community IDs which each have a list of the object ID in that community. We can see this below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">communities_res_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{0: [np.int64(514), np.int64(520), np.int64(13), np.int64(272), np.int64(530), np.int64(277), np.int64(790), np.int64(535), np.int64(534), np.int64(536), np.int64(279), np.int64(796), np.int64(29), np.int64(285), np.int64(296), np.int64(553), np.int64(557), np.int64(303), np.int64(305), np.int64(567), np.int64(572), np.int64(574), np.int64(319), np.int64(581), np.int64(586), np.int64(590), np.int64(606), np.int64(619), np.int64(108), np.int64(623), np.int64(372), np.int64(638), np.int64(642), np.int64(645), np.int64(650), np.int64(651), np.int64(652), np.int64(148), np.int64(669), np.int64(414), np.int64(161), np.int64(675), np.int64(676), np.int64(677), np.int64(680), np.int64(689), np.int64(690), np.int64(693), np.int64(703), np.int64(192), np.int64(709), np.int64(712), np.int64(714), np.int64(205), np.int64(463), np.int64(213), np.int64(474), np.int64(730), np.int64(478), np.int64(739), np.int64(746), np.int64(752), np.int64(501), np.int64(503), np.int64(504), np.int64(507), np.int64(764)], 1: [np.int64(386), np.int64(135), np.int64(266), np.int64(19), np.int64(276), np.int64(411), np.int64(284), np.int64(423), np.int64(297), np.int64(170), np.int64(428), np.int64(172), np.int64(431), np.int64(438), np.int64(185), np.int64(313), np.int64(444), np.int64(189), np.int64(63), np.int64(65), np.int64(321), np.int64(452), np.int64(453), np.int64(324), np.int64(457), np.int64(464), np.int64(337), np.int64(210), np.int64(988), np.int64(477), np.int64(222), np.int64(479), np.int64(229), np.int64(232), np.int64(360), np.int64(363), np.int64(492), np.int64(365), np.int64(111), np.int64(369), np.int64(114), np.int64(116), np.int64(121), np.int64(254)], 2: [np.int64(257), np.int64(4), np.int64(260), np.int64(262), np.int64(6), np.int64(1029), np.int64(261), np.int64(1034), np.int64(268), np.int64(20), np.int64(23), np.int64(25), np.int64(27), np.int64(286), np.int64(802), np.int64(1060), np.int64(37), np.int64(295), np.int64(42), np.int64(810), np.int64(49), np.int64(52), np.int64(54), np.int64(55), np.int64(823), np.int64(57), np.int64(60), np.int64(61), np.int64(318), np.int64(1088), np.int64(323), np.int64(325), np.int64(326), np.int64(330), np.int64(333), np.int64(83), np.int64(339), np.int64(341), np.int64(342), np.int64(85), np.int64(855), np.int64(87), np.int64(347), np.int64(348), np.int64(93), np.int64(352), np.int64(353), np.int64(355), np.int64(102), np.int64(364), np.int64(117), np.int64(126), np.int64(133), np.int64(134), np.int64(138), np.int64(408), np.int64(153), np.int64(930), np.int64(164), np.int64(167), np.int64(427), np.int64(939), np.int64(174), np.int64(176), np.int64(177), np.int64(435), np.int64(184), np.int64(954), np.int64(443), np.int64(191), np.int64(451), np.int64(196), np.int64(201), np.int64(202), np.int64(218), np.int64(476), np.int64(993), np.int64(226), np.int64(485), np.int64(233), np.int64(490), np.int64(236), np.int64(493), np.int64(498)], 3: [np.int64(129), np.int64(1155), np.int64(1286), np.int64(1287), np.int64(1294), np.int64(1296), np.int64(273), np.int64(1298), np.int64(1170), np.int64(1175), np.int64(1303), np.int64(1312), np.int64(1185), np.int64(163), np.int64(1187), np.int64(1318), np.int64(1322), np.int64(1328), np.int64(1204), np.int64(310), np.int64(1336), np.int64(1211), np.int64(1344), np.int64(1217), np.int64(71), np.int64(1351), np.int64(1359), np.int64(1234), np.int64(1235), np.int64(1109), np.int64(471), np.int64(1240), np.int64(1242), np.int64(219), np.int64(1373), np.int64(1375), np.int64(1120), np.int64(1379), np.int64(1251), np.int64(1383), np.int64(104), np.int64(1384), np.int64(1259), np.int64(1134), np.int64(1262), np.int64(1392), np.int64(1264), np.int64(1136), np.int64(1266), np.int64(1268), np.int64(1141), np.int64(1272), np.int64(1273), np.int64(1278)], 4: [np.int64(1538), np.int64(1539), np.int64(1540), np.int64(12), np.int64(1549), np.int64(1550), np.int64(271), np.int64(17), np.int64(1559), np.int64(1560), np.int64(1561), np.int64(1562), np.int64(30), np.int64(1567), np.int64(288), np.int64(1570), np.int64(1571), np.int64(1573), np.int64(294), np.int64(1577), np.int64(1586), np.int64(307), np.int64(1589), np.int64(1594), np.int64(1595), np.int64(1598), np.int64(322), np.int64(1602), np.int64(67), np.int64(1607), np.int64(72), np.int64(1608), np.int64(1616), np.int64(1618), np.int64(84), np.int64(1622), np.int64(86), np.int64(1624), np.int64(1625), np.int64(89), np.int64(99), np.int64(1635), np.int64(1638), np.int64(1640), np.int64(361), np.int64(1646), np.int64(115), np.int64(373), np.int64(1657), np.int64(1659), np.int64(1660), np.int64(1405), np.int64(128), np.int64(1408), np.int64(1666), np.int64(131), np.int64(1667), np.int64(1418), np.int64(139), np.int64(395), np.int64(397), np.int64(1674), np.int64(1675), np.int64(1680), np.int64(1425), np.int64(1679), np.int64(401), np.int64(1428), np.int64(1431), np.int64(1432), np.int64(1689), np.int64(1690), np.int64(1435), np.int64(156), np.int64(1436), np.int64(1438), np.int64(1696), np.int64(1440), np.int64(1442), np.int64(1699), np.int64(416), np.int64(165), np.int64(422), np.int64(1447), np.int64(1450), np.int64(1451), np.int64(1453), np.int64(173), np.int64(183), np.int64(1470), np.int64(1472), np.int64(1475), np.int64(195), np.int64(1480), np.int64(1481), np.int64(1482), np.int64(1486), np.int64(1488), np.int64(465), np.int64(1489), np.int64(211), np.int64(1493), np.int64(1502), np.int64(1503), np.int64(481), np.int64(1510), np.int64(1511), np.int64(1512), np.int64(487), np.int64(486), np.int64(1518), np.int64(1520), np.int64(1521), np.int64(497), np.int64(1523), np.int64(1522), np.int64(1526), np.int64(250), np.int64(1531), np.int64(1534), np.int64(1535)], 5: [np.int64(263), np.int64(264), np.int64(141), np.int64(142), np.int64(407), np.int64(31), np.int64(290), np.int64(421), np.int64(293), np.int64(807), np.int64(1066), np.int64(299), np.int64(434), np.int64(186), np.int64(190), np.int64(447), np.int64(327), np.int64(456), np.int64(1097), np.int64(329), np.int64(74), np.int64(335), np.int64(80), np.int64(88), np.int64(345), np.int64(346), np.int64(217), np.int64(91), np.int64(349), np.int64(475), np.int64(351), np.int64(356), np.int64(231), np.int64(105), np.int64(109), np.int64(238), np.int64(367), np.int64(371), np.int64(374), np.int64(247)], 6: [np.int64(518), np.int64(524), np.int64(525), np.int64(526), np.int64(533), np.int64(537), np.int64(538), np.int64(539), np.int64(541), np.int64(543), np.int64(545), np.int64(546), np.int64(548), np.int64(549), np.int64(550), np.int64(38), np.int64(554), np.int64(555), np.int64(556), np.int64(560), np.int64(562), np.int64(51), np.int64(564), np.int64(563), np.int64(565), np.int64(568), np.int64(569), np.int64(58), np.int64(570), np.int64(575), np.int64(576), np.int64(577), np.int64(578), np.int64(583), np.int64(585), np.int64(587), np.int64(591), np.int64(592), np.int64(594), np.int64(599), np.int64(602), np.int64(604), np.int64(605), np.int64(607), np.int64(608), np.int64(612), np.int64(613), np.int64(614), np.int64(615), np.int64(617), np.int64(621), np.int64(622), np.int64(624), np.int64(627), np.int64(629), np.int64(630), np.int64(631), np.int64(632), np.int64(633), np.int64(634), np.int64(635), np.int64(636), np.int64(639), np.int64(643), np.int64(646), np.int64(647), np.int64(648), np.int64(137), np.int64(653), np.int64(654), np.int64(655), np.int64(657), np.int64(660), np.int64(663), np.int64(664), np.int64(665), np.int64(666), np.int64(668), np.int64(672), np.int64(678), np.int64(679), np.int64(683), np.int64(684), np.int64(686), np.int64(687), np.int64(688), np.int64(694), np.int64(697), np.int64(698), np.int64(701), np.int64(702), np.int64(705), np.int64(708), np.int64(711), np.int64(717), np.int64(720), np.int64(722), np.int64(724), np.int64(725), np.int64(726), np.int64(729), np.int64(731), np.int64(733), np.int64(736), np.int64(737), np.int64(738), np.int64(742), np.int64(745), np.int64(747), np.int64(749), np.int64(240), np.int64(757), np.int64(759), np.int64(760), np.int64(761), np.int64(762), np.int64(763), np.int64(765), np.int64(769), np.int64(770), np.int64(771), np.int64(773), np.int64(777), np.int64(778), np.int64(779), np.int64(781), np.int64(784), np.int64(786), np.int64(788), np.int64(792), np.int64(793), np.int64(798), np.int64(799), np.int64(300), np.int64(302), np.int64(332), np.int64(354), np.int64(377), np.int64(389), np.int64(409), np.int64(442), np.int64(500), np.int64(502), np.int64(506)], 7: [np.int64(512), np.int64(513), np.int64(515), np.int64(516), np.int64(517), np.int64(519), np.int64(521), np.int64(522), np.int64(11), np.int64(523), np.int64(527), np.int64(528), np.int64(529), np.int64(531), np.int64(532), np.int64(21), np.int64(22), np.int64(540), np.int64(542), np.int64(544), np.int64(547), np.int64(551), np.int64(552), np.int64(41), np.int64(558), np.int64(47), np.int64(559), np.int64(561), np.int64(50), np.int64(566), np.int64(56), np.int64(571), np.int64(573), np.int64(64), np.int64(66), np.int64(579), np.int64(580), np.int64(582), np.int64(584), np.int64(588), np.int64(589), np.int64(593), np.int64(82), np.int64(595), np.int64(596), np.int64(597), np.int64(598), np.int64(600), np.int64(601), np.int64(603), np.int64(96), np.int64(609), np.int64(610), np.int64(98), np.int64(611), np.int64(100), np.int64(616), np.int64(618), np.int64(620), np.int64(625), np.int64(626), np.int64(628), np.int64(118), np.int64(124), np.int64(637), np.int64(640), np.int64(641), np.int64(644), np.int64(649), np.int64(656), np.int64(144), np.int64(658), np.int64(659), np.int64(661), np.int64(149), np.int64(662), np.int64(667), np.int64(670), np.int64(671), np.int64(673), np.int64(674), np.int64(166), np.int64(681), np.int64(682), np.int64(171), np.int64(685), np.int64(691), np.int64(692), np.int64(695), np.int64(696), np.int64(699), np.int64(700), np.int64(704), np.int64(706), np.int64(707), np.int64(710), np.int64(713), np.int64(715), np.int64(716), np.int64(204), np.int64(718), np.int64(719), np.int64(721), np.int64(723), np.int64(727), np.int64(728), np.int64(732), np.int64(734), np.int64(223), np.int64(735), np.int64(225), np.int64(740), np.int64(741), np.int64(743), np.int64(744), np.int64(748), np.int64(750), np.int64(751), np.int64(753), np.int64(754), np.int64(755), np.int64(756), np.int64(758), np.int64(249), np.int64(766), np.int64(767), np.int64(768), np.int64(772), np.int64(774), np.int64(775), np.int64(776), np.int64(267), np.int64(780), np.int64(782), np.int64(783), np.int64(270), np.int64(785), np.int64(787), np.int64(789), np.int64(791), np.int64(794), np.int64(795), np.int64(797), np.int64(304), np.int64(338), np.int64(368), np.int64(376), np.int64(388), np.int64(391), np.int64(393), np.int64(418), np.int64(433), np.int64(448), np.int64(461), np.int64(468), np.int64(470), np.int64(484), np.int64(489), np.int64(496), np.int64(505), np.int64(508), np.int64(509), np.int64(510), np.int64(511)], 8: [np.int64(256), np.int64(1028), np.int64(1033), np.int64(265), np.int64(1036), np.int64(1037), np.int64(1039), np.int64(1041), np.int64(1043), np.int64(1045), np.int64(1047), np.int64(1053), np.int64(800), np.int64(806), np.int64(809), np.int64(1067), np.int64(812), np.int64(817), np.int64(1076), np.int64(1078), np.int64(822), np.int64(824), np.int64(826), np.int64(1083), np.int64(828), np.int64(1086), np.int64(832), np.int64(1090), np.int64(836), np.int64(837), np.int64(839), np.int64(840), np.int64(842), np.int64(1099), np.int64(844), np.int64(845), np.int64(851), np.int64(857), np.int64(859), np.int64(864), np.int64(867), np.int64(868), np.int64(870), np.int64(876), np.int64(881), np.int64(882), np.int64(883), np.int64(886), np.int64(888), np.int64(889), np.int64(890), np.int64(893), np.int64(894), np.int64(898), np.int64(900), np.int64(902), np.int64(903), np.int64(913), np.int64(914), np.int64(916), np.int64(931), np.int64(934), np.int64(935), np.int64(942), np.int64(949), np.int64(955), np.int64(958), np.int64(959), np.int64(961), np.int64(964), np.int64(965), np.int64(455), np.int64(968), np.int64(969), np.int64(972), np.int64(973), np.int64(977), np.int64(981), np.int64(982), np.int64(986), np.int64(989), np.int64(994), np.int64(996), np.int64(1014), np.int64(1015), np.int64(1017), np.int64(1019), np.int64(1021), np.int64(1022)], 9: [np.int64(1024), np.int64(1027), np.int64(1030), np.int64(1031), np.int64(269), np.int64(1040), np.int64(1048), np.int64(281), np.int64(1051), np.int64(1052), np.int64(1056), np.int64(1057), np.int64(1058), np.int64(804), np.int64(1061), np.int64(1063), np.int64(808), np.int64(1065), np.int64(1064), np.int64(811), np.int64(1068), np.int64(814), np.int64(816), np.int64(1074), np.int64(1077), np.int64(1079), np.int64(1081), np.int64(827), np.int64(59), np.int64(1085), np.int64(830), np.int64(831), np.int64(320), np.int64(1089), np.int64(1092), np.int64(1093), np.int64(838), np.int64(1096), np.int64(841), np.int64(843), np.int64(846), np.int64(847), np.int64(848), np.int64(81), np.int64(854), np.int64(861), np.int64(862), np.int64(863), np.int64(865), np.int64(866), np.int64(869), np.int64(871), np.int64(873), np.int64(874), np.int64(875), np.int64(877), np.int64(878), np.int64(879), np.int64(880), np.int64(885), np.int64(123), np.int64(891), np.int64(896), np.int64(901), np.int64(905), np.int64(906), np.int64(910), np.int64(912), np.int64(915), np.int64(917), np.int64(918), np.int64(920), np.int64(923), np.int64(413), np.int64(926), np.int64(928), np.int64(417), np.int64(932), np.int64(933), np.int64(936), np.int64(424), np.int64(429), np.int64(941), np.int64(943), np.int64(946), np.int64(947), np.int64(948), np.int64(953), np.int64(957), np.int64(966), np.int64(967), np.int64(199), np.int64(454), np.int64(970), np.int64(974), np.int64(975), np.int64(976), np.int64(979), np.int64(983), np.int64(984), np.int64(985), np.int64(990), np.int64(998), np.int64(999), np.int64(1000), np.int64(1001), np.int64(1004), np.int64(1006), np.int64(1008), np.int64(1013), np.int64(1016), np.int64(1023)], 10: [np.int64(1025), np.int64(1026), np.int64(3), np.int64(1032), np.int64(10), np.int64(1035), np.int64(1038), np.int64(15), np.int64(1042), np.int64(18), np.int64(1044), np.int64(1046), np.int64(1049), np.int64(1050), np.int64(1054), np.int64(1055), np.int64(1059), np.int64(1062), np.int64(1069), np.int64(1070), np.int64(1071), np.int64(45), np.int64(1073), np.int64(1072), np.int64(1075), np.int64(1080), np.int64(1082), np.int64(1084), np.int64(62), np.int64(1087), np.int64(1091), np.int64(1094), np.int64(1095), np.int64(1098), np.int64(90), np.int64(103), np.int64(152), np.int64(175), np.int64(194), np.int64(207), np.int64(208), np.int64(220), np.int64(230), np.int64(241), np.int64(242), np.int64(245), np.int64(248), np.int64(251), np.int64(253), np.int64(259), np.int64(801), np.int64(289), np.int64(291), np.int64(803), np.int64(805), np.int64(813), np.int64(815), np.int64(818), np.int64(819), np.int64(820), np.int64(821), np.int64(825), np.int64(314), np.int64(829), np.int64(833), np.int64(834), np.int64(835), np.int64(849), np.int64(850), np.int64(852), np.int64(853), np.int64(856), np.int64(858), np.int64(860), np.int64(872), np.int64(884), np.int64(887), np.int64(380), np.int64(892), np.int64(895), np.int64(897), np.int64(385), np.int64(899), np.int64(904), np.int64(907), np.int64(908), np.int64(909), np.int64(398), np.int64(911), np.int64(919), np.int64(921), np.int64(922), np.int64(924), np.int64(925), np.int64(927), np.int64(929), np.int64(419), np.int64(937), np.int64(938), np.int64(940), np.int64(944), np.int64(945), np.int64(436), np.int64(950), np.int64(951), np.int64(952), np.int64(956), np.int64(445), np.int64(446), np.int64(960), np.int64(962), np.int64(963), np.int64(458), np.int64(971), np.int64(460), np.int64(978), np.int64(466), np.int64(980), np.int64(469), np.int64(987), np.int64(991), np.int64(992), np.int64(482), np.int64(995), np.int64(997), np.int64(1002), np.int64(1003), np.int64(1005), np.int64(1007), np.int64(1009), np.int64(1010), np.int64(1011), np.int64(1012), np.int64(1018), np.int64(1020)], 11: [np.int64(7), np.int64(40), np.int64(75), np.int64(1102), np.int64(79), np.int64(1104), np.int64(1105), np.int64(1108), np.int64(1110), np.int64(1111), np.int64(1113), np.int64(1114), np.int64(92), np.int64(94), np.int64(95), np.int64(1118), np.int64(97), np.int64(1128), np.int64(1132), np.int64(1133), np.int64(1135), np.int64(1139), np.int64(1140), np.int64(119), np.int64(1145), np.int64(1147), np.int64(1148), np.int64(1149), np.int64(1151), np.int64(1154), np.int64(1158), np.int64(1159), np.int64(136), np.int64(1160), np.int64(1163), np.int64(1166), np.int64(145), np.int64(147), np.int64(1174), np.int64(150), np.int64(1177), np.int64(154), np.int64(1178), np.int64(1183), np.int64(159), np.int64(1188), np.int64(1189), np.int64(1190), np.int64(1191), np.int64(169), np.int64(1199), np.int64(1200), np.int64(1202), np.int64(1203), np.int64(179), np.int64(180), np.int64(1206), np.int64(1207), np.int64(1213), np.int64(1214), np.int64(1215), np.int64(1218), np.int64(1220), np.int64(1221), np.int64(1222), np.int64(1223), np.int64(198), np.int64(1229), np.int64(1231), np.int64(1237), np.int64(1238), np.int64(1239), np.int64(215), np.int64(1241), np.int64(1244), np.int64(1245), np.int64(221), np.int64(224), np.int64(1249), np.int64(1250), np.int64(228), np.int64(1255), np.int64(1256), np.int64(1257), np.int64(1260), np.int64(1261), np.int64(1267), np.int64(243), np.int64(1269), np.int64(1275), np.int64(1276), np.int64(1280), np.int64(1281), np.int64(1282), np.int64(1284), np.int64(1285), np.int64(1289), np.int64(1290), np.int64(1293), np.int64(1295), np.int64(1297), np.int64(1300), np.int64(1304), np.int64(1306), np.int64(1307), np.int64(1308), np.int64(1309), np.int64(282), np.int64(1313), np.int64(1314), np.int64(1315), np.int64(1316), np.int64(1317), np.int64(292), np.int64(1319), np.int64(1320), np.int64(1325), np.int64(1326), np.int64(1327), np.int64(308), np.int64(1337), np.int64(315), np.int64(316), np.int64(1339), np.int64(1343), np.int64(1345), np.int64(1348), np.int64(1349), np.int64(328), np.int64(1353), np.int64(1354), np.int64(1355), np.int64(1357), np.int64(1358), np.int64(334), np.int64(1361), np.int64(1363), np.int64(1365), np.int64(1366), np.int64(343), np.int64(1368), np.int64(1369), np.int64(1370), np.int64(1372), np.int64(1376), np.int64(1377), np.int64(1386), np.int64(1388), np.int64(366), np.int64(1391), np.int64(1393), np.int64(1396), np.int64(1398), np.int64(381), np.int64(394), np.int64(399), np.int64(400), np.int64(405), np.int64(410), np.int64(415), np.int64(425), np.int64(437), np.int64(459), np.int64(491)], 12: [np.int64(36), np.int64(70), np.int64(1100), np.int64(1101), np.int64(77), np.int64(1103), np.int64(1106), np.int64(1107), np.int64(1112), np.int64(1115), np.int64(1116), np.int64(1117), np.int64(1119), np.int64(1121), np.int64(1122), np.int64(1123), np.int64(1124), np.int64(1125), np.int64(1126), np.int64(1127), np.int64(1129), np.int64(1130), np.int64(1131), np.int64(106), np.int64(1137), np.int64(1138), np.int64(1142), np.int64(1143), np.int64(120), np.int64(1144), np.int64(1146), np.int64(1150), np.int64(1152), np.int64(1153), np.int64(1156), np.int64(1157), np.int64(1161), np.int64(1162), np.int64(1164), np.int64(1165), np.int64(1167), np.int64(1168), np.int64(1169), np.int64(1171), np.int64(1172), np.int64(1173), np.int64(1176), np.int64(1179), np.int64(1180), np.int64(1181), np.int64(1182), np.int64(158), np.int64(1184), np.int64(1186), np.int64(1192), np.int64(1193), np.int64(1194), np.int64(1195), np.int64(1196), np.int64(1197), np.int64(1198), np.int64(1201), np.int64(1205), np.int64(1208), np.int64(1209), np.int64(1210), np.int64(1212), np.int64(1216), np.int64(1219), np.int64(1224), np.int64(1225), np.int64(1226), np.int64(1227), np.int64(1228), np.int64(206), np.int64(1230), np.int64(1232), np.int64(1233), np.int64(1236), np.int64(216), np.int64(1243), np.int64(1246), np.int64(1247), np.int64(1248), np.int64(227), np.int64(1252), np.int64(1253), np.int64(1254), np.int64(1258), np.int64(1263), np.int64(1265), np.int64(1270), np.int64(1271), np.int64(1274), np.int64(1277), np.int64(1279), np.int64(258), np.int64(1283), np.int64(1288), np.int64(1291), np.int64(1292), np.int64(1299), np.int64(1301), np.int64(1302), np.int64(1305), np.int64(1310), np.int64(1311), np.int64(1321), np.int64(298), np.int64(1323), np.int64(1324), np.int64(1329), np.int64(1330), np.int64(1331), np.int64(1332), np.int64(1333), np.int64(1334), np.int64(1335), np.int64(309), np.int64(1338), np.int64(1340), np.int64(1341), np.int64(1342), np.int64(1346), np.int64(1347), np.int64(1350), np.int64(1352), np.int64(1356), np.int64(1360), np.int64(1362), np.int64(1364), np.int64(1367), np.int64(344), np.int64(1371), np.int64(1374), np.int64(1378), np.int64(1380), np.int64(1381), np.int64(1382), np.int64(1385), np.int64(362), np.int64(1387), np.int64(1389), np.int64(1390), np.int64(1394), np.int64(1395), np.int64(1397), np.int64(1399), np.int64(378), np.int64(384), np.int64(403), np.int64(432), np.int64(462), np.int64(472)], 13: [np.int64(2), np.int64(1541), np.int64(1542), np.int64(1544), np.int64(1547), np.int64(1548), np.int64(1551), np.int64(1552), np.int64(1555), np.int64(1557), np.int64(1558), np.int64(24), np.int64(1563), np.int64(1564), np.int64(1565), np.int64(1566), np.int64(1568), np.int64(1569), np.int64(1574), np.int64(1575), np.int64(1578), np.int64(1579), np.int64(1580), np.int64(46), np.int64(1582), np.int64(1583), np.int64(1584), np.int64(1585), np.int64(1587), np.int64(1590), np.int64(1591), np.int64(1592), np.int64(1596), np.int64(1597), np.int64(1599), np.int64(1600), np.int64(1601), np.int64(1603), np.int64(1605), np.int64(1606), np.int64(1610), np.int64(1612), np.int64(1613), np.int64(1615), np.int64(1617), np.int64(1620), np.int64(1621), np.int64(1623), np.int64(1628), np.int64(1629), np.int64(1631), np.int64(1632), np.int64(1633), np.int64(1637), np.int64(1639), np.int64(1641), np.int64(1644), np.int64(1645), np.int64(1647), np.int64(1648), np.int64(1650), np.int64(1651), np.int64(1654), np.int64(1655), np.int64(1656), np.int64(1658), np.int64(1661), np.int64(1662), np.int64(1663), np.int64(1665), np.int64(130), np.int64(132), np.int64(1669), np.int64(1670), np.int64(1668), np.int64(1672), np.int64(1676), np.int64(1678), np.int64(1681), np.int64(1684), np.int64(1685), np.int64(1687), np.int64(151), np.int64(1688), np.int64(178), np.int64(187), np.int64(193), np.int64(209), np.int64(237), np.int64(317), np.int64(340), np.int64(359), np.int64(1400), np.int64(379), np.int64(1403), np.int64(1404), np.int64(1409), np.int64(1410), np.int64(1411), np.int64(1412), np.int64(1413), np.int64(392), np.int64(1416), np.int64(1417), np.int64(1419), np.int64(1420), np.int64(1421), np.int64(1423), np.int64(402), np.int64(1426), np.int64(1429), np.int64(1433), np.int64(1434), np.int64(1437), np.int64(1439), np.int64(1441), np.int64(420), np.int64(1445), np.int64(1444), np.int64(1449), np.int64(426), np.int64(1452), np.int64(1454), np.int64(1455), np.int64(1456), np.int64(1457), np.int64(1458), np.int64(1460), np.int64(1461), np.int64(1462), np.int64(440), np.int64(1467), np.int64(1468), np.int64(1469), np.int64(1471), np.int64(1474), np.int64(1476), np.int64(1477), np.int64(1478), np.int64(1479), np.int64(1483), np.int64(1484), np.int64(1485), np.int64(1490), np.int64(467), np.int64(1491), np.int64(1492), np.int64(1495), np.int64(1496), np.int64(1497), np.int64(1499), np.int64(1500), np.int64(1501), np.int64(1504), np.int64(480), np.int64(1506), np.int64(1507), np.int64(1509), np.int64(1513), np.int64(1517), np.int64(1527), np.int64(1528), np.int64(1530)], 14: [np.int64(1536), np.int64(0), np.int64(1537), np.int64(1543), np.int64(1545), np.int64(1546), np.int64(14), np.int64(16), np.int64(1553), np.int64(1554), np.int64(1556), np.int64(280), np.int64(26), np.int64(1532), np.int64(287), np.int64(1572), np.int64(1576), np.int64(43), np.int64(1581), np.int64(48), np.int64(1588), np.int64(1593), np.int64(1604), np.int64(1609), np.int64(73), np.int64(1611), np.int64(1614), np.int64(1619), np.int64(1626), np.int64(1627), np.int64(1630), np.int64(1634), np.int64(1636), np.int64(101), np.int64(1642), np.int64(1643), np.int64(1649), np.int64(1652), np.int64(1653), np.int64(1401), np.int64(1402), np.int64(1406), np.int64(1407), np.int64(1664), np.int64(1414), np.int64(1671), np.int64(1415), np.int64(1673), np.int64(1677), np.int64(1422), np.int64(143), np.int64(1424), np.int64(1682), np.int64(1427), np.int64(404), np.int64(1683), np.int64(1430), np.int64(1686), np.int64(155), np.int64(1691), np.int64(412), np.int64(1694), np.int64(1693), np.int64(1692), np.int64(1695), np.int64(1698), np.int64(1443), np.int64(1697), np.int64(1446), np.int64(1448), np.int64(1459), np.int64(182), np.int64(1463), np.int64(439), np.int64(1465), np.int64(441), np.int64(1466), np.int64(1464), np.int64(449), np.int64(1473), np.int64(1487), np.int64(1494), np.int64(473), np.int64(1498), np.int64(1505), np.int64(1508), np.int64(1514), np.int64(1515), np.int64(1516), np.int64(235), np.int64(1519), np.int64(495), np.int64(499), np.int64(244), np.int64(1525), np.int64(1524), np.int64(1529), np.int64(252), np.int64(1533), np.int64(255)], 15: [np.int64(34), np.int64(44), np.int64(68), np.int64(122), np.int64(140), np.int64(157), np.int64(1701), np.int64(1702), np.int64(168), np.int64(1705), np.int64(1704), np.int64(1707), np.int64(1708), np.int64(1709), np.int64(1710), np.int64(1712), np.int64(1713), np.int64(1714), np.int64(1716), np.int64(1717), np.int64(1720), np.int64(1721), np.int64(1722), np.int64(1724), np.int64(1726), np.int64(1727), np.int64(1728), np.int64(1729), np.int64(1731), np.int64(1734), np.int64(1735), np.int64(1737), np.int64(1738), np.int64(1739), np.int64(1742), np.int64(1743), np.int64(1745), np.int64(1751), np.int64(1756), np.int64(1758), np.int64(1766), np.int64(1769), np.int64(1770), np.int64(1771), np.int64(1772), np.int64(1774), np.int64(1777), np.int64(1778), np.int64(1779), np.int64(1780), np.int64(1782), np.int64(1785), np.int64(1787), np.int64(1788), np.int64(1791), np.int64(1793), np.int64(1795), np.int64(1796), np.int64(1797), np.int64(1799), np.int64(1801), np.int64(1802), np.int64(1804), np.int64(1805), np.int64(1807), np.int64(1808), np.int64(274), np.int64(1813), np.int64(1814), np.int64(1815), np.int64(1816), np.int64(1819), np.int64(1820), np.int64(1823), np.int64(1824), np.int64(1826), np.int64(1829), np.int64(1832), np.int64(1833), np.int64(1835), np.int64(1836), np.int64(1837), np.int64(301), np.int64(1841), np.int64(306), np.int64(1843), np.int64(311), np.int64(312), np.int64(1848), np.int64(1854), np.int64(1856), np.int64(1857), np.int64(1858), np.int64(1862), np.int64(1863), np.int64(1864), np.int64(1866), np.int64(1867), np.int64(1868), np.int64(331), np.int64(1874), np.int64(1876), np.int64(1879), np.int64(1880), np.int64(1882), np.int64(1885), np.int64(1886), np.int64(1887), np.int64(350), np.int64(1890), np.int64(1891), np.int64(1893), np.int64(358), np.int64(1896), np.int64(1900), np.int64(1901), np.int64(1903), np.int64(370), np.int64(1906), np.int64(1908), np.int64(1910), np.int64(1911), np.int64(1912), np.int64(1913), np.int64(382), np.int64(1919), np.int64(1920), np.int64(1921), np.int64(1923), np.int64(1924), np.int64(1929), np.int64(1930), np.int64(1932), np.int64(1933), np.int64(1934), np.int64(1935), np.int64(1936), np.int64(1937), np.int64(1940), np.int64(1943), np.int64(1945), np.int64(1946), np.int64(1949), np.int64(1958), np.int64(1959), np.int64(1961), np.int64(1963), np.int64(1965), np.int64(1966), np.int64(1967), np.int64(430), np.int64(1969), np.int64(1970), np.int64(1973), np.int64(1974), np.int64(1976), np.int64(1978), np.int64(1980), np.int64(1981), np.int64(1982), np.int64(1983), np.int64(1984), np.int64(1986), np.int64(1987), np.int64(1988), np.int64(1989), np.int64(1990), np.int64(1994), np.int64(1999), np.int64(483)], 16: [np.int64(1), np.int64(5), np.int64(8), np.int64(9), np.int64(28), np.int64(32), np.int64(33), np.int64(35), np.int64(39), np.int64(53), np.int64(69), np.int64(76), np.int64(78), np.int64(107), np.int64(110), np.int64(112), np.int64(113), np.int64(125), np.int64(127), np.int64(146), np.int64(160), np.int64(162), np.int64(1700), np.int64(1703), np.int64(1706), np.int64(1711), np.int64(1715), np.int64(181), np.int64(1718), np.int64(1719), np.int64(1723), np.int64(188), np.int64(1725), np.int64(1730), np.int64(1732), np.int64(1733), np.int64(197), np.int64(1736), np.int64(200), np.int64(203), np.int64(1740), np.int64(1741), np.int64(1744), np.int64(1746), np.int64(1747), np.int64(1748), np.int64(1749), np.int64(1750), np.int64(214), np.int64(212), np.int64(1753), np.int64(1752), np.int64(1755), np.int64(1754), np.int64(1757), np.int64(1759), np.int64(1760), np.int64(1761), np.int64(1762), np.int64(1763), np.int64(1764), np.int64(1765), np.int64(1767), np.int64(1768), np.int64(234), np.int64(1773), np.int64(239), np.int64(1776), np.int64(1775), np.int64(1781), np.int64(246), np.int64(1783), np.int64(1784), np.int64(1786), np.int64(1789), np.int64(1790), np.int64(1792), np.int64(1794), np.int64(1798), np.int64(1800), np.int64(1803), np.int64(1806), np.int64(1809), np.int64(1810), np.int64(1811), np.int64(1812), np.int64(275), np.int64(278), np.int64(1817), np.int64(1818), np.int64(283), np.int64(1821), np.int64(1822), np.int64(1825), np.int64(1827), np.int64(1828), np.int64(1830), np.int64(1831), np.int64(1834), np.int64(1838), np.int64(1839), np.int64(1840), np.int64(1842), np.int64(1844), np.int64(1845), np.int64(1846), np.int64(1847), np.int64(1849), np.int64(1850), np.int64(1851), np.int64(1852), np.int64(1853), np.int64(1855), np.int64(1859), np.int64(1860), np.int64(1861), np.int64(1865), np.int64(1869), np.int64(1870), np.int64(1871), np.int64(1872), np.int64(1873), np.int64(336), np.int64(1875), np.int64(1877), np.int64(1878), np.int64(1881), np.int64(1883), np.int64(1884), np.int64(1888), np.int64(1889), np.int64(1892), np.int64(357), np.int64(1894), np.int64(1895), np.int64(1897), np.int64(1898), np.int64(1899), np.int64(1902), np.int64(1904), np.int64(1905), np.int64(1907), np.int64(1909), np.int64(375), np.int64(1914), np.int64(1915), np.int64(1916), np.int64(1917), np.int64(1918), np.int64(383), np.int64(1922), np.int64(387), np.int64(1925), np.int64(390), np.int64(1926), np.int64(1927), np.int64(1928), np.int64(1931), np.int64(396), np.int64(1938), np.int64(1939), np.int64(1941), np.int64(406), np.int64(1942), np.int64(1944), np.int64(1947), np.int64(1948), np.int64(1950), np.int64(1951), np.int64(1952), np.int64(1953), np.int64(1954), np.int64(1955), np.int64(1956), np.int64(1957), np.int64(1960), np.int64(1962), np.int64(1964), np.int64(1968), np.int64(1971), np.int64(1972), np.int64(1975), np.int64(1977), np.int64(1979), np.int64(1985), np.int64(450), np.int64(1991), np.int64(1992), np.int64(1993), np.int64(1995), np.int64(1996), np.int64(1997), np.int64(1998), np.int64(488), np.int64(494)]}
+</pre></div></div>
+</div>
+<p>As the <code class="docutils literal notranslate"><span class="pre">community_detection</span></code> function automatically adds these communtites as labels ot our objects, we can visualise this communities with our standard <code class="docutils literal notranslate"><span class="pre">visualise</span></code> functionality.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise the network with communities detected at resolution 1</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Centroid Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">edge_weight_name</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Communities : Res = 1&#39;</span><span class="p">,</span>
+        <span class="n">marker_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">scatter_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">figure_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x700 with 3 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_10_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_10_1.png" />
+</div>
+</div>
+<p>We can see that we have generated communities, which are shown by our labels ‘Communities : Res = 1’ as we defined by the <code class="docutils literal notranslate"><span class="pre">community_label_name</span></code> parameter. However, we might expect these communities to be the aggregated regions within the domain. Let’s lower our <code class="docutils literal notranslate"><span class="pre">resolution</span></code> value to see if we can gain more global clusters.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform community detection using the Louvain method with a resolution of 0.3</span>
+<span class="n">communities_res_03</span><span class="o">=</span><span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">community_detection</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Centroid Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">edge_weight_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">community_method</span><span class="o">=</span><span class="s1">&#39;louvain&#39;</span><span class="p">,</span>
+    <span class="n">community_method_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span>
+    <span class="n">community_label_name</span><span class="o">=</span><span class="s1">&#39;Communities : Res = 0.3&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>As before, we have added new labels to our domain objects now with the name ‘Communities : Res = 0.3’. We can see what has been added to our domain by printing it out.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: Aggregation
+Number of objects: 2001
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;, &#39;Communities : Res = 1&#39;, &#39;Communities : Res = 0.3&#39;]
+Networks: [&#39;Centroid Delaunay&#39;]
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>Both labels are there! It’s important we rename our community labels as MuSpAn will overwrite existing labels if we did not. Let’s see if lower the resolution parameter helped.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise the network with communities detected at resolution 0.3</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Centroid Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Communities : Res = 0.3&#39;</span><span class="p">,</span>
+        <span class="n">marker_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">scatter_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="n">figure_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 800x700 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_16_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_16_1.png" />
+</div>
+</div>
+<p>By lowering our resolution paramter, we have clustered our nodes into the expected five communities of this aggregated synthetic dataset.</p>
+<p>In summary, this highlights just some of the potential of community detection for exploring spatial relationships in networks. This tutorial focused on the basics of community detection, but there are many ways to adapt and extend these methods. For example, you can modify the network type to represent different spatial relationships or enhance the detection process by incorporating edge weights to reflect varying connection strengths. To explore the full range of possibilities, refer to the
+comprehensive documentation on community detection.</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

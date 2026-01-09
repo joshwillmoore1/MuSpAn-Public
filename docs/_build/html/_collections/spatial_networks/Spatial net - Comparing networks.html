@@ -1,0 +1,1220 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Comparing networks &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/spatial_networks/Spatial net - Comparing networks';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Persistent homology - Vietoris-Rips filtration" href="../topology/Topology%201%20-%20persistent%20homology.html" />
+    <link rel="prev" title="Community detection" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Comparing networks</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Comparing-networks">
+<h1>Comparing networks<a class="headerlink" href="#Comparing-networks" title="Link to this heading">#</a></h1>
+<p>Quantitatively measuring the similarity (or distance) between two networks is useful for comparing structure in spatial data. As with comparing numbers and vectors, there exist many metrics that quantify the similarity of networks that focus on specific features of the networks (local topology, global topology, metadata embedding). However, as networks contain more information than simple numbers and vectors (relational information), their comparative metrics need to be treated with a little
+more care as not all network distance metrics are well defined for any two networks. A good introduction to these concepts for those that work in biological sciences can be found <a class="reference external" href="https://doi.org/10.1371/journal.pone.0228728">here</a>.</p>
+<p>A fundamental notation that defines two classes of network metrics is node-correspondence. Simply put, two networks <span class="math notranslate nohighlight">\(G_{1}\)</span> and <span class="math notranslate nohighlight">\(G_{2}\)</span> have node-correspondence if they have the same nodes in both networks and are indexed identically. In our case, this means we used the same objects to construct the two networks. Node-correspondence means we can directly compare the edge structure of the two networks and typically means metrics that use this feature are more efficient and are more
+easily interpreted.</p>
+<p>Node-correspondence is not usually a property we have when wanting to compare networks, but there are many other metrics out there we can use that do not require this. MuSpAn currently contains a selection of various network distance metrics (that we outline below) but this will grow as MuSpAn develops!</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric Name</p></th>
+<th class="head"><p>Metric Identifier</p></th>
+<th class="head"><p>Requires Node Correspondence</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Euclidean</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">euclidean</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>Computes the Euclidean distance between the adjacency matrices of the two networks</p></td>
+</tr>
+<tr class="row-odd"><td><p>Manhattan</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">manhattan</span></code></p></td>
+<td><p>Yes</p></td>
+<td><p>Computes the Manhattan distance between the adjacency matrices of the two networks</p></td>
+</tr>
+<tr class="row-even"><td><p>Edit Distance</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">edit</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Counts the minimum number of operations required to transform one network into another.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeltaCon</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">deltacon_0</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Measures the similarity between two networks based on their structure at multiple scales.</p></td>
+</tr>
+<tr class="row-even"><td><p>NetLSD</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">netlsd</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Uses the Laplacian Spectral Descriptor to compare the global structure of networks.</p></td>
+</tr>
+<tr class="row-odd"><td><p>k-Spectral Laplacian</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">spectral</span> <span class="pre">laplacian</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Compares networks based on the first k eigenvalues (smallest) of their Laplacian matrices.</p></td>
+</tr>
+<tr class="row-even"><td><p>k-Spectral Adjacency</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">spectral</span> <span class="pre">adjacency</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Compares networks based on the last k eigenvalues (largest) of their adjacency matrices.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Wasserstein Weisfeiler-Lehman (WLL) Kernel</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wwl</span> <span class="pre">kernel</span></code></p></td>
+<td><p>No</p></td>
+<td><p>Uses both local structures and node labels to compare networks.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We recommend users familiarise themselves with the network distance metric before applying it in their spatial data analysis.</p>
+<section id="Setting-up-a-domain">
+<h2>Setting up a domain<a class="headerlink" href="#Setting-up-a-domain" title="Link to this heading">#</a></h2>
+<p>We’ll start this tutorial by loading in our usual imports and the <code class="docutils literal notranslate"><span class="pre">Synthetic-Points-Architecture</span></code> domain.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set the resolution for matplotlib figures</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">270</span>
+
+<span class="c1"># Load the example domain &#39;Synthetic-Points-Architecture&#39;</span>
+<span class="n">arch_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualise the architecture domain, coloring by &#39;Celltype&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>
+    <span class="n">figure_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)},</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mf">2.5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Architecture
+Number of objects: 5991
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1620x1080 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_4_2.png" src="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_4_2.png" />
+</div>
+</div>
+</section>
+<section id="Comparing-networks-with-node-correspondence">
+<h2>Comparing networks with node-correspondence<a class="headerlink" href="#Comparing-networks-with-node-correspondence" title="Link to this heading">#</a></h2>
+<p>To show how to compare networks that have the node-correspondence properties, we will build three networks on the same nodes but vary the edge structure. Let’s build these networks using the <code class="docutils literal notranslate"><span class="pre">Proximity</span></code> method and increase the <code class="docutils literal notranslate"><span class="pre">max_edge_distance</span></code> for each.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query points with labels A or B</span>
+<span class="n">query_ab</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">arch_domain</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Celltype&#39;</span><span class="p">),</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+
+<span class="c1"># Generate proximity networks with different maximum edge distances</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;AB prox 20&#39;</span><span class="p">,</span>
+    <span class="n">objects_as_nodes</span><span class="o">=</span><span class="n">query_ab</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;proximity&#39;</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;AB prox 50&#39;</span><span class="p">,</span>
+    <span class="n">objects_as_nodes</span><span class="o">=</span><span class="n">query_ab</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;proximity&#39;</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;AB prox 100&#39;</span><span class="p">,</span>
+    <span class="n">objects_as_nodes</span><span class="o">=</span><span class="n">query_ab</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;proximity&#39;</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
+
+<span class="c1"># Visualise the generated networks</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]})</span>
+
+<span class="c1"># Visualise the proximity network with 20μm max distance</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Proximity network: 20μm max distance&#39;</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;AB prox 20&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">edge_cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+    <span class="n">edge_vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">edge_vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">query_ab</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Visualise the proximity network with 50μm max distance</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Proximity network: 50μm max distance&#39;</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;AB prox 50&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">edge_cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+    <span class="n">edge_vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">edge_vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">query_ab</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Visualise the proximity network with 100μm max distance</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Proximity network: 100μm max distance&#39;</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;AB prox 100&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+    <span class="n">edge_cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+    <span class="n">edge_vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">edge_vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">query_ab</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 5940x1620 with 4 Axes&gt;,
+ &lt;Axes: title={&#39;center&#39;: &#39;Proximity network: 100μm max distance&#39;}&gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_7_1.png" src="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_7_1.png" />
+</div>
+</div>
+<p>We’ll now use the <code class="docutils literal notranslate"><span class="pre">Euclidean</span></code> metric to compare each of the these networks using the <code class="docutils literal notranslate"><span class="pre">muspan.networks.network_distance</span></code> function. To use this function, we require the networks themselves, not the names of the networks. <strong>Importantly</strong> this allows use to compare networks from different domains. Let’s pull these out first:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the generated proximity networks from the architecture domain</span>
+<span class="n">net_prox_20</span> <span class="o">=</span> <span class="n">arch_domain</span><span class="o">.</span><span class="n">networks</span><span class="p">[</span><span class="s1">&#39;AB prox 20&#39;</span><span class="p">]</span>
+<span class="n">net_prox_50</span> <span class="o">=</span> <span class="n">arch_domain</span><span class="o">.</span><span class="n">networks</span><span class="p">[</span><span class="s1">&#39;AB prox 50&#39;</span><span class="p">]</span>
+<span class="n">net_prox_100</span> <span class="o">=</span> <span class="n">arch_domain</span><span class="o">.</span><span class="n">networks</span><span class="p">[</span><span class="s1">&#39;AB prox 100&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>We have everything we need to compute the distances between these networks</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the Euclidean distance between the same network (should be zero)</span>
+<span class="n">net_dist_20_20</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+    <span class="n">net_prox_20</span><span class="p">,</span> <span class="n">net_prox_20</span><span class="p">,</span> <span class="n">weight_A</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute the Euclidean distance between the proximity network with 20μm max distance and 50μm max distance</span>
+<span class="n">net_dist_20_50</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+    <span class="n">net_prox_20</span><span class="p">,</span> <span class="n">net_prox_50</span><span class="p">,</span> <span class="n">weight_A</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute the Euclidean distance between the proximity network with 20μm max distance and 100μm max distance</span>
+<span class="n">net_dist_20_100</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+    <span class="n">net_prox_20</span><span class="p">,</span> <span class="n">net_prox_100</span><span class="p">,</span> <span class="n">weight_A</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Print the computed distances</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance between networks: AB prox 20 - AB prox 20 =&#39;</span><span class="p">,</span> <span class="n">net_dist_20_20</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance between networks: AB prox 20 - AB prox 50 =&#39;</span><span class="p">,</span> <span class="n">net_dist_20_50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance between networks: AB prox 20 - AB prox 100 =&#39;</span><span class="p">,</span> <span class="n">net_dist_20_100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Distance between networks: AB prox 20 - AB prox 20 = 0.0
+Distance between networks: AB prox 20 - AB prox 50 = 10449.711969156955
+Distance between networks: AB prox 20 - AB prox 100 = 38344.67148306586
+</pre></div></div>
+</div>
+<p>Though we have used the <code class="docutils literal notranslate"><span class="pre">Euclidean</span></code> metric that requires node-correspondence, we could have used any other metric in outlined in the above table. In addition, we could use any edge weight defined on each network, which would also alter our interpretation of the distance.</p>
+</section>
+<section id="Comparing-networks-without-node-correspondence">
+<h2>Comparing networks without node-correspondence<a class="headerlink" href="#Comparing-networks-without-node-correspondence" title="Link to this heading">#</a></h2>
+<p>If we want to compare two networks defined on different sets of nodes, we can use any other of the metric that do not require node-correspondence. To demonstrate this, we can load in two example domains that exhibit very different spatial structure and generate delaunay networks using the same parameters for both.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load example domains: Synthetic-Points-Random and Synthetic-Points-Architecture</span>
+<span class="n">noise_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Random&#39;</span><span class="p">)</span>
+<span class="n">arch_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># Query points with labels A, B, or C in both domains</span>
+<span class="n">query_abc_arch</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">arch_domain</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Celltype&#39;</span><span class="p">),</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<span class="n">query_abc_noise</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">noise_domain</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Celltype&#39;</span><span class="p">),</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+
+<span class="c1"># Generate Delaunay networks for both domains with a maximum edge distance of 50</span>
+<span class="n">noise_net</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">noise_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Density network&#39;</span><span class="p">,</span>
+    <span class="n">objects_as_nodes</span><span class="o">=</span><span class="n">query_abc_noise</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;delaunay&#39;</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">)</span>
+<span class="n">arch_net</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Arch network&#39;</span><span class="p">,</span>
+    <span class="n">objects_as_nodes</span><span class="o">=</span><span class="n">query_abc_arch</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;delaunay&#39;</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot the generated networks for both domains</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plot the Density domain network</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Density domain&#39;</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">noise_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Density network&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="n">query_abc_noise</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot the Architecture domain network</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Architecture domain&#39;</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">arch_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Arch network&#39;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="n">query_abc_arch</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Density
+Number of objects: 2000
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Architecture
+Number of objects: 5991
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2700x1350 with 2 Axes&gt;,
+ &lt;Axes: title={&#39;center&#39;: &#39;Architecture domain&#39;}&gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_15_2.png" src="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_15_2.png" />
+</div>
+</div>
+<p>We can compute distances between these networks using various metrics via the <code class="docutils literal notranslate"><span class="pre">metrics</span></code> argument in the <code class="docutils literal notranslate"><span class="pre">muspan.networks.network_distance</span></code> function. Let’s try this using the range of spectral distances we currently in MuSpAn.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the k-Spectral Laplacian distance between the noise and architecture networks</span>
+<span class="n">net_dist_k_lap</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+    <span class="n">noise_net</span><span class="p">,</span> <span class="n">arch_net</span><span class="p">,</span>
+    <span class="n">weight_A</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span>
+    <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;k spectral laplacian&#39;</span><span class="p">,</span> <span class="n">distance_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute the k-Spectral Adjacency distance between the noise and architecture networks</span>
+<span class="n">net_dist_k_eig</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+    <span class="n">noise_net</span><span class="p">,</span> <span class="n">arch_net</span><span class="p">,</span>
+    <span class="n">weight_A</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span>
+    <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;k spectral adjacency&#39;</span><span class="p">,</span> <span class="n">distance_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Compute the NetLSD distance between the noise and architecture networks</span>
+<span class="n">net_dist_netlsd</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+    <span class="n">noise_net</span><span class="p">,</span> <span class="n">arch_net</span><span class="p">,</span>
+    <span class="n">weight_A</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span>
+    <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;netlsd&#39;</span><span class="p">,</span><span class="n">distance_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span> <span class="n">netlsd_time</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">netlsd_timestep</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance between networks: Arch network - Noise network =&#39;</span><span class="p">,</span><span class="n">net_dist_k_lap</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance between networks: Arch network - Noise network =&#39;</span><span class="p">,</span><span class="n">net_dist_k_eig</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Distance between networks: Arch network - Noise network =&#39;</span><span class="p">,</span><span class="n">net_dist_netlsd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Distance between networks: Arch network - Noise network = 0.06551147224633276
+Distance between networks: Arch network - Noise network = 365.0456915993501
+Distance between networks: Arch network - Noise network = 4780.440092346564
+</pre></div></div>
+</div>
+<p>Critically, we should see that the metrics that account for global structural properties should produce larger distances. In the case of spectral metrics, this means increasing k for the time for heatflow in the <code class="docutils literal notranslate"><span class="pre">netlsd</span></code> metric. We can check this is the case below</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary library</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Initialize an empty list to store network distances</span>
+<span class="n">network_distances_net_lsd</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Define the time range for netLSD</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Compute the netLSD distance for different time points</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">time</span><span class="p">:</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+        <span class="n">noise_net</span><span class="p">,</span> <span class="n">arch_net</span><span class="p">,</span>
+        <span class="n">weight_A</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span>
+        <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;netlsd&#39;</span><span class="p">,</span> <span class="n">distance_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">netlsd_time</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">netlsd_timestep</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">network_distances_net_lsd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+
+<span class="c1"># Plot the netLSD distances over time</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">network_distances_net_lsd</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;netLSD Distance&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">network_distances_net_lsd</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;netLSD: Time&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Distance: Arch network - Noise network&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;netLSD Distance Over Time&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_20_0.png" src="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_20_0.png" />
+</div>
+</div>
+<p>These distances do not mean much without some context, so it’s usually a good idea to normalise these against some known or baseline distance when using networks distances in spatial analysis.</p>
+<p><strong>!WARNING!</strong> Some network distance metrics scale very poorely with number of nodes and edges in each graph. Notably, the graph edit distance (<code class="docutils literal notranslate"><span class="pre">edit</span></code>) is a NP-hard problem, and therefore should only be used on small networks. For large networks, k spectral methods are usually efficient and suitable to detect structural changes.</p>
+</section>
+<section id="Using-kernels-for-label-data-embedding-when-comparing-networks">
+<h2>Using kernels for label data embedding when comparing networks<a class="headerlink" href="#Using-kernels-for-label-data-embedding-when-comparing-networks" title="Link to this heading">#</a></h2>
+<p>The Wasserstein Weisfeiler-Lehman (WWL) kernel is a specific network distance metric that uses both the local structures and node labels to compare networks by iteratively averaging node label values of adjacent nodes, homogenising node features on the each network independently. After this process, the modified label spaces of each network is compared using a Wasserstein distance. For more information on the WWL kernel, see <a class="reference external" href="https://arxiv.org/abs/1906.01277">this paper</a>.</p>
+<p>We can see this homogenising label interaction effect by increasing the number of <code class="docutils literal notranslate"><span class="pre">wwl</span> <span class="pre">iterations</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize an empty list to store WWL distances</span>
+<span class="n">wwl_distance</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Define the range for WWL iterations</span>
+<span class="n">wwl_iterations</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+<span class="c1"># Calculate the distance between the noise and architecture networks using the WWL kernel</span>
+<span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">wwl_iterations</span><span class="p">:</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">network_distance</span><span class="p">(</span>
+        <span class="n">noise_net</span><span class="p">,</span> <span class="n">arch_net</span><span class="p">,</span>
+        <span class="n">weight_A</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight_B</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">distance_metric</span><span class="o">=</span><span class="s1">&#39;wwl kernel&#39;</span><span class="p">,</span>
+        <span class="n">distance_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">wwl_iterations</span><span class="o">=</span><span class="n">it</span><span class="p">,</span> <span class="n">wwl_label_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Celltype&#39;</span><span class="p">],</span> <span class="n">wwl_domains</span><span class="o">=</span><span class="p">[</span><span class="n">noise_domain</span><span class="p">,</span> <span class="n">arch_domain</span><span class="p">])</span>
+    <span class="p">)</span>
+    <span class="n">wwl_distance</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+Warning: The ground distance matrix is singular. Sinkhorn may not converge.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the WWL distances over different iterations</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Plot the WWL distance as a line plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wwl_iterations</span><span class="p">,</span> <span class="n">wwl_distance</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;WWL Distance&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add scatter points to the plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">wwl_iterations</span><span class="p">,</span> <span class="n">wwl_distance</span><span class="p">)</span>
+
+<span class="c1"># Set the labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;WWL iterations&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;WWL distance: Arch network - Noise network&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add a title to the plot</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;WWL Distance Over Iterations&#39;</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0.5, 1.0, &#39;WWL Distance Over Iterations&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_26_1.png" src="../../_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_26_1.png" />
+</div>
+</div>
+</section>
+<section id="Importance-of-Choosing-the-Right-Metrics">
+<h2>Importance of Choosing the Right Metrics<a class="headerlink" href="#Importance-of-Choosing-the-Right-Metrics" title="Link to this heading">#</a></h2>
+<p>Choosing the right network distance metric is crucial for accurately capturing the features of the networks being compared. Different metrics focus on different aspects of network structure:</p>
+<ul class="simple">
+<li><p><strong>Node-Correspondence Metrics</strong>: Metrics like Euclidean and Manhattan require node-correspondence and are efficient for comparing networks with the same nodes.</p></li>
+<li><p><strong>Structure Metrics</strong>: Metrics like NetLSD and k-Spectral methods capture global structural properties and are suitable for detecting large-scale differences between networks.</p></li>
+<li><p><strong>Local Structure and Label Embedding Metrics</strong>: The WWL kernel considers both local structures and node labels, making it ideal for comparing networks with rich node metadata.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Setting-up-a-domain">Setting up a domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Comparing-networks-with-node-correspondence">Comparing networks with node-correspondence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Comparing-networks-without-node-correspondence">Comparing networks without node-correspondence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Using-kernels-for-label-data-embedding-when-comparing-networks">Using kernels for label data embedding when comparing networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Importance-of-Choosing-the-Right-Metrics">Importance of Choosing the Right Metrics</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

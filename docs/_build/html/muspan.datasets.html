@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>muspan.datasets &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.datasets';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="load_example_domain" href="generated/muspan.datasets.load_example_domain.load_example_domain.html" />
+    <link rel="prev" title="spatialdata_to_domain" href="generated/muspan.io.spatialdata_to_domain.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="muspan.domain.html">muspan.domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.objects.html">muspan.objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.visualise.html">muspan.visualise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.shape_operations.html">muspan.shape_operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.networks.html">muspan.networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.query.html">muspan.query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.geometry.html">muspan.geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.spatial_statistics.html">muspan.spatial_statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.summary_statistics.html">muspan.summary_statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.topology.html">muspan.topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.distribution.html">muspan.distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.region_based.html">muspan.region_based</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.io.html">muspan.io</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">muspan.datasets</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/muspan.datasets.load_example_domain.load_example_domain.html">load_example_domain</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.helpers.html">muspan.helpers</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="Documentation.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">muspan.datasets</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="muspan-datasets">
+<span id="datasets"></span><h1>muspan.datasets<a class="headerlink" href="#muspan-datasets" title="Link to this heading">#</a></h1>
+<p>The MuSpAn datasets module provides example datasets as MuSpAn domains for testing and demonstration purposes.</p>
+<p class="rubric">Loading in example datasets</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.datasets.load_example_domain.load_example_domain.html#muspan.datasets.load_example_domain.load_example_domain" title="muspan.datasets.load_example_domain.load_example_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_example_domain</span></code></a></p></td>
+<td><p>Load an example domain file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Example datasets</p>
+<div class="pst-scrollable-table-container"><table class="table table-center">
+<colgroup>
+<col style="width: 27.0%" />
+<col style="width: 28.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Domain name</p></th>
+<th class="head"><p>Visualisation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Synthetic-Points-Random</p></td>
+<td><a class="reference internal image-reference" href="_images/Synth-Density.png"><img alt="_images/Synth-Density.png" class="align-center" src="_images/Synth-Density.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+</td>
+<td><p>A synthetic dataset of points randomly distributed (poisson point process) in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’ equally distributed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Synthetic-Points-Aggregation</p></td>
+<td><a class="reference internal image-reference" href="_images/Synth-Agg.png"><img alt="_images/Synth-Agg.png" class="align-center" src="_images/Synth-Agg.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+</td>
+<td><p>A synthetic dataset of points in aggregated clusters in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’. Points with labels ‘A’, ‘B’ and ‘C’ are aggregated in clusters, while points with label ‘D’ are randomly distributed (poisson point process).</p></td>
+</tr>
+<tr class="row-even"><td><p>Synthetic-Points-Exclusion</p></td>
+<td><a class="reference internal image-reference" href="_images/Synth-Ex.png"><img alt="_images/Synth-Ex.png" class="align-center" src="_images/Synth-Ex.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+</td>
+<td><p>A synthetic dataset of points defining a region of exclusion in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’.  Points with labels ‘A’, ‘B’ and ‘D’  are aggregated in central region with label ‘C’ points excluded from this region.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Synthetic-Points-Architecture</p></td>
+<td><a class="reference internal image-reference" href="_images/Synth-Arch.png"><img alt="_images/Synth-Arch.png" class="align-center" src="_images/Synth-Arch.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+</td>
+<td><p>A synthetic dataset of points with different spatial architectures in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’.  Points with labels ‘A’ and ‘B’ form small regular annulus structures. Points in label ‘C’ form a large circle structure. Points in label ‘D’ are randomly distributed (poisson point process).</p></td>
+</tr>
+<tr class="row-even"><td><p>Xenium-Healthy-Colon</p></td>
+<td><a class="reference internal image-reference" href="_images/Xenium.png"><img alt="_images/Xenium.png" class="align-center" src="_images/Xenium.png" style="width: 222.45px; height: 228.15px;" /></a>
+</td>
+<td><p>A selected ROI from a sample of healthy colon tissue from a 10x Xenium dataset provided in the public resources repository, <a class="reference external" href="https://www.10xgenomics.com/datasets/fresh-frozen-mouse-colon-with-xenium-multimodal-cell-segmentation-1-standard">see link</a>. The domain contains cell boundaries, nuclei and a selection of transcripts: Mylk, Myl9, Cnn1, Mgll, Mustn1, Oit1, Cldn2, Nupr1, Sox9, Ccl9. The dataset also contains cell clustering labels produced by Xenium Onboard Analysis using the ‘Graph-based’ method. This dataset is licensed under the Creative Commons Attribution license.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Macrophage-Hypoxia-ROI</p></td>
+<td><a class="reference internal image-reference" href="_images/Hypoxia.png"><img alt="_images/Hypoxia.png" class="align-center" src="_images/Hypoxia.png" style="width: 219.45px; height: 229.79999999999998px;" /></a>
+</td>
+<td><p>A 1.5mm square region of interest formed from a stack of aligned IHC slides in a human head and neck cancer image, <a class="reference external" href="https://doi.org/10.1038/s41598-020-75180-9">see link</a>. The domain contains cell centre locations of macrophages (CD68+), and shapes which denote boundaries of PanCK (a tumour marker), CAIX (a marker for hypoxia) and Pimonidazole (a marker for severe hypoxia).</p></td>
+</tr>
+<tr class="row-even"><td><p>Mouse-Colon-Carcinoma</p></td>
+<td><a class="reference internal image-reference" href="_images/Mouse-Colon-Carc.png"><img alt="_images/Mouse-Colon-Carc.png" class="align-center" src="_images/Mouse-Colon-Carc.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+</td>
+<td><p>A 1mm square image of mouse colorectal carcinoma containing 5 different immune markers and one epithelial marker. This dataset was used the paper <a class="reference external" href="https://doi.org/10.1017/S2633903X24000011">Extended correlation functions for spatial analysis of multiplex imaging data</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Visium-Colon-Adenocarcinoma</p></td>
+<td><a class="reference internal image-reference" href="_images/visium_dataset.png"><img alt="_images/visium_dataset.png" class="align-center" src="_images/visium_dataset.png" style="width: 219.4px; height: 242.8px;" /></a>
+</td>
+<td><p>A sample of mouse stage 2a colon adenocarcinoma generated using the Visium CytAssist Spatial Gene Expression workflow as a 10x resource. This sample was processed using the Human Whole Transcriptome probe set with a spot diameter of 219µm. Gene expression was processed using Space Ranger v2.1 with gene signature Topic similarity included as continuous labels. This dataset is licensed under the Creative Commons Attribution license, <a class="reference external" href="https://www.10xgenomics.com/datasets/visium-cytassist-gene-expression-libraries-of-post-xenium-human-colon-cancer-ffpe-using-the-human-whole-transcriptome-probe-set-2-standard">see link</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Earth-Land-Map</p></td>
+<td><a class="reference internal image-reference" href="_images/map.png"><img alt="_images/map.png" class="align-center" src="_images/map.png" style="width: 221.75px; height: 115.25px;" /></a>
+</td>
+<td><p>A dataset that represents a world map showing Earth’s landmasses. Each country or region is stored as a shape object. The dataset includes labels for each country and groups them into continent collections. This dataset was sourced from <a class="reference external" href="https://datahub.io/core/geo-countries">this link</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

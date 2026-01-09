@@ -1,0 +1,1472 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MuSpAn: Figure 2. Quantification at the cell scale &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/paper_tutorials/MuSpAn - Figure_2';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MuSpAn: Figure 3. Quantification of cell-cell proximity" href="MuSpAn%20-%20Figure_3.html" />
+    <link rel="prev" title="Paper examples" href="../../paper_examples.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MuSpAn: Figure 2. Quantification at the cell scale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_3.html">MuSpAn: Figure 3. Quantification of cell-cell proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_4.html">MuSpAn: Figure 4. Quantification of intercellular relationships across length scales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_5.html">MuSpAn: Figure 5. Quantification of tissue scale features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_6.html">MuSpAn: Figure 6. Multiscale Spatial Profiling of Fibroblast–Immune Interactions in Colorectal Tumours</a></li>
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AdCar%20-%20Figure_1.html">Analysing Cell-Cell Interactions in Colorectal Neoplasia: Figure 1.</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../paper_examples.html" class="nav-link">Paper examples</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">MuSpAn:...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="MuSpAn:-Figure-2.-Quantification-at-the-cell-scale">
+<h1>MuSpAn: Figure 2. Quantification at the cell scale<a class="headerlink" href="#MuSpAn:-Figure-2.-Quantification-at-the-cell-scale" title="Link to this heading">#</a></h1>
+<p>In this notebook we will reproduce analysis that is used to generate Figure 2 from MuSpAn: A Toolbox for Multiscale Spatial Analysis. This figure focues on spatial analysis at the single cell scale using a spatial transcriptomics sample of healthy mouse colon. See reference paper for details, <a class="reference external" href="https://doi.org/10.1101/2024.12.06.627195">https://doi.org/10.1101/2024.12.06.627195</a>.</p>
+<p>NOTE: to run this tutorial, you’ll need to download the MuSpAn domains from <a class="github reference external" href="https://github.com/joshwillmoore1/Supporting_material_muspan_paper">joshwillmoore1/Supporting_material_muspan_paper</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports for analysis</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># imports to make plots pretty</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="nn">fm</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span> <span class="c1"># set the resolution of the figure</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># Fixed seed for reproducibility</span>
+</pre></div>
+</div>
+</div>
+<p>For reproducibility we use the io save-load functionality of muspan to load a premade domain of the sample. (Note this is the same domain as the example dataset ‘Xenium-Healthy-Colon’, see documentation).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_domains_folder</span><span class="o">=</span><span class="s1">&#39;some/path/to/downloaded_folder/domains_for_figs_2_to_6/&#39;</span> <span class="c1"># EDIT THIS PATH TO WHERE THE DOMAIN FILES ARE STORED AFTER DOWNLOADING THEM</span>
+<span class="n">domain_path</span><span class="o">=</span><span class="n">path_to_domains_folder</span><span class="o">+</span><span class="s1">&#39;fig-2-domain.muspan&#39;</span>
+
+<span class="n">domain_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">load_domain</span><span class="p">(</span><span class="n">path_to_domain</span><span class="o">=</span><span class="n">domain_path</span><span class="p">,</span><span class="n">print_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Xenium-Healthy-Colon
+Number of objects: 74174
+Collections: [&#39;Cell boundaries&#39;, &#39;Nucleus boundaries&#39;, &#39;Transcripts&#39;]
+Labels: [&#39;Cell ID&#39;, &#39;Transcript Counts&#39;, &#39;Cell Area&#39;, &#39;Cluster ID&#39;, &#39;Nucleus Area&#39;, &#39;Transcript&#39;, &#39;Transcript ID&#39;]
+Networks: []
+Distance matrices: []
+version saved with: 1.0.0
+Data and time of save: 2024-10-31 16:57:35.490330
+Notes: A selected ROI from a sample of healthy colon tissue from a 10x Xenium dataset provided in the public resources repository. The domain contains cell boundaries, nuclei and a selection of transcripts: Mylk, Myl9, Cnn1, Mgll, Mustn1, Oit1, Cldn2, Nupr1, Sox9, Ccl9. The dataset also contains cell clustering labels produced by Xenium Onboard Analysis using the ‘Graph-based’ method. This dataset is licensed under the Creative Commons Attribution license.
+</pre></div></div>
+</div>
+<p>Next we’ll run some color matching the domain for consistency across the figures and define the transcripts of interest. Note we have only loaded the spatial locations of the transcripts of interest here.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Color matching the domain for consistency across the figures</span>
+<span class="c1"># Define the order of cluster IDs</span>
+<span class="n">cluster_id_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cluster 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 3&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 4&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 5&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 6&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 7&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 8&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 9&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 10&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Cluster 11&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 12&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 13&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 14&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 15&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 16&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 17&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 18&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 19&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 20&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;Cluster 21&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 22&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 23&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 24&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 25&#39;</span><span class="p">,</span> <span class="s1">&#39;Unassigned&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize an empty list to store colors for each cluster</span>
+<span class="n">cell_colors</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Assign colors to clusters using seaborn&#39;s &#39;tab20&#39; palette</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_id_order</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">cell_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cell_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span><span class="p">])</span>
+
+<span class="c1"># Create a dictionary to map cluster IDs to their corresponding colors</span>
+<span class="n">new_colors</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span> <span class="n">cell_colors</span><span class="p">[</span><span class="n">cluster_id_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">domain_1</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">][</span><span class="s1">&#39;categories&#39;</span><span class="p">]}</span>
+
+<span class="c1"># Update the domain colors with the new color mapping</span>
+<span class="n">domain_1</span><span class="o">.</span><span class="n">update_colors</span><span class="p">(</span><span class="n">new_colors</span><span class="p">,</span> <span class="n">colors_to_update</span><span class="o">=</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">)</span>
+
+<span class="c1"># Defining the transcripts of interest for each cluster</span>
+<span class="n">transcripts_of_interest_cluster_2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Oit1&#39;</span><span class="p">,</span> <span class="s1">&#39;Cldn2&#39;</span><span class="p">,</span> <span class="s1">&#39;Nupr1&#39;</span><span class="p">,</span> <span class="s1">&#39;Sox9&#39;</span><span class="p">,</span> <span class="s1">&#39;Ccl9&#39;</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Reverse the list for cluster 2</span>
+<span class="n">transcripts_of_interest_cluster_1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Mylk&#39;</span><span class="p">,</span> <span class="s1">&#39;Myl9&#39;</span><span class="p">,</span> <span class="s1">&#39;Cnn1&#39;</span><span class="p">,</span> <span class="s1">&#39;Mgll&#39;</span><span class="p">,</span> <span class="s1">&#39;Mustn1&#39;</span><span class="p">]</span>  <span class="c1"># List for cluster 1</span>
+
+<span class="c1"># Combine the transcripts of interest from both clusters into a single list</span>
+<span class="n">total_transcripts_of_interest</span> <span class="o">=</span> <span class="n">transcripts_of_interest_cluster_1</span> <span class="o">+</span> <span class="n">transcripts_of_interest_cluster_2</span>
+</pre></div>
+</div>
+</div>
+<p>The domain constains collections for cell boundaries, their nucelei and transcripts. We’ll make some useful queries for these various collections.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query to get all cell boundaries in the domain</span>
+<span class="n">qCells</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell boundaries&#39;</span><span class="p">)</span>
+
+<span class="c1"># Query to get all transcripts in the domain</span>
+<span class="n">qTrans</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcripts&#39;</span><span class="p">)</span>
+
+<span class="c1"># Query to get all nucleus boundaries in the domain</span>
+<span class="n">qNuc</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Nucleus boundaries&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a query container to combine cell boundaries and transcripts</span>
+<span class="n">trans_or_boundaries</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+
+<span class="c1"># Add the cell boundaries and transcripts queries to the container using an OR condition</span>
+<span class="n">trans_or_boundaries</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">qCells</span><span class="p">,</span> <span class="s1">&#39;OR&#39;</span><span class="p">,</span> <span class="n">qTrans</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s visualise the domain to make sure we’ve loaded everything correctly.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for plotting</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+
+<span class="c1"># Visualize the domain with specific settings</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_1</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript&#39;</span><span class="p">),</span>  <span class="c1"># Color by transcript labels</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">trans_or_boundaries</span><span class="p">,</span>  <span class="c1"># Plot both cell boundaries and transcripts</span>
+    <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Do not show boundaries</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>  <span class="c1"># Set marker size for transcripts</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>  <span class="c1"># Use the created axis for plotting</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Do not add a color bar</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>  <span class="c1"># Set transparency and line width for shapes</span>
+    <span class="n">cbar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="s1">&#39;top&#39;</span><span class="p">},</span>  <span class="c1"># Set color bar location (not used since add_cbar=False)</span>
+    <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Add a scale bar to the plot</span>
+    <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>  <span class="c1"># Set scale bar size to 50µm</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;50µm&#39;</span><span class="p">,</span>  <span class="c1"># Label for the scale bar</span>
+        <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower left&#39;</span><span class="p">,</span>  <span class="c1"># Location of the scale bar</span>
+        <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="c1"># Padding around the scale bar</span>
+        <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>  <span class="c1"># Color of the scale bar</span>
+        <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># Do not add a frame around the scale bar</span>
+        <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Vertical size of the scale bar</span>
+        <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># Font properties for the scale bar label</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2100x2250 with 1 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_10_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_10_1.png" />
+</div>
+</div>
+<p>Now we’ll focus on two specific cells that are representative of an stem-like epithelial cell and a stroma-like cell. We’ll grab these cells, transcripts and nucleus using the Cell ID provided by 10X Xenium. These cells where located using the 10x Xenium Explorer software.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the cell IDs of interest</span>
+<span class="n">a_cell_of_interest_1</span> <span class="o">=</span> <span class="s1">&#39;njpgodic-1&#39;</span>
+<span class="n">a_cell_of_interest_2</span> <span class="o">=</span> <span class="s1">&#39;dfbfdjho-1&#39;</span>
+
+<span class="c1"># Create queries to select the cells of interest based on their IDs</span>
+<span class="n">candiate_cell_query_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">a_cell_of_interest_1</span><span class="p">)</span>
+<span class="n">candiate_cell_query_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">a_cell_of_interest_2</span><span class="p">)</span>
+
+<span class="c1"># Combine the queries for both cells of interest using an OR condition</span>
+<span class="n">qBothCandiates</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">qBothCandiates</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_1</span><span class="p">,</span> <span class="s1">&#39;OR&#39;</span><span class="p">,</span> <span class="n">candiate_cell_query_2</span><span class="p">)</span>
+
+<span class="c1"># Create a query container to get the boundaries of both cells of interest</span>
+<span class="n">qBothCandiates_boundaries</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">qBothCandiates_boundaries</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">qBothCandiates</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qCells</span><span class="p">)</span>
+
+<span class="c1"># Create query containers for the boundaries, nuclei, and transcripts of each cell of interest</span>
+<span class="n">Boundary_in_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">Boundary_in_1</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_1</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qCells</span><span class="p">)</span>
+
+<span class="n">Nucleus_in_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">Nucleus_in_1</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_1</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qNuc</span><span class="p">)</span>
+
+<span class="n">trans_in_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">trans_in_1</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_1</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qTrans</span><span class="p">)</span>
+
+<span class="n">Boundary_in_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">Boundary_in_2</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_2</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qCells</span><span class="p">)</span>
+
+<span class="n">Nucleus_in_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">Nucleus_in_2</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_2</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qNuc</span><span class="p">)</span>
+
+<span class="n">trans_in_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+<span class="n">trans_in_2</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_2</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qTrans</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can count the number of transcripts in the cell boundary and nucleus of the cells of interest explicitly using our summary statistics module. We include some additional code to align these transcript counts for plotting later on.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count the number of transcripts within the cell boundary for cell 1</span>
+<span class="c1"># &#39;label_name&#39; specifies the label to count, &#39;population&#39; specifies the query container for transcripts,</span>
+<span class="c1"># &#39;include_boundaries&#39; specifies the query container for cell boundaries, and &#39;normalised&#39; specifies whether to normalize the counts</span>
+<span class="n">counts_in_boundary_1</span><span class="p">,</span> <span class="n">unique_labels_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">summary_statistics</span><span class="o">.</span><span class="n">label_counts</span><span class="p">(</span>
+    <span class="n">domain_1</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Transcript ID&#39;</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">trans_in_1</span><span class="p">,</span> <span class="n">include_boundaries</span><span class="o">=</span><span class="n">Boundary_in_1</span><span class="p">,</span> <span class="n">normalised</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Count the number of transcripts within the nucleus for cell 1</span>
+<span class="n">counts_in_nuc_1</span><span class="p">,</span> <span class="n">unique_labels_nuc_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">summary_statistics</span><span class="o">.</span><span class="n">label_counts</span><span class="p">(</span>
+    <span class="n">domain_1</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Transcript ID&#39;</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">trans_in_1</span><span class="p">,</span> <span class="n">include_boundaries</span><span class="o">=</span><span class="n">Nucleus_in_1</span><span class="p">,</span> <span class="n">normalised</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Count the number of transcripts within the cell boundary for cell 2</span>
+<span class="n">counts_in_boundary_2</span><span class="p">,</span> <span class="n">unique_labels_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">summary_statistics</span><span class="o">.</span><span class="n">label_counts</span><span class="p">(</span>
+    <span class="n">domain_1</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Transcript ID&#39;</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">trans_in_2</span><span class="p">,</span> <span class="n">include_boundaries</span><span class="o">=</span><span class="n">Boundary_in_2</span><span class="p">,</span> <span class="n">normalised</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Count the number of transcripts within the nucleus for cell 2</span>
+<span class="n">counts_in_nuc_2</span><span class="p">,</span> <span class="n">unique_labels_nuc_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">summary_statistics</span><span class="o">.</span><span class="n">label_counts</span><span class="p">(</span>
+    <span class="n">domain_1</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Transcript ID&#39;</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">trans_in_2</span><span class="p">,</span> <span class="n">include_boundaries</span><span class="o">=</span><span class="n">Nucleus_in_2</span><span class="p">,</span> <span class="n">normalised</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize empty lists to store the counts of transcripts in the cell boundary and nucleus for both cells</span>
+<span class="n">counts_in_boundary_1_full</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">counts_in_nuc_1_full</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">counts_in_boundary_2_full</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">counts_in_nuc_2_full</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Iterate over each transcript of interest</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">total_transcripts_of_interest</span><span class="p">:</span>
+    <span class="c1"># Check if the transcript is in the unique labels for cell boundary 1 and append the count, otherwise append 0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">unique_labels_1</span><span class="p">:</span>
+        <span class="n">counts_in_boundary_1_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counts_in_boundary_1</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">unique_labels_1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">counts_in_boundary_1_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Check if the transcript is in the unique labels for nucleus 1 and append the count, otherwise append 0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">unique_labels_nuc_1</span><span class="p">:</span>
+        <span class="n">counts_in_nuc_1_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counts_in_nuc_1</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">unique_labels_nuc_1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">counts_in_nuc_1_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Check if the transcript is in the unique labels for cell boundary 2 and append the count, otherwise append 0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">unique_labels_2</span><span class="p">:</span>
+        <span class="n">counts_in_boundary_2_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counts_in_boundary_2</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">unique_labels_2</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">counts_in_boundary_2_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Check if the transcript is in the unique labels for nucleus 2 and append the count, otherwise append 0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">unique_labels_nuc_2</span><span class="p">:</span>
+        <span class="n">counts_in_nuc_2_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counts_in_nuc_2</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">unique_labels_nuc_2</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">counts_in_nuc_2_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Convert the lists to numpy arrays for easier manipulation later</span>
+<span class="n">counts_in_boundary_1_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">counts_in_boundary_1_full</span><span class="p">)</span>
+<span class="n">counts_in_nuc_1_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">counts_in_nuc_1_full</span><span class="p">)</span>
+<span class="n">counts_in_boundary_2_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">counts_in_boundary_2_full</span><span class="p">)</span>
+<span class="n">counts_in_nuc_2_full</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">counts_in_nuc_2_full</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We might also be interested in the distance between particular objects, for example, we show here that we can compute the distance of these transcripts located within the cells of interest to their respective nuclei as a proof of principle.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize empty lists to store distances of transcripts to the nucleus for both cells</span>
+<span class="n">distance_dist_in_1</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">distance_dist_in_2</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Iterate over each transcript of interest</span>
+<span class="k">for</span> <span class="n">t_id</span> <span class="ow">in</span> <span class="n">total_transcripts_of_interest</span><span class="p">:</span>
+    <span class="c1"># Create a query to select the current transcript of interest</span>
+    <span class="n">qToI</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">t_id</span><span class="p">)</span>
+
+    <span class="c1"># Create query containers to combine the transcript query with the cell-specific transcript queries</span>
+    <span class="n">ToI_in_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+    <span class="n">ToI_in_1</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">trans_in_1</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qToI</span><span class="p">)</span>
+
+    <span class="n">ToI_in_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+    <span class="n">ToI_in_2</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">trans_in_2</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qToI</span><span class="p">)</span>
+
+    <span class="c1"># Get the object IDs of the transcripts in each cell</span>
+    <span class="n">ids_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">return_object_IDs_from_query_like</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">ToI_in_1</span><span class="p">)</span>
+    <span class="n">ids_2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">return_object_IDs_from_query_like</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">ToI_in_2</span><span class="p">)</span>
+
+    <span class="c1"># If there are transcripts in cell 1, calculate the distances to the nucleus</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ids_1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">these_dists_1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_minimum_distances_boundaries</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">ToI_in_1</span><span class="p">,</span> <span class="n">Nucleus_in_1</span><span class="p">)</span>
+        <span class="n">contains_array_1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">is_A_contained_by_B</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">ToI_in_1</span><span class="p">,</span> <span class="n">Nucleus_in_1</span><span class="p">)</span>
+        <span class="n">these_dists_1</span><span class="p">[</span><span class="n">contains_array_1</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Set distance to 0 if the transcript is inside the nucleus</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">these_dists_1</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># If there are transcripts in cell 2, calculate the distances to the nucleus</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ids_2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">these_dists_2</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_minimum_distances_boundaries</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">ToI_in_2</span><span class="p">,</span> <span class="n">Nucleus_in_2</span><span class="p">)</span>
+        <span class="n">contains_array_2</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">is_A_contained_by_B</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">ToI_in_2</span><span class="p">,</span> <span class="n">Nucleus_in_2</span><span class="p">)</span>
+        <span class="n">these_dists_2</span><span class="p">[</span><span class="n">contains_array_2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Set distance to 0 if the transcript is inside the nucleus</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">these_dists_2</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Append the distances to the respective lists</span>
+    <span class="n">distance_dist_in_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">these_dists_1</span><span class="p">)</span>
+    <span class="n">distance_dist_in_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">these_dists_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>In addition, geometric measurements can be computed to quantify the shape of these cells.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the circularity of the cell boundary for cell 1</span>
+<span class="c1"># &#39;population&#39; specifies the query container for cell boundaries</span>
+<span class="c1"># &#39;add_as_label&#39; specifies whether to add the calculated circularity as a label to the domain</span>
+<span class="n">circularity_1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">circularity</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_1</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Calculate the area of the cell boundary for cell 1</span>
+<span class="n">area_1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_1</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Calculate the perimeter of the cell boundary for cell 1</span>
+<span class="n">perimeter_1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">perimeter</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_1</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Calculate the principal axis angle of the cell boundary for cell 1</span>
+<span class="n">principle_axis_angle_1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">principle_axis</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_1</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Print the calculated geometric properties for cell 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Circularity for cell 1 = &#39;</span><span class="p">,</span> <span class="n">circularity_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Area for cell 1 = &#39;</span><span class="p">,</span> <span class="n">area_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Perimeter for cell 1 = &#39;</span><span class="p">,</span> <span class="n">perimeter_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Principal angle for cell 1 = &#39;</span><span class="p">,</span> <span class="n">principle_axis_angle_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Circularity for cell 1 =  [0.5932872574255229]
+Area for cell 1 =  [97.19690859]
+Perimeter for cell 1 =  [45.37312042]
+Principal angle for cell 1 =  [-0.3848883949941565]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the circularity of the cell boundary for cell 2</span>
+<span class="c1"># &#39;population&#39; specifies the query container for cell boundaries</span>
+<span class="c1"># &#39;add_as_label&#39; specifies whether to add the calculated circularity as a label to the domain</span>
+<span class="n">circularity_2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">circularity</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_2</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Calculate the area of the cell boundary for cell 2</span>
+<span class="n">area_2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_2</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Calculate the perimeter of the cell boundary for cell 2</span>
+<span class="n">perimeter_2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">perimeter</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_2</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Calculate the principal axis angle of the cell boundary for cell 2</span>
+<span class="n">principle_axis_angle_2</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">principle_axis</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">Boundary_in_2</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Print the calculated geometric properties for cell 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Circularity for cell 2 = &#39;</span><span class="p">,</span> <span class="n">circularity_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Area for cell 2 = &#39;</span><span class="p">,</span> <span class="n">area_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Perimeter for cell 2 = &#39;</span><span class="p">,</span> <span class="n">perimeter_2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Principal angle for cell 2 = &#39;</span><span class="p">,</span> <span class="n">principle_axis_angle_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Circularity for cell 2 =  [0.8238108884000424]
+Area for cell 2 =  [81.03333941]
+Perimeter for cell 2 =  [35.1579089]
+Principal angle for cell 2 =  [-0.9417514930571387]
+</pre></div></div>
+</div>
+<p>Let’s plot what these results look like for our cells of interest.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the colors for the bar plots based on the transcript IDs</span>
+<span class="n">barcolors</span> <span class="o">=</span> <span class="p">[</span><span class="n">domain_1</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">][</span><span class="s1">&#39;Transcript ID&#39;</span><span class="p">][</span><span class="s1">&#39;nameToColor&#39;</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">total_transcripts_of_interest</span><span class="p">]</span>
+
+<span class="c1"># Create a figure with 3 subplots arranged in a single row</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+
+<span class="c1"># Visualize the first candidate cell with transcripts colored by their IDs</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_1</span><span class="p">,</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">candiate_cell_query_1</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;5µm&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower left&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+        <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># Set the limits for the y and x axes for the first subplot</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">4120</span><span class="p">,</span> <span class="mi">4140</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">1630</span><span class="p">,</span> <span class="mi">1660</span><span class="p">)</span>
+
+<span class="c1"># Create bar plots for the transcript composition in the first candidate cell</span>
+<span class="c1"># Initialize bars for nucleus and cytoplasm with placeholder values</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;In nucleus&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;In cytoplasm&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the actual transcript counts in the cytoplasm and nucleus</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="p">(</span><span class="n">counts_in_boundary_1_full</span> <span class="o">-</span> <span class="n">counts_in_nuc_1_full</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts_in_boundary_1_full</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">barcolors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="n">counts_in_nuc_1_full</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts_in_boundary_1_full</span><span class="p">),</span> <span class="n">bottom</span><span class="o">=</span><span class="p">(</span><span class="n">counts_in_boundary_1_full</span> <span class="o">-</span> <span class="n">counts_in_nuc_1_full</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts_in_boundary_1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">barcolors</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Transcript composition&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Create a boxplot and strip plot for the distances of transcripts to the nucleus in the first candidate cell</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">distance_dist_in_1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="n">barcolors</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">boxprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">distance_dist_in_1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="n">barcolors</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Distance to nucleus (µm)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Create another figure with 3 subplots arranged in a single row for the second candidate cell</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+
+<span class="c1"># Visualize the second candidate cell with transcripts colored by their IDs</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_1</span><span class="p">,</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">candiate_cell_query_2</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;5µm&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower left&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">,</span>
+        <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># Set the limits for the y and x axes for the first subplot</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">4057</span><span class="p">,</span> <span class="mi">4077</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">1572</span><span class="p">,</span> <span class="mi">1602</span><span class="p">)</span>
+
+<span class="c1"># Create bar plots for the transcript composition in the second candidate cell</span>
+<span class="c1"># Initialize bars for nucleus and cytoplasm with placeholder values</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;In nucleus&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;In cytoplasm&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the actual transcript counts in the cytoplasm and nucleus</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="p">(</span><span class="n">counts_in_boundary_2_full</span> <span class="o">-</span> <span class="n">counts_in_nuc_2_full</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts_in_boundary_2_full</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">barcolors</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="n">counts_in_nuc_2_full</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts_in_boundary_2_full</span><span class="p">),</span> <span class="n">bottom</span><span class="o">=</span><span class="p">(</span><span class="n">counts_in_boundary_2_full</span> <span class="o">-</span> <span class="n">counts_in_nuc_2_full</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">counts_in_boundary_2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">barcolors</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Transcript composition&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Create a boxplot and strip plot for the distances of transcripts to the nucleus in the second candidate cell</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">distance_dist_in_2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="n">barcolors</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">boxprops</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">distance_dist_in_2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="n">barcolors</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Distance to nucleus (µm)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(-0.1, 4.0)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_22_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_22_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_22_2.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_22_2.png" />
+</div>
+</div>
+<p>The following code repeates this analysis conducted on the two cells of interest but for all cells in Celltype 1 and Celltype 2 in our ROI.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the clusters of interest</span>
+<span class="n">clusters_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cluster 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 2&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize lists to store results for each cluster</span>
+<span class="n">transcript_counts_matrices</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cell_cicularities</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cell_areas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cell_perimeters</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cell_orientations</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Loop through each cluster of interest</span>
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters_of_interest</span><span class="p">:</span>
+    <span class="c1"># Create a query to select cells belonging to the current cluster</span>
+    <span class="n">cluster_query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">cluster</span><span class="p">)</span>
+
+    <span class="c1"># Query to get all cell boundaries in the domain</span>
+    <span class="n">qCells</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell boundaries&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create a query container to combine the cluster query and cell boundaries query</span>
+    <span class="n">cells_boundaries_this_cluster</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+    <span class="n">cells_boundaries_this_cluster</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">cluster_query</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qCells</span><span class="p">)</span>
+
+    <span class="c1"># Calculate geometric properties for cells in the current cluster</span>
+    <span class="n">circularity</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">circularity</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">cells_boundaries_this_cluster</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Circularity&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+    <span class="n">area</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">cells_boundaries_this_cluster</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Area (µm$^2$)&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">)</span>
+    <span class="n">perimeter</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">perimeter</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">cells_boundaries_this_cluster</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Perimeter (µm)&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;cividis&#39;</span><span class="p">)</span>
+    <span class="n">principle_axis_angle</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">principle_axis</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">cells_boundaries_this_cluster</span><span class="p">,</span> <span class="n">add_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Principal angle (rad)&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Append the calculated properties to the respective lists</span>
+    <span class="n">cell_cicularities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">circularity</span><span class="p">)</span>
+    <span class="n">cell_areas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+    <span class="n">cell_perimeters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">perimeter</span><span class="p">)</span>
+    <span class="n">cell_orientations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">principle_axis_angle</span><span class="p">)</span>
+
+    <span class="c1"># Get cell IDs for the current cluster</span>
+    <span class="n">cell_ids_in_cluster</span> <span class="o">=</span> <span class="n">domain_1</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="s1">&#39;Cell ID&#39;</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">][</span><span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">interpret_query</span><span class="p">(</span><span class="n">cluster_query</span><span class="p">)]</span>
+
+    <span class="c1"># Initialize a matrix to store transcript counts for each cell in the cluster</span>
+    <span class="n">this_count_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">cell_ids_in_cluster</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">)))</span>
+
+    <span class="c1"># Loop through each cell ID in the current cluster</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cell_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cell_ids_in_cluster</span><span class="p">):</span>
+        <span class="c1"># Create a query to select the current cell</span>
+        <span class="n">candiate_cell_query_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">cell_id</span><span class="p">)</span>
+
+        <span class="c1"># Create query containers for the cell boundary, nucleus, and transcripts</span>
+        <span class="n">Boundary_in_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+        <span class="n">Boundary_in_1</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_1</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qCells</span><span class="p">)</span>
+
+        <span class="n">Nucleus_in_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+        <span class="n">Nucleus_in_1</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_1</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qNuc</span><span class="p">)</span>
+
+        <span class="n">trans_in_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">()</span>
+        <span class="n">trans_in_1</span><span class="o">.</span><span class="n">add_query</span><span class="p">(</span><span class="n">candiate_cell_query_1</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">,</span> <span class="n">qTrans</span><span class="p">)</span>
+
+        <span class="c1"># Count the number of transcripts within the cell boundary</span>
+        <span class="n">counts_in_boundary_1</span><span class="p">,</span> <span class="n">unique_labels_1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">summary_statistics</span><span class="o">.</span><span class="n">label_counts</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Transcript ID&#39;</span><span class="p">,</span> <span class="n">population</span><span class="o">=</span><span class="n">trans_in_1</span><span class="p">,</span> <span class="n">include_boundaries</span><span class="o">=</span><span class="n">Boundary_in_1</span><span class="p">,</span> <span class="n">normalised</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Initialize a list to store the counts of transcripts of interest</span>
+        <span class="n">counts_in_boundary_1_full</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Loop through each transcript of interest</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">total_transcripts_of_interest</span><span class="p">:</span>
+            <span class="c1"># Append the count of the transcript if it is present, otherwise append 0</span>
+            <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">unique_labels_1</span><span class="p">:</span>
+                <span class="n">counts_in_boundary_1_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">counts_in_boundary_1</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">unique_labels_1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">counts_in_boundary_1_full</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Store the counts in the matrix</span>
+        <span class="n">this_count_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">counts_in_boundary_1_full</span><span class="p">)</span>
+
+    <span class="c1"># Append the count matrix for the current cluster to the list</span>
+    <span class="n">transcript_counts_matrices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">this_count_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Non-parametric significance testing of distributions</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ranksums</span>
+
+<span class="c1"># Perform Wilcoxon rank-sum test for cell areas between the two clusters</span>
+<span class="n">cell_area_stat</span><span class="p">,</span> <span class="n">cell_area_p</span> <span class="o">=</span> <span class="n">ranksums</span><span class="p">(</span><span class="n">cell_areas</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_areas</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Perform Wilcoxon rank-sum test for cell perimeters between the two clusters</span>
+<span class="n">cell_perimeters_stat</span><span class="p">,</span> <span class="n">cell_perimeters_p</span> <span class="o">=</span> <span class="n">ranksums</span><span class="p">(</span><span class="n">cell_perimeters</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_perimeters</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Perform Wilcoxon rank-sum test for cell circularity between the two clusters</span>
+<span class="n">cell_circularity_stat</span><span class="p">,</span> <span class="n">cell_circularity_p</span> <span class="o">=</span> <span class="n">ranksums</span><span class="p">(</span><span class="n">cell_cicularities</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_cicularities</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Perform Wilcoxon rank-sum test for cell orientation between the two clusters</span>
+<span class="n">cell_orientation_stat</span><span class="p">,</span> <span class="n">cell_orientation_p</span> <span class="o">=</span> <span class="n">ranksums</span><span class="p">(</span><span class="n">cell_orientations</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cell_orientations</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Print the results of the Wilcoxon rank-sum tests</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cell area Wilcoxon rank-sum test  = &#39;</span><span class="p">,</span> <span class="n">cell_area_stat</span><span class="p">,</span> <span class="s1">&#39; p = &#39;</span><span class="p">,</span> <span class="n">cell_area_p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cell perimeter Wilcoxon rank-sum test  = &#39;</span><span class="p">,</span> <span class="n">cell_perimeters_stat</span><span class="p">,</span> <span class="s1">&#39; p = &#39;</span><span class="p">,</span> <span class="n">cell_perimeters_p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cell circularity Wilcoxon rank-sum test  = &#39;</span><span class="p">,</span> <span class="n">cell_circularity_stat</span><span class="p">,</span> <span class="s1">&#39; p = &#39;</span><span class="p">,</span> <span class="n">cell_circularity_p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cell orientation Wilcoxon rank-sum test  = &#39;</span><span class="p">,</span> <span class="n">cell_orientation_stat</span><span class="p">,</span> <span class="s1">&#39; p = &#39;</span><span class="p">,</span> <span class="n">cell_orientation_p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Cell area Wilcoxon rank-sum test  =  1.109433328455054  p =  0.26724329130512015
+Cell perimeter Wilcoxon rank-sum test  =  5.271805609720655  p =  1.3508811560914527e-07
+Cell circularity Wilcoxon rank-sum test  =  -11.666359878290686  p =  1.8935315508921308e-31
+Cell orientation Wilcoxon rank-sum test  =  -6.047290451886069  p =  1.473020640087687e-09
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">BoundaryNorm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+
+<span class="c1"># Combine transcript count matrices from both clusters into a single array</span>
+<span class="n">all_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">transcript_counts_matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">transcript_counts_matrices</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Create a list of transcript names repeated for each cell</span>
+<span class="n">x_transcripts</span> <span class="o">=</span> <span class="n">total_transcripts_of_interest</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Initialize an empty list to store the flattened data</span>
+<span class="n">this_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Flatten the all_data array and extend the this_data list with the values</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])):</span>
+    <span class="n">this_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">all_data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span>
+
+<span class="c1"># Flatten the all_data array</span>
+<span class="n">all_data</span> <span class="o">=</span> <span class="n">all_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="c1"># Create group labels for each cell type</span>
+<span class="n">group_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Celltype 1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">transcript_counts_matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">transcript_counts_matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> \
+               <span class="p">[</span><span class="s1">&#39;Celltype 2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">transcript_counts_matrices</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">transcript_counts_matrices</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Create simple group labels for each cell type</span>
+<span class="n">group_labels_simple</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Celltype 1&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cell_areas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Celltype 2&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">cell_areas</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Concatenate cell areas, perimeters, circularities, and orientations from both clusters</span>
+<span class="n">this_area</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">cell_areas</span><span class="p">)</span>
+<span class="n">this_perimeter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">cell_perimeters</span><span class="p">)</span>
+<span class="n">this_circr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">cell_cicularities</span><span class="p">)</span>
+<span class="n">thos_ori</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">cell_orientations</span><span class="p">)</span>
+
+<span class="c1"># Create a query to select cells belonging to the clusters of interest</span>
+<span class="n">cluster_of_interest_query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">clusters_of_interest</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Transcripts in Celltypes 1 and 2</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the color palette for the plots</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&quot;deep&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a figure with 2 subplots arranged in a single row</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+
+<span class="c1"># Create a bar plot for transcript composition</span>
+<span class="c1"># x_transcripts: list of transcript names</span>
+<span class="c1"># this_data: list of transcript counts</span>
+<span class="c1"># group_labels: list of group labels for each transcript</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_transcripts</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">this_data</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">group_labels</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Set x-axis ticks and labels for the bar plot</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">total_transcripts_of_interest</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Transcript Composition&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualize the domain with cell boundaries and transcripts</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">qCells</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">})</span>
+
+<span class="c1"># Visualize the domain with cluster IDs</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">cluster_of_interest_query</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+                       <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;100µm&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)})</span>
+
+<span class="c1"># Define the colors for the clusters of interest</span>
+<span class="n">cluster_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">domain_1</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">][</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">][</span><span class="s1">&#39;nameToColor&#39;</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clusters_of_interest</span><span class="p">]</span>
+
+<span class="c1"># Create a colormap and normalization for the color bar</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">cluster_colors</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">BoundaryNorm</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Add a color bar to the plot</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="s1">&#39;Celltype 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Celltype 2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_29_0.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_29_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2 subplots arranged in a single row</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+
+<span class="c1"># Plot a histogram of the principal axis angles (orientations) for the cells</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">thos_ori</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">group_labels_simple</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kde_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bw_adjust&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;clip&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">]},</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Principal angle (rad)&quot;</span><span class="p">)</span>  <span class="c1"># Set the x-axis label</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>  <span class="c1"># Set the y-axis label</span>
+
+<span class="c1"># Visualize the domain with cell boundaries and transcripts</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">qCells</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">})</span>
+
+<span class="c1"># Visualize the domain with principal axis angles</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Principal angle (rad)&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">cluster_of_interest_query</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+                       <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;100µm&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1800x750 with 3 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_30_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_30_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2 subplots arranged in a single row</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+
+<span class="c1"># Plot a histogram of the circularity for the cells</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">this_circr</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">group_labels_simple</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kde_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bw_adjust&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;clip&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]},</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Circularity&quot;</span><span class="p">)</span>  <span class="c1"># Set the x-axis label</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>  <span class="c1"># Set the y-axis label</span>
+
+<span class="c1"># Visualize the domain with cell boundaries and transcripts</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">qCells</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">})</span>
+
+<span class="c1"># Visualize the domain with circularity values</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Circularity&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">cluster_of_interest_query</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+                       <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;100µm&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1800x750 with 3 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_31_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_31_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2 subplots arranged in a single row</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+
+<span class="c1"># Plot a histogram of the cell perimeters for the cells</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">this_perimeter</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">group_labels_simple</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kde_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bw_adjust&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;clip&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">infty</span><span class="p">]},</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Perimeter (µm)&quot;</span><span class="p">)</span>  <span class="c1"># Set the x-axis label</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>  <span class="c1"># Set the y-axis label</span>
+
+<span class="c1"># Visualize the domain with cell boundaries and transcripts</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">qCells</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">})</span>
+
+<span class="c1"># Visualize the domain with cell perimeters</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Perimeter (µm)&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">cluster_of_interest_query</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+                       <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;100µm&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1800x750 with 3 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_32_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_32_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2 subplots arranged in a single row</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;wspace&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">})</span>
+
+<span class="c1"># Plot a histogram of the cell areas for the cells</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">this_area</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">group_labels_simple</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kde_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bw_adjust&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;clip&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">infty</span><span class="p">]},</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> <span class="n">common_norm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Set the axis labels for the histogram</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Area (µm$^2$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize the domain with cell boundaries and transcripts</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Transcript ID&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">qCells</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">})</span>
+
+<span class="c1"># Visualize the domain with cell areas</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Area (µm$^2$)&#39;</span><span class="p">),</span> <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">cluster_of_interest_query</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">add_cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">210</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+                       <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;100µm&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">:</span> <span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;frameon&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;size_vertical&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;fontproperties&#39;</span><span class="p">:</span> <span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1800x750 with 3 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_33_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_2_33_1.png" />
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

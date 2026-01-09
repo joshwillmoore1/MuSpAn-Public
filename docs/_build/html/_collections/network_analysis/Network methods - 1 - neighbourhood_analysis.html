@@ -1,0 +1,1293 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Neighbourhood clustering (categorical labels) &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/network_analysis/Network methods - 1 - neighbourhood_analysis';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Neighbourhood clustering (numeric labels)" href="Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html" />
+    <link rel="prev" title="Computing and interpreting Ripley’s K function" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Neighbourhoo...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Neighbourhood-clustering-(categorical-labels)">
+<h1>Neighbourhood clustering (categorical labels)<a class="headerlink" href="#Neighbourhood-clustering-(categorical-labels)" title="Link to this heading">#</a></h1>
+<p>Neighbourhood clustering is a common method for identifying common collections of highly localised cells and it is typically used when studying local interactions of cells. Neighbourhood clustering can be seen as generating a local-spatially resolved cell annotation from existing annotations. This process is conducted in three steps:</p>
+<ol class="arabic simple">
+<li><p>Gather local information (cell counts, mean intensity, transcript counts, etc) about points of interest using some network representing spatial relations.</p></li>
+<li><p>Store local information for all points in a global matrix.</p></li>
+<li><p>Cluster observations.</p></li>
+</ol>
+<p>In MuSpAn, we leverage the flexibility of our <code class="docutils literal notranslate"><span class="pre">muspan.networks</span></code> submodule and the sklearn clustering packages (via <code class="docutils literal notranslate"><span class="pre">muspan.helpers.cluster_data</span></code>) to allow a combination of spatial relation of points and how they are clustered. In this tutorial, we will explore how we might use our <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> functionality ranging from commonly used methods in literature to our recommendations. Critically, this tutorial should also serve as a demonstration of the sensitivity of resultant
+neighbourhoods to both the spatial networks and clustering method used. Before using this function, we also recommend seeing our documentation on <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> to get and understanding of the parameters associated.</p>
+<p>We’ll start with the most basic case of finding neighbourhood clusters in a single domain.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Load an example domain dataset</span>
+<span class="n">pc</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualize the dataset, coloring by &#39;Celltype&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Architecture
+Number of objects: 5991
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_2_2.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_2_2.png" />
+</div>
+</div>
+<p>A common implementation of neighbourhood clustering in cancer biology is to simply get the k-closest (k=10) points about all points in a region and use kmeans clustering (note a different k). For example, Schürch et al. used this approach in understanding immune spatial organisation in CRC (<a class="reference external" href="https://doi.org/10.1016/j.cell.2020.07.005">https://doi.org/10.1016/j.cell.2020.07.005</a>).</p>
+<p>We can reproduce their implementation by using our <code class="docutils literal notranslate"><span class="pre">KNN</span></code> spatial network generation, with 10 neighbours and selecting the <code class="docutils literal notranslate"><span class="pre">minibatchkmeans</span></code> clustering methods with 4 clusters as shown below where we apply this clustering procedure to our synthetic data using the ‘Celltype’ label.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform neighbourhood clustering on the dataset using KNN and minibatchkmeans</span>
+<span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">consistent_global_labels</span><span class="p">,</span> <span class="n">unique_cluster_labels</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">cluster_neighbourhoods</span><span class="p">(</span>
+    <span class="n">pc</span><span class="p">,</span>  <span class="c1"># The domain dataset</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>  <span class="c1"># The label to use for clustering</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;KNN&#39;</span><span class="p">,</span> <span class="n">max_edge_distance</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">number_of_nearest_neighbours</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>  <span class="c1"># The network parameters</span>
+    <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># The number of hops to consider for the neighbourhood</span>
+    <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
+    <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;log-fold&#39;</span> <span class="c1"># Neighbourhood enrichment as log-fold</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<p>The function has three outputs:</p>
+<ol class="arabic simple">
+<li><p>A differential expression matrix where rows represent cluster IDs and rows are labels used in to cluster. Here this is presented as log-fold change to match the Schürch et al. pipeline but our default is a zscore.</p></li>
+<li><p>The labels used to cluster the neighbourhoods</p></li>
+<li><p>A list of the resultant cluster labels</p></li>
+<li><p>(Optional) The observation matrix of neighbourhood compositions used to cluster. This is not output here but can be, see our documentation on <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code>.</p></li>
+</ol>
+<p>We can visualise the differential expression matrix using <code class="docutils literal notranslate"><span class="pre">ms.visualise.heatmap</span></code> or if we want to show similarities of clusters, we can use the sns.heatmap function as shown below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neighbourhood_enrichment_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[ 8.21179029e-001, -1.79769313e+308,  7.95087029e-001,
+        -5.94413265e+000],
+       [-7.26832663e+000, -7.78131358e-002, -7.06418844e+000,
+         1.61811039e+000],
+       [ 6.51506221e-001,  9.42742864e-002,  6.58169524e-001,
+        -6.71515608e+000],
+       [-1.01149273e+000,  1.21052595e+000, -9.92964275e-001,
+        -2.77009642e+000]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DataFrame from the neighbourhood enrichment matrix</span>
+<span class="n">df_ME_id</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">)</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Neighbourhood ID&#39;</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Celltype ID&#39;</span>
+
+<span class="c1"># Visualize the neighbourhood enrichment matrix using a clustermap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
+    <span class="n">df_ME_id</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="n">dendrogram_ratio</span><span class="o">=</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.3</span><span class="p">),</span>
+    <span class="n">col_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">row_cluster</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Neighbourhood enrichment (log-fold)&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">cbar_pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">),</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">tree_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;seaborn.matrix.ClusterGrid at 0x12beebd70&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_7_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_7_1.png" />
+</div>
+</div>
+<p>We can see this neigbourhood clustering method has found two very similar clusters (4 and 0) and the rest picking a dominant celltype. This makes sense as there are only 4 celltypes in our dataset. The <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> function automatically adds these cluster labels to the objects that were used in the computation using the and is identified by the <code class="docutils literal notranslate"><span class="pre">neighbourhood_label_name</span></code> parameter.</p>
+<p>Using this label, let’s see the result of the clustering spatially-resolved on our dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the dataset with the neighbourhood clustering results</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_9_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_9_1.png" />
+</div>
+</div>
+<p>Great, we can now see that Neighbourhoods 0 and 2 are identifying similar compositions of the crypt-like structures, Neighbourhood 3 is picking up the background noise celltype, and 1 and 3 are the aggregated masses of celltype C.</p>
+<p><strong>Note:</strong> It’s always recommended to visualise these neighbourhood clusters on the data as a method of quality control. MuSpAn make this easy by automatically aligning neighbourhood labels with spatial data. In addition, assigning labels also allows for querying based on neighbourhood cluster for downstream spatial analysis.</p>
+<p>Though we have clustered the localised counts of our celltypes, this is just one method of a vast range of possibilities facilitated by MuSpAn. Critically, this implementation ignores the spatial structure of the spatial domain and prescribes a number of resultant clusters. Later in this tutorial, we’ll show alternative implementations that address these limitations.</p>
+<section id="Neighbourhood-clustering-on-specific-objects">
+<h2>Neighbourhood clustering on specific objects<a class="headerlink" href="#Neighbourhood-clustering-on-specific-objects" title="Link to this heading">#</a></h2>
+<p>In our above analysis, used all data in our domain to cluster neighbourhoods. It might be the case we’d like to only use subset of our data to compute neighbourhoods about. For this, we case use the <code class="docutils literal notranslate"><span class="pre">populations_to_analyse</span></code> parameter. We can pass any MuSpAn query-like object to filter our analysis objects.</p>
+<p>We’ll demonstrate this by exluding points with label ‘D’ from the clustering.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the dataset to exclude cells labeled &#39;D&#39;</span>
+<span class="n">not_d_query</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Celltype&#39;</span><span class="p">),</span> <span class="s1">&#39;not in&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform neighbourhood clustering on the dataset excluding cells labeled &#39;D&#39;</span>
+<span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">consistent_global_labels</span><span class="p">,</span> <span class="n">unique_cluster_labels</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">cluster_neighbourhoods</span><span class="p">(</span>
+    <span class="n">pc</span><span class="p">,</span>  <span class="c1"># The domain dataset</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>  <span class="c1"># The label to use for clustering</span>
+    <span class="n">populations_to_analyse</span><span class="o">=</span><span class="n">not_d_query</span><span class="p">,</span>  <span class="c1"># Exclude cells labeled &#39;D&#39;</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;KNN&#39;</span><span class="p">,</span> <span class="n">max_edge_distance</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">number_of_nearest_neighbours</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>  <span class="c1"># The network parameters</span>
+    <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Number of hops for KNN</span>
+    <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (not D)&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
+    <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;log-fold&#39;</span> <span class="c1"># Neighbourhood enrichment as log-fold</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s visualise the output of this clustering using our new label ‘Neighbourhood ID (not D)’.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the dataset with the neighbourhood clustering results excluding cells labeled &#39;D&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (not D)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_15_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_15_1.png" />
+</div>
+</div>
+<p>Great, we can see points with label ‘D’ have been ignored from the neighbourhood clustering.</p>
+</section>
+<section id="Neighbourhood-clustering-over-multiple-domains">
+<h2>Neighbourhood clustering over multiple domains<a class="headerlink" href="#Neighbourhood-clustering-over-multiple-domains" title="Link to this heading">#</a></h2>
+<p>Another use case is the batch analysis approach where we might want to understand and group local compositions of functions across multiple domains. This is possible in MuSpAn by simply passing a list of domains to analyse. The querying functionality follows similarly by providing a list of queries to the function, if a query is required.</p>
+<p>This approach gives a standarised neighbourhood ID respresentation across all domains which is useful when consider cross-cohort studies.</p>
+<p>We’ll demonstrate this batch approach on four of our synthetic datasets.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load example domains</span>
+<span class="n">pc1</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Random&#39;</span><span class="p">)</span>
+<span class="n">pc2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Aggregation&#39;</span><span class="p">)</span>
+<span class="n">pc3</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+<span class="n">pc4</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a list of domains</span>
+<span class="n">list_of_domains</span> <span class="o">=</span> <span class="p">[</span><span class="n">pc1</span><span class="p">,</span> <span class="n">pc2</span><span class="p">,</span> <span class="n">pc3</span><span class="p">,</span> <span class="n">pc4</span><span class="p">]</span>
+
+<span class="c1"># Query cells to exclude those labeled &#39;D&#39;</span>
+<span class="n">query_cells_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">pc</span> <span class="ow">in</span> <span class="n">list_of_domains</span><span class="p">:</span>
+    <span class="n">query_cells_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Celltype&#39;</span><span class="p">),</span> <span class="s1">&#39;not in&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">]))</span>
+
+<span class="c1"># Perform neighbourhood clustering on the list of domains</span>
+<span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">consistent_global_labels</span><span class="p">,</span> <span class="n">unique_cluster_labels</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">cluster_neighbourhoods</span><span class="p">(</span>
+    <span class="n">list_of_domains</span><span class="p">,</span>  <span class="c1"># List of domain datasets</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>  <span class="c1"># The label to use for clustering</span>
+    <span class="n">populations_to_analyse</span><span class="o">=</span><span class="n">query_cells_list</span><span class="p">,</span>  <span class="c1"># Exclude cells labeled &#39;D&#39;</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;KNN&#39;</span><span class="p">,</span> <span class="n">max_edge_distance</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">number_of_nearest_neighbours</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>  <span class="c1"># The network parameters</span>
+    <span class="n">labels_to_ignore</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">],</span>  <span class="c1"># Labels to ignore</span>
+    <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Number of hops for KNN</span>
+    <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (KNN)&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
+    <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;log-fold&#39;</span> <span class="c1"># Neighbourhood enrichment as log-fold</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Density
+Number of objects: 2000
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Aggregation
+Number of objects: 2000
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Exclusion
+Number of objects: 2166
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Architecture
+Number of objects: 5991
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>Again, labels are automatically assigned to all domains and therefore we can visualise the outputs.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2x2 subplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Visualize the neighbourhood clustering results for each domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (KNN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc2</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (KNN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc3</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (KNN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc4</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (KNN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2000x1500 with 8 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_20_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_20_1.png" />
+</div>
+</div>
+<p>As before, we can also check out the differential expression matrix to inform the discrimminative types of each neighbourhood cluster.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DataFrame from the neighbourhood enrichment matrix</span>
+<span class="n">df_ME_id</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">)</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Neighbourhood ID&#39;</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Celltype ID&#39;</span>
+
+<span class="c1"># Visualize the neighbourhood enrichment matrix using a clustermap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
+    <span class="n">df_ME_id</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="n">dendrogram_ratio</span><span class="o">=</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.3</span><span class="p">),</span>
+    <span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Neighbourhood enrichment (log-fold)&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">cbar_pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">),</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">tree_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;seaborn.matrix.ClusterGrid at 0x12c02c440&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_22_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_22_1.png" />
+</div>
+</div>
+</section>
+<section id="Changing-the-network-type">
+<h2>Changing the network type<a class="headerlink" href="#Changing-the-network-type" title="Link to this heading">#</a></h2>
+<p>As hinted to earlier in this tutorial, we can use any spatial network representing cell-cell interaction to define local neighbourhoods about cells. KNN is one of these (used above) where the closest 10 objects will be used in clustering. However, if spatial structure is important in the your dataset, other network constructions such as Delaunay or proximity networks may be more appropriate.</p>
+<p>In this case, we can take advantage of our k-hop methods to define local objects. A k-hop neighbourhood about an object in a network is all other objects that can be reached by travelling down k or less edges. For an example of this, see our MuSpAn: Figure 5. example notebook.</p>
+<p>Using our k-hop with a Delaunay network, we are using the instrinc spatial structure of our data by only considerng spatially locallised objects. Let’s see this in action on our four synthetic datasets above, here only changing our underlying network.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform neighbourhood clustering on the list of domains using Delaunay network and minibatchkmeans clustering</span>
+<span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">consistent_global_labels</span><span class="p">,</span> <span class="n">unique_cluster_labels</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">cluster_neighbourhoods</span><span class="p">(</span>
+    <span class="n">list_of_domains</span><span class="p">,</span>  <span class="c1"># List of domain datasets</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>  <span class="c1"># The label to use for clustering</span>
+    <span class="n">populations_to_analyse</span><span class="o">=</span><span class="n">query_cells_list</span><span class="p">,</span>  <span class="c1"># Exclude cells labeled &#39;D&#39;</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span> <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>  <span class="c1"># The network parameters</span>
+    <span class="n">labels_to_ignore</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">],</span>  <span class="c1"># Labels to ignore</span>
+    <span class="n">k_hops</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Number of hops for Delaunay</span>
+    <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay)&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
+    <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>  <span class="c1"># Parameters for the clustering method</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2x2 subplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Visualize the neighbourhood clustering results for each domain using Delaunay network</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc2</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc3</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc4</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2000x1500 with 8 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_25_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_25_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DataFrame from the neighbourhood enrichment matrix</span>
+<span class="n">df_ME_id</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">)</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Neighbourhood ID&#39;</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Celltype ID&#39;</span>
+
+<span class="c1"># Visualize the neighbourhood enrichment matrix using a clustermap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
+    <span class="n">df_ME_id</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="n">dendrogram_ratio</span><span class="o">=</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.3</span><span class="p">),</span>
+    <span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Neighbourhood enrichment (zscore)&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">cbar_pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">),</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">tree_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;seaborn.matrix.ClusterGrid at 0x12c0ffe30&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_26_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_26_1.png" />
+</div>
+</div>
+<p>Though our differential expression matrix is very similar to using the KNN network, our spatial locations of these labels can very different which is emphasised in our aggregated dataset (top right).</p>
+</section>
+<section id="Changing-the-clustering-method">
+<h2>Changing the clustering method<a class="headerlink" href="#Changing-the-clustering-method" title="Link to this heading">#</a></h2>
+<p>We can also change our clustering method to any provided in the sklearn package (<a class="reference external" href="https://scikit-learn.org/1.5/modules/clustering.html">https://scikit-learn.org/1.5/modules/clustering.html</a>). Each clustering method comes equipped assumptions and is designed to detect specific features in the data. We recommend checking out the sklearn site before using clustering.</p>
+<p>In this example, we’ll change our clustering method to a unsupervised-type (does not require prescibed number of groups). Namely, we’ll use HDBSCAN which is a heiracharical distance-based clustering algorthim (<a class="reference external" href="https://scikit-learn.org/1.5/modules/clustering.html#hdbscan">https://scikit-learn.org/1.5/modules/clustering.html#hdbscan</a>). This is process can produce unassigned data (those without clusters) which are labelled with a -1.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform neighbourhood clustering on the list of domains using Delaunay network and HDBSCAN clustering</span>
+<span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">consistent_global_labels</span><span class="p">,</span> <span class="n">unique_cluster_labels</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">cluster_neighbourhoods</span><span class="p">(</span>
+    <span class="n">list_of_domains</span><span class="p">,</span>  <span class="c1"># List of domain datasets</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>  <span class="c1"># The label to use for clustering</span>
+    <span class="n">populations_to_analyse</span><span class="o">=</span><span class="n">query_cells_list</span><span class="p">,</span>  <span class="c1"># Exclude cells labeled &#39;D&#39;</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span> <span class="n">max_edge_distance</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>  <span class="c1"># The network parameters</span>
+    <span class="n">labels_to_ignore</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">],</span>  <span class="c1"># Labels to ignore</span>
+    <span class="n">k_hops</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Number of hops for Delaunay</span>
+    <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay + HDBSCAN)&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
+    <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;HDBSCAN&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;min_cluster_size&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">}</span>  <span class="c1"># Parameters for the clustering method</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2x2 subplots for visualizing the neighbourhood clustering results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Visualize the neighbourhood clustering results for each domain using Delaunay network and HDBSCAN clustering</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc1</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay + HDBSCAN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc2</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay + HDBSCAN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc3</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay + HDBSCAN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">pc4</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay + HDBSCAN)&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2000x1500 with 8 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_29_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_29_1.png" />
+</div>
+</div>
+<p>HDBSCAN found only 3 representative neighbourhoods across our four domains (as opposed to our prescribed k=4 previously). Critically, we this neighbourhood clustering has identified the locality of changeing cells types, emphasises in the ‘exlusion’ and ‘architecture’ domains (bottom row). When using an unsupervised approach, we should always check the resultant clusters both spatially and differential expression. We can see below we now have a ‘noise’ cluster which is denoted by -1 where the
+clustering algorithm could not confidently assign these data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DataFrame from the neighbourhood enrichment matrix</span>
+<span class="n">df_ME_id</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">)</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Neighbourhood ID&#39;</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Celltype ID&#39;</span>
+
+<span class="c1"># Visualize the neighbourhood enrichment matrix using a clustermap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
+    <span class="n">df_ME_id</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">consistent_global_labels</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">unique_cluster_labels</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="n">dendrogram_ratio</span><span class="o">=</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.3</span><span class="p">),</span>
+    <span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Neighbourhood enrichment (zscore)&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">cbar_pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">),</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">tree_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;seaborn.matrix.ClusterGrid at 0x12c03e090&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_31_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_31_1.png" />
+</div>
+</div>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>Neigbourhood clustering is a useful way of understanding the which cells are highly co-localised. MuSpAn offers the freedom to design your own neighbourhood clustering pipeline in a single function, allowing for custom analysis and interpretation.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Neighbourhood-clustering-on-specific-objects">Neighbourhood clustering on specific objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Neighbourhood-clustering-over-multiple-domains">Neighbourhood clustering over multiple domains</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Changing-the-network-type">Changing the network type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Changing-the-clustering-method">Changing the clustering method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

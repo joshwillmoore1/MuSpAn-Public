@@ -1,0 +1,1210 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>muspan.domain &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.domain';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="muspan.objects" href="muspan.objects.html" />
+    <link rel="prev" title="Documentation" href="Documentation.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">muspan.domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.objects.html">muspan.objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.visualise.html">muspan.visualise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.shape_operations.html">muspan.shape_operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.networks.html">muspan.networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.query.html">muspan.query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.geometry.html">muspan.geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.spatial_statistics.html">muspan.spatial_statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.summary_statistics.html">muspan.summary_statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.topology.html">muspan.topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.distribution.html">muspan.distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.region_based.html">muspan.region_based</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.io.html">muspan.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.datasets.html">muspan.datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="muspan.helpers.html">muspan.helpers</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="Documentation.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">muspan.domain</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="muspan-domain">
+<span id="domain"></span><h1>muspan.domain<a class="headerlink" href="#muspan-domain" title="Link to this heading">#</a></h1>
+<p>The muspan.domain module provides tools for working with spatial domains in the MuSpAn package.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="muspan.domain">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_of_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'units'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain" title="Link to this definition">#</a></dt>
+<dd><p>The basic container for all MuSpAn analysis. A domain keeps track of which pointclouds / shapeclouds, labels, and metadata are within the domain. The default domain is a unit cube in n-dimensions, with default units of length being “units”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>The name of the domain.</p>
+</dd>
+<dt><strong>unit_of_length</strong><span class="classifier">str, optional</span></dt><dd><p>The unit of length for the domain. Default is ‘units’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>unit_of_length</strong><span class="classifier">str</span></dt><dd><p>The unit of length for the domain.</p>
+</dd>
+<dt><strong>dimension</strong><span class="classifier">int</span></dt><dd><p>The number of dimensions of the domain.</p>
+</dd>
+<dt><strong>n_collections</strong><span class="classifier">int</span></dt><dd><p>Number of collections in the domain.</p>
+</dd>
+<dt><strong>n_objects</strong><span class="classifier">int</span></dt><dd><p>Number of objects in the domain.</p>
+</dd>
+<dt><strong>n_vertices</strong><span class="classifier">int</span></dt><dd><p>Number of vertices in the domain.</p>
+</dd>
+<dt><strong>max_ID</strong><span class="classifier">int</span></dt><dd><p>Maximum ID of objects in the domain.</p>
+</dd>
+<dt><strong>collections</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to store collections.</p>
+</dd>
+<dt><strong>int_to_collection</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to map collection integers to collection names.</p>
+</dd>
+<dt><strong>objects</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to store objects.</p>
+</dd>
+<dt><strong>nd_components</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to store n-dimensional components.</p>
+</dd>
+<dt><strong>colors</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to store colors for collections, objects, and labels.</p>
+</dd>
+<dt><strong>vertices</strong><span class="classifier">np.ndarray</span></dt><dd><p>Array to store vertices.</p>
+</dd>
+<dt><strong>boundary</strong><span class="classifier">Shape</span></dt><dd><p>Boundary shape of the domain.</p>
+</dd>
+<dt><strong>labels</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to store labels associated with objects.</p>
+</dd>
+<dt><strong>networks</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to store network information.</p>
+</dd>
+<dt><strong>distances</strong><span class="classifier">dict</span></dt><dd><p>Dictionary to store distance matrices.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_points</span></code>(points[, collection_name, ...])</p></td>
+<td><p>Adds points to this domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_lines</span></code>(lines[, collection_name, ...])</p></td>
+<td><p>Adds lines to this domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_shapes</span></code>(shapes[, collection_name, ...])</p></td>
+<td><p>Adds shapes to this domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_shapes_with_internal_holes</span></code>(...[, ...])</p></td>
+<td><p>Adds shapes to this domain that contain internal holes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_labels</span></code>(label_name, labels[, ...])</p></td>
+<td><p>Add labels to objects in the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_objects_to_collection</span></code>([...])</p></td>
+<td><p>Add objects to a specified collection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.estimate_boundary</span></code>([method, ...])</p></td>
+<td><p>Estimate the boundary of the domain using the specified method.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.simplify_shape_boundaries</span></code>(shape_indices)</p></td>
+<td><p>Simplify the boundaries of a set of shapes by removing vertices, using the Visvalingam-Whyatt algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.update_colors</span></code>(new_colors[, ...])</p></td>
+<td><p>Update the colors for labels, objects, or collections.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.convert_objects</span></code>([population, ...])</p></td>
+<td><p>Convert objects in the population to a specified type using a specified method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_distances</span></code>([distance_metric])</p></td>
+<td><p>Delete distance matrix stored within the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_network</span></code>([network_name])</p></td>
+<td><p>Delete a network stored within the domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_labels</span></code>([label_name])</p></td>
+<td><p>Delete labels stored within the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_objects</span></code>(objects_to_delete)</p></td>
+<td><p>Delete objects from the domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.print_labels</span></code>([label_name])</p></td>
+<td><p>Print a table of labels of objects in the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.print_collections</span></code>()</p></td>
+<td><p>Print a table of collections in the domain.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.add_labels">
+<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_labels_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bypass_checks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_labels" title="Link to this definition">#</a></dt>
+<dd><p>Add labels to objects in the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label_name</strong><span class="classifier">str</span></dt><dd><p>The name of the label to be added.</p>
+</dd>
+<dt><strong>labels</strong><span class="classifier">list or np.ndarray</span></dt><dd><p>The labels to be added. Must be the same length as the number of objects specified.</p>
+</dd>
+<dt><strong>add_labels_to</strong><span class="classifier">str, query-like, list, np.ndarray, or None, optional</span></dt><dd><p>Specifies which objects to add labels to. Can be:
+- A string representing the name of a collection.
+- A query-like object to filter objects.
+- A list or 1D numpy array of object indices.
+- None, to apply labels to all objects in the domain.
+Default is None.</p>
+</dd>
+<dt><strong>label_type</strong><span class="classifier">str, optional</span></dt><dd><p>The type of the label. Can be ‘categorical’ or ‘continuous’.
+Default is ‘categorical’.</p>
+</dd>
+<dt><strong>cmap</strong><span class="classifier">str, optional</span></dt><dd><p>The colormap to use for labels. If None, a default colormap is used.
+Default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ValueError</dt><dd><p>If <em class="xref py py-obj">add_labels_to</em> is not a valid collection name, query-like object, or list of object indices.
+If the length of <em class="xref py py-obj">labels</em> does not match the number of objects specified.
+If <em class="xref py py-obj">label_type</em> is not ‘categorical’ or ‘continuous’.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>If <em class="xref py py-obj">label_name</em> already exists, the function updates the existing labels with the new ones.</p></li>
+<li><p>Colormaps defined using Matplotlib’s colormaps, for example, ‘tab10’, ‘tab20’, ‘viridis’, etc.</p></li>
+<li><p>For categorical labels, the function assigns colors based on the specified or default colormap.</p></li>
+<li><p>For continuous labels, the function uses the ‘plasma’ colormap by default.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.add_lines">
+<span class="sig-name descname"><span class="pre">add_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_lines" title="Link to this definition">#</a></dt>
+<dd><p>Adds lines to this domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lines</strong><span class="classifier">list of array-like</span></dt><dd><p>List of m (n x d) arrays of d-dimensional points.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name of a collection to add these objects to.</p>
+</dd>
+<dt><strong>zorder</strong><span class="classifier">int, optional</span></dt><dd><p>Z-order for plotting, by default 20.</p>
+</dd>
+<dt><strong>return_IDs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the IDs of newly created objects will be returned as an array.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.add_objects_to_collection">
+<span class="sig-name descname"><span class="pre">add_objects_to_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_collection_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_objects_to_collection" title="Link to this definition">#</a></dt>
+<dd><p>Add objects to a specified collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>add_collection_to</strong><span class="classifier">int, list, np.ndarray, or query-like</span></dt><dd><p>The IDs of the objects to be added to the collection. It can be a single integer ID, 
+a list or numpy array of IDs, or a query that returns object IDs.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str or None</span></dt><dd><p>The name of the collection to which the objects will be added. If None, a default 
+collection name ‘default_collection’ will be used.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ValueError</dt><dd><p>If any of the provided object IDs do not exist in <em class="xref py py-obj">self.objects</em>, or if the type of 
+<em class="xref py py-obj">objectIDs</em> is unrecognized.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.add_points">
+<span class="sig-name descname"><span class="pre">add_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_points" title="Link to this definition">#</a></dt>
+<dd><p>Adds points to this domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>points</strong><span class="classifier">array-like, shape (n, d)</span></dt><dd><p>Array of d-dimensional points.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name of a collection to add these objects to.</p>
+</dd>
+<dt><strong>zorder</strong><span class="classifier">int, optional</span></dt><dd><p>Z-order for plotting, by default 30.</p>
+</dd>
+<dt><strong>return_IDs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the IDs of newly created objects will be returned as an array.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Example data input:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>points = [
+          [x1,y2],
+          [x2,y2],
+          ...
+          ]
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.add_shapes">
+<span class="sig-name descname"><span class="pre">add_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_shapes" title="Link to this definition">#</a></dt>
+<dd><p>Adds shapes to this domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shapes</strong><span class="classifier">list of array-like</span></dt><dd><p>List of m (n x d) arrays of d-dimensional points defining the outer boundary of the polygon or <em class="xref py py-obj">outer_shape</em>.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name of a collection to add these objects to.</p>
+</dd>
+<dt><strong>zorder</strong><span class="classifier">int, optional</span></dt><dd><p>Z-order for plotting, by default 10.</p>
+</dd>
+<dt><strong>return_IDs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the IDs of newly created objects will be returned as an array.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Example data input:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>shapes = [
+          outer_shape_1,
+          outer_shape_2,
+          ...
+          ]
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.add_shapes_with_internal_holes">
+<span class="sig-name descname"><span class="pre">add_shapes_with_internal_holes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes_and_holes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_shapes_with_internal_holes" title="Link to this definition">#</a></dt>
+<dd><p>Adds shapes to this domain that contain internal holes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shapes_and_holes</strong><span class="classifier">list of tuples</span></dt><dd><p>A list where each element is a tuple of the form (outer_shape, holes). <em class="xref py py-obj">outer_shape</em> is an array of shape (n, d) containing the coordinates
+of the vertices defining the outer boundary of the polygon. <em class="xref py py-obj">holes</em> is a list of arrays, where each array has shape (n_hole, d) and defines the vertices of a single interior hole.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name of a collection to add these objects to.</p>
+</dd>
+<dt><strong>zorder</strong><span class="classifier">int, optional</span></dt><dd><p>Z-order for plotting, by default 10.</p>
+</dd>
+<dt><strong>return_IDs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the IDs of newly created objects will be returned as an array.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method is used when a shape is not simply a closed exterior boundary,
+but includes one or more interior voids (holes). Each shape is defined by
+a set of vertices describing its outer boundary, together with one or more
+sets of vertices describing the holes inside it.</p>
+<p>Example data input:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>shapes_and_holes = [
+                    (outer_shape_1, [hole1_1, hole1_2]),
+                    (outer_shape_2, [hole2_1]),
+                    ...
+                    ]
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.convert_objects">
+<span class="sig-name descname"><span class="pre">convert_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'converted</span> <span class="pre">objects'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'point'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversion_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversion_method_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_parent_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit_collections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.convert_objects" title="Link to this definition">#</a></dt>
+<dd><p>Convert objects in the population to a specified type using a specified method.</p>
+<p>This function allows for the conversion of objects in the domain to either point or shape types, using various conversion methods.
+If the conversion is injective (e.g., shapes to centroids), the labels will be inherited from the parent objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>population</strong><span class="classifier">query-like, optional</span></dt><dd><p>Query-like specifying the population of objects to analysis. Can be a list or array of object indices, 
+a muspan query, or None to include all objects. Default is None.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name of the collection to which the converted objects will be added. Default is ‘converted objects’.</p>
+</dd>
+<dt><strong>object_type</strong><span class="classifier">str, optional</span></dt><dd><p>Type of objects to convert to. Options are ‘point’ or ‘shape’. Default is ‘point’.</p>
+</dd>
+<dt><strong>conversion_method</strong><span class="classifier">str, optional</span></dt><dd><p>Method to use for conversion. For ‘point’, options are ‘centroid’, ‘centroids’, ‘vertices’. 
+For ‘shape’, options are ‘alpha shape’, ‘convex hull’, ‘boundary’, ‘voronoi’. Default is ‘centroid’.</p>
+</dd>
+<dt><strong>conversion_method_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Additional keyword arguments for the conversion method. Default is an empty dictionary.</p>
+</dd>
+<dt><strong>remove_parent_objects</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, parent objects will be removed after conversion. Default is False.</p>
+</dd>
+<dt><strong>inherit_collections</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the converted objects will inherit collections from their parent objects. Default is False.</p>
+</dd>
+<dt><strong>return_IDs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the function will return the IDs of the new objects. Default is False.</p>
+</dd>
+<dt><strong>zorder</strong><span class="classifier">int, optional</span></dt><dd><p>Z-order for the new objects. Default is 10.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>new_object_ids</strong><span class="classifier">list, optional</span></dt><dd><p>List of IDs of the new objects, if <em class="xref py py-obj">return_IDs</em> is True.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If an invalid <em class="xref py py-obj">object_type</em> or <em class="xref py py-obj">conversion_method</em> is provided.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>For object_type ‘point’, the conversion methods are:</p>
+<ul class="simple">
+<li><p>‘centroid’: Converts each object to a single point at its centroid.</p></li>
+<li><p>‘centroids’: Converts each object to a point at its centroid, inheriting labels.</p></li>
+<li><p>‘vertices’: Converts each object to points at its vertices, inheriting labels.</p></li>
+</ul>
+<p>For object_type ‘shape’, the conversion methods are:</p>
+<ul class="simple">
+<li><p>‘alpha shape’: Converts the objects to an alpha shape, using the ‘alpha’ key in <em class="xref py py-obj">conversion_method_kwargs</em> to specify the alpha value. If only outer polygon is required, set ‘internal_boundaries’ key to False in <em class="xref py py-obj">conversion_method_kwargs</em>.</p></li>
+<li><p>‘convex hull’: Converts the objects to their convex hull.</p></li>
+<li><p>‘boundary’: Converts the objects to their boundary shape. This assumes the objects in the population are ordered to from a closed shape.</p></li>
+<li><p>‘voronoi’: Converts the objects to Voronoi cells based on their centroids, inheriting labels.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.delete_distances">
+<span class="sig-name descname"><span class="pre">delete_distances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_distances" title="Link to this definition">#</a></dt>
+<dd><p>Delete distance matrix stored within the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>distance_metric</strong><span class="classifier">str, optional</span></dt><dd><p>The key for the distance matrix to be deleted. Default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Warning</dt><dd><p>If no distance matrix is stored with the specified key.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.delete_labels">
+<span class="sig-name descname"><span class="pre">delete_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_labels" title="Link to this definition">#</a></dt>
+<dd><p>Delete labels stored within the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label_name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the label to delete. Default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Warning</dt><dd><p>If no label is stored with the specified name.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.delete_network">
+<span class="sig-name descname"><span class="pre">delete_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_network" title="Link to this definition">#</a></dt>
+<dd><p>Delete a network stored within the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>network_name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the network to delete. Default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>Warning</dt><dd><p>If no network is stored with the specified name.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.delete_objects">
+<span class="sig-name descname"><span class="pre">delete_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects_to_delete</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_objects" title="Link to this definition">#</a></dt>
+<dd><p>Delete objects from the domain.</p>
+<p>This function performs the relevant bookkeeping of removing any object 
+associated with labels, distances, and networks stored within the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>objects_to_delete</strong><span class="classifier">query, list, tuple, array, or int</span></dt><dd><p>The objects to delete. This can be a query, a list/tuple of indices, 
+or a single integer.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ValueError</dt><dd><p>If <em class="xref py py-obj">objects_to_delete</em> is not of the correct type. Potential types 
+are query, list, tuple, array, or int.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.estimate_boundary">
+<span class="sig-name descname"><span class="pre">estimate_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rectangle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_shape_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specify_boundary_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.estimate_boundary" title="Link to this definition">#</a></dt>
+<dd><p>Estimate the boundary of the domain using the specified method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>method</strong><span class="classifier">str, optional</span></dt><dd><p>The method to use for boundary estimation. Options are ‘convex hull’, ‘rectangle’, ‘alpha shape’, and ‘specify’. If ‘specify’, pass a set of coordinates that will define the boundary.
+Default is ‘rectangle’.</p>
+</dd>
+<dt><strong>alpha_shape_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Keyword arguments to pass to the alpha shape function. Default is an empty dictionary.</p>
+</dd>
+<dt><strong>specify_boundary_coords</strong><span class="classifier">array-like, optional</span></dt><dd><p>An array of coordinates to specify the boundary. specify_boundary_coords must be a (nx2) array.  Required if <em class="xref py py-obj">method</em> is ‘specify’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ValueError</dt><dd><p>If the specified method is not one of the available options.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>If no objects are present in the domain, the initial vertices (excluding the first four) are used.</p></li>
+<li><p>The boundary is created as a new shape but is not added to the domain’s objects list.</p></li>
+<li><p>Alpha shape only return the exterior vertices to construct the boundary shape, i.e., boundaries will not contain holes.</p></li>
+<li><p>The boundary shape is assigned an object_ID of -1 to indicate it is not a real object within the domain objects list.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.print_collections">
+<span class="sig-name descname"><span class="pre">print_collections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.print_collections" title="Link to this definition">#</a></dt>
+<dd><p>Print a table of collections in the domain.</p>
+<p>This method creates a DataFrame where each column represents a collection,
+and each row represents an object. The DataFrame indicates whether each 
+object belongs to each collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Collections with names starting with ‘__’ are ignored as they represent internal objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.print_labels">
+<span class="sig-name descname"><span class="pre">print_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.print_labels" title="Link to this definition">#</a></dt>
+<dd><p>Print a table of labels of objects in the domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>label_name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the label to print. If None, all labels are printed. Default is None.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>None</dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>ValueError</dt><dd><p>If the specified label_name is not found in the available labels.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The DataFrame’s index is named ‘object_id’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.simplify_shape_boundaries">
+<span class="sig-name descname"><span class="pre">simplify_shape_boundaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_original_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Visvalingam-Whyatt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Simplified</span> <span class="pre">boundaries'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.simplify_shape_boundaries" title="Link to this definition">#</a></dt>
+<dd><p>Simplify the boundaries of a set of shapes by removing vertices, using the Visvalingam-Whyatt algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>shape_indices</strong><span class="classifier">int or query-like</span></dt><dd><p>Indices of the shapes which are to be simplified.</p>
+</dd>
+<dt><strong>delete_original_boundary</strong><span class="classifier">bool, optional</span></dt><dd><p>Use this boundary as the new shape, deleting the former shape boundary, by default True. 
+If False, the new shape will be added to the domain as a new object.</p>
+</dd>
+<dt><strong>algorithm</strong><span class="classifier">str, optional</span></dt><dd><p>Choice of boundary simplification algorithm to use, by default ‘Visvalingam-Whyatt’. 
+Options are ‘Visvalingam-Whyatt’.</p>
+</dd>
+<dt><strong>epsilon</strong><span class="classifier">float, optional</span></dt><dd><p>Choice of epsilon algorithm - under the Visvalingam-Whyatt algorithm, increasing epsilon will lead to simpler shapes.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name of the collection to which the simplified shapes will be added. Default is ‘Simplified boundaries’.</p>
+</dd>
+<dt><strong>return_IDs</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the function will return the IDs of the new simplified shapes. Default is False.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>See Visvalingam, M.; Whyatt, J. D. (1993). “Line generalisation by repeated elimination of points”. The Cartographic Journal. 30 (1): 46–51. doi:10.1179/000870493786962263.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="muspan.domain.update_colors">
+<span class="sig-name descname"><span class="pre">update_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors_to_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.update_colors" title="Link to this definition">#</a></dt>
+<dd><p>Update the colors for labels, objects, or collections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>new_colors</strong><span class="classifier">dict</span></dt><dd><p>A dictionary where keys are the names of the items to update and values are the new colors.</p>
+</dd>
+<dt><strong>colors_to_update</strong><span class="classifier">str, optional</span></dt><dd><p>Specifies what type of colors to update. Must be one of ‘labels’, ‘objects’, or ‘collections’. 
+Default is ‘labels’.</p>
+</dd>
+<dt><strong>label_name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the label to update. Required if colors_to_update is ‘labels’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>ValueError</dt><dd><p>If <em class="xref py py-obj">colors_to_update</em> is not one of ‘labels’, ‘objects’, or ‘collections’.
+If <em class="xref py py-obj">colors_to_update</em> is ‘labels’ and <em class="xref py py-obj">label_name</em> is not specified or invalid.
+If any value in <em class="xref py py-obj">new_colors</em> cannot be interpreted as a color.
+If any key in <em class="xref py py-obj">new_colors</em> is not found in the specified <em class="xref py py-obj">colors_to_update</em> category.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function allows updating of colors for labels, objects, or collections. 
+It validates the input colors and ensures that the specified keys exist in the current color mappings.
+Any labels or collections not specified in <em class="xref py py-obj">new_colors</em> will retain their current colors.
+Any labels or collections not stored in the domain will be ignored.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain"><code class="docutils literal notranslate"><span class="pre">domain</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_labels"><code class="docutils literal notranslate"><span class="pre">domain.add_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_lines"><code class="docutils literal notranslate"><span class="pre">domain.add_lines</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_objects_to_collection"><code class="docutils literal notranslate"><span class="pre">domain.add_objects_to_collection</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_points"><code class="docutils literal notranslate"><span class="pre">domain.add_points</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_shapes"><code class="docutils literal notranslate"><span class="pre">domain.add_shapes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_shapes_with_internal_holes"><code class="docutils literal notranslate"><span class="pre">domain.add_shapes_with_internal_holes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.convert_objects"><code class="docutils literal notranslate"><span class="pre">domain.convert_objects</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_distances"><code class="docutils literal notranslate"><span class="pre">domain.delete_distances</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_labels"><code class="docutils literal notranslate"><span class="pre">domain.delete_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_network"><code class="docutils literal notranslate"><span class="pre">domain.delete_network</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_objects"><code class="docutils literal notranslate"><span class="pre">domain.delete_objects</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.estimate_boundary"><code class="docutils literal notranslate"><span class="pre">domain.estimate_boundary</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.print_collections"><code class="docutils literal notranslate"><span class="pre">domain.print_collections</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.print_labels"><code class="docutils literal notranslate"><span class="pre">domain.print_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.simplify_shape_boundaries"><code class="docutils literal notranslate"><span class="pre">domain.simplify_shape_boundaries</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.update_colors"><code class="docutils literal notranslate"><span class="pre">domain.update_colors</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

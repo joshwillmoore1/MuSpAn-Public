@@ -1,0 +1,1468 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="#"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.query.query.html#muspan.query.query.__init__">__init__() (query method)</a>
+
+      <ul>
+        <li><a href="_autosummary/muspan.query.query_container.html#muspan.query.query_container.__init__">(query_container method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.networks.add_dissimilarity_weight_to_edges.html#muspan.networks.add_dissimilarity_weight_to_edges">add_dissimilarity_weight_to_edges() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.add_dissimilarity_weight_to_edges.add_dissimilarity_weight_to_edges.html#muspan.networks.add_dissimilarity_weight_to_edges.add_dissimilarity_weight_to_edges">(in module muspan.networks.add_dissimilarity_weight_to_edges)</a>
+</li>
+      </ul></li>
+      <li><a href="muspan.domain.html#muspan.domain.add_labels">add_labels() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.add_lines">add_lines() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.add_objects_to_collection">add_objects_to_collection() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.add_points">add_points() (domain method)</a>
+</li>
+      <li><a href="_autosummary/muspan.query.query_container.html#muspan.query.query_container.add_query">add_query() (query_container method)</a>, <a href="generated/muspan.query.query_container.html#muspan.query.query_container.add_query">[1]</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.add_shapes">add_shapes() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.add_shapes_with_internal_holes">add_shapes_with_internal_holes() (domain method)</a>
+</li>
+      <li><a href="generated/muspan.networks.add_similarity_weight_to_edges.html#muspan.networks.add_similarity_weight_to_edges">add_similarity_weight_to_edges() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.add_similarity_weight_to_edges.add_similarity_weight_to_edges.html#muspan.networks.add_similarity_weight_to_edges.add_similarity_weight_to_edges">(in module muspan.networks.add_similarity_weight_to_edges)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.networks.adjacency_permutation_test.html#muspan.networks.adjacency_permutation_test">adjacency_permutation_test() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.adjacency_permutation_test.adjacency_permutation_test.html#muspan.networks.adjacency_permutation_test.adjacency_permutation_test">(in module muspan.networks.adjacency_permutation_test)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.networks.alpha_index.html#muspan.networks.alpha_index">alpha_index() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.alpha_index.alpha_index.html#muspan.networks.alpha_index.alpha_index">(in module muspan.networks.alpha_index)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.helpers.alpha_shape.html#muspan.helpers.alpha_shape">alpha_shape() (in module muspan.helpers)</a>, <a href="generated/muspan.helpers.alpha_shape.html#muspan.helpers.alpha_shape">[1]</a>
+</li>
+      <li><a href="generated/muspan.shape_operations.helpers.are_points_clockwise_oriented.html#muspan.shape_operations.helpers.are_points_clockwise_oriented">are_points_clockwise_oriented() (in module muspan.shape_operations.helpers)</a>
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.are_points_clockwise_oriented.are_points_clockwise_oriented">(in module muspan.shape_operations.helpers.are_points_clockwise_oriented)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.geometry.area.html#muspan.geometry.area">area() (in module muspan.geometry)</a>
+
+      <ul>
+        <li><a href="generated/muspan.geometry.area.area.html#muspan.geometry.area.area">(in module muspan.geometry.area)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.spatial_statistics.average_nearest_neighbour_index.html#muspan.spatial_statistics.average_nearest_neighbour_index">average_nearest_neighbour_index() (in module muspan.spatial_statistics)</a>, <a href="generated/muspan.spatial_statistics.average_nearest_neighbour_index.html#muspan.spatial_statistics.average_nearest_neighbour_index">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.visualise.barcode.html#muspan.visualise.barcode">barcode() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.barcode.barcode.html#muspan.visualise.barcode.barcode">(in module muspan.visualise.barcode)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.networks.centrality.html#muspan.networks.centrality">centrality() (in module muspan.networks)</a>
+</li>
+      <li><a href="muspan.spatial_statistics.helpers.html#muspan.spatial_statistics.helpers.change_some_elements.change_some_elements">change_some_elements() (in module muspan.spatial_statistics.helpers.change_some_elements)</a>
+</li>
+      <li><a href="generated/muspan.geometry.circularity.html#muspan.geometry.circularity">circularity() (in module muspan.geometry)</a>
+
+      <ul>
+        <li><a href="generated/muspan.geometry.circularity.circularity.html#muspan.geometry.circularity.circularity">(in module muspan.geometry.circularity)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.helpers.clean_up.html#muspan.helpers.clean_up">clean_up() (in module muspan.helpers)</a>
+</li>
+      <li><a href="_autosummary/muspan.helpers.cluster_data.html#muspan.helpers.cluster_data">cluster_data() (in module muspan.helpers)</a>, <a href="generated/muspan.helpers.cluster_data.html#muspan.helpers.cluster_data">[1]</a>
+</li>
+      <li><a href="generated/muspan.networks.cluster_neighbourhoods.html#muspan.networks.cluster_neighbourhoods">cluster_neighbourhoods() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.cluster_neighbourhoods.cluster_neighbourhoods.html#muspan.networks.cluster_neighbourhoods.cluster_neighbourhoods">(in module muspan.networks.cluster_neighbourhoods)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.helpers.combine_include_and_exclude_boundaries.html#muspan.helpers.combine_include_and_exclude_boundaries">combine_include_and_exclude_boundaries() (in module muspan.helpers)</a>, <a href="generated/muspan.helpers.combine_include_and_exclude_boundaries.html#muspan.helpers.combine_include_and_exclude_boundaries">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.shape_operations.combine_shapes.html#muspan.shape_operations.combine_shapes">combine_shapes() (in module muspan.shape_operations)</a>, <a href="generated/muspan.shape_operations.combine_shapes.html#muspan.shape_operations.combine_shapes">[1]</a>
+</li>
+      <li><a href="generated/muspan.networks.community_detection.html#muspan.networks.community_detection">community_detection() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.community_detection.community_detection.html#muspan.networks.community_detection.community_detection">(in module muspan.networks.community_detection)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.networks.compactness.html#muspan.networks.compactness">compactness() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.compactness.compactness.html#muspan.networks.compactness.compactness">(in module muspan.networks.compactness)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.domain.html#muspan.domain.convert_objects">convert_objects() (domain method)</a>
+</li>
+      <li><a href="generated/muspan.geometry.convexity.html#muspan.geometry.convexity">convexity() (in module muspan.geometry)</a>
+
+      <ul>
+        <li><a href="generated/muspan.geometry.convexity.convexity.html#muspan.geometry.convexity.convexity">(in module muspan.geometry.convexity)</a>
+</li>
+      </ul></li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_union_of_set_of_shapes.coords_to_poly">coords_to_poly() (in module muspan.shape_operations.helpers.get_union_of_set_of_shapes)</a>
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries.coords_to_poly">(in module muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries)</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.coords_to_poly">(in module muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.helpers.crop_domain.html#muspan.helpers.crop_domain">crop_domain() (in module muspan.helpers)</a>
+</li>
+      <li><a href="_autosummary/muspan.spatial_statistics.cross_k_function.html#muspan.spatial_statistics.cross_k_function">cross_k_function() (in module muspan.spatial_statistics)</a>, <a href="generated/muspan.spatial_statistics.cross_k_function.html#muspan.spatial_statistics.cross_k_function">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.spatial_statistics.cross_l_function.html#muspan.spatial_statistics.cross_l_function">cross_l_function() (in module muspan.spatial_statistics)</a>, <a href="generated/muspan.spatial_statistics.cross_l_function.html#muspan.spatial_statistics.cross_l_function">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.spatial_statistics.cross_pair_correlation_function.html#muspan.spatial_statistics.cross_pair_correlation_function">cross_pair_correlation_function() (in module muspan.spatial_statistics)</a>, <a href="generated/muspan.spatial_statistics.cross_pair_correlation_function.html#muspan.spatial_statistics.cross_pair_correlation_function">[1]</a>
+</li>
+      <li><a href="generated/muspan.networks.cyclomatic_number.html#muspan.networks.cyclomatic_number">cyclomatic_number() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.cyclomatic_number.cyclomatic_number.html#muspan.networks.cyclomatic_number.cyclomatic_number">(in module muspan.networks.cyclomatic_number)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.domain.html#muspan.domain.delete_distances">delete_distances() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.delete_labels">delete_labels() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.delete_network">delete_network() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.delete_objects">delete_objects() (domain method)</a>
+</li>
+      <li><a href="generated/muspan.shape_operations.helpers.distance_point_to_line_segment.html#muspan.shape_operations.helpers.distance_point_to_line_segment">distance_point_to_line_segment() (in module muspan.shape_operations.helpers)</a>
+
+      <ul>
+        <li><a href="generated/muspan.shape_operations.helpers.distance_point_to_line_segment.distance_point_to_line_segment.html#muspan.shape_operations.helpers.distance_point_to_line_segment.distance_point_to_line_segment">(in module muspan.shape_operations.helpers.distance_point_to_line_segment)</a>, <a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.distance_point_to_line_segment.distance_point_to_line_segment">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.distance_point_to_polygon.distance_point_to_polygon">distance_point_to_polygon() (in module muspan.shape_operations.helpers.distance_point_to_polygon)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.distance_polygon_to_polygon.distance_polygon_to_polygon">distance_polygon_to_polygon() (in module muspan.shape_operations.helpers.distance_polygon_to_polygon)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.do_polygons_intersect.do_polygons_intersect">do_polygons_intersect() (in module muspan.shape_operations.helpers.do_polygons_intersect)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.do_shapes_intersect.do_shapes_intersect">do_shapes_intersect() (in module muspan.shape_operations.helpers.do_shapes_intersect)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain">domain (class in muspan)</a>
+</li>
+      <li><a href="generated/muspan.io.domain_to_csv.html#muspan.io.domain_to_csv">domain_to_csv() (in module muspan.io)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.networks.edge_orientation_distribution.html#muspan.networks.edge_orientation_distribution">edge_orientation_distribution() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.edge_orientation_distribution.edge_orientation_distribution.html#muspan.networks.edge_orientation_distribution.edge_orientation_distribution">(in module muspan.networks.edge_orientation_distribution)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.domain.html#muspan.domain.estimate_boundary">estimate_boundary() (domain method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.query.filter_objects_to_included_regions.html#muspan.query.filter_objects_to_included_regions">filter_objects_to_included_regions() (in module muspan.query)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_subtraction_regions.find_a_subtraction_region_from_starting_point">find_a_subtraction_region_from_starting_point() (in module muspan.shape_operations.helpers.get_polygon_subtraction_regions)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_union_regions.find_a_union_region_from_starting_point">find_a_union_region_from_starting_point() (in module muspan.shape_operations.helpers.get_polygon_union_regions)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_intersection_regions.find_an_intersection_region_from_starting_point">find_an_intersection_region_from_starting_point() (in module muspan.shape_operations.helpers.get_polygon_intersection_regions)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.find_line_intersections_2D.find_line_intersections_2D">find_line_intersections_2D() (in module muspan.shape_operations.helpers.find_line_intersections_2D)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.networks.gamma_index.html#muspan.networks.gamma_index">gamma_index() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.gamma_index.gamma_index.html#muspan.networks.gamma_index.gamma_index">(in module muspan.networks.gamma_index)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.distribution.generate_distribution.html#muspan.distribution.generate_distribution">generate_distribution() (in module muspan.distribution)</a>, <a href="generated/muspan.distribution.generate_distribution.html#muspan.distribution.generate_distribution">[1]</a>
+
+      <ul>
+        <li><a href="generated/muspan.distribution.generate_distribution.generate_distribution.html#muspan.distribution.generate_distribution.generate_distribution">(in module muspan.distribution.generate_distribution)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.region_based.generate_hexgrid.html#muspan.region_based.generate_hexgrid">generate_hexgrid() (in module muspan.region_based)</a>, <a href="generated/muspan.region_based.generate_hexgrid.html#muspan.region_based.generate_hexgrid">[1]</a>
+</li>
+      <li><a href="generated/muspan.networks.generate_network.html#muspan.networks.generate_network">generate_network() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.generate_network.generate_network.html#muspan.networks.generate_network.generate_network">(in module muspan.networks.generate_network)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.region_based.generate_quadrats.html#muspan.region_based.generate_quadrats">generate_quadrats() (in module muspan.region_based)</a>, <a href="generated/muspan.region_based.generate_quadrats.html#muspan.region_based.generate_quadrats">[1]</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_intersection_regions.get_area">get_area() (in module muspan.shape_operations.helpers.get_polygon_intersection_regions)</a>
+</li>
+      <li><a href="muspan.spatial_statistics.helpers.html#muspan.spatial_statistics.helpers.get_c_from_sigma_inv.get_c_from_sigma_inv">get_c_from_sigma_inv() (in module muspan.spatial_statistics.helpers.get_c_from_sigma_inv)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_intersection_points.get_candidates_from_merging_newpair_into_list">get_candidates_from_merging_newpair_into_list() (in module muspan.shape_operations.helpers.get_polygon_intersection_points)</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_centroids.html#muspan.query.get_centroids">get_centroids() (in module muspan.query)</a>, <a href="generated/muspan.query.get_centroids.html#muspan.query.get_centroids">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_children.html#muspan.query.get_children">get_children() (in module muspan.query)</a>, <a href="generated/muspan.query.get_children.html#muspan.query.get_children">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_collections.html#muspan.query.get_collections">get_collections() (in module muspan.query)</a>, <a href="generated/muspan.query.get_collections.html#muspan.query.get_collections">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_family_tree.html#muspan.query.get_family_tree">get_family_tree() (in module muspan.query)</a>, <a href="generated/muspan.query.get_family_tree.html#muspan.query.get_family_tree">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_intersection_area_circle_and_polygon.get_intersection_area_circle_and_polygon">get_intersection_area_circle_and_polygon() (in module muspan.shape_operations.helpers.get_intersection_area_circle_and_polygon)</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_labels.html#muspan.query.get_labels">get_labels() (in module muspan.query)</a>, <a href="generated/muspan.query.get_labels.html#muspan.query.get_labels">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_minimum_distances_boundaries.html#muspan.query.get_minimum_distances_boundaries">get_minimum_distances_boundaries() (in module muspan.query)</a>, <a href="generated/muspan.query.get_minimum_distances_boundaries.html#muspan.query.get_minimum_distances_boundaries">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_minimum_distances_centroids.html#muspan.query.get_minimum_distances_centroids">get_minimum_distances_centroids() (in module muspan.query)</a>, <a href="generated/muspan.query.get_minimum_distances_centroids.html#muspan.query.get_minimum_distances_centroids">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_object_components.html#muspan.query.get_object_components">get_object_components() (in module muspan.query)</a>, <a href="generated/muspan.query.get_object_components.html#muspan.query.get_object_components">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_object_types.html#muspan.query.get_object_types">get_object_types() (in module muspan.query)</a>, <a href="generated/muspan.query.get_object_types.html#muspan.query.get_object_types">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.get_parents.html#muspan.query.get_parents">get_parents() (in module muspan.query)</a>, <a href="generated/muspan.query.get_parents.html#muspan.query.get_parents">[1]</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_intersection_points.get_polygon_intersection_points">get_polygon_intersection_points() (in module muspan.shape_operations.helpers.get_polygon_intersection_points)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_intersection_regions.get_polygon_intersection_regions">get_polygon_intersection_regions() (in module muspan.shape_operations.helpers.get_polygon_intersection_regions)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_subtraction_regions.get_polygon_subtraction_regions">get_polygon_subtraction_regions() (in module muspan.shape_operations.helpers.get_polygon_subtraction_regions)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_polygon_union_regions.get_polygon_union_regions">get_polygon_union_regions() (in module muspan.shape_operations.helpers.get_polygon_union_regions)</a>
+</li>
+      <li><a href="_autosummary/muspan.helpers.get_subcomponent_coords_from_component_ID.html#muspan.helpers.get_subcomponent_coords_from_component_ID">get_subcomponent_coords_from_component_ID() (in module muspan.helpers)</a>, <a href="generated/muspan.helpers.get_subcomponent_coords_from_component_ID.html#muspan.helpers.get_subcomponent_coords_from_component_ID">[1]</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.get_union_of_set_of_shapes.get_union_of_set_of_shapes">get_union_of_set_of_shapes() (in module muspan.shape_operations.helpers.get_union_of_set_of_shapes)</a>
+</li>
+      <li><a href="generated/muspan.spatial_statistics.getis_ord.html#muspan.spatial_statistics.getis_ord">getis_ord() (in module muspan.spatial_statistics)</a>
+
+      <ul>
+        <li><a href="generated/muspan.spatial_statistics.getis_ord.getis_ord.html#muspan.spatial_statistics.getis_ord.getis_ord">(in module muspan.spatial_statistics.getis_ord)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.query.interpret_query.html#muspan.query.interpret_query">interpret_query() (in module muspan.query)</a>, <a href="generated/muspan.query.interpret_query.html#muspan.query.interpret_query">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.query.is_A_contained_by_B.html#muspan.query.is_A_contained_by_B">is_A_contained_by_B() (in module muspan.query)</a>, <a href="generated/muspan.query.is_A_contained_by_B.html#muspan.query.is_A_contained_by_B">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.is_query_like.html#muspan.query.is_query_like">is_query_like() (in module muspan.query)</a>, <a href="generated/muspan.query.is_query_like.html#muspan.query.is_query_like">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.spatial_statistics.J_function.html#muspan.spatial_statistics.J_function">J_function() (in module muspan.spatial_statistics)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.distribution.kernel_density_estimation.html#muspan.distribution.kernel_density_estimation">kernel_density_estimation() (in module muspan.distribution)</a>, <a href="generated/muspan.distribution.kernel_density_estimation.html#muspan.distribution.kernel_density_estimation">[1]</a>
+
+      <ul>
+        <li><a href="generated/muspan.distribution.kernel_density_estimation.kernel_density_estimation.html#muspan.distribution.kernel_density_estimation.kernel_density_estimation">(in module muspan.distribution.kernel_density_estimation)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.networks.khop_neighbourhood.html#muspan.networks.khop_neighbourhood">khop_neighbourhood() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.khop_neighbourhood.khop_neighbourhood.html#muspan.networks.khop_neighbourhood.khop_neighbourhood">(in module muspan.networks.khop_neighbourhood)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.distribution.kl_divergence.html#muspan.distribution.kl_divergence">kl_divergence() (in module muspan.distribution)</a>
+
+      <ul>
+        <li><a href="generated/muspan.distribution.kl_divergence.kl_divergence.html#muspan.distribution.kl_divergence.kl_divergence">(in module muspan.distribution.kl_divergence)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.networks.knn_label_count.html#muspan.networks.knn_label_count">knn_label_count() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.knn_label_count.knn_label_count.html#muspan.networks.knn_label_count.knn_label_count">(in module muspan.networks.knn_label_count)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.summary_statistics.label_counts.html#muspan.summary_statistics.label_counts">label_counts() (in module muspan.summary_statistics)</a>, <a href="generated/muspan.summary_statistics.label_counts.html#muspan.summary_statistics.label_counts">[1]</a>
+
+      <ul>
+        <li><a href="generated/muspan.summary_statistics.label_counts.label_counts.html#muspan.summary_statistics.label_counts.label_counts">(in module muspan.summary_statistics.label_counts)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.summary_statistics.label_density.html#muspan.summary_statistics.label_density">label_density() (in module muspan.summary_statistics)</a>, <a href="generated/muspan.summary_statistics.label_density.html#muspan.summary_statistics.label_density">[1]</a>
+
+      <ul>
+        <li><a href="generated/muspan.summary_statistics.label_density.label_density.html#muspan.summary_statistics.label_density.label_density">(in module muspan.summary_statistics.label_density)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.summary_statistics.label_entropy.html#muspan.summary_statistics.label_entropy">label_entropy() (in module muspan.summary_statistics)</a>
+
+      <ul>
+        <li><a href="generated/muspan.summary_statistics.label_entropy.label_entropy.html#muspan.summary_statistics.label_entropy.label_entropy">(in module muspan.summary_statistics.label_entropy)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.topology.level_set_filtration.html#muspan.topology.level_set_filtration">level_set_filtration() (in module muspan.topology)</a>
+
+      <ul>
+        <li><a href="generated/muspan.topology.level_set_filtration.level_set_filtration.html#muspan.topology.level_set_filtration.level_set_filtration">(in module muspan.topology.level_set_filtration)</a>
+</li>
+      </ul></li>
+      <li><a href="muspan.objects.html#muspan.objects.Line">Line (class in muspan.objects)</a>
+</li>
+      <li><a href="generated/muspan.io.load_domain.html#muspan.io.load_domain">load_domain() (in module muspan.io)</a>
+
+      <ul>
+        <li><a href="generated/muspan.io.load_domain.load_domain.html#muspan.io.load_domain.load_domain">(in module muspan.io.load_domain)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/muspan.datasets.load_example_domain.html#muspan.datasets.load_example_domain">load_example_domain() (in module muspan.datasets)</a>, <a href="generated/muspan.datasets.load_example_domain.html#muspan.datasets.load_example_domain">[1]</a>
+
+      <ul>
+        <li><a href="generated/muspan.datasets.load_example_domain.load_example_domain.html#muspan.datasets.load_example_domain.load_example_domain">(in module muspan.datasets.load_example_domain)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="muspan.datasets.html#module-muspan.datasets.load_example_domain">muspan.datasets.load_example_domain</a>
+</li>
+        <li><a href="generated/muspan.helpers.object_to_shape_distance_matrix.html#module-muspan.helpers.object_to_shape_distance_matrix">muspan.helpers.object_to_shape_distance_matrix</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers">muspan.shape_operations.helpers</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.are_points_clockwise_oriented">muspan.shape_operations.helpers.are_points_clockwise_oriented</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.distance_point_to_line_segment">muspan.shape_operations.helpers.distance_point_to_line_segment</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.distance_point_to_polygon">muspan.shape_operations.helpers.distance_point_to_polygon</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.distance_polygon_to_polygon">muspan.shape_operations.helpers.distance_polygon_to_polygon</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.do_polygons_intersect">muspan.shape_operations.helpers.do_polygons_intersect</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.do_shapes_intersect">muspan.shape_operations.helpers.do_shapes_intersect</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.find_line_intersections_2D">muspan.shape_operations.helpers.find_line_intersections_2D</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_intersection_area_circle_and_polygon">muspan.shape_operations.helpers.get_intersection_area_circle_and_polygon</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_intersection_points">muspan.shape_operations.helpers.get_polygon_intersection_points</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_intersection_regions">muspan.shape_operations.helpers.get_polygon_intersection_regions</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_subtraction_regions">muspan.shape_operations.helpers.get_polygon_subtraction_regions</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_union_regions">muspan.shape_operations.helpers.get_polygon_union_regions</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_union_of_set_of_shapes">muspan.shape_operations.helpers.get_union_of_set_of_shapes</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.point_in_polygon">muspan.shape_operations.helpers.point_in_polygon</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.polygon_in_polygon">muspan.shape_operations.helpers.polygon_in_polygon</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.remove_zero_length_polygon_edges">muspan.shape_operations.helpers.remove_zero_length_polygon_edges</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries">muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries">muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries</a>
+</li>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries">muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries</a>
+</li>
+        <li><a href="muspan.spatial_statistics.helpers.html#module-muspan.spatial_statistics.helpers">muspan.spatial_statistics.helpers</a>
+</li>
+        <li><a href="muspan.spatial_statistics.helpers.html#module-muspan.spatial_statistics.helpers.change_some_elements">muspan.spatial_statistics.helpers.change_some_elements</a>
+</li>
+        <li><a href="muspan.spatial_statistics.helpers.html#module-muspan.spatial_statistics.helpers.get_c_from_sigma_inv">muspan.spatial_statistics.helpers.get_c_from_sigma_inv</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.spatial_statistics.morans_i.html#muspan.spatial_statistics.morans_i">morans_i() (in module muspan.spatial_statistics)</a>
+
+      <ul>
+        <li><a href="generated/muspan.spatial_statistics.morans_i.morans_i.html#muspan.spatial_statistics.morans_i.morans_i">(in module muspan.spatial_statistics.morans_i)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.region_based.morisita_horn_index.html#muspan.region_based.morisita_horn_index">morisita_horn_index() (in module muspan.region_based)</a>
+</li>
+      <li>
+    muspan.datasets.load_example_domain
+
+      <ul>
+        <li><a href="muspan.datasets.html#module-muspan.datasets.load_example_domain">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.helpers.object_to_shape_distance_matrix
+
+      <ul>
+        <li><a href="generated/muspan.helpers.object_to_shape_distance_matrix.html#module-muspan.helpers.object_to_shape_distance_matrix">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.are_points_clockwise_oriented
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.are_points_clockwise_oriented">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.distance_point_to_line_segment
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.distance_point_to_line_segment">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    muspan.shape_operations.helpers.distance_point_to_polygon
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.distance_point_to_polygon">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.distance_polygon_to_polygon
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.distance_polygon_to_polygon">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.do_polygons_intersect
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.do_polygons_intersect">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.do_shapes_intersect
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.do_shapes_intersect">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.find_line_intersections_2D
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.find_line_intersections_2D">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.get_intersection_area_circle_and_polygon
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_intersection_area_circle_and_polygon">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.get_polygon_intersection_points
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_intersection_points">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.get_polygon_intersection_regions
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_intersection_regions">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.get_polygon_subtraction_regions
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_subtraction_regions">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.get_polygon_union_regions
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_polygon_union_regions">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.get_union_of_set_of_shapes
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.get_union_of_set_of_shapes">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.point_in_polygon
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.point_in_polygon">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.polygon_in_polygon
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.polygon_in_polygon">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.remove_zero_length_polygon_edges
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.remove_zero_length_polygon_edges">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries
+
+      <ul>
+        <li><a href="muspan.shape_operations.helpers.html#module-muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.spatial_statistics.helpers
+
+      <ul>
+        <li><a href="muspan.spatial_statistics.helpers.html#module-muspan.spatial_statistics.helpers">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.spatial_statistics.helpers.change_some_elements
+
+      <ul>
+        <li><a href="muspan.spatial_statistics.helpers.html#module-muspan.spatial_statistics.helpers.change_some_elements">module</a>
+</li>
+      </ul></li>
+      <li>
+    muspan.spatial_statistics.helpers.get_c_from_sigma_inv
+
+      <ul>
+        <li><a href="muspan.spatial_statistics.helpers.html#module-muspan.spatial_statistics.helpers.get_c_from_sigma_inv">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.spatial_statistics.nearest_neighbour_distribution.html#muspan.spatial_statistics.nearest_neighbour_distribution">nearest_neighbour_distribution() (in module muspan.spatial_statistics)</a>
+</li>
+      <li><a href="generated/muspan.networks.network_distance.html#muspan.networks.network_distance">network_distance() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.network_distance.network_distance.html#muspan.networks.network_distance.network_distance">(in module muspan.networks.network_distance)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.networks.node_degree.html#muspan.networks.node_degree">node_degree() (in module muspan.networks)</a>
+
+      <ul>
+        <li><a href="generated/muspan.networks.node_degree.node_degree.html#muspan.networks.node_degree.node_degree">(in module muspan.networks.node_degree)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.helpers.object_to_object_distance_matrix.html#muspan.helpers.object_to_object_distance_matrix">object_to_object_distance_matrix() (in module muspan.helpers)</a>, <a href="generated/muspan.helpers.object_to_object_distance_matrix.html#muspan.helpers.object_to_object_distance_matrix">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.helpers.object_to_shape_distance_matrix.html#muspan.helpers.object_to_shape_distance_matrix">object_to_shape_distance_matrix() (in module muspan.helpers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.geometry.perimeter.html#muspan.geometry.perimeter">perimeter() (in module muspan.geometry)</a>
+
+      <ul>
+        <li><a href="generated/muspan.geometry.perimeter.perimeter.html#muspan.geometry.perimeter.perimeter">(in module muspan.geometry.perimeter)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.visualise.persistence_diagram.html#muspan.visualise.persistence_diagram">persistence_diagram() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.persistence_diagram.persistence_diagram.html#muspan.visualise.persistence_diagram.persistence_diagram">(in module muspan.visualise.persistence_diagram)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.visualise.persistence_image.html#muspan.visualise.persistence_image">persistence_image() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.persistence_image.persistence_image.html#muspan.visualise.persistence_image.persistence_image">(in module muspan.visualise.persistence_image)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.objects.html#muspan.objects.Point">Point (class in muspan.objects)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.point_in_polygon.point_in_polygon">point_in_polygon() (in module muspan.shape_operations.helpers.point_in_polygon)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.polygon_in_polygon.polygon_in_polygon">polygon_in_polygon() (in module muspan.shape_operations.helpers.polygon_in_polygon)</a>
+</li>
+      <li><a href="generated/muspan.geometry.principle_axis.html#muspan.geometry.principle_axis">principle_axis() (in module muspan.geometry)</a>
+
+      <ul>
+        <li><a href="generated/muspan.geometry.principle_axis.principle_axis.html#muspan.geometry.principle_axis.principle_axis">(in module muspan.geometry.principle_axis)</a>
+</li>
+      </ul></li>
+      <li><a href="muspan.domain.html#muspan.domain.print_collections">print_collections() (domain method)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.print_labels">print_labels() (domain method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.region_based.quadrat_correlation_matrix.html#muspan.region_based.quadrat_correlation_matrix">quadrat_correlation_matrix() (in module muspan.region_based)</a>, <a href="generated/muspan.region_based.quadrat_correlation_matrix.html#muspan.region_based.quadrat_correlation_matrix">[1]</a>
+</li>
+      <li><a href="_autosummary/muspan.query.query.html#muspan.query.query">query (class in muspan.query)</a>, <a href="generated/muspan.query.query.html#muspan.query.query">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.query.query_container.html#muspan.query.query_container">query_container (class in muspan.query)</a>, <a href="generated/muspan.query.query_container.html#muspan.query.query_container">[1]</a>
+</li>
+      <li><a href="generated/muspan.io.qupath_to_domain.html#muspan.io.qupath_to_domain">qupath_to_domain() (in module muspan.io)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.remove_zero_length_polygon_edges.remove_zero_length_polygon_edges">remove_zero_length_polygon_edges() (in module muspan.shape_operations.helpers.remove_zero_length_polygon_edges)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries.return_difference_of_shapes_from_boundaries">return_difference_of_shapes_from_boundaries() (in module muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.return_intersection_of_shapes_from_boundaries">return_intersection_of_shapes_from_boundaries() (in module muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries)</a>
+</li>
+      <li><a href="generated/muspan.query.return_object_IDs_from_query_like.html#muspan.query.return_object_IDs_from_query_like">return_object_IDs_from_query_like() (in module muspan.query)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries.return_union_of_shapes_from_boundaries">return_union_of_shapes_from_boundaries() (in module muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.io.save_domain.html#muspan.io.save_domain">save_domain() (in module muspan.io)</a>
+
+      <ul>
+        <li><a href="generated/muspan.io.save_domain.save_domain.html#muspan.io.save_domain.save_domain">(in module muspan.io.save_domain)</a>
+</li>
+      </ul></li>
+      <li><a href="muspan.objects.html#muspan.objects.Shape">Shape (class in muspan.objects)</a>
+</li>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.find_line_intersections_2D.signed_triangle_area_times_2">signed_triangle_area_times_2() (in module muspan.shape_operations.helpers.find_line_intersections_2D)</a>
+</li>
+      <li><a href="muspan.domain.html#muspan.domain.simplify_shape_boundaries">simplify_shape_boundaries() (domain method)</a>
+</li>
+      <li><a href="_autosummary/muspan.distribution.sliced_wasserstein_distance.html#muspan.distribution.sliced_wasserstein_distance">sliced_wasserstein_distance() (in module muspan.distribution)</a>, <a href="generated/muspan.distribution.sliced_wasserstein_distance.html#muspan.distribution.sliced_wasserstein_distance">[1]</a>
+
+      <ul>
+        <li><a href="generated/muspan.distribution.sliced_wasserstein_distance.sliced_wasserstein_distance.html#muspan.distribution.sliced_wasserstein_distance.sliced_wasserstein_distance">(in module muspan.distribution.sliced_wasserstein_distance)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.io.spatialdata_to_domain.html#muspan.io.spatialdata_to_domain">spatialdata_to_domain() (in module muspan.io)</a>
+
+      <ul>
+        <li><a href="generated/muspan.io.spatialdata_to_domain.spatialdata_to_domain.html#muspan.io.spatialdata_to_domain.spatialdata_to_domain">(in module muspan.io.spatialdata_to_domain)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.spatial_statistics.spherical_contact_distribution.html#muspan.spatial_statistics.spherical_contact_distribution">spherical_contact_distribution() (in module muspan.spatial_statistics)</a>
+</li>
+      <li><a href="generated/muspan.distribution.summarise_distribution.html#muspan.distribution.summarise_distribution">summarise_distribution() (in module muspan.distribution)</a>
+
+      <ul>
+        <li><a href="generated/muspan.distribution.summarise_distribution.summarise_distribution.html#muspan.distribution.summarise_distribution.summarise_distribution">(in module muspan.distribution.summarise_distribution)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.spatial_statistics.topographical_correlation_map.html#muspan.spatial_statistics.topographical_correlation_map">topographical_correlation_map() (in module muspan.spatial_statistics)</a>, <a href="generated/muspan.spatial_statistics.topographical_correlation_map.html#muspan.spatial_statistics.topographical_correlation_map">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.shape_operations.helpers.html#muspan.shape_operations.helpers.find_line_intersections_2D.triplet_orientation">triplet_orientation() (in module muspan.shape_operations.helpers.find_line_intersections_2D)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="muspan.domain.html#muspan.domain.update_colors">update_colors() (domain method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.query.validate_query.html#muspan.query.validate_query">validate_query() (in module muspan.query)</a>, <a href="generated/muspan.query.validate_query.html#muspan.query.validate_query">[1]</a>
+</li>
+      <li><a href="generated/muspan.topology.vectorise_persistence.html#muspan.topology.vectorise_persistence">vectorise_persistence() (in module muspan.topology)</a>
+
+      <ul>
+        <li><a href="generated/muspan.topology.vectorise_persistence.vectorise_persistence.html#muspan.topology.vectorise_persistence.vectorise_persistence">(in module muspan.topology.vectorise_persistence)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.topology.vietoris_rips_filtration.html#muspan.topology.vietoris_rips_filtration">vietoris_rips_filtration() (in module muspan.topology)</a>
+
+      <ul>
+        <li><a href="generated/muspan.topology.vietoris_rips_filtration.vietoris_rips_filtration.html#muspan.topology.vietoris_rips_filtration.vietoris_rips_filtration">(in module muspan.topology.vietoris_rips_filtration)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.visualise.visualise.html#muspan.visualise.visualise">visualise() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.visualise.visualise.html#muspan.visualise.visualise.visualise">(in module muspan.visualise.visualise)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.visualise.visualise_correlation_matrix.html#muspan.visualise.visualise_correlation_matrix">visualise_correlation_matrix() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.visualise_correlation_matrix.visualise_correlation_matrix.html#muspan.visualise.visualise_correlation_matrix.visualise_correlation_matrix">(in module muspan.visualise.visualise_correlation_matrix)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.visualise.visualise_family_tree.html#muspan.visualise.visualise_family_tree">visualise_family_tree() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.visualise_family_tree.visualise_family_tree.html#muspan.visualise.visualise_family_tree.visualise_family_tree">(in module muspan.visualise.visualise_family_tree)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.visualise.visualise_heatmap.html#muspan.visualise.visualise_heatmap">visualise_heatmap() (in module muspan.visualise)</a>
+</li>
+      <li><a href="generated/muspan.visualise.visualise_network.html#muspan.visualise.visualise_network">visualise_network() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.visualise_network.visualise_network.html#muspan.visualise.visualise_network.visualise_network">(in module muspan.visualise.visualise_network)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.visualise.visualise_spatial_statistic.html#muspan.visualise.visualise_spatial_statistic">visualise_spatial_statistic() (in module muspan.visualise)</a>
+</li>
+      <li><a href="generated/muspan.visualise.visualise_topographical_correlation_map.html#muspan.visualise.visualise_topographical_correlation_map">visualise_topographical_correlation_map() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.visualise_topographical_correlation_map.visualise_topographical_correlation_map.html#muspan.visualise.visualise_topographical_correlation_map.visualise_topographical_correlation_map">(in module muspan.visualise.visualise_topographical_correlation_map)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/muspan.visualise.visualise_wpcf.html#muspan.visualise.visualise_wpcf">visualise_wpcf() (in module muspan.visualise)</a>
+
+      <ul>
+        <li><a href="generated/muspan.visualise.visualise_wpcf.visualise_wpcf.html#muspan.visualise.visualise_wpcf.visualise_wpcf">(in module muspan.visualise.visualise_wpcf)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/muspan.spatial_statistics.weighted_pair_correlation_function.html#muspan.spatial_statistics.weighted_pair_correlation_function">weighted_pair_correlation_function() (in module muspan.spatial_statistics)</a>, <a href="generated/muspan.spatial_statistics.weighted_pair_correlation_function.html#muspan.spatial_statistics.weighted_pair_correlation_function">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/muspan.io.xenium_to_domain.html#muspan.io.xenium_to_domain">xenium_to_domain() (in module muspan.io)</a>
+
+      <ul>
+        <li><a href="generated/muspan.io.xenium_to_domain.xenium_to_domain.html#muspan.io.xenium_to_domain.xenium_to_domain">(in module muspan.io.xenium_to_domain)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

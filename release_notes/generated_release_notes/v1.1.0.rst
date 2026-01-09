@@ -1,0 +1,44 @@
+v1.1.0
+======
+
+We are excited to announce the release of version **v1.1.0**! This update brings significant improvements, new features, and important bug fixes to enhance functionality and documentation.
+This release is compatible with Python 3.10 to 3.12.
+
+New Features
+------------
+* **Optionally Exclude Self-Self Distances**: New feature allowing the exclusion of self distances in calculations.
+* **Relative Neighborhood Graph Implementation**: Introduced efficient relative neighborhood graph computations.
+* **Centralities Consolidated**: Centrality calculations now unified into a single function.
+* **Updated Color Handling**: `update_colors` now supports label and collection names not stored in the domain.
+* **New Label and Collection Functions**: Introduced `print_labels` and `print_collections`, explicitly including Pandas as a dependency.
+* **Installation and Documentation Updates**: Improved installation process, versioning, and documentation clarity.
+* **TDA Vectorisation**: Output of feature names.
+
+Optimisations
+-------------
+* **Efficient Adjacency Significance Test**: Improved computational efficiency for adjacency significance testing.
+* **Cluster Neighborhoods Parameters**: Added new parameters for better control over cluster neighborhood analysis.
+* **Speed and Accuracy Improvements for Distributions**: Enhanced mesh boundary estimations for better performance.
+* **Boundary Cache Infrastructure**: Updates to the boundary cache mechanism for better performance and reliability.
+* **Efficient Neighborhood Clustering**: Improved clustering mechanisms for neighborhood analysis.
+* **More Efficient k-Hop**: Enhancements to k-hop neighborhood calculations.
+* **Memory Efficient and Scalable Proximity Networks**: Optimised proximity network computation for scalability.
+
+Bug Fixes
+---------
+* Fixed various typos in tutorials and documentation.
+* Remove Dependency on Simplification Library.
+* Various minor fixes to improve stability and usability.
+* Fixed domain cropping errors for shapes with shared boundaries.
+* Resolved inconsistencies in parameter naming throughout the I/O module.
+* Fixed KNN label count ordering inconsistencies.
+* Addressed numerical stability in network distance calculations.
+* Fixed TDA persistence issues to ensure finiteness.
+* Resolved installation issues related to dependency versions.
+* Various documentation fixes, including updated redirects and links.
+
+All tutorials have been updated to reflect the changes in version **v1.1.0**. We appreciate all contributions and feedback that helped shape this release!
+
+For further details, refer to the documentation and upgrade guide.
+
+Thank you for using our software!

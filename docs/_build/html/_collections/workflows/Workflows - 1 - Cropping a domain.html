@@ -1,0 +1,1027 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cropping a domain &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/workflows/Workflows - 1 - Cropping a domain';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Export a domain as csv (and dataframe)" href="Workflows%20-%202%20-%20Domain%20to%20csv.html" />
+    <link rel="prev" title="Shape orientation (principle axis)" href="../geometry/geometry%20-%202%20-%20principle%20axis.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Cropping a domain</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Cropping-a-domain">
+<h1>Cropping a domain<a class="headerlink" href="#Cropping-a-domain" title="Link to this heading">#</a></h1>
+<p>MuSpAn allows you to take a large domain and crop out a subset of it to form a new domain. This may be very useful when, for example, you want to restrict your focus to a specific area of your data, or if you want to see how some spatial metric varies across a large sample.</p>
+<p>In this tutorial, we’ll explore how we can trim a large domain down into a smaller one (or many smaller ones).</p>
+<p>Let’s start by loading in a domain, and making sure that it has some points and some shapes in it. We’ll make the shapes using alpha shapes, so that our ‘crypts’ of A and B cells are represented with a boundary shape.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Load in a domain and make some ring shapes in it</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+<span class="n">type_A_cells</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain</span><span class="p">,(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="s1">&#39;Celltype&#39;</span><span class="p">),</span><span class="s1">&#39;is&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">type_B_cells</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain</span><span class="p">,(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="s1">&#39;Celltype&#39;</span><span class="p">),</span><span class="s1">&#39;is&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+<span class="n">rings</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query_container</span><span class="p">(</span><span class="n">type_A_cells</span><span class="p">,</span><span class="s1">&#39;OR&#39;</span><span class="p">,</span><span class="n">type_B_cells</span><span class="p">)</span>
+<span class="n">new_IDs</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span><span class="n">rings</span><span class="p">,</span><span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;New object&#39;</span><span class="p">,</span><span class="n">return_IDs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">object_type</span><span class="o">=</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span><span class="n">conversion_method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span><span class="n">conversion_method_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Architecture
+Number of objects: 5991
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_1_2.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_1_2.png" />
+</div>
+</div>
+<p>Let’s use one of those new IDs to make a new domain containing all the points inside a specific crypt. We’ll pick out one ID (object 5991, the first of the alpha shapes that we’ve just added) and see how it looks in the whole domain.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">[</span><span class="n">new_IDs</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Object ID </span><span class="si">{</span><span class="n">new_IDs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(0.5, 1.0, &#39;Object ID 5991&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_3_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_3_1.png" />
+</div>
+</div>
+<p>Great, we know which object ID 5991 is now. Now let’s crop the domain down to that object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outputs</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">crop_domain</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">[</span><span class="mi">5991</span><span class="p">])</span>
+<span class="n">tiny_domain</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">5991</span><span class="p">]</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">tiny_domain</span><span class="p">,</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_5_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_5_1.png" />
+</div>
+</div>
+<p>There we have it - a brand new domain whose boundary matches the outside of the shape we just passed it. Notice a couple of things here. First, the labels in <code class="docutils literal notranslate"><span class="pre">tiny_domain</span></code> have been inherited from the big <code class="docutils literal notranslate"><span class="pre">domain</span></code> - we were able to colour the points by <code class="docutils literal notranslate"><span class="pre">'Celltype'</span></code> without any difficulty.</p>
+<p>The other, potentially more misleading thing, is that <code class="docutils literal notranslate"><span class="pre">crop_domain</span></code> didn’t immediately return a new domain - instead, it returned a dictionary that we called <code class="docutils literal notranslate"><span class="pre">outputs</span></code>, and we pulled our new domain out using the key <code class="docutils literal notranslate"><span class="pre">5991</span></code>. This might seem a strange syntax when you’re cropping out a single domain, but makes much more sense if we crop out many different domains at once:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outputs</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">crop_domain</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">new_IDs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+<span class="c1">#ms.visualise.visualise(tiny_domain,&#39;Celltype&#39;,show_boundary=True)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{np.int64(5991): &lt;muspan.domain.domain object at 0x1693598b0&gt;, np.int64(5992): &lt;muspan.domain.domain object at 0x16a347440&gt;, np.int64(5993): &lt;muspan.domain.domain object at 0x30e5232c0&gt;, np.int64(5994): &lt;muspan.domain.domain object at 0x16fdaed80&gt;, np.int64(5995): &lt;muspan.domain.domain object at 0x16ff13cb0&gt;, np.int64(5996): &lt;muspan.domain.domain object at 0x16a2c3740&gt;, np.int64(5997): &lt;muspan.domain.domain object at 0x30e663470&gt;, np.int64(5998): &lt;muspan.domain.domain object at 0x16a420bf0&gt;, np.int64(5999): &lt;muspan.domain.domain object at 0x16fdae900&gt;, np.int64(6000): &lt;muspan.domain.domain object at 0x16a421f10&gt;, np.int64(6001): &lt;muspan.domain.domain object at 0x16a2c0d70&gt;, np.int64(6002): &lt;muspan.domain.domain object at 0x16a4233b0&gt;, np.int64(6003): &lt;muspan.domain.domain object at 0x16a2c2ab0&gt;, np.int64(6004): &lt;muspan.domain.domain object at 0x16a573710&gt;, np.int64(6005): &lt;muspan.domain.domain object at 0x16a44c7d0&gt;, np.int64(6006): &lt;muspan.domain.domain object at 0x16a2c36b0&gt;, np.int64(6007): &lt;muspan.domain.domain object at 0x16a573fe0&gt;, np.int64(6008): &lt;muspan.domain.domain object at 0x16a2c1ee0&gt;, np.int64(6009): &lt;muspan.domain.domain object at 0x16a132f30&gt;, np.int64(6010): &lt;muspan.domain.domain object at 0x16fc447d0&gt;, np.int64(6011): &lt;muspan.domain.domain object at 0x16a44e9c0&gt;}
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">outputs</span></code> now contains a dictionary of 21 domains, corresponding to the 21 IDs in the list of new_IDs. In general, we don’t have to pass specific object IDs here - any query like object that returns some shapes will result in a new domain for each shape.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">:</span>
+    <span class="n">this_domain</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">this_domain</span><span class="p">,</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_9_0.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_9_0.png" />
+</div>
+</div>
+<p>A situation where we might be interested in cropping the domain is when we’re using a lattice, for example. Let’s add a hexagonal lattice to our original domain, and use it to crop out a single hexagon.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hex_IDs</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">region_based</span><span class="o">.</span><span class="n">generate_hexgrid</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="s1">&#39;ROI&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_11_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_11_1.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">generate_hexgrid</span></code> has created hexagons with the label ‘ROI’. Let’s use a query to get the hexagon with ROI 14, and crop out a new domain with that as the boundary. Before we do, note that every object in ROI 14 has also been assigned this as a label - if we just get all the objects with ROI equal to ‘ROI_14’, we’ll find a lot of objects.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="s1">&#39;ROI&#39;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ROI&#39;</span><span class="p">,</span><span class="s1">&#39;ROI 14&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_13_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_13_1.png" />
+</div>
+</div>
+<p>As a result, we’ll use a more complex query to get the ID of the hexagon we’re interested in.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q14</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="s1">&#39;ROI&#39;</span><span class="p">,</span><span class="s1">&#39;is&#39;</span><span class="p">,</span><span class="s1">&#39;ROI 14&#39;</span><span class="p">)</span>
+<span class="n">qHex</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain</span><span class="p">,(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span><span class="s1">&#39;is&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrid&#39;</span><span class="p">)</span>
+<span class="n">our_hexagon</span> <span class="o">=</span> <span class="n">q14</span> <span class="o">&amp;</span> <span class="n">qHex</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="s1">&#39;ROI&#39;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="n">our_hexagon</span><span class="p">,</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_15_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_15_1.png" />
+</div>
+</div>
+<p>When cropping to this hexagon, we have a choice to make - the hexagon intersects with some of our crypt shapes. Do we want these shapes to be excluded from the new domain? Do we want to crop them? Do we want to expand the hexagon so that they’re kept intact? Fortunately, MuSpAn allows us to choose which option we like best.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;exclude&#39;</span><span class="p">,</span><span class="s1">&#39;clip&#39;</span><span class="p">,</span><span class="s1">&#39;expand&#39;</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">option</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
+    <span class="n">new_domain_dict</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">crop_domain</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">our_hexagon</span><span class="p">,</span> <span class="n">handle_intersecting_objects</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+    <span class="n">the_key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="n">the_key</span><span class="p">],</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Method = </span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Method </span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1"> - Area: </span><span class="si">{</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="n">the_key</span><span class="p">]</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">area</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Method </span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1"> - Number of objects: </span><span class="si">{</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="n">the_key</span><span class="p">]</span><span class="o">.</span><span class="n">n_objects</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Method exclude - Area: 58456.71475544251
+Method exclude - Number of objects: 252
+Method clip - Area: 58456.71475544251
+Method clip - Number of objects: 254
+Method expand - Area: 69430.46241487308
+Method expand - Number of objects: 254
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_17_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_17_1.png" />
+</div>
+</div>
+<p>Notice the key differences between the three options. <code class="docutils literal notranslate"><span class="pre">exclude</span></code> is the strictest, and will completely discard any shape which intersects with the object boundary. By contrast, <code class="docutils literal notranslate"><span class="pre">clip</span></code> leads to a domain with the same area as <code class="docutils literal notranslate"><span class="pre">exclude</span></code>, but any objects intersecting with the boundary will be clipped (note that this may turn one object into many, if the clipped shape is no longer connected). Finally, <code class="docutils literal notranslate"><span class="pre">expand</span></code> is the most tolerant method, ensuring that all our shapes remain unaltered at the
+expense of increasing the domain area. The best method to choose will depend on your use case.</p>
+<p>Finally, there is one more way of cropping to this hexagon. Notice that in the very red plot a few cells up (where we visualised all objects with the label <code class="docutils literal notranslate"><span class="pre">ROI</span></code> equal to <code class="docutils literal notranslate"><span class="pre">ROI</span> <span class="pre">14</span></code>), only one of the two crypt shapes shown here was shown. This is because when we generate a hexgrid, objects are assigned a single label based on the region that their centroid is contained in. We can crop the domain to these objects immediately by specifying <code class="docutils literal notranslate"><span class="pre">crop_method='label'</span></code> in <code class="docutils literal notranslate"><span class="pre">crop_domain</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_domain_dict</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">crop_domain</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="n">crop_method</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;ROI&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{np.str_(&#39;ROI 0&#39;): &lt;muspan.domain.domain object at 0x30e9ec560&gt;, np.str_(&#39;ROI 1&#39;): &lt;muspan.domain.domain object at 0x16fdac8c0&gt;, np.str_(&#39;ROI 10&#39;): &lt;muspan.domain.domain object at 0x30ee61970&gt;, np.str_(&#39;ROI 11&#39;): &lt;muspan.domain.domain object at 0x30ef32de0&gt;, np.str_(&#39;ROI 12&#39;): &lt;muspan.domain.domain object at 0x30eb78140&gt;, np.str_(&#39;ROI 13&#39;): &lt;muspan.domain.domain object at 0x30ebc98e0&gt;, np.str_(&#39;ROI 14&#39;): &lt;muspan.domain.domain object at 0x30e3a0980&gt;, np.str_(&#39;ROI 15&#39;): &lt;muspan.domain.domain object at 0x30e325190&gt;, np.str_(&#39;ROI 16&#39;): &lt;muspan.domain.domain object at 0x16a238200&gt;, np.str_(&#39;ROI 17&#39;): &lt;muspan.domain.domain object at 0x30ed0b560&gt;, np.str_(&#39;ROI 18&#39;): &lt;muspan.domain.domain object at 0x30ec79730&gt;, np.str_(&#39;ROI 19&#39;): &lt;muspan.domain.domain object at 0x16fdadf40&gt;, np.str_(&#39;ROI 2&#39;): &lt;muspan.domain.domain object at 0x30ec78140&gt;, np.str_(&#39;ROI 20&#39;): &lt;muspan.domain.domain object at 0x30ebad280&gt;, np.str_(&#39;ROI 22&#39;): &lt;muspan.domain.domain object at 0x30f135ac0&gt;, np.str_(&#39;ROI 23&#39;): &lt;muspan.domain.domain object at 0x30ec5afc0&gt;, np.str_(&#39;ROI 24&#39;): &lt;muspan.domain.domain object at 0x30e663a10&gt;, np.str_(&#39;ROI 25&#39;): &lt;muspan.domain.domain object at 0x30ec5aa20&gt;, np.str_(&#39;ROI 26&#39;): &lt;muspan.domain.domain object at 0x30ec40aa0&gt;, np.str_(&#39;ROI 3&#39;): &lt;muspan.domain.domain object at 0x30eccd160&gt;, np.str_(&#39;ROI 4&#39;): &lt;muspan.domain.domain object at 0x30ec5a810&gt;, np.str_(&#39;ROI 5&#39;): &lt;muspan.domain.domain object at 0x30eb6fa40&gt;, np.str_(&#39;ROI 6&#39;): &lt;muspan.domain.domain object at 0x30ec95dc0&gt;, np.str_(&#39;ROI 7&#39;): &lt;muspan.domain.domain object at 0x16a4c56d0&gt;, np.str_(&#39;ROI 8&#39;): &lt;muspan.domain.domain object at 0x30e341250&gt;, np.str_(&#39;ROI 9&#39;): &lt;muspan.domain.domain object at 0x30e2b9490&gt;}
+</pre></div></div>
+</div>
+<p>This has used the ROI label to crop a new domain based on every possible value of the label <code class="docutils literal notranslate"><span class="pre">ROI</span></code>. This is in general substantially faster than repeatedly iterating over shapes and cropping to them. Cropping by label will find all shapes with the same value of that label, and create a new domain which encloses all of them. The new domain boundary is the convex hull around the points/shapes contained within that label.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="s1">&#39;ROI 14&#39;</span><span class="p">],</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_21_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_21_1.png" />
+</div>
+</div>
+<p>In this example, because we generated a hexgrid which added new shapes to the domain, we’ve picked up a giant hexagon within our new domain! If we wanted, we could now delete this (remember that the hexagon is in a different collection to the other objects, which would make it straightforward to remove). This cropping functionality is extremely useful in situations where we have local neighbourhoods - for instance, if we had assigned each cell centre a neighbourhood ID (see, for instance, the
+‘Paper examples’ tutorial for making Figure 5 of the MuSpAn paper). It means that we can crop objects out of our domain even without having a shape that defines the boundary we wish to crop to. As an example, let’s make new domains which contains only points with the same cell type.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_domain_dict</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">crop_domain</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="n">crop_method</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">option</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">]):</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="n">option</span><span class="p">],</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{np.str_(&#39;A&#39;): &lt;muspan.domain.domain object at 0x30ec95400&gt;, np.str_(&#39;B&#39;): &lt;muspan.domain.domain object at 0x30ea26ed0&gt;, np.str_(&#39;C&#39;): &lt;muspan.domain.domain object at 0x1699226f0&gt;, np.str_(&#39;D&#39;): &lt;muspan.domain.domain object at 0x30ea798b0&gt;}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_23_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_23_1.png" />
+</div>
+</div>
+<p>Just for fun, let’s see one of these plots again!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;expand&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">option</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
+    <span class="n">new_domain_dict</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">crop_domain</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">our_hexagon</span><span class="p">,</span> <span class="n">handle_intersecting_objects</span><span class="o">=</span><span class="n">option</span><span class="p">)</span>
+    <span class="n">the_key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="n">the_key</span><span class="p">],</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Method = </span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Method </span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1"> - Area: </span><span class="si">{</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="n">the_key</span><span class="p">]</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">area</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Method </span><span class="si">{</span><span class="n">option</span><span class="si">}</span><span class="s1"> - Number of objects: </span><span class="si">{</span><span class="n">new_domain_dict</span><span class="p">[</span><span class="n">the_key</span><span class="p">]</span><span class="o">.</span><span class="n">n_objects</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Method expand - Area: 69430.46241487308
+Method expand - Number of objects: 254
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_25_1.png" src="../../_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_25_1.png" />
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
