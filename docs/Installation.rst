@@ -202,7 +202,7 @@ Dependencies for MuSpAn V1.2.2 include the following packages:
 * miniball>=1.2.0
 * networkx>= 3.4
 * numpy>=2.0
-* pandaspandas[parquet,feather,hdf5]>=2.2.3
+* pandas[parquet,feather,hdf5]>=2.2.3
 * POT>=0.9.4
 * ripser>=0.6.8
 * rust-geo-python==0.1.1

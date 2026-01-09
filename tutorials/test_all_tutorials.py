@@ -20,7 +20,7 @@ list_of_bad_tutorials = []
 
 def execute_notebook(notebook_path):
     try:
-        pm.execute_notebook(notebook_path, notebook_path,progress_bar=False)
+        pm.execute_notebook(notebook_path, notebook_path,progress_bar=False,request_save_on_cell_execute=False,autosave_cell_every=0)
         print(f'Successfully executed {notebook_path}')
         return None
     except Exception as e:

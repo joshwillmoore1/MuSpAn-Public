@@ -23,6 +23,6 @@ Test Summary
 ------------
 Our test suite is designed to ensure the reliability and correctness of MuSpAn's functionality. As MuSpAn is broad and versatile package for package for Spatial Analysis, the test suite is focused on core infrastructure and quantitative spatial analysis methods. The test suite is routinely reviewed and updated to ensure it remains relevant and effective.
 
-.. literalinclude:: ../tests/test_output.txt
+.. literalinclude:: ../test_report/test_output.txt
    :language: none
    :caption: MuSpAn Test Suite Report 

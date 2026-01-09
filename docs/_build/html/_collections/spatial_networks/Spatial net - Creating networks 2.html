@@ -743,7 +743,7 @@ Distance matrices: []
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;networkx.classes.graph.Graph at 0x13f463e90&gt;
+&lt;networkx.classes.graph.Graph at 0x133d5fec0&gt;
 </pre></div></div>
 </div>
 <p>We can check what these networks look like using our <code class="docutils literal notranslate"><span class="pre">visualise_network</span></code> function:</p>
@@ -819,7 +819,7 @@ Distance matrices: []
 <p>MuSpAn is capable of computing distances any combinations of MuSpAn objects (shapes, lines, points etc) that respects the physical properties of the objects. We can use this feature to generate a Proximity network that represents physical contact of cells using our ‘Cell boundary’ data. Similar to above, we can use the <code class="docutils literal notranslate"><span class="pre">ms.networks.generate_network</span></code> function but now passing <code class="docutils literal notranslate"><span class="pre">Proximity</span></code> as the network type. In addition, we’ll restrict connected objects that only lie &lt;1.5μm away.</p>
 <p><strong>Note:</strong> Computing distances between shapes can take much longer than points or lines and will scale with the number of edges that define the shape.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a proximity network from shape-like objects (Cell boundaries)</span>
@@ -838,17 +838,17 @@ Distance matrices: []
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;networkx.classes.graph.Graph at 0x302f28e30&gt;
+&lt;networkx.classes.graph.Graph at 0x133b4cbf0&gt;
 </pre></div></div>
 </div>
 <p>Let’s take a looks at this network using our visualisation as in our previous network. Note that the ‘Contact network’ is defined between the ‘Cell boundary’ objects but edges will be drawn from their centroids. For purely visualisation purposes, we include the ‘Cell centroids’ on the plot.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with a single subplot</span>
@@ -875,7 +875,7 @@ Distance matrices: []
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area docutils container">

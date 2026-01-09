@@ -629,7 +629,7 @@ document.write(`
     <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># The number of hops to consider for the neighbourhood</span>
     <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
     <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;kmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
-    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
     <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;zscore&#39;</span>
 <span class="p">)</span>
 
@@ -689,7 +689,7 @@ Distance matrices: []
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x1649d9280&gt;
+&lt;seaborn.matrix.ClusterGrid at 0x136b08d10&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -721,7 +721,7 @@ Distance matrices: []
     <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># The number of hops to consider for the neighbourhood</span>
     <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
     <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;kmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
-    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
     <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;zscore&#39;</span> <span class="p">,</span>
     <span class="n">return_observation_matrix_and_labels</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># &lt;-- New argument to return object cluster labels and observation matrix</span>
 <span class="p">)</span>
@@ -812,7 +812,7 @@ Text(0, 0.5, &#39;Inertia&#39;)
     <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (tuned)&#39;</span><span class="p">,</span>
     <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;kmeans&#39;</span><span class="p">,</span>
-    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>  <span class="c1"># &lt;-- Changed number of clusters to 3 following elbow analysis</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">},</span>  <span class="c1"># &lt;-- Changed number of clusters to 3 following elbow analysis</span>
     <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;zscore&#39;</span><span class="p">,</span>
     <span class="n">return_observation_matrix_and_labels</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
@@ -933,10 +933,12 @@ structure.</p>
 </div>
 </div>
 <p>Great — we can now generate a more intuitive view of how the clusters relate to one another. By projecting the observation matrix into a lower-dimensional space, we create a representation where clusters that share similar neighbourhood compositions appear closer together, while distinct clusters separate more clearly. This helps us build an intuitive mental model of the biological structure underlying the data, beyond what raw numeric features alone can convey.</p>
-<p>Importantly, we’re not restricted to a specific dimension-reduction method. To demonstrate the same workflow with continuous labels, let’s switch to our Visium dataset and repeat the neighbourhood analysis from the previous tutorial. This time, instead of categorical cell-type proportions, we’ll visualise the space defined by topic compositions in each spot’s neighbourhood.</p>
+<p>Importantly, we’re not restricted to a specific dimension-reduction method. For example, we could use PCA, UMAP, T-SNE or PHATE to name a few.</p>
+<p>To demonstrate the same workflow with continuous labels, let’s switch to our Visium dataset and repeat the neighbourhood analysis from the previous tutorial. Instead of categorical cell-type proportions, we’ll visualise the space defined by topic compositions in each spot’s neighbourhood. This time, we can choose an alternative cluster method, the Leiden Algorithn, which is using the same definition of connectivity as in UMAP (this will help with <em>in situ</em> neighbourhoods and projected
+neighbourhoods agreement when using UMAP).</p>
 <p>As before, we’ll return both the observation matrix and the cluster labels so we can explore and compare the structure revealed by our clustering.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the example domain dataset</span>
@@ -952,8 +954,8 @@ structure.</p>
                                    <span class="n">k_hops</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
                                    <span class="n">transform_neighbourhood_composition</span><span class="o">=</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span>
                                    <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span>
-                                   <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;kmeans&#39;</span><span class="p">,</span>
-                                   <span class="n">cluster_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+                                   <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;leiden&#39;</span><span class="p">,</span>
+                                   <span class="n">cluster_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">k_neighbours</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
                                    <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;zscore&#39;</span><span class="p">,</span>
                                    <span class="n">return_observation_matrix_and_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -976,7 +978,7 @@ Distance matrices: []
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -993,13 +995,13 @@ Distance matrices: []
 </div>
 <p>Because these continuous labels may exhibit non-linear relationships, we can use UMAP to visualise the neighbourhood composition of each topic for each spot.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">umap</span>
 
 <span class="c1"># Perform UMAP</span>
-<span class="n">umap_model</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">umap_model</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">umap_result</span> <span class="o">=</span> <span class="n">umap_model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">obs_matrix</span><span class="p">)</span>
 
 <span class="c1"># Create a DataFrame for the UMAP results</span>
@@ -1019,19 +1021,11 @@ Distance matrices: []
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_1.png" />
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_0.png" src="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_0.png" />
 </div>
 </div>
 <p>Each point in the embedding represents the topic composition of a spot in the Visium HD dataset. This allows us to visualise how neighbourhoods relate to one another in terms of similarity, while keeping in mind the usual caveats of non-linear dimensionality-reduction methods.</p>

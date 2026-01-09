@@ -606,7 +606,7 @@ document.write(`
 <p>The weighted pair correlation function (wPCF) is a spatial statistic that extends the standard pair correlation function to identify spatial relationships between two point populations, one of which is labelled with a continuous mark. For full details, see <a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1010994">https://doi.org/10.1371/journal.pcbi.1010994</a> or <a class="reference external" href="https://doi.org/10.1017/S2633903X24000011">https://doi.org/10.1017/S2633903X24000011</a>.</p>
 <p>In this tutorial, we briefly reproduce the example from Figure 3 of Quantification of spatial and phenotypic heterogeneity in an agent-based model of tumour-macrophage interactions (PLOS Computational Biology 19(3) <a class="reference external" href="https://doi.org/10.1371/journal.pcbi.1010994">https://doi.org/10.1371/journal.pcbi.1010994</a>). We start by placing a line of points from population <span class="math notranslate nohighlight">\(A\)</span> across the line <span class="math notranslate nohighlight">\(y = 0\)</span>, and a second population <span class="math notranslate nohighlight">\(B\)</span> placed randomly across the domain. Population <span class="math notranslate nohighlight">\(B\)</span> points are assigned a mark <span class="math notranslate nohighlight">\(m_i = y_i^2\)</span></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -642,12 +642,12 @@ document.write(`
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(&lt;Figure size 1080x1620 with 2 Axes&gt;, &lt;Axes: &gt;)
+(&lt;Figure size 400x600 with 2 Axes&gt;, &lt;Axes: &gt;)
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -658,7 +658,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query population A from the domain</span>
@@ -683,7 +683,7 @@ document.write(`
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the weighted pair correlation function (wPCF)</span>
@@ -695,12 +695,12 @@ document.write(`
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x30b667650&gt;]
+[&lt;matplotlib.lines.Line2D at 0x16ae8c650&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
