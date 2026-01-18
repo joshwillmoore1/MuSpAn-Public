@@ -547,10 +547,104 @@ document.write(`
                   
   <section id="muspan-domain">
 <span id="domain"></span><h1>muspan.domain<a class="headerlink" href="#muspan-domain" title="Link to this heading">#</a></h1>
-<p>The muspan.domain module provides tools for working with spatial domains in the MuSpAn package.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="muspan.domain">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_of_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'units'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain" title="Link to this definition">#</a></dt>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>A <a class="reference internal" href="#domain-class"><span class="std std-ref">muspan.domain</span></a> represents a container for spatial data in MuSpAn.
+It acts as the central object in which geometric objects, labels, and spatial relationships are defined, updated, and queried throughout an analysis.</p>
+<p>A domain is responsible for:</p>
+<ul class="simple">
+<li><p>defining the spatial extent of an analysis,</p></li>
+<li><p>storing pointclouds, shapeclouds, and associated labels,</p></li>
+<li><p>managing derived spatial structures such as boundaries and object groupings,</p></li>
+<li><p>maintaining visualisation attributes and other analysis state required by downstream workflows.</p></li>
+</ul>
+<p>In typical workflows, a domain is created once at the start of an analysis, populated with geometric data, and then progressively updated as spatial relationships and derived structures are computed.</p>
+<p>This page documents the public API of the <a class="reference internal" href="#domain-class"><span class="std std-ref">muspan.domain</span></a> class.
+The method summaries below provide a structured index of common domain operations, grouped by their role in the analysis workflow.
+Each summary entry links directly to its full documentation in the <a class="reference internal" href="#domain-class"><span class="std std-ref">class reference</span></a> section.</p>
+</section>
+<section id="adding-data-to-the-domain">
+<h2>Adding data to the domain<a class="headerlink" href="#adding-data-to-the-domain" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.add_points" title="muspan.domain.domain.add_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_points</span></code></a></p></td>
+<td><p>Adds points to this domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#muspan.domain.domain.add_lines" title="muspan.domain.domain.add_lines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_lines</span></code></a></p></td>
+<td><p>Adds lines to this domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.add_shapes" title="muspan.domain.domain.add_shapes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_shapes</span></code></a></p></td>
+<td><p>Adds shapes to this domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#muspan.domain.domain.add_shapes_with_internal_holes" title="muspan.domain.domain.add_shapes_with_internal_holes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_shapes_with_internal_holes</span></code></a></p></td>
+<td><p>Adds shapes to this domain that contain internal holes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.add_labels" title="muspan.domain.domain.add_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_labels</span></code></a></p></td>
+<td><p>Add labels to objects in the domain.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="updating-domain-properties">
+<h2>Updating domain properties<a class="headerlink" href="#updating-domain-properties" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.estimate_boundary" title="muspan.domain.domain.estimate_boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.estimate_boundary</span></code></a></p></td>
+<td><p>Estimate the boundary of the domain using the specified method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#muspan.domain.domain.simplify_shape_boundaries" title="muspan.domain.domain.simplify_shape_boundaries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.simplify_shape_boundaries</span></code></a></p></td>
+<td><p>Simplify the boundaries of a set of shapes by removing vertices, using the Visvalingam-Whyatt algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.update_colors" title="muspan.domain.domain.update_colors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.update_colors</span></code></a></p></td>
+<td><p>Update the colors for labels, objects, or collections.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#muspan.domain.domain.convert_objects" title="muspan.domain.domain.convert_objects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.convert_objects</span></code></a></p></td>
+<td><p>Convert objects in the population to a specified type using a specified method.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="inspecting-domain-contents">
+<h2>Inspecting domain contents<a class="headerlink" href="#inspecting-domain-contents" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.print_labels" title="muspan.domain.domain.print_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.print_labels</span></code></a></p></td>
+<td><p>Print a table of labels of objects in the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#muspan.domain.domain.print_collections" title="muspan.domain.domain.print_collections"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.print_collections</span></code></a></p></td>
+<td><p>Print a table of collections in the domain.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="removing-data-and-derived-structures">
+<h2>Removing data and derived structures<a class="headerlink" href="#removing-data-and-derived-structures" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.delete_distances" title="muspan.domain.domain.delete_distances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_distances</span></code></a></p></td>
+<td><p>Delete distance matrix stored within the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#muspan.domain.domain.delete_network" title="muspan.domain.domain.delete_network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_network</span></code></a></p></td>
+<td><p>Delete a network stored within the domain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.delete_labels" title="muspan.domain.domain.delete_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_labels</span></code></a></p></td>
+<td><p>Delete labels stored within the domain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#muspan.domain.domain.delete_objects" title="muspan.domain.domain.delete_objects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_objects</span></code></a></p></td>
+<td><p>Delete objects from the domain.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="class-reference">
+<h2>Class reference<a class="headerlink" href="#class-reference" title="Link to this heading">#</a></h2>
+<dl class="py class" id="domain-class">
+<dt class="sig sig-object py" id="muspan.domain.domain">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_of_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'units'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain" title="Link to this definition">#</a></dt>
 <dd><p>The basic container for all MuSpAn analysis. A domain keeps track of which pointclouds / shapeclouds, labels, and metadata are within the domain. The default domain is a unit cube in n-dimensions, with default units of length being “units”.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -598,68 +692,20 @@ document.write(`
 </dl>
 </dd>
 </dl>
-<p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
-<tbody>
-</tbody>
-</table>
-</div>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_points</span></code>(points[, collection_name, ...])</p></td>
-<td><p>Adds points to this domain.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_lines</span></code>(lines[, collection_name, ...])</p></td>
-<td><p>Adds lines to this domain.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_shapes</span></code>(shapes[, collection_name, ...])</p></td>
-<td><p>Adds shapes to this domain.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_shapes_with_internal_holes</span></code>(...[, ...])</p></td>
-<td><p>Adds shapes to this domain that contain internal holes.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_labels</span></code>(label_name, labels[, ...])</p></td>
-<td><p>Add labels to objects in the domain.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_objects_to_collection</span></code>([...])</p></td>
-<td><p>Add objects to a specified collection.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.estimate_boundary</span></code>([method, ...])</p></td>
-<td><p>Estimate the boundary of the domain using the specified method.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.simplify_shape_boundaries</span></code>(shape_indices)</p></td>
-<td><p>Simplify the boundaries of a set of shapes by removing vertices, using the Visvalingam-Whyatt algorithm.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.update_colors</span></code>(new_colors[, ...])</p></td>
-<td><p>Update the colors for labels, objects, or collections.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.convert_objects</span></code>([population, ...])</p></td>
-<td><p>Convert objects in the population to a specified type using a specified method.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_distances</span></code>([distance_metric])</p></td>
-<td><p>Delete distance matrix stored within the domain.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_network</span></code>([network_name])</p></td>
-<td><p>Delete a network stored within the domain.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_labels</span></code>([label_name])</p></td>
-<td><p>Delete labels stored within the domain.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_objects</span></code>(objects_to_delete)</p></td>
-<td><p>Delete objects from the domain.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.print_labels</span></code>([label_name])</p></td>
-<td><p>Print a table of labels of objects in the domain.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.print_collections</span></code>()</p></td>
-<td><p>Print a table of collections in the domain.</p></td>
-</tr>
-</tbody>
-</table>
+<p class="rubric">Examples</p>
+<p>Minimal example for initialising an empty domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># initialise a muspan domain with the name &#39;example domain&#39;</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example domain&#39;</span><span class="p">)</span>
+
+<span class="c1"># print the domain information</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
+</pre></div>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.add_labels">
-<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_labels_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bypass_checks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_labels" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.add_labels">
+<span class="sig-name descname"><span class="pre">add_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_labels_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bypass_checks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.add_labels" title="Link to this definition">#</a></dt>
 <dd><p>Add labels to objects in the domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -699,11 +745,71 @@ If <em class="xref py py-obj">label_type</em> is not ‘categorical’ or ‘con
 <li><p>For categorical labels, the function assigns colors based on the specified or default colormap.</p></li>
 <li><p>For continuous labels, the function uses the ‘plasma’ colormap by default.</p></li>
 </ul>
+<p class="rubric">Examples</p>
+<p>Minimal example adding categorical labels to objects in a domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># x,y coordinates of a set of points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+
+<span class="c1"># categorical labels for the points - must be in the same order as the points</span>
+<span class="n">labels_categorical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">]</span>
+
+<span class="c1">#initialise a muspan domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example domain&#39;</span><span class="p">)</span>
+
+<span class="c1"># add points to the domain</span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">points</span><span class="p">,</span><span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;some points&#39;</span><span class="p">)</span>
+
+<span class="c1"># add categorical labels to the points  </span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Demo categorical labels&#39;</span><span class="p">,</span>
+                        <span class="n">labels</span><span class="o">=</span><span class="n">labels_categorical</span><span class="p">,</span>
+                        <span class="n">add_labels_to</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;some points&#39;</span><span class="p">))</span>
+
+<span class="c1"># visualise the domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Demo categorical labels&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Minimal example adding continuous (numeric) labels to objects in a domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># x,y coordinates of a set of points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+
+<span class="c1"># categorical labels for the points - must be in the same order as the points</span>
+<span class="n">labels_continuous</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> 
+                            <span class="mf">1.5</span><span class="p">,</span> 
+                            <span class="mf">7.2</span><span class="p">,</span> 
+                            <span class="mf">10.0</span><span class="p">])</span>
+
+<span class="c1">#initialise a muspan domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example domain&#39;</span><span class="p">)</span>
+
+<span class="c1"># add points to the domain</span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">points</span><span class="p">,</span><span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;some points&#39;</span><span class="p">)</span>
+
+<span class="c1"># add categorical labels to the points  </span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Demo continuous labels&#39;</span><span class="p">,</span>
+                        <span class="n">labels</span><span class="o">=</span><span class="n">labels_continuous</span><span class="p">,</span>
+                        <span class="n">add_labels_to</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;some points&#39;</span><span class="p">))</span>
+
+<span class="c1"># visualise the domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Demo continuous labels&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.add_lines">
-<span class="sig-name descname"><span class="pre">add_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_lines" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.add_lines">
+<span class="sig-name descname"><span class="pre">add_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.add_lines" title="Link to this definition">#</a></dt>
 <dd><p>Adds lines to this domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -722,8 +828,8 @@ If <em class="xref py py-obj">label_type</em> is not ‘categorical’ or ‘con
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.add_objects_to_collection">
-<span class="sig-name descname"><span class="pre">add_objects_to_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_collection_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_objects_to_collection" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.add_objects_to_collection">
+<span class="sig-name descname"><span class="pre">add_objects_to_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_collection_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.add_objects_to_collection" title="Link to this definition">#</a></dt>
 <dd><p>Add objects to a specified collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -747,8 +853,8 @@ collection name ‘default_collection’ will be used.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.add_points">
-<span class="sig-name descname"><span class="pre">add_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_points" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.add_points">
+<span class="sig-name descname"><span class="pre">add_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.add_points" title="Link to this definition">#</a></dt>
 <dd><p>Adds points to this domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -766,18 +872,39 @@ collection name ‘default_collection’ will be used.</p>
 </dl>
 <p class="rubric">Notes</p>
 <p>Example data input:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>points = [
-          [x1,y2],
-          [x2,y2],
-          ...
-          ]
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">points</span> <span class="o">=</span> <span class="p">[</span>
+          <span class="p">[</span><span class="n">x1</span><span class="p">,</span><span class="n">y2</span><span class="p">],</span>
+          <span class="p">[</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">],</span>
+          <span class="o">...</span>
+          <span class="p">]</span>
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<p>Minimal example adding points to an empty domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># x,y coordinates of a set of points</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+
+<span class="c1">#initialise a muspan domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example domain&#39;</span><span class="p">)</span>
+
+<span class="c1"># add points to the domain</span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">points</span><span class="p">,</span><span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;some points&#39;</span><span class="p">)</span>
+
+<span class="c1"># visualise the domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.add_shapes">
-<span class="sig-name descname"><span class="pre">add_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_shapes" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.add_shapes">
+<span class="sig-name descname"><span class="pre">add_shapes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.add_shapes" title="Link to this definition">#</a></dt>
 <dd><p>Adds shapes to this domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -794,6 +921,7 @@ collection name ‘default_collection’ will be used.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
+<p>Each shape is defined by a set of vertices in clock-wise order describing its outer boundary.</p>
 <p>Example data input:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>shapes = [
           outer_shape_1,
@@ -802,11 +930,33 @@ collection name ‘default_collection’ will be used.</p>
           ]
 </pre></div>
 </div>
+<p class="rubric">Examples</p>
+<p>Minimal example adding shapes to an empty domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># x,y coordinates of two squares</span>
+<span class="n">right_square_big</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">left_square_big</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+
+<span class="c1"># create a list of shapes</span>
+<span class="n">list_of_shapes</span> <span class="o">=</span> <span class="p">[</span><span class="n">left_square_big</span><span class="p">,</span> <span class="n">right_square_big</span><span class="p">]</span>
+
+<span class="c1"># initialise a muspan domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example domain&#39;</span><span class="p">)</span>
+
+<span class="c1"># add the shapes to the domain</span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">add_shapes</span><span class="p">(</span><span class="n">list_of_shapes</span><span class="p">,</span> <span class="s1">&#39;some squares&#39;</span><span class="p">)</span>
+
+<span class="c1"># visualise the domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.add_shapes_with_internal_holes">
-<span class="sig-name descname"><span class="pre">add_shapes_with_internal_holes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes_and_holes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.add_shapes_with_internal_holes" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.add_shapes_with_internal_holes">
+<span class="sig-name descname"><span class="pre">add_shapes_with_internal_holes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes_and_holes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.add_shapes_with_internal_holes" title="Link to this definition">#</a></dt>
 <dd><p>Adds shapes to this domain that contain internal holes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -836,11 +986,41 @@ sets of vertices describing the holes inside it.</p>
                     ]
 </pre></div>
 </div>
+<p class="rubric">Examples</p>
+<p>Minimal example adding shapes with holes to an empty domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># x,y coordinates of two squares - one square contained within the other</span>
+<span class="n">right_square_big</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">right_square_small</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span> 
+
+<span class="c1"># x,y coordinates of two squares - one square contained within the other</span>
+<span class="n">left_square_big</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">left_square_small</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span> 
+
+<span class="c1"># create shapes with holes - each shape is a list where the first element is the outer boundary</span>
+<span class="n">shape_1</span> <span class="o">=</span> <span class="p">[</span><span class="n">left_square_big</span><span class="p">,[</span><span class="n">left_square_small</span><span class="p">]]</span>
+<span class="n">shape_2</span> <span class="o">=</span> <span class="p">[</span><span class="n">right_square_big</span><span class="p">,[</span><span class="n">right_square_small</span><span class="p">]]</span>
+
+<span class="c1"># create a list of shapes with holes</span>
+<span class="n">list_of_shapes_with_holes</span> <span class="o">=</span> <span class="p">[</span><span class="n">shape_1</span><span class="p">,</span> <span class="n">shape_2</span><span class="p">]</span>
+
+<span class="c1"># initialise a muspan domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example domain&#39;</span><span class="p">)</span>
+
+<span class="c1"># add the shapes with holes to the domain</span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">add_shapes_with_internal_holes</span><span class="p">(</span><span class="n">list_of_shapes_with_holes</span><span class="p">,</span> <span class="s1">&#39;holey squares&#39;</span><span class="p">)</span>
+
+<span class="c1"># visualise the domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.convert_objects">
-<span class="sig-name descname"><span class="pre">convert_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'converted</span> <span class="pre">objects'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'point'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversion_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversion_method_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_parent_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit_collections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.convert_objects" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.convert_objects">
+<span class="sig-name descname"><span class="pre">convert_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'converted</span> <span class="pre">objects'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'point'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversion_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centroid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conversion_method_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_parent_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inherit_collections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.convert_objects" title="Link to this definition">#</a></dt>
 <dd><p>Convert objects in the population to a specified type using a specified method.</p>
 <p>This function allows for the conversion of objects in the domain to either point or shape types, using various conversion methods.
 If the conversion is injective (e.g., shapes to centroids), the labels will be inherited from the parent objects.</p>
@@ -899,8 +1079,8 @@ For ‘shape’, options are ‘alpha shape’, ‘convex hull’, ‘boundary�
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.delete_distances">
-<span class="sig-name descname"><span class="pre">delete_distances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_distances" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.delete_distances">
+<span class="sig-name descname"><span class="pre">delete_distances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.delete_distances" title="Link to this definition">#</a></dt>
 <dd><p>Delete distance matrix stored within the domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -919,8 +1099,8 @@ For ‘shape’, options are ‘alpha shape’, ‘convex hull’, ‘boundary�
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.delete_labels">
-<span class="sig-name descname"><span class="pre">delete_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_labels" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.delete_labels">
+<span class="sig-name descname"><span class="pre">delete_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.delete_labels" title="Link to this definition">#</a></dt>
 <dd><p>Delete labels stored within the domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -939,8 +1119,8 @@ For ‘shape’, options are ‘alpha shape’, ‘convex hull’, ‘boundary�
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.delete_network">
-<span class="sig-name descname"><span class="pre">delete_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_network" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.delete_network">
+<span class="sig-name descname"><span class="pre">delete_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.delete_network" title="Link to this definition">#</a></dt>
 <dd><p>Delete a network stored within the domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -959,8 +1139,8 @@ For ‘shape’, options are ‘alpha shape’, ‘convex hull’, ‘boundary�
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.delete_objects">
-<span class="sig-name descname"><span class="pre">delete_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects_to_delete</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.delete_objects" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.delete_objects">
+<span class="sig-name descname"><span class="pre">delete_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objects_to_delete</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.delete_objects" title="Link to this definition">#</a></dt>
 <dd><p>Delete objects from the domain.</p>
 <p>This function performs the relevant bookkeeping of removing any object 
 associated with labels, distances, and networks stored within the domain.</p>
@@ -983,8 +1163,8 @@ are query, list, tuple, array, or int.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.estimate_boundary">
-<span class="sig-name descname"><span class="pre">estimate_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rectangle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_shape_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specify_boundary_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.estimate_boundary" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.estimate_boundary">
+<span class="sig-name descname"><span class="pre">estimate_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rectangle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_shape_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specify_boundary_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.estimate_boundary" title="Link to this definition">#</a></dt>
 <dd><p>Estimate the boundary of the domain using the specified method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1015,8 +1195,8 @@ Default is ‘rectangle’.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.print_collections">
-<span class="sig-name descname"><span class="pre">print_collections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.print_collections" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.print_collections">
+<span class="sig-name descname"><span class="pre">print_collections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.print_collections" title="Link to this definition">#</a></dt>
 <dd><p>Print a table of collections in the domain.</p>
 <p>This method creates a DataFrame where each column represents a collection,
 and each row represents an object. The DataFrame indicates whether each 
@@ -1033,8 +1213,8 @@ object belongs to each collection.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.print_labels">
-<span class="sig-name descname"><span class="pre">print_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.print_labels" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.print_labels">
+<span class="sig-name descname"><span class="pre">print_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.print_labels" title="Link to this definition">#</a></dt>
 <dd><p>Print a table of labels of objects in the domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1060,8 +1240,8 @@ object belongs to each collection.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.simplify_shape_boundaries">
-<span class="sig-name descname"><span class="pre">simplify_shape_boundaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_original_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Visvalingam-Whyatt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Simplified</span> <span class="pre">boundaries'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.simplify_shape_boundaries" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.simplify_shape_boundaries">
+<span class="sig-name descname"><span class="pre">simplify_shape_boundaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_original_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Visvalingam-Whyatt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Simplified</span> <span class="pre">boundaries'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_IDs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.simplify_shape_boundaries" title="Link to this definition">#</a></dt>
 <dd><p>Simplify the boundaries of a set of shapes by removing vertices, using the Visvalingam-Whyatt algorithm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1088,8 +1268,8 @@ Options are ‘Visvalingam-Whyatt’.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="muspan.domain.update_colors">
-<span class="sig-name descname"><span class="pre">update_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors_to_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.update_colors" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="muspan.domain.domain.update_colors">
+<span class="sig-name descname"><span class="pre">update_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors_to_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'labels'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.update_colors" title="Link to this definition">#</a></dt>
 <dd><p>Update the colors for labels, objects, or collections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1123,6 +1303,7 @@ Any labels or collections not stored in the domain will be ignored.</p>
 </dd></dl>
 
 </section>
+</section>
 
 
                 </article>
@@ -1146,23 +1327,31 @@ Any labels or collections not stored in the domain will be ignored.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain"><code class="docutils literal notranslate"><span class="pre">domain</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_labels"><code class="docutils literal notranslate"><span class="pre">domain.add_labels</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_lines"><code class="docutils literal notranslate"><span class="pre">domain.add_lines</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_objects_to_collection"><code class="docutils literal notranslate"><span class="pre">domain.add_objects_to_collection</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_points"><code class="docutils literal notranslate"><span class="pre">domain.add_points</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_shapes"><code class="docutils literal notranslate"><span class="pre">domain.add_shapes</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.add_shapes_with_internal_holes"><code class="docutils literal notranslate"><span class="pre">domain.add_shapes_with_internal_holes</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.convert_objects"><code class="docutils literal notranslate"><span class="pre">domain.convert_objects</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_distances"><code class="docutils literal notranslate"><span class="pre">domain.delete_distances</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_labels"><code class="docutils literal notranslate"><span class="pre">domain.delete_labels</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_network"><code class="docutils literal notranslate"><span class="pre">domain.delete_network</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.delete_objects"><code class="docutils literal notranslate"><span class="pre">domain.delete_objects</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.estimate_boundary"><code class="docutils literal notranslate"><span class="pre">domain.estimate_boundary</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.print_collections"><code class="docutils literal notranslate"><span class="pre">domain.print_collections</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.print_labels"><code class="docutils literal notranslate"><span class="pre">domain.print_labels</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.simplify_shape_boundaries"><code class="docutils literal notranslate"><span class="pre">domain.simplify_shape_boundaries</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.update_colors"><code class="docutils literal notranslate"><span class="pre">domain.update_colors</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-data-to-the-domain">Adding data to the domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-domain-properties">Updating domain properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting-domain-contents">Inspecting domain contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-data-and-derived-structures">Removing data and derived structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-reference">Class reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain"><code class="docutils literal notranslate"><span class="pre">domain</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.add_labels"><code class="docutils literal notranslate"><span class="pre">domain.add_labels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.add_lines"><code class="docutils literal notranslate"><span class="pre">domain.add_lines</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.add_objects_to_collection"><code class="docutils literal notranslate"><span class="pre">domain.add_objects_to_collection</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.add_points"><code class="docutils literal notranslate"><span class="pre">domain.add_points</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.add_shapes"><code class="docutils literal notranslate"><span class="pre">domain.add_shapes</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.add_shapes_with_internal_holes"><code class="docutils literal notranslate"><span class="pre">domain.add_shapes_with_internal_holes</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.convert_objects"><code class="docutils literal notranslate"><span class="pre">domain.convert_objects</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.delete_distances"><code class="docutils literal notranslate"><span class="pre">domain.delete_distances</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.delete_labels"><code class="docutils literal notranslate"><span class="pre">domain.delete_labels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.delete_network"><code class="docutils literal notranslate"><span class="pre">domain.delete_network</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.delete_objects"><code class="docutils literal notranslate"><span class="pre">domain.delete_objects</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.estimate_boundary"><code class="docutils literal notranslate"><span class="pre">domain.estimate_boundary</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.print_collections"><code class="docutils literal notranslate"><span class="pre">domain.print_collections</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.print_labels"><code class="docutils literal notranslate"><span class="pre">domain.print_labels</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.simplify_shape_boundaries"><code class="docutils literal notranslate"><span class="pre">domain.simplify_shape_boundaries</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.domain.domain.update_colors"><code class="docutils literal notranslate"><span class="pre">domain.update_colors</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

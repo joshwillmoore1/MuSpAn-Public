@@ -1069,48 +1069,8 @@ disconnected shapes and accounts for both exterior and interior boundaries.</p>
 </dd></dl>
 
 </section>
-<section id="module-muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries">
-<span id="muspan-shape-operations-helpers-return-intersection-of-shapes-from-boundaries-module"></span><h2>muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries module<a class="headerlink" href="#module-muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.coords_to_poly">
-<span class="sig-name descname"><span class="pre">coords_to_poly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.coords_to_poly" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.return_intersection_of_shapes_from_boundaries">
-<span class="sig-name descname"><span class="pre">return_intersection_of_shapes_from_boundaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_A_exterior</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_A_interiors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_B_exterior</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_B_interiors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.return_intersection_of_shapes_from_boundaries" title="Link to this definition">#</a></dt>
-<dd><p>Compute the intersection of two shapes defined by their exterior and interior boundaries.
-This function calculates the intersection of two shapes, A and B, where each shape is specified by its exterior 
-boundary and a list of interior boundaries (holes). The intersection is computed by finding the intersection of 
-the exterior boundaries and then subtracting the union of the interior boundaries from the resulting region.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>shape_A_exterior</strong><span class="classifier">array-like</span></dt><dd><p>Coordinates of the exterior boundary of shape A.</p>
-</dd>
-<dt><strong>shape_A_interiors</strong><span class="classifier">list of array-like</span></dt><dd><p>List of coordinates for the interior boundaries (holes) of shape A.</p>
-</dd>
-<dt><strong>shape_B_exterior</strong><span class="classifier">array-like</span></dt><dd><p>Coordinates of the exterior boundary of shape B.</p>
-</dd>
-<dt><strong>shape_B_interiors</strong><span class="classifier">list of array-like</span></dt><dd><p>List of coordinates for the interior boundaries (holes) of shape B.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>list of dict</dt><dd><p>A list of dictionaries, each representing a region of the intersection. Each dictionary contains:
-- ‘outer boundary’: array-like, coordinates of the outer boundary of the region.
-- ‘interior boundary’: list of array-like, coordinates of the interior boundaries (holes) of the region.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>This function is a specialized version of <em class="xref py py-obj">return_union_of_shapes</em> where shapes are specified by their 
-interior and exterior boundaries, not by object IDs. It should be merged with <em class="xref py py-obj">return_intersection_of_shapes</em> 
-as there is no need for both functions.</p>
-</dd></dl>
-
+<section id="muspan-shape-operations-helpers-return-intersection-of-shapes-from-boundaries-module">
+<h2>muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries module<a class="headerlink" href="#muspan-shape-operations-helpers-return-intersection-of-shapes-from-boundaries-module" title="Link to this heading">#</a></h2>
 </section>
 <section id="module-muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries">
 <span id="muspan-shape-operations-helpers-return-union-of-shapes-from-boundaries-module"></span><h2>muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries module<a class="headerlink" href="#module-muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries" title="Link to this heading">#</a></h2>
@@ -1260,11 +1220,7 @@ This function calculates the union of two shapes, where each shape is defined by
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.shape_operations.helpers.return_difference_of_shapes_from_boundaries.return_difference_of_shapes_from_boundaries"><code class="docutils literal notranslate"><span class="pre">return_difference_of_shapes_from_boundaries</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries">muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.coords_to_poly"><code class="docutils literal notranslate"><span class="pre">coords_to_poly</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries.return_intersection_of_shapes_from_boundaries"><code class="docutils literal notranslate"><span class="pre">return_intersection_of_shapes_from_boundaries</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan-shape-operations-helpers-return-intersection-of-shapes-from-boundaries-module">muspan.shape_operations.helpers.return_intersection_of_shapes_from_boundaries module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries">muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.shape_operations.helpers.return_union_of_shapes_from_boundaries.return_union_of_shapes_from_boundaries"><code class="docutils literal notranslate"><span class="pre">return_union_of_shapes_from_boundaries</span></code></a></li>
 </ul>

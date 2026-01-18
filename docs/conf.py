@@ -63,11 +63,12 @@ add_module_names = False
 
 # The suffix of source filenames.
 source_suffix = ".rst"
-numpydoc_show_class_members = True
 default_role = "autolink"
 add_function_parentheses = False
 
 autosummary_generate = True
+numpydoc_show_class_members = False
+
 
 autodoc_default_options = {
     'inherited-members': None,
