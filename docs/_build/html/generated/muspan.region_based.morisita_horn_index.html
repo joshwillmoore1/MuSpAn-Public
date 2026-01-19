@@ -615,6 +615,21 @@ a muspan query, or None. Default is None.</p>
 </dl>
 <p class="rubric">References</p>
 <p>For more information on the Morisita-Horn index, see <a class="reference external" href="https://www.jstor.org/stable/2459242">https://www.jstor.org/stable/2459242</a>.</p>
+<p class="rubric">Examples</p>
+<p>Minimal example demonstrating the calculation of the Morisita-Horn index between different cell types within a domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span> 
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute the Morisita-Horn index pairwise matrix between different cell types</span>
+<span class="n">morisita_horn_index_pairwise_matrix</span><span class="p">,</span><span class="n">labels_categorical</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">region_based</span><span class="o">.</span><span class="n">morisita_horn_index</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                                        <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>
+                                                                                        <span class="n">region_method</span><span class="o">=</span><span class="s1">&#39;Hexgrid&#39;</span><span class="p">,</span>
+                                                                                        <span class="n">region_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">side_length</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+                                                                                        <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

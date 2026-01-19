@@ -607,6 +607,20 @@ containing <em class="xref py py-obj">label_name</em> labels and pass this colle
 <li><p>For more information on the method, see <a class="reference external" href="https://doi.org/10.1111/ecog.01892">Morueta-Holme et al. (2016)</a>.</p></li>
 </ul>
 <p class="rubric">Examples</p>
+<p>Minimal example demonstrating the calculation of the Quadrat Correlation Matrix (QCM) for cell types within a domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span> 
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise the Quadrat Correlation Matrix (QCM) for cell types using hexagonal grid regions for &#39;Celltype&#39; label</span>
+<span class="n">SES_matrix</span><span class="p">,</span><span class="n">pval_filt_SES_matrix</span><span class="p">,</span><span class="n">labels_categorical</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">region_based</span><span class="o">.</span><span class="n">quadrat_correlation_matrix</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                                                <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>
+                                                                                                <span class="n">region_method</span><span class="o">=</span><span class="s1">&#39;Hexgrid&#39;</span><span class="p">,</span>
+                                                                                                <span class="n">region_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">side_length</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+                                                                                                <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</pre></div>
+</div>
 <p>A range of related tutorials and examples:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="../_collections/region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></p></li>

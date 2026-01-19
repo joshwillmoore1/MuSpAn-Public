@@ -573,7 +573,7 @@ Note that if there are multiple disjoint boundary regions, the distance between 
 </dd>
 <dt><strong>cross_PCF_A_to_B</strong><span class="classifier">ndarray</span></dt><dd><p>The pair correlation function values.</p>
 </dd>
-<dt><strong>confidence_intervals</strong><span class="classifier">ndarray (optional)</span></dt><dd><p>If return_confidence_interval=True, return lower and upper bounds of a 95% confidence interval around the PCF (see Loh 2008 for details on implementation <a class="reference external" href="https://www.doi.org/10.1086/588631">https://www.doi.org/10.1086/588631</a>)</p>
+<dt><strong>confidence_intervals</strong><span class="classifier">ndarray (optional)</span></dt><dd><p>If return_confidence_interval=True, return lower and upper bounds of a 95% confidence interval around the PCF.</p>
 </dd>
 <dt><strong>contributions</strong><span class="classifier">ndarray (optional)</span></dt><dd><p>If return_PCF_contributions=True, return the contribution of each cell of type A to the PCF (useful for downstream batch analyses)</p>
 </dd>
@@ -596,6 +596,42 @@ Note that if there are multiple disjoint boundary regions, the distance between 
 </dl>
 <p class="rubric">Notes</p>
 <p>For more information on the pair correlation function, <a class="reference external" href="https://link.springer.com/content/pdf/10.1007/978-3-540-38175-4_1.pdf">see here</a>.</p>
+<p>For details on the computation of confidence intervals, see Loh et al., 2008, <a class="reference external" href="https://www.doi.org/10.1086/588631">here</a>.</p>
+<p class="rubric">Examples</p>
+<p>Minimal example of computing and visualising the standard pair correlation function (exhibiting co-localisation at short distances between points with label A):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise the standard pair correlation function</span>
+<span class="c1"># by computing the cross pair correlation function where population A = population A</span>
+<span class="n">radii</span><span class="p">,</span><span class="n">pcf_values</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">cross_pair_correlation_function</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                        <span class="n">population_A</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                                        <span class="n">population_B</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                                        <span class="n">annulus_step</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                                                                        <span class="n">annulus_width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                                                        <span class="n">max_R</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+                                                                        <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Minimal example of computing the cross pair correlation function between points with label A and points with label C (exhibiting exclusion at short distances):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise the cross pair correlation function</span>
+<span class="c1"># by computing the cross pair correlation function where population A = population C</span>
+<span class="n">radii</span><span class="p">,</span><span class="n">pcf_values</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">cross_pair_correlation_function</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                        <span class="n">population_A</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                                        <span class="n">population_B</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">),</span>
+                                                                        <span class="n">annulus_step</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                                                                        <span class="n">annulus_width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                                                        <span class="n">max_R</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+                                                                        <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

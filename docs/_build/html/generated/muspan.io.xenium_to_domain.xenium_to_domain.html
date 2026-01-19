@@ -556,6 +556,21 @@ The function will also load only the cells selected in the cells_from_selection_
 </dd>
 </dl>
 <p class="rubric">Notes</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To import data from a Xenium experiment, we require the following files present the Xenium data folder (path_to_xenium_data).</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Xenium data folder:
+├── cells.parquet
+├── nucleus_boundaries.parquet
+├── cell_boundaries.parquet
+├── transcripts.parquet
+├── cell_feature_matrix.h5
+└── gene_panel.json
+</pre></div>
+</div>
+<p>These files are all generated as part of the standard Xenium output following processing and segmentation. For more information, see <a class="reference external" href="https://www.10xgenomics.com/support/software/xenium-onboard-analysis/latest/analysis/xoa-output-understanding-outputs">Xenium documentation</a></p>
+</div>
+<p><strong>Additional information</strong></p>
 <ul class="simple">
 <li><p>Transcript names are loaded as labels on the transcript objects with the label name ‘Transcript ID’.</p></li>
 <li><p>Cell IDs are loaded as labels on the cell objects with the label name ‘Cell ID’.</p></li>

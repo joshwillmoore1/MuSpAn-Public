@@ -588,6 +588,38 @@ points in different regions is still calculated according to the distance_metric
 </dl>
 <p class="rubric">Notes</p>
 <p>For more information on Ripley’s K function, see <a class="reference external" href="https://link.springer.com/content/pdf/10.1007/978-3-540-38175-4_1.pdf">this reference</a>.</p>
+<p class="rubric">Examples</p>
+<p>Computing and visualising the standard Ripely’s K-function (exhibiting co-localisation between A and A):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise the standard Ripely&#39;s K-function</span>
+<span class="c1"># by computing the cross K-function where population A = population A</span>
+<span class="n">radii</span><span class="p">,</span><span class="n">k_values</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">cross_k_function</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                        <span class="n">population_A</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                        <span class="n">population_B</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                        <span class="n">step</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                                                        <span class="n">max_R</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+                                                        <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Computing the cross K-function between two different populations (exhibiting exclusion between A and C):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise cross K-function between two populations</span>
+<span class="n">radii</span><span class="p">,</span><span class="n">k_values</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">cross_k_function</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                        <span class="n">population_A</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                        <span class="n">population_B</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">),</span>
+                                                        <span class="n">step</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                                                        <span class="n">max_R</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span>
+                                                        <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

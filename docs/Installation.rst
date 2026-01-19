@@ -205,10 +205,8 @@ Dependencies for MuSpAn V1.2.2 include the following packages:
 * pandas[parquet,feather,hdf5]>=2.2.3
 * POT>=0.9.4
 * ripser>=0.6.8
-* rust-geo-python==0.1.1
+* rust-geo-python==0.1.6
 * scikit_learn>=1.5.2
 * scipy>=1.14.1
 * seaborn>=0.13.2
 * setuptools>=72.1.0
-
-

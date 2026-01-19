@@ -520,7 +520,7 @@ document.write(`
 <h1>alpha_shape<a class="headerlink" href="#alpha-shape" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="muspan.helpers.alpha_shape">
-<span class="sig-name descname"><span class="pre">alpha_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_area_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.helpers.alpha_shape" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">alpha_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_area_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_connected_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.helpers.alpha_shape" title="Link to this definition">#</a></dt>
 <dd><p>Compute the alpha shape of a set of points. 
 The alpha shape returns a list of boundary points together with a list of internal boundary points, (the format required by MuSpAn to make a list of shape objects).</p>
 <dl class="field-list simple">
@@ -530,11 +530,18 @@ The alpha shape returns a list of boundary points together with a list of intern
 </dd>
 <dt><strong>alpha</strong><span class="classifier">float</span></dt><dd><p>Alpha value to influence the shape.</p>
 </dd>
+<dt><strong>return_connected_components</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, also returns an array indicating which connected component each point belongs to in the Delaunay Triangulation post edge length filtering. Default is False.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>alpha_shapes</strong><span class="classifier">list</span></dt><dd><p>A list where each element is a tuple containing the outer boundary points (m, 2) and a list of internal boundary points, each of shape (n_i, 2).</p>
+</dd>
+<dt>If return_connected_components is True:</dt><dd><dl class="simple">
+<dt>point_component_labels<span class="classifier">np.ndarray</span></dt><dd><p>An array of shape (k,) indicating which connected component each point belongs to.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd>

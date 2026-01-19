@@ -565,6 +565,23 @@ This returns ANNI and the p-value (two-tailed) associated with ANNI under comple
 </dl>
 <p class="rubric">Notes</p>
 <p>For more information, see <a class="reference external" href="https://doi.org/10.2307/1931034">https://doi.org/10.2307/1931034</a></p>
+<p class="rubric">Examples</p>
+<p>Minimal example demonstrating the calculation of the ANNI between two cell types with no spatial correlation (complete spatial randomness):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Random&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute the Average Nearest Neighbour Index (ANNI) between points with label A and points with label B</span>
+<span class="n">ANNI</span><span class="p">,</span><span class="n">zscore</span><span class="p">,</span><span class="n">pval</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">average_nearest_neighbour_index</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                <span class="n">population_A</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                                <span class="n">population_B</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Average Nearest Neighbour Index (ANNI): &quot;</span><span class="p">,</span> <span class="n">ANNI</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Z-score: &quot;</span><span class="p">,</span> <span class="n">zscore</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P-value: &quot;</span><span class="p">,</span> <span class="n">pval</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

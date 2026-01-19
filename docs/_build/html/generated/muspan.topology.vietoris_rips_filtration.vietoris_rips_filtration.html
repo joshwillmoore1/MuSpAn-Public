@@ -552,7 +552,7 @@ creating a nested sequence of simplicial complexes called a filtration. This hel
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>dict</dt><dd><p>A dictionary containing the persistent features computed by the ripser library.</p>
+<dt><strong>persitence_object</strong><span class="classifier">dict</span></dt><dd><p>A dictionary containing the persistent features computed by the ripser library.</p>
 </dd>
 </dl>
 </dd>
@@ -566,6 +566,19 @@ creating a nested sequence of simplicial complexes called a filtration. This hel
 <p class="rubric">Notes</p>
 <p>This function uses the Ripser library to compute the persistent homology of the Vietoris-Rips filtration. 
 The distance matrix is computed using the specified distance metric, and then passed to Ripser.</p>
+<p class="rubric">Examples</p>
+<p>Minimal example of computing and visualising persistent homology using the Vietoris-Rips filtration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise the Vietoris-Rips filtration persistent homology for points with label A</span>
+<span class="n">persist_object</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">topology</span><span class="o">.</span><span class="n">vietoris_rips_filtration</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                      <span class="n">population</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                      <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

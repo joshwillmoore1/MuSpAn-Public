@@ -575,6 +575,63 @@ Nodes are indexed using Object ID for consistent querying</p>
 <li><p>Relative Neighbourhood Graph (RNG) esimtates the natural connectivity of points in space. MuSpAn implements the Urquhart approximation to the RNG for computational efficiency. See <a class="reference external" href="https://en.wikipedia.org/wiki/Relative_neighborhood_graph">RNGs</a> for more information.</p></li>
 </ul>
 <p>If parallisation is producing a <em class="xref py py-obj">ValueError: cannot pickle ‘_thread._local’ object</em>, this is likely due to the <em class="xref py py-obj">domain</em> object not being serializable. In this case, add <em class="xref py py-obj">if __name__ == “__main__”:</em> to the top of your script or you can set <em class="xref py py-obj">n_jobs=1</em> to disable parallisation.</p>
+<p class="rubric">Examples</p>
+<p>Example of generating a Delaunay network from all objects in the domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># generate a Delaunay network with maximum edge distance of 50 units</span>
+<span class="n">dt_network</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span>
+                                        <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;DT-network&#39;</span><span class="p">,</span>
+                                        <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;delaunay&#39;</span><span class="p">,</span>
+                                        <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                                        <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># visualise the generated network</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span>
+                            <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;DT-network&#39;</span><span class="p">,</span>
+                            <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Example of generating a proximity network from a specific collection of shape objects in the domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Xenium-Healthy-Colon&#39;</span><span class="p">)</span>
+
+<span class="c1"># generate and visualise a proximity network based on cell boundaries </span>
+<span class="n">prox_network</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span>
+                                        <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;contact-network&#39;</span><span class="p">,</span>
+                                        <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;proximity&#39;</span><span class="p">,</span>
+                                        <span class="n">objects_as_nodes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell boundaries&#39;</span><span class="p">),</span>
+                                        <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                        <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span>
+                            <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;contact-network&#39;</span><span class="p">,</span>
+                            <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Example of generating a KNN network with specific value of k:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># generate a k-nearest neighbours network for k = 10</span>
+<span class="n">knn_network</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span>
+                                        <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;knn-network&#39;</span><span class="p">,</span>
+                                        <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;KNN&#39;</span><span class="p">,</span>
+                                        <span class="n">number_of_nearest_neighbours</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># visualise the k-nearest neighbours network</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span>
+                            <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;knn-network&#39;</span><span class="p">,</span>
+                            <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

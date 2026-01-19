@@ -606,7 +606,7 @@ document.write(`
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>topographicalCorrelationMap</strong><span class="classifier">np.ndarray</span></dt><dd><p>The computed topographical correlation map.</p>
+<dt><strong>topographicalCorrelationMap</strong><span class="classifier">np.ndarray</span></dt><dd><p>An array where each element represents the correlation value at that mesh point within the domain. Regions outside the boundaries are assigned NaN values.</p>
 </dd>
 </dl>
 </dd>
@@ -619,6 +619,26 @@ document.write(`
 </dl>
 <p class="rubric">Notes</p>
 <p>For more information on the topographical correlation map, see the following <a class="reference external" href="https://doi.org/10.1017/S2633903X24000011">reference</a>.</p>
+<p>There is a dedicated visualisation function for the topographical correlation map: <a class="reference internal" href="muspan.visualise.visualise_topographical_correlation_map.html#muspan.visualise.visualise_topographical_correlation_map" title="muspan.visualise.visualise_topographical_correlation_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">muspan.visualise.visualise_topographical_correlation_map</span></code></a>. This function can be called directly or by setting the <code class="docutils literal notranslate"><span class="pre">visualise_output</span></code> parameter to True.</p>
+<p class="rubric">Examples</p>
+<p>Minimal example of calculating the topographical correlation map between two populations within a domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise the topographical correlation map between points </span>
+<span class="c1"># with label D and points with label A</span>
+<span class="n">TCM_array</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">topographical_correlation_map</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                <span class="n">population_A</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">),</span>
+                                                                <span class="n">population_B</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                                <span class="n">mesh_step</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                                                <span class="n">radius_of_interest</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                                                                <span class="n">kernel_radius</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+                                                                <span class="n">kernel_sigma</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                                                                <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

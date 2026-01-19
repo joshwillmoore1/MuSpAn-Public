@@ -616,7 +616,21 @@ a muspan query, or None. Default is None.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>For more information on the J function, <a class="reference external" href="https://doi.org/10.1111/j.1467-9574.1996.tb01501.x">see</a> or <a class="reference external" href="https://doi.org/10.1038/s41598-020-75180-9">here</a>.</p>
+<p>For more information on the J function, <a class="reference external" href="https://doi.org/10.1111/j.1467-9574.1996.tb01501.x">see this reference</a> or <a class="reference external" href="https://doi.org/10.1038/s41598-020-75180-9">this reference</a>.</p>
+<p class="rubric">Examples</p>
+<p>Minimal example of calculating the J-function for a point pattern within a domain:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute and visualise the J function for all points with label A</span>
+<span class="n">radii</span><span class="p">,</span><span class="n">J_values</span><span class="p">,</span><span class="n">conf_intervals</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">J_function</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                <span class="n">population</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">),</span>
+                                                                <span class="n">radius_step</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                                                                <span class="n">visualise_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

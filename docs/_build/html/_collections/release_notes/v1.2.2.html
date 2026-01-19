@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>v1.2.0 &#8212; Multiscale Spatial Analysis</title>
+    <title>v1.2.2 &#8212; Multiscale Spatial Analysis</title>
   
   
   
@@ -57,7 +57,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/release_notes/v1.2.0';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/release_notes/v1.2.2';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
@@ -66,8 +66,8 @@
         </script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="v1.1.2" href="v1.1.2.html" />
-    <link rel="prev" title="v1.2.1" href="v1.2.1.html" />
+    <link rel="next" title="v1.2.1" href="v1.2.1.html" />
+    <link rel="prev" title="Release notes" href="../../release_notes.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -459,9 +459,9 @@ document.write(`
     <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
     <div class="bd-toc-item navbar-nav">
       <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="v1.2.2.html">v1.2.2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">v1.2.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.2.1.html">v1.2.1</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">v1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v1.2.0.html">v1.2.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.1.2.html">v1.1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.1.1.html">v1.1.1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.1.0.html">v1.1.0</a></li>
@@ -520,7 +520,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../release_notes.html" class="nav-link">Release notes</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">v1.2.0</li>
+    <li class="breadcrumb-item active" aria-current="page">v1.2.2</li>
   </ul>
 </nav>
 </div>
@@ -537,47 +537,141 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="v1-2-0">
-<h1>v1.2.0<a class="headerlink" href="#v1-2-0" title="Link to this heading">#</a></h1>
-<p>We are pleased to announce the release of <strong>version 1.2.0</strong>! This update introduces valuable new features, performance improvements, bug fixes, and enhanced documentation to support a more stable and user-friendly experience.</p>
-<p>This release has been tested on Python <strong>3.10</strong> to <strong>3.13</strong>.</p>
+  <section id="v1-2-2">
+<h1>v1.2.2<a class="headerlink" href="#v1-2-2" title="Link to this heading">#</a></h1>
+<p>We are pleased to announce the release of version <strong>v1.2.2</strong>! This release is a substantial update focused on improved spatial robustness, performance optimisations for large datasets, expanded neighbourhood and clustering functionality, and significant documentation and testing enhancements. It also includes important bug fixes across geometry operations, boundary handling, and I/O.</p>
+<p>This release is compatible with and has been tested on Python <strong>3.10</strong> to <strong>3.13</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Python 3.14 support has been temporarily rolled back due to upstream dependency limitations
+(e.g. <code class="docutils literal notranslate"><span class="pre">ripser</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">networkx</span></code>).</p>
+</div>
 <section id="new-features">
 <h2>New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Edge Visualisation</strong>: Introduced custom edge drawing for network visualisations to improve zooming and padding behavior.</p></li>
-<li><p><strong>Shape Combination</strong>: <em class="xref py py-obj">combine_shapes</em> now fully supports a <em class="xref py py-obj">delete_existing</em> parameter, enabling cleaner merges by optionally removing pre-existing shapes.</p></li>
-<li><p><strong>Boundary Estimation</strong>: Added automatic warnings and halts when <em class="xref py py-obj">estimate_boundary</em> via <em class="xref py py-obj">alpha_shapes</em> results in multiple shape outputs.</p></li>
-<li><p><strong>Boundary visualisation customisation</strong> : Added <em class="xref py py-obj">boundary_kwargs</em> to <em class="xref py py-obj">visualise</em> for enhanced control over boundary appearance in plots.</p></li>
-<li><p><strong>Simplify Shapes</strong>: Now optionally returns object IDs and allows specification of the target collection name for better downstream use.</p></li>
+<li><p><strong>Louvain Graph-Based Clustering</strong>: Added Louvain clustering support to <code class="docutils literal notranslate"><span class="pre">cluster_data</span></code>, enabling
+graph-based clustering workflows for neighbourhood analysis.</p></li>
+<li><p><strong>Cluster Label Output Control</strong>: <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> can now optionally return cluster labels
+directly for easier downstream analysis.</p></li>
+<li><p><strong>Automatic Label Filtering in Region Counts</strong>: Large categorical labels are now automatically ignored
+when computing region counts for quadrats and hexagonal grids, improving robustness and scalability.</p></li>
+<li><p><strong>Support for Internal Holes in CSV Export</strong>: <code class="docutils literal notranslate"><span class="pre">export_to_csv</span></code> now fully supports objects with internal holes.</p></li>
+<li><p><strong>Transcript Counts in Xenium Import</strong>: <code class="docutils literal notranslate"><span class="pre">xenium_to_domain</span></code> now includes transcript counts by default.</p></li>
+<li><p><strong>Spatial Import with Holes</strong>: SpatialData and QuPath imports now correctly handle shapes containing
+internal holes.</p></li>
 </ul>
 </section>
-<section id="optimisations">
-<h2>Optimisations<a class="headerlink" href="#optimisations" title="Link to this heading">#</a></h2>
+<section id="improvements">
+<h2>Improvements<a class="headerlink" href="#improvements" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Parallel Proximity Computation</strong>: Distance computations for proximity networks with shape-objects have been parallelised for significant speed-ups.</p></li>
-<li><p><strong>Vectorised TDA Updates</strong>: Persistence updates have been vectorised to enhance performance in topological computations.</p></li>
-<li><p><strong>Alpha shape Efficiency</strong>: New alpha shape implementation vastly improving efficency by reducing the number of checks for finding shape boundaries and allowing for nested shapes.</p></li>
+<li><p><strong>Geometry Engine Enhancements (rust-geo)</strong>:</p>
+<ul>
+<li><p>Migrated additional geometry operations (including quadrant generation and polygon–polygon distance)
+to <code class="docutils literal notranslate"><span class="pre">rust-geo</span></code> for improved correctness and performance.</p></li>
+<li><p>Improved handling of polygons with interior holes across distance, buffering, and containment queries.</p></li>
+<li><p>Removed unstable boolean operations (<code class="docutils literal notranslate"><span class="pre">union</span></code>, <code class="docutils literal notranslate"><span class="pre">difference</span></code>, <code class="docutils literal notranslate"><span class="pre">intersection</span></code>) where possible and
+updated tests to allow for valid geometric variability.</p></li>
+</ul>
+</li>
+<li><p><strong>Boundary Handling and Tolerance Scaling</strong>:</p>
+<ul>
+<li><p>Added scale-dependent tolerance calculations for boundary checks.</p></li>
+<li><p>Improved validation ensuring all objects lie within boundaries when using alpha-shape boundaries.</p></li>
+<li><p>Simplified boundary logic by removing the deprecated <code class="docutils literal notranslate"><span class="pre">updated_boundaries</span></code> flag.</p></li>
+</ul>
+</li>
+<li><p><strong>Performance Optimisations</strong>:</p>
+<ul>
+<li><p>Optimised <code class="docutils literal notranslate"><span class="pre">xenium_to_domain</span></code> and <code class="docutils literal notranslate"><span class="pre">domain_to_csv</span></code> for large datasets, including improved column
+ordering and consistent naming conventions.</p></li>
+<li><p>Vectorised colour collection for continuous labels.</p></li>
+<li><p>Limited parallel workers to a maximum of four to improve stability.</p></li>
+</ul>
+</li>
+<li><p><strong>Query and Distance Performance</strong>:</p>
+<ul>
+<li><p>Faster <code class="docutils literal notranslate"><span class="pre">contains</span></code> queries and point-in-polygon checks.</p></li>
+<li><p>Improved object-to-object distance calculations, including support for holes.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="bug-fixes">
 <h2>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Label Inheritance Fix</strong>: Corrected an issue where labels were reset during object conversion—existing labels now retain their original color mappings.</p></li>
-<li><p><strong>QCM Tiling Deletion</strong>: Fixed a bug where mislabelled objects in the Quadrat Correlation Matrix prevented default tiling cleanup.</p></li>
-<li><p><strong>Cell Count Normalisation</strong>: Resolved issue where cell counts were incorrectly normalised by default.</p></li>
-<li><p><strong>Multiprocessing Stability</strong>: Wrapped network generation in a <em class="xref py py-obj">try-catch</em> to avoid multiprocessing issues on UNIX systems.</p></li>
-<li><p><strong>wPCF index error</strong>: Addressed an index error in the weighted Pair Correlation Function (wPCF) when handling multiple populations in the same domain.</p></li>
+<li><p><strong>Tiling and Grid Generation</strong>:</p>
+<ul>
+<li><p>Fixed tiling issues for domains with holes.</p></li>
+<li><p>Corrected ID handling for generated hexagonal and quadrilateral grids (bug present in v1.2.0).</p></li>
+</ul>
+</li>
+<li><p><strong>Boundary Corrections</strong>:</p>
+<ul>
+<li><p>Fixed boundary corrections for cross-K and cross-L functions.</p></li>
+<li><p>Corrected boundary handling for Ripley’s K.</p></li>
+</ul>
+</li>
+<li><p><strong>CSV Export and I/O</strong>:</p>
+<ul>
+<li><p>Filled empty CSV entries with <code class="docutils literal notranslate"><span class="pre">NaN</span></code> for consistency.</p></li>
+<li><p>Fixed multi-label handling in QuPath imports using a deterministic first-come-first-served approach.</p></li>
+</ul>
+</li>
+<li><p><strong>Geometry and Topology</strong>:</p>
+<ul>
+<li><p>Fixed issues with rust-based object-to-object distance calculations.</p></li>
+<li><p>Corrected shape combination output consistency from the rust backend.</p></li>
+</ul>
+</li>
+<li><p><strong>General Stability</strong>:</p>
+<ul>
+<li><p>Numerous small fixes improving robustness of neighbourhood analysis, geometry conversions, and
+spatial queries.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>New Tutorials</strong>: Added guides on using distance and containment queries to the documentation.</p></li>
-<li><p><strong>Visualisation Defaults</strong>: Updated the default visualisation settings for network plots to reflect improved edge rendering behavior.</p></li>
+<li><p><strong>Minimal Examples in Docstrings</strong>: Added concise, runnable examples to docstrings for commonly used functions.</p></li>
+<li><p><strong>New and Updated Tutorials</strong>:</p>
+<ul>
+<li><p>Tutorial on tuning neighbourhood clustering parameters.</p></li>
+<li><p>Updated paper and figure-based tutorials to match the latest MuSpAn outputs.</p></li>
 </ul>
-<p>All tutorials and documentation have been updated to reflect the new features and changes in version <strong>1.2.0</strong>.</p>
-<p>We sincerely thank all contributors and users who provided feedback to help shape this release. For detailed guidance on upgrading or using the new features, please refer to the full documentation.</p>
-<p>Thank you for using MuSpAn!</p>
+</li>
+<li><p><strong>Docstring Synchronisation</strong>:</p>
+<ul>
+<li><p>Updated Xenium importer and domain data addition documentation.</p></li>
+<li><p>Corrected label summary outputs and added example domains.</p></li>
+</ul>
+</li>
+<li><p><strong>General Documentation Clean-up</strong>: Fixed typos, clarified parameter descriptions, and aligned documentation
+with current behaviour.</p></li>
+</ul>
+</section>
+<section id="testing-maintenance">
+<h2>Testing &amp; Maintenance<a class="headerlink" href="#testing-maintenance" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Expanded Test Coverage</strong>:</p>
+<ul>
+<li><p>Added extensive topology tests, including polygons with interiors and buffering behaviour.</p></li>
+<li><p>New test suites for hexagonal and quadrilateral grid generation.</p></li>
+<li><p>Additional tests for multi-region handling, boundary re-estimation control, and optional I/O dependencies.</p></li>
+</ul>
+</li>
+<li><p><strong>Importer Validation</strong>: Added local test coverage for spatial importer functions.</p></li>
+<li><p><strong>Code Clean-up</strong>:</p>
+<ul>
+<li><p>Removed unused imports and legacy code paths.</p></li>
+<li><p>Improved internal consistency and reduced circular dependencies.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p>Thank you for using <strong>MuSpAn</strong>!</p>
+<p>For full details, please see the updated documentation, tutorials, and test reports accompanying this release.</p>
 </section>
 </section>
 
@@ -604,9 +698,10 @@ document.write(`
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New Features</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimisations">Optimisations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improvements">Improvements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-fixes">Bug Fixes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-maintenance">Testing &amp; Maintenance</a></li>
 </ul>
   </nav></div>
 

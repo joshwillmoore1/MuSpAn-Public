@@ -1,0 +1,120 @@
+v1.2.2
+======
+
+We are pleased to announce the release of version **v1.2.2**! This release is a substantial update focused on improved spatial robustness, performance optimisations for large datasets, expanded neighbourhood and clustering functionality, and significant documentation and testing enhancements. It also includes important bug fixes across geometry operations, boundary handling, and I/O.
+
+This release is compatible with and has been tested on Python **3.10** to **3.13**.
+
+.. note::
+
+   Python 3.14 support has been temporarily rolled back due to upstream dependency limitations
+   (e.g. ``ripser``, ``pandas``, ``networkx``).
+
+New Features
+------------
+
+* **Louvain Graph-Based Clustering**: Added Louvain clustering support to ``cluster_data``, enabling
+  graph-based clustering workflows for neighbourhood analysis.
+* **Cluster Label Output Control**: ``cluster_neighbourhoods`` can now optionally return cluster labels
+  directly for easier downstream analysis.
+* **Automatic Label Filtering in Region Counts**: Large categorical labels are now automatically ignored
+  when computing region counts for quadrats and hexagonal grids, improving robustness and scalability.
+* **Support for Internal Holes in CSV Export**: ``export_to_csv`` now fully supports objects with internal holes.
+* **Transcript Counts in Xenium Import**: ``xenium_to_domain`` now includes transcript counts by default.
+* **Spatial Import with Holes**: SpatialData and QuPath imports now correctly handle shapes containing
+  internal holes.
+
+Improvements
+------------
+
+* **Geometry Engine Enhancements (rust-geo)**:
+  
+  * Migrated additional geometry operations (including quadrant generation and polygon–polygon distance)
+    to ``rust-geo`` for improved correctness and performance.
+  * Improved handling of polygons with interior holes across distance, buffering, and containment queries.
+  * Removed unstable boolean operations (``union``, ``difference``, ``intersection``) where possible and
+    updated tests to allow for valid geometric variability.
+
+* **Boundary Handling and Tolerance Scaling**:
+  
+  * Added scale-dependent tolerance calculations for boundary checks.
+  * Improved validation ensuring all objects lie within boundaries when using alpha-shape boundaries.
+  * Simplified boundary logic by removing the deprecated ``updated_boundaries`` flag.
+
+* **Performance Optimisations**:
+  
+  * Optimised ``xenium_to_domain`` and ``domain_to_csv`` for large datasets, including improved column
+    ordering and consistent naming conventions.
+  * Vectorised colour collection for continuous labels.
+  * Limited parallel workers to a maximum of four to improve stability.
+
+* **Query and Distance Performance**:
+  
+  * Faster ``contains`` queries and point-in-polygon checks.
+  * Improved object-to-object distance calculations, including support for holes.
+
+Bug Fixes
+---------
+
+* **Tiling and Grid Generation**:
+  
+  * Fixed tiling issues for domains with holes.
+  * Corrected ID handling for generated hexagonal and quadrilateral grids (bug present in v1.2.0).
+
+* **Boundary Corrections**:
+  
+  * Fixed boundary corrections for cross-K and cross-L functions.
+  * Corrected boundary handling for Ripley’s K.
+
+* **CSV Export and I/O**:
+  
+  * Filled empty CSV entries with ``NaN`` for consistency.
+  * Fixed multi-label handling in QuPath imports using a deterministic first-come-first-served approach.
+
+* **Geometry and Topology**:
+  
+  * Fixed issues with rust-based object-to-object distance calculations.
+  * Corrected shape combination output consistency from the rust backend.
+
+* **General Stability**:
+  
+  * Numerous small fixes improving robustness of neighbourhood analysis, geometry conversions, and
+    spatial queries.
+
+Documentation
+-------------
+
+* **Minimal Examples in Docstrings**: Added concise, runnable examples to docstrings for commonly used functions.
+* **New and Updated Tutorials**:
+  
+  * Tutorial on tuning neighbourhood clustering parameters.
+  * Updated paper and figure-based tutorials to match the latest MuSpAn outputs.
+
+* **Docstring Synchronisation**:
+  
+  * Updated Xenium importer and domain data addition documentation.
+  * Corrected label summary outputs and added example domains.
+
+* **General Documentation Clean-up**: Fixed typos, clarified parameter descriptions, and aligned documentation
+  with current behaviour.
+
+Testing & Maintenance
+---------------------
+
+* **Expanded Test Coverage**:
+  
+  * Added extensive topology tests, including polygons with interiors and buffering behaviour.
+  * New test suites for hexagonal and quadrilateral grid generation.
+  * Additional tests for multi-region handling, boundary re-estimation control, and optional I/O dependencies.
+
+* **Importer Validation**: Added local test coverage for spatial importer functions.
+* **Code Clean-up**:
+  
+  * Removed unused imports and legacy code paths.
+  * Improved internal consistency and reduced circular dependencies.
+
+----
+
+Thank you for using **MuSpAn**!
+
+For full details, please see the updated documentation, tutorials, and test reports accompanying this release.

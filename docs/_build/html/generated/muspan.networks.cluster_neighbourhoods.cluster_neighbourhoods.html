@@ -588,19 +588,41 @@ Neighbourhood labels are added to the objects in the domain.</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>The clustering the spatially-resolved label information is performed using the <em class="xref py py-obj">muspan.helpers.cluster_data()</em> helper function. This supports a variety of clustering methods including distance-based, hierarchical and graph-based methods such as:
-- KMeans
-- DBSCAN
-- Spectral Clustering
-- Affinity Propagation
-- Mean Shift
-- Birch
-- OPTICS
-- HDBSCAN
-- MiniBatchKMeans
-- Louvain
-- Leiden.
-For more details on the clustering methods and their parameters, see <em class="xref py py-obj">muspan.helpers.cluster_data()</em>.</p>
+<p>The clustering the spatially-resolved label information is performed using the <a class="reference internal" href="muspan.helpers.cluster_data.html#muspan.helpers.cluster_data" title="muspan.helpers.cluster_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">muspan.helpers.cluster_data</span></code></a> helper function. This supports a variety of clustering methods including distance-based, hierarchical and graph-based methods such as:</p>
+<ul class="simple">
+<li><p>KMeans</p></li>
+<li><p>DBSCAN</p></li>
+<li><p>Spectral Clustering</p></li>
+<li><p>Affinity Propagation</p></li>
+<li><p>Mean Shift</p></li>
+<li><p>Birch</p></li>
+<li><p>OPTICS</p></li>
+<li><p>HDBSCAN</p></li>
+<li><p>MiniBatchKMeans</p></li>
+<li><p>Louvain</p></li>
+<li><p>Leiden.</p></li>
+</ul>
+<p>For more details on the clustering methods and their parameters, see <a class="reference internal" href="muspan.helpers.cluster_data.html#muspan.helpers.cluster_data" title="muspan.helpers.cluster_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">muspan.helpers.cluster_data</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<p>Minimal example of clustering neighbourhoods based on a categorical label:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span> 
+
+<span class="c1"># load example domain</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Exclusion&#39;</span><span class="p">)</span>
+
+<span class="c1"># compute neighbourhoods and cluster them</span>
+<span class="n">enrichment_matrix</span><span class="p">,</span><span class="n">label_cats</span><span class="p">,</span> <span class="n">cluster_cats</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">cluster_neighbourhoods</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span>
+                                                                                <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span>
+                                                                                <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;example neighbourhoods&#39;</span><span class="p">,</span>
+                                                                                <span class="n">network_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;proximity&#39;</span><span class="p">,</span><span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span>
+                                                                                <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                                                <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;leiden&#39;</span><span class="p">,</span>
+                                                                                <span class="n">cluster_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span><span class="n">k_neighbours</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># visualise the domain colored by the computed neighbourhood clusters</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;example neighbourhoods&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
