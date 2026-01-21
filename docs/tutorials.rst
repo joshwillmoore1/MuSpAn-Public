@@ -39,6 +39,10 @@ This flexible approach ensures you can learn at your own pace while focusing on 
        :target: _collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html
        :alt: Demonstration of the annuli about cells used to compute cross-Pair Correlation Function within a region of colon, correcting for boundaries
 
+    .. image:: images/carousel_images/net2_1.png
+       :target: _collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html
+       :alt: Demonstration of various network models available in MuSpAn. (Left) Delaunay Triangulation (Middle) K-nearest neighbours (right) Proximity-based
+
     .. image:: images/carousel_images/art_1.png
        :target: _collections/misc/2025%20Math%20Onco%20Art.html
        :alt: A creatative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels
@@ -47,9 +51,15 @@ This flexible approach ensures you can learn at your own pace while focusing on 
        :target: _collections/paper_tutorials/MuSpAn%20-%20Figure_3.html
        :alt: Visual demonstration of the true shape-shape distance computations implemented in MuSpAn, showing nearest neighbourhoods from orange cells to purple cells.
 
+    .. image:: images/carousel_images/khop_1.png
+       :target: _collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html
+       :alt: Visual demonstration of k-hop neighbourhoods about a cell (node) in a Delaunay Triangulation. (left) 1-hop neighbourhood (right) 3-hop neighbourhood
+
     .. image:: images/carousel_images/lattice_1.png
        :target: _collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html
        :alt: Visualisation of a hexagonal lattice overlaid on a MuSpAn domain with individual hexagons colored by density of neutrophils and Getis Ord of macrophages
+
+
      
 
 While the MuSpAn tutorials are presented within the context of cellular biology, the methods and tools are broadly applicable to any form of spatial data. 
