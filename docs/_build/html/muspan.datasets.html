@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.datasets';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,10 +70,11 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="load_example_domain" href="generated/muspan.datasets.load_example_domain.load_example_domain.html" />
-    <link rel="prev" title="spatialdata_to_domain" href="generated/muspan.io.spatialdata_to_domain.html" />
+    <link rel="prev" title="domain_to_dataframe" href="generated/muspan.io.helpers.domain_to_dataframe.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -548,7 +555,7 @@ document.write(`
 <span id="datasets"></span><h1>muspan.datasets<a class="headerlink" href="#muspan-datasets" title="Link to this heading">#</a></h1>
 <p>The MuSpAn datasets module provides example datasets as MuSpAn domains for testing and demonstration purposes.</p>
 <p class="rubric">Loading in example datasets</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.datasets.load_example_domain.load_example_domain.html#muspan.datasets.load_example_domain.load_example_domain" title="muspan.datasets.load_example_domain.load_example_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_example_domain</span></code></a></p></td>
 <td><p>Load an example domain file.</p></td>

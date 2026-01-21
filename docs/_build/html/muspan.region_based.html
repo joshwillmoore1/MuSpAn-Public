@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.region_based';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,6 +70,7 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="generate_quadrats" href="generated/muspan.region_based.generate_quadrats.html" />
@@ -551,7 +558,7 @@ document.write(`
 <span id="region-based"></span><h1>muspan.region_based<a class="headerlink" href="#muspan-region-based" title="Link to this heading">#</a></h1>
 <p>The muspan.region_based module provides tools for region-based analysis of spatial data. This module includes the following submodules:</p>
 <p class="rubric">Region building</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.region_based.generate_quadrats.html#muspan.region_based.generate_quadrats" title="muspan.region_based.generate_quadrats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_quadrats</span></code></a></p></td>
 <td><p>Generates a tiling of quadrats of a specified side length across the domain.</p></td>
@@ -563,7 +570,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Region-based analysis</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.region_based.quadrat_correlation_matrix.html#muspan.region_based.quadrat_correlation_matrix" title="muspan.region_based.quadrat_correlation_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quadrat_correlation_matrix</span></code></a></p></td>
 <td><p>The Quadrat Correlation Matrix (QCM) identifies statistically significant co-occurrences  between objects with different labels (e.g., cell types) within regions of interest (ROIs).</p></td>

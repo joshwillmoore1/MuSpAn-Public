@@ -18,6 +18,8 @@ The muspan.io module provides tools for reading and writing data to and from the
    save_domain
    load_domain
    domain_to_csv
+   domain_to_parquet
+   domain_to_hdf
 
 
 .. rubric:: Helper input methods for specific platforms
@@ -31,3 +33,13 @@ The muspan.io module provides tools for reading and writing data to and from the
    xenium_to_domain
    spatialdata_to_domain
 
+
+
+.. rubric:: IO helpers
+
+.. autosummary::
+   :toctree: generated/
+   :template: custom-function-template.rst
+   :nosignatures:
+
+   helpers.domain_to_dataframe

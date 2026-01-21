@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.io';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,6 +70,7 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="save_domain" href="generated/muspan.io.save_domain.html" />
@@ -471,9 +478,12 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.save_domain.html">save_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.load_domain.html">load_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.domain_to_csv.html">domain_to_csv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.domain_to_parquet.html">domain_to_parquet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.domain_to_hdf.html">domain_to_hdf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.qupath_to_domain.html">qupath_to_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.xenium_to_domain.html">xenium_to_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.spatialdata_to_domain.html">spatialdata_to_domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/muspan.io.helpers.domain_to_dataframe.html">domain_to_dataframe</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="muspan.datasets.html">muspan.datasets</a></li>
@@ -553,7 +563,7 @@ document.write(`
 <span id="io"></span><h1>muspan.io<a class="headerlink" href="#muspan-io" title="Link to this heading">#</a></h1>
 <p>The muspan.io module provides tools for reading and writing data to and from the MuSpAn package. This module includes the following submodules:</p>
 <p class="rubric">MuSpAn domain input/output</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.io.save_domain.html#muspan.io.save_domain" title="muspan.io.save_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_domain</span></code></a></p></td>
 <td><p>Save a domain object to a file.</p></td>
@@ -564,11 +574,17 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.io.domain_to_csv.html#muspan.io.domain_to_csv" title="muspan.io.domain_to_csv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain_to_csv</span></code></a></p></td>
 <td><p>Export a domain object as a CSV file.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/muspan.io.domain_to_parquet.html#muspan.io.domain_to_parquet" title="muspan.io.domain_to_parquet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain_to_parquet</span></code></a></p></td>
+<td><p>Export a domain object as a parquet file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.io.domain_to_hdf.html#muspan.io.domain_to_hdf" title="muspan.io.domain_to_hdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain_to_hdf</span></code></a></p></td>
+<td><p>Export a domain object as a HDF5 (.h5) file.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <p class="rubric">Helper input methods for specific platforms</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.io.qupath_to_domain.html#muspan.io.qupath_to_domain" title="muspan.io.qupath_to_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qupath_to_domain</span></code></a></p></td>
 <td><p>Import a QuPath GeoJSON file to a muspan domain.</p></td>
@@ -578,6 +594,15 @@ document.write(`
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.io.spatialdata_to_domain.html#muspan.io.spatialdata_to_domain" title="muspan.io.spatialdata_to_domain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spatialdata_to_domain</span></code></a></p></td>
 <td><p>Import a SpatialData object as a MuSpAn domain.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">IO helpers</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.io.helpers.domain_to_dataframe.html#muspan.io.helpers.domain_to_dataframe" title="muspan.io.helpers.domain_to_dataframe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">helpers.domain_to_dataframe</span></code></a></p></td>
+<td><p>Generate a pandas.dataframe from a domain object.</p></td>
 </tr>
 </tbody>
 </table>

@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.helpers';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,6 +70,7 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="alpha_shape" href="generated/muspan.helpers.alpha_shape.html" />
@@ -554,7 +561,7 @@ document.write(`
 <span id="helpers"></span><h1>muspan.helpers<a class="headerlink" href="#muspan-helpers" title="Link to this heading">#</a></h1>
 <p>The muspan.helpers module provides helper functions for the MuSpAn package.</p>
 <p class="rubric">General helper functions</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.helpers.alpha_shape.html#muspan.helpers.alpha_shape" title="muspan.helpers.alpha_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_shape</span></code></a></p></td>
 <td><p>Compute the alpha shape of a set of points.</p></td>
@@ -572,7 +579,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Shape helper functions</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.helpers.combine_include_and_exclude_boundaries.html#muspan.helpers.combine_include_and_exclude_boundaries" title="muspan.helpers.combine_include_and_exclude_boundaries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">combine_include_and_exclude_boundaries</span></code></a></p></td>
 <td><p>Convert include_boundaries and exclude_boundaries queries into a single set of shapes, add these to the domain, and return the new object IDs.</p></td>
@@ -584,7 +591,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Distance helper functions</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.helpers.object_to_object_distance_matrix.html#muspan.helpers.object_to_object_distance_matrix" title="muspan.helpers.object_to_object_distance_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object_to_object_distance_matrix</span></code></a></p></td>
 <td><p>Return a distance matrix for the minimum distance from each object in <em class="xref py py-obj">population_A</em> to each object in <em class="xref py py-obj">population_B</em>.</p></td>

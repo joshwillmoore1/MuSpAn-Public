@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_collections/release_notes/v1.2.2';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,6 +70,7 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="v1.2.1" href="v1.2.1.html" />
@@ -559,6 +566,9 @@ when computing region counts for quadrats and hexagonal grids, improving robustn
 <li><p><strong>Transcript Counts in Xenium Import</strong>: <code class="docutils literal notranslate"><span class="pre">xenium_to_domain</span></code> now includes transcript counts by default.</p></li>
 <li><p><strong>Spatial Import with Holes</strong>: SpatialData and QuPath imports now correctly handle shapes containing
 internal holes.</p></li>
+<li><p><strong>Domain Export to Parquet and HDF5</strong>: Added support for exporting domains directly to <strong>Parquet</strong> and
+<strong>HDF5</strong> formats, along with a new helper for converting domains to pandas DataFrames for more flexible
+downstream analysis.</p></li>
 </ul>
 </section>
 <section id="improvements">
@@ -638,7 +648,7 @@ spatial queries.</p></li>
 <li><p><strong>New and Updated Tutorials</strong>:</p>
 <ul>
 <li><p>Tutorial on tuning neighbourhood clustering parameters.</p></li>
-<li><p>Updated paper and figure-based tutorials to match the latest MuSpAn outputs.</p></li>
+<li><p>Updated paper and figure-based tutorials to match the latest muspan outputs.</p></li>
 </ul>
 </li>
 <li><p><strong>Docstring Synchronisation</strong>:</p>
@@ -670,7 +680,7 @@ with current behaviour.</p></li>
 </li>
 </ul>
 <hr class="docutils" />
-<p>Thank you for using <strong>MuSpAn</strong>!</p>
+<p>Thank you for using <strong>muspan</strong>!</p>
 <p>For full details, please see the updated documentation, tutorials, and test reports accompanying this release.</p>
 </section>
 </section>

@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.networks';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,6 +70,7 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="generate_network" href="generated/muspan.networks.generate_network.html" />
@@ -563,7 +570,7 @@ document.write(`
 <span id="networks"></span><h1>muspan.networks<a class="headerlink" href="#muspan-networks" title="Link to this heading">#</a></h1>
 <p>The muspan.networks module provides tools for working with networks in the MuSpAn package. This module includes the following submodules:</p>
 <p class="rubric">Network generation and manipulation</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.networks.generate_network.html#muspan.networks.generate_network" title="muspan.networks.generate_network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_network</span></code></a></p></td>
 <td><p>Generate a spatial network using domain objects.</p></td>
@@ -578,7 +585,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Neighbourhood analysis methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.networks.cluster_neighbourhoods.html#muspan.networks.cluster_neighbourhoods" title="muspan.networks.cluster_neighbourhoods"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code></a></p></td>
 <td><p>Neighbourhood clustering of objects using label information in a MuSpAn domain.</p></td>
@@ -593,7 +600,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Network-based point pattern analysis</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.networks.adjacency_permutation_test.html#muspan.networks.adjacency_permutation_test" title="muspan.networks.adjacency_permutation_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjacency_permutation_test</span></code></a></p></td>
 <td><p>Test the correlation between adjacency labels in a network, also referred to as neighbourhood enrichment.</p></td>
@@ -602,7 +609,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Network metrics</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.networks.alpha_index.html#muspan.networks.alpha_index" title="muspan.networks.alpha_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">alpha_index</span></code></a></p></td>
 <td><p>A measure of connectivity which evaluates the number of cycles in a graph in comparison with the maximum number of cycles.</p></td>
@@ -629,7 +636,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Network clustering</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.networks.community_detection.html#muspan.networks.community_detection" title="muspan.networks.community_detection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">community_detection</span></code></a></p></td>
 <td><p>Community detection on a provided network.</p></td>
@@ -638,7 +645,7 @@ document.write(`
 </table>
 </div>
 <p class="rubric">Network comparison methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.networks.network_distance.html#muspan.networks.network_distance" title="muspan.networks.network_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">network_distance</span></code></a></p></td>
 <td><p>Calculate the distance between two networks providing a quantitative measure of the similarity between them.</p></td>

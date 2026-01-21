@@ -23,6 +23,9 @@ New Features
 * **Transcript Counts in Xenium Import**: ``xenium_to_domain`` now includes transcript counts by default.
 * **Spatial Import with Holes**: SpatialData and QuPath imports now correctly handle shapes containing
   internal holes.
+* **Domain Export to Parquet and HDF5**: Added support for exporting domains directly to **Parquet** and
+  **HDF5** formats, along with a new helper for converting domains to pandas DataFrames for more flexible
+  downstream analysis.
 
 Improvements
 ------------
@@ -88,7 +91,7 @@ Documentation
 * **New and Updated Tutorials**:
   
   * Tutorial on tuning neighbourhood clustering parameters.
-  * Updated paper and figure-based tutorials to match the latest MuSpAn outputs.
+  * Updated paper and figure-based tutorials to match the latest muspan outputs.
 
 * **Docstring Synchronisation**:
   
@@ -115,6 +118,6 @@ Testing & Maintenance
 
 ----
 
-Thank you for using **MuSpAn**!
+Thank you for using **muspan**!
 
 For full details, please see the updated documentation, tutorials, and test reports accompanying this release.

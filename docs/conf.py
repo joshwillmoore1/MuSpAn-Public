@@ -39,7 +39,8 @@ extensions = [
     "sphinx-prompt",
     "sphinx_design",
     "sphinxcontrib.bibtex",
-    'sphinx-jsonschema'
+    "sphinx-jsonschema",
+    "sphinx_carousel.carousel"
 ]
 
 # added layout.html in templates which adds the schema json to the header of specific pages - helps search engines
@@ -69,6 +70,12 @@ add_function_parentheses = False
 autosummary_generate = True
 numpydoc_show_class_members = False
 
+# stuff for carousel
+carousel_bootstrap_add_css_js = True
+carousel_bootstrap_prefix = ""
+html_js_files = [
+    'carousel_autoplay.js',
+]
 
 autodoc_default_options = {
     'inherited-members': None,

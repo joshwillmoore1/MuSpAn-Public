@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'generated/muspan.io.domain_to_csv';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,9 +70,10 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="qupath_to_domain" href="muspan.io.qupath_to_domain.html" />
+    <link rel="next" title="domain_to_parquet" href="muspan.io.domain_to_parquet.html" />
     <link rel="prev" title="load_domain" href="muspan.io.load_domain.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -475,9 +482,12 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.save_domain.html">save_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.load_domain.html">load_domain</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">domain_to_csv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="muspan.io.domain_to_parquet.html">domain_to_parquet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="muspan.io.domain_to_hdf.html">domain_to_hdf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.qupath_to_domain.html">qupath_to_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.xenium_to_domain.html">xenium_to_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.spatialdata_to_domain.html">spatialdata_to_domain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="muspan.io.helpers.domain_to_dataframe.html">domain_to_dataframe</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../muspan.datasets.html">muspan.datasets</a></li>
@@ -563,14 +573,15 @@ document.write(`
 <span class="sig-name descname"><span class="pre">domain_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_of_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.io.domain_to_csv" title="Link to this definition">#</a></dt>
 <dd><p>Export a domain object as a CSV file. 
 All object properties will be saved as columns in the CSV file including labels and collections associated with the object. 
-Optionally, the function can return the pandas dataframe that was saved to the CSV file.</p>
+Optionally, the function can return the pandas dataframe that was saved to the CSV file.
+If the domain contains shape objects, the dataframe will include the vertices of the shapes instead of the shape centroids. 
+There will be an additional column ‘hole_id’ to identify vertices that belong to internal holes of shapes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>domain</strong><span class="classifier">muspan.domain</span></dt><dd><p>The domain object to be exported as csv.</p>
 </dd>
-<dt><strong>name_of_file</strong><span class="classifier">str or None, optional</span></dt><dd><p>The name of the saved csv file. If None, the domain’s name will be used. 
-If the name ends with ‘.csv’, the extension will be trimmed. Default is None.</p>
+<dt><strong>name_of_file</strong><span class="classifier">str or None, optional</span></dt><dd><p>The name of the saved csv file. If None, the domain’s name will be used. Default is None.</p>
 </dd>
 <dt><strong>path_to_save</strong><span class="classifier">str or None, optional</span></dt><dd><p>The path to the folder where the file will be saved. If None, the current directory will be used. Default is None.</p>
 </dd>
@@ -595,6 +606,20 @@ If <em class="xref py py-obj">name_of_file</em> is not a string or None.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load an example domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Xenium-Healthy-Colon&#39;</span><span class="p">)</span>
+
+<span class="c1"># save the domain locally to the current working directory with a specified file name</span>
+<span class="n">path_to_save</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span>
+<span class="n">name_of_file</span> <span class="o">=</span> <span class="s1">&#39;saved_example_domain.csv&#39;</span>
+
+<span class="c1"># save the domain</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">domain_to_csv</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span> <span class="n">name_of_file</span><span class="o">=</span><span class="n">name_of_file</span><span class="p">,</span> <span class="n">path_to_save</span><span class="o">=</span><span class="n">path_to_save</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>

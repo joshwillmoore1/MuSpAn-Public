@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.distribution';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,6 +70,7 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="generate_distribution" href="generated/muspan.distribution.generate_distribution.html" />
@@ -553,7 +560,7 @@ document.write(`
 <p>The muspan.distribution module provides tools for probability density estimation,
 distance metrics, and correlation mapping. This module includes the following submodules:</p>
 <p class="rubric">Generating distributions from spatial data</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.distribution.generate_distribution.html#muspan.distribution.generate_distribution" title="muspan.distribution.generate_distribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_distribution</span></code></a></p></td>
 <td><p>Generate a spatial distribution heatmap of objects in a domain.</p></td>
@@ -565,7 +572,7 @@ distance metrics, and correlation mapping. This module includes the following su
 </table>
 </div>
 <p class="rubric">Comparing distributions</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.distribution.kl_divergence.html#muspan.distribution.kl_divergence" title="muspan.distribution.kl_divergence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kl_divergence</span></code></a></p></td>
 <td><p>Compute the Kullback-Leibler Divergence between two distributions.</p></td>
@@ -574,7 +581,7 @@ distance metrics, and correlation mapping. This module includes the following su
 </table>
 </div>
 <p class="rubric">Summarising spatial data</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.distribution.summarise_distribution.html#muspan.distribution.summarise_distribution" title="muspan.distribution.summarise_distribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">summarise_distribution</span></code></a></p></td>
 <td><p>Summarises the spatial distribution of objects within a given domain providing the mean centre, standard distance, and standard deviational ellipses.</p></td>
@@ -583,7 +590,7 @@ distance metrics, and correlation mapping. This module includes the following su
 </table>
 </div>
 <p class="rubric">Optimal transport</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/muspan.distribution.sliced_wasserstein_distance.html#muspan.distribution.sliced_wasserstein_distance" title="muspan.distribution.sliced_wasserstein_distance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sliced_wasserstein_distance</span></code></a></p></td>
 <td><p>Compute the Sliced Wasserstein Distance between two populations within a given domain.</p></td>

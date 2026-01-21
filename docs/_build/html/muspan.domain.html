@@ -57,6 +57,12 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'muspan.domain';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
@@ -64,6 +70,7 @@
         DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="muspan.objects" href="muspan.objects.html" />
@@ -565,7 +572,7 @@ Each summary entry links directly to its full documentation in the <a class="ref
 </section>
 <section id="adding-data-to-the-domain">
 <h2>Adding data to the domain<a class="headerlink" href="#adding-data-to-the-domain" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.add_points" title="muspan.domain.domain.add_points"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.add_points</span></code></a></p></td>
 <td><p>Adds points to this domain.</p></td>
@@ -588,7 +595,7 @@ Each summary entry links directly to its full documentation in the <a class="ref
 </section>
 <section id="updating-domain-properties">
 <h2>Updating domain properties<a class="headerlink" href="#updating-domain-properties" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.estimate_boundary" title="muspan.domain.domain.estimate_boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.estimate_boundary</span></code></a></p></td>
 <td><p>Estimate the boundary of the domain using the specified method.</p></td>
@@ -608,7 +615,7 @@ Each summary entry links directly to its full documentation in the <a class="ref
 </section>
 <section id="inspecting-domain-contents">
 <h2>Inspecting domain contents<a class="headerlink" href="#inspecting-domain-contents" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.print_labels" title="muspan.domain.domain.print_labels"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.print_labels</span></code></a></p></td>
 <td><p>Print a table of labels of objects in the domain.</p></td>
@@ -622,7 +629,7 @@ Each summary entry links directly to its full documentation in the <a class="ref
 </section>
 <section id="removing-data-and-derived-structures">
 <h2>Removing data and derived structures<a class="headerlink" href="#removing-data-and-derived-structures" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#muspan.domain.domain.delete_distances" title="muspan.domain.domain.delete_distances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">domain.delete_distances</span></code></a></p></td>
 <td><p>Delete distance matrix stored within the domain.</p></td>
@@ -644,7 +651,7 @@ Each summary entry links directly to its full documentation in the <a class="ref
 <h2>Class reference<a class="headerlink" href="#class-reference" title="Link to this heading">#</a></h2>
 <dl class="py class" id="domain-class">
 <dt class="sig sig-object py" id="muspan.domain.domain">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_of_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'units'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_of_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'units'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain" title="Link to this definition">#</a></dt>
 <dd><p>The basic container for all MuSpAn analysis. A domain keeps track of which pointclouds / shapeclouds, labels, and metadata are within the domain. The default domain is a unit cube in n-dimensions, with default units of length being “units”.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1192,6 +1199,33 @@ Default is ‘rectangle’.</p>
 <li><p>Alpha shape only return the exterior vertices to construct the boundary shape, i.e., boundaries will not contain holes.</p></li>
 <li><p>The boundary shape is assigned an object_ID of -1 to indicate it is not a real object within the domain objects list.</p></li>
 </ul>
+<p class="rubric">Examples</p>
+<p>Minimal example estimating the boundary of a domain using the convex hull method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Xenium-Healthy-Colon&#39;</span><span class="p">)</span>
+
+<span class="c1"># estimate and visualize the boundary using the convex hull method</span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">estimate_boundary</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;convex hull&#39;</span><span class="p">)</span>
+
+<span class="c1"># visualise the domain with estimated boundary</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Minimal example estimating the boundary of a domain using the alpha shape method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="c1"># load example domain</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Xenium-Healthy-Colon&#39;</span><span class="p">)</span>
+
+<span class="c1"># estimate and visualize the boundary using the alpha method</span>
+<span class="n">example_domain</span><span class="o">.</span><span class="n">estimate_boundary</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span><span class="n">alpha_shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">})</span>
+
+<span class="c1"># visualise the domain with estimated boundary</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">

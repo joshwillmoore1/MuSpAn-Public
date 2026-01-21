@@ -7,8 +7,54 @@ To build a good foundational understanding of MuSpAn, we recommend starting with
 Beyond this, each tutorial is largely self-contained, so you can dive into specific topics independently as needed. 
 This flexible approach ensures you can learn at your own pace while focusing on the areas most relevant to your project.
 
+.. carousel::
+    :show_controls:
+    :show_indicators:
+    :show_dark:
+    :show_fade:
+    :show_shadows:
+
+    .. image:: images/carousel_images/comm_1.png
+       :target: _collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html
+       :alt: Conversion of communities of contiguous cells into shape objects using MuSpAn
+
+          
+    .. image:: images/carousel_images/tcm_1.png
+       :target: _collections/paper_tutorials/MuSpAn%20-%20Figure_6.html
+       :alt: Computation of the Topographical Correlation Map between fibroblasts and macrophages in a colorectal tumour with regions annotated by carcinoma
+
+    .. image:: images/carousel_images/rip_1.png
+       :target: _collections/spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html
+       :alt: Demonstration of the discs about transcripts used to compute cross-Ripley's function within a cell, correcting for boundaries
+
+    .. image:: images/carousel_images/ph_1.png
+       :target: _collections/topology/Topology%201%20-%20persistent%20homology.html
+       :alt: Demonstration of the stages of the underlying connectivity in a Vietoris-Rips filteration (topological data analysis) in colorectal epithelium
+
+    .. image:: images/carousel_images/crop_1.png
+       :target: _collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html
+       :alt: Demonstration of a workflow of generating a cropped MuSpAn domain from an existing domain using a hexagonal lattice
+
+    .. image:: images/carousel_images/pcf_1.png
+       :target: _collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html
+       :alt: Demonstration of the annuli about cells used to compute cross-Pair Correlation Function within a region of colon, correcting for boundaries
+
+    .. image:: images/carousel_images/art_1.png
+       :target: _collections/misc/2025%20Math%20Onco%20Art.html
+       :alt: A creatative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels
+
+    .. image:: images/carousel_images/dist_1.png
+       :target: _collections/paper_tutorials/MuSpAn%20-%20Figure_3.html
+       :alt: Visual demonstration of the true shape-shape distance computations implemented in MuSpAn, showing nearest neighbourhoods from orange cells to purple cells.
+
+    .. image:: images/carousel_images/lattice_1.png
+       :target: _collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html
+       :alt: Visualisation of a hexagonal lattice overlaid on a MuSpAn domain with individual hexagons colored by density of neutrophils and Getis Ord of macrophages
+     
+
 While the MuSpAn tutorials are presented within the context of cellular biology, the methods and tools are broadly applicable to any form of spatial data. 
 We hope these examples not only guide you through the software but also spark ideas for using MuSpAn in your own research—whatever your field may be!
+
 
 .. note::
      MuSpAn is a broad framework for spatial analysis and these tutorials only cover a small subset of the available functionality. 
