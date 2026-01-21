@@ -1,0 +1,45 @@
+v1.2.0
+======
+
+We are pleased to announce the release of **version 1.2.0**! This update introduces valuable new features, performance improvements, bug fixes, and enhanced documentation to support a more stable and user-friendly experience.
+
+This release has been tested on Python **3.10** to **3.13**.
+
+New Features
+------------
+
+* **Edge Visualisation**: Introduced custom edge drawing for network visualisations to improve zooming and padding behavior.
+* **Shape Combination**: `combine_shapes` now fully supports a `delete_existing` parameter, enabling cleaner merges by optionally removing pre-existing shapes.
+* **Boundary Estimation**: Added automatic warnings and halts when `estimate_boundary` via `alpha_shapes` results in multiple shape outputs.
+* **Boundary visualisation customisation** : Added `boundary_kwargs` to `visualise` for enhanced control over boundary appearance in plots.
+* **Simplify Shapes**: Now optionally returns object IDs and allows specification of the target collection name for better downstream use.
+
+Optimisations
+-------------
+
+* **Parallel Proximity Computation**: Distance computations for proximity networks with shape-objects have been parallelised for significant speed-ups.
+* **Vectorised TDA Updates**: Persistence updates have been vectorised to enhance performance in topological computations.
+* **Alpha shape Efficiency**: New alpha shape implementation vastly improving efficency by reducing the number of checks for finding shape boundaries and allowing for nested shapes.
+
+
+Bug Fixes
+---------
+
+* **Label Inheritance Fix**: Corrected an issue where labels were reset during object conversion—existing labels now retain their original color mappings.
+* **QCM Tiling Deletion**: Fixed a bug where mislabelled objects in the Quadrat Correlation Matrix prevented default tiling cleanup.
+* **Cell Count Normalisation**: Resolved issue where cell counts were incorrectly normalised by default.
+* **Multiprocessing Stability**: Wrapped network generation in a `try-catch` to avoid multiprocessing issues on UNIX systems.
+* **wPCF index error**: Addressed an index error in the weighted Pair Correlation Function (wPCF) when handling multiple populations in the same domain.
+
+
+Documentation
+-------------
+
+* **New Tutorials**: Added guides on using distance and containment queries to the documentation.
+* **Visualisation Defaults**: Updated the default visualisation settings for network plots to reflect improved edge rendering behavior.
+
+All tutorials and documentation have been updated to reflect the new features and changes in version **1.2.0**.
+
+We sincerely thank all contributors and users who provided feedback to help shape this release. For detailed guidance on upgrading or using the new features, please refer to the full documentation.
+
+Thank you for using MuSpAn!

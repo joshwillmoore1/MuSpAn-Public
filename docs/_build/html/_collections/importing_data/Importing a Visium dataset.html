@@ -1,0 +1,1043 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Importing a Visium dataset &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/importing_data/Importing a Visium dataset';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="This Week in Mathematical Oncology: MuSpAn artwork" href="../misc/2025%20Math%20Onco%20Art.html" />
+    <link rel="prev" title="MuSpAn with Xenium Explorer" href="Importing%20a%20Xenium%20dataset.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Importing a...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Importing-a-Visium-dataset">
+<h1>Importing a Visium dataset<a class="headerlink" href="#Importing-a-Visium-dataset" title="Link to this heading">#</a></h1>
+<p>In this tutorial we will run through an example of importing a sample of Visium data. Writing helper functions to import Visium data is tricky, as the structure of the different datasets produced using Visium have varied file structures (in terms of variable files names, different outputs depending on bin/spot size, etc.). As a result, this tutorial will show you what files to look for to import the data using this helper function. Due to this varied file structure, we have not developed a
+dedicated function as for Xenium, therefore we will require to know a little more about the data organisation of a Visium experiment. (Remember that if you have coordinate data (coordinates of points or shapes) you can always use the standard methods (e.g. <code class="docutils literal notranslate"><span class="pre">add_points</span></code>, <code class="docutils literal notranslate"><span class="pre">add_shapes</span></code>, <code class="docutils literal notranslate"><span class="pre">add_labels</span></code> etc) to import your data in to MuSpAn - this tutorial is just designed to address common requirements when working with Visium data.)</p>
+<p>For this example, we will be using a sample of human colon, which can be downloaded from <a class="reference external" href="https://www.10xgenomics.com/datasets/visium-cytassist-gene-expression-libraries-of-post-xenium-human-colon-cancer-ffpe-using-the-human-whole-transcriptome-probe-set-2-standard">this link</a>. In particular, these data are from human colon cancer samples (FFPE; adenocarcinoma stage IIA) obtained from Avaden Biosciences. This dataset can be used to follow along, or otherwise your own dataset can be used.</p>
+<section id="What-to-look-for-in-a-Visium-dataset-to-import-to-MuSpAn">
+<h2>What to look for in a Visium dataset to import to MuSpAn<a class="headerlink" href="#What-to-look-for-in-a-Visium-dataset-to-import-to-MuSpAn" title="Link to this heading">#</a></h2>
+<p>Once we have downloaded our dataset and saved it to a local directory on your machine, open the dataset folder to check what is inside. For this example, our folder is named ‘Visium CytAssist Gene Expression Libraries of Post-Xenium Human Colon Cancer (FFPE)’. As with our Xenium tutorial, we recommend using the 10x Visium viewer software <a class="reference external" href="https://www.10xgenomics.com/support/software/loupe-browser/latest">Loupe Browser</a> alongside MuSpAn to get an interactive understanding of the dataset that
+is being analysed.</p>
+<p>For now, we will import the spatial and spot clustering data into MuSpAn. For this, we will open our Visum data folder (for me this is <code class="docutils literal notranslate"><span class="pre">path/to/my/data/Visium</span> <span class="pre">CytAssist</span> <span class="pre">Gene</span> <span class="pre">Expression</span> <span class="pre">Libraries</span> <span class="pre">of</span> <span class="pre">Post-Xenium</span> <span class="pre">Human</span> <span class="pre">Colon</span> <span class="pre">Cancer</span> <span class="pre">(FFPE)</span></code>) and find the location of the relevent folders we’ll need. These folders <strong>end</strong> with the are the following:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Folder</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>_spatial.tar.gz</p></td>
+<td><p>Spatial data and information for spot scaling</p></td>
+</tr>
+<tr class="row-odd"><td><p>_analysis.tar.gz</p></td>
+<td><p>Spot cluster information</p></td>
+</tr>
+<tr class="row-even"><td><p>_deconvolution.tar.gz</p></td>
+<td><p>Topic cluster values</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Once we have located all these files, we are ready to import the data. We’ll start with our usual imports and some additonal Python standard librarys that will allow use to extract the relevent data from the Visium files.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary libraries</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Imports to make our plots look nice</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+
+<span class="c1"># Set plot parameters</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">270</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Additional imports to extract the data from the relevant files</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">tarfile</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s start by defining the path to our data, and the number of topics I’d like to import from the deconvolution data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the path to the data directory</span>
+<span class="n">path_to_the_data</span> <span class="o">=</span> <span class="s1">&#39;path/where/you/saved/the/data/Visium CytAssist Gene Expression Libraries of Post-Xenium Human Colon Cancer (FFPE)&#39;</span>
+
+<span class="c1"># Define the number of topics to import from the deconvolution data</span>
+<span class="n">number_of_topics</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</div>
+<p>Next we will find the path for the relevent the folders in the table above.</p>
+<p><strong>Warning!</strong> This is where your datasets may differ in file structure, and the path to each file will have to match the location of where the relevant files are saved with the Visium output file. For this example dataset, it is fairly simple as all folders are located directly in the main data folder. However, depending on the type of experiment they could be tucked away in a deeper folder, so you may have to look for the relevant paths.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the paths to the relevant data files within the dataset directory</span>
+<span class="n">spatial_data_file</span> <span class="o">=</span> <span class="n">path_to_the_data</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CytAssist_FFPE_Human_Colon_Rep1_spatial.tar.gz&#39;</span>
+<span class="n">cluster_data_file</span> <span class="o">=</span> <span class="n">path_to_the_data</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CytAssist_FFPE_Human_Colon_Rep1_analysis.tar.gz&#39;</span>
+<span class="n">deconv_data_file</span> <span class="o">=</span> <span class="n">path_to_the_data</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;CytAssist_FFPE_Human_Colon_Rep1_deconvolution.tar.gz&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>Now let’s import the data. We will use the spot identifier <code class="docutils literal notranslate"><span class="pre">barcode</span></code> to align and link the relevent data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the spatial data tar file</span>
+<span class="n">spatial_tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">spatial_data_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">spatial_tar_folder_name</span> <span class="o">=</span> <span class="n">spatial_tar</span><span class="o">.</span><span class="n">getnames</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Extract the scalefactors_json.json file</span>
+<span class="n">spatial_meta_name</span> <span class="o">=</span> <span class="n">spatial_tar_folder_name</span> <span class="o">+</span> <span class="s1">&#39;/scalefactors_json.json&#39;</span>
+<span class="n">spatial_meta</span> <span class="o">=</span> <span class="n">spatial_tar</span><span class="o">.</span><span class="n">extractfile</span><span class="p">(</span><span class="n">spatial_meta_name</span><span class="p">)</span>
+<span class="n">spatial_meta_dict</span> <span class="o">=</span> <span class="n">spatial_meta</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">spot_centre_scalefactors</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">spatial_meta_dict</span><span class="p">)</span>
+
+<span class="c1"># Get the scale factor and spot diameter from the scalefactors_json.json file</span>
+<span class="n">px_to_dist_scale_factor</span> <span class="o">=</span> <span class="n">spot_centre_scalefactors</span><span class="p">[</span><span class="s1">&#39;regist_target_img_scalef&#39;</span><span class="p">]</span>
+<span class="n">spot_diameter</span> <span class="o">=</span> <span class="n">spot_centre_scalefactors</span><span class="p">[</span><span class="s1">&#39;spot_diameter_fullres&#39;</span><span class="p">]</span>
+
+<span class="c1"># Get the locations and metadata of the spots</span>
+<span class="n">spatial_positions_name</span> <span class="o">=</span> <span class="n">spatial_tar_folder_name</span> <span class="o">+</span> <span class="s1">&#39;/tissue_positions.csv&#39;</span>
+<span class="n">spatial_positions_file</span> <span class="o">=</span> <span class="n">spatial_tar</span><span class="o">.</span><span class="n">extractfile</span><span class="p">(</span><span class="n">spatial_positions_name</span><span class="p">)</span>
+<span class="n">spatial_positions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">spatial_positions_file</span><span class="p">)</span>
+
+<span class="c1"># Open the cluster data tar file</span>
+<span class="n">cluster_tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">cluster_data_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">cluster_tar_folder_name</span> <span class="o">=</span> <span class="n">cluster_tar</span><span class="o">.</span><span class="n">getnames</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Extract the clustering data</span>
+<span class="n">clustering_name</span> <span class="o">=</span> <span class="n">cluster_tar_folder_name</span> <span class="o">+</span> <span class="s1">&#39;/clustering/gene_expression_graphclust/clusters.csv&#39;</span>
+<span class="n">clustering_file</span> <span class="o">=</span> <span class="n">cluster_tar</span><span class="o">.</span><span class="n">extractfile</span><span class="p">(</span><span class="n">clustering_name</span><span class="p">)</span>
+<span class="n">clustering_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">clustering_file</span><span class="p">)</span>
+<span class="n">clustering_csv</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">clustering_csv</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">])</span>
+
+<span class="c1"># Open the deconvolution data tar file</span>
+<span class="n">deconv_tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">deconv_data_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">deconv_folders</span> <span class="o">=</span> <span class="n">deconv_tar</span><span class="o">.</span><span class="n">getnames</span><span class="p">()</span>
+<span class="n">deconv_folders_name</span> <span class="o">=</span> <span class="n">deconv_folders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Extract the deconvolution data for the specified number of topics</span>
+<span class="n">this_deconv_name</span> <span class="o">=</span> <span class="n">deconv_folders_name</span> <span class="o">+</span> <span class="s1">&#39;/deconvolution_k&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number_of_topics</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/deconvolved_spots_k&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">number_of_topics</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span>
+<span class="k">if</span> <span class="n">this_deconv_name</span> <span class="ow">in</span> <span class="n">deconv_folders</span><span class="p">:</span>
+    <span class="n">deconv_file</span> <span class="o">=</span> <span class="n">deconv_tar</span><span class="o">.</span><span class="n">extractfile</span><span class="p">(</span><span class="n">this_deconv_name</span><span class="p">)</span>
+    <span class="n">deconv_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">deconv_file</span><span class="p">)</span>
+
+    <span class="c1"># Convert the deconvolution data to numeric values</span>
+    <span class="k">for</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">deconv_csv</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">col_name</span> <span class="o">!=</span> <span class="s1">&#39;Barcode&#39;</span><span class="p">:</span>
+            <span class="n">deconv_csv</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">deconv_csv</span><span class="p">[</span><span class="n">col_name</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error: Number of topics is not stored in Visium experiment data. No deconvolution data has been added to the domain.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>As we only want to analyse the data that is contained within the tissue, let’s filter out any spots (and other data) that are not contained within the tissue.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a mask for spots that are in the tissue</span>
+<span class="n">spot_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">spatial_positions</span><span class="o">.</span><span class="n">in_tissue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Filter spots that are in the tissue and convert their positions to the correct scale</span>
+<span class="n">spot_centres</span> <span class="o">=</span> <span class="n">px_to_dist_scale_factor</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">spatial_positions</span><span class="o">.</span><span class="n">pxl_col_in_fullres</span><span class="p">,</span> <span class="o">-</span><span class="n">spatial_positions</span><span class="o">.</span><span class="n">pxl_row_in_fullres</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">spot_centres</span> <span class="o">=</span> <span class="n">spot_centres</span><span class="p">[</span><span class="n">spot_mask</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="c1"># Filter barcodes that are in the tissue</span>
+<span class="n">barcode_id</span> <span class="o">=</span> <span class="n">spatial_positions</span><span class="o">.</span><span class="n">barcode</span><span class="p">[</span><span class="n">spot_mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>In the next step, we’ll match the relevant cluster and deconvolution data to the order of each spot.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize lists and dictionary to store cluster IDs and deconvolution data</span>
+<span class="n">cluster_id</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">deconv</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Setting up the deconvolution dictionary with empty lists for each topic</span>
+<span class="k">for</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">deconv_csv</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">col_name</span> <span class="o">!=</span> <span class="s1">&#39;Barcode&#39;</span><span class="p">:</span>
+        <span class="n">deconv</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># For each barcode ID, find the associated cluster and deconvolution data</span>
+<span class="k">for</span> <span class="n">b_id</span> <span class="ow">in</span> <span class="n">barcode_id</span><span class="p">:</span>
+    <span class="c1"># Find the index of the current barcode in the clustering data</span>
+    <span class="n">cluster_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">clustering_csv</span><span class="p">[</span><span class="s1">&#39;Barcode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">b_id</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Append the corresponding cluster ID to the cluster_id list</span>
+    <span class="n">cluster_id</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clustering_csv</span><span class="p">[</span><span class="s1">&#39;Cluster&#39;</span><span class="p">][</span><span class="n">cluster_index</span><span class="p">])</span>
+
+    <span class="c1"># Find the index of the current barcode in the deconvolution data</span>
+    <span class="n">deconv_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">deconv_csv</span><span class="p">[</span><span class="s1">&#39;Barcode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">b_id</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Append the corresponding deconvolution data to the deconv dictionary</span>
+    <span class="k">for</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">deconv_csv</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">col_name</span> <span class="o">!=</span> <span class="s1">&#39;Barcode&#39;</span><span class="p">:</span>
+            <span class="n">deconv</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">deconv_csv</span><span class="p">[</span><span class="n">col_name</span><span class="p">][</span><span class="n">deconv_index</span><span class="p">])</span>
+
+<span class="c1"># Create a list of spot diameters to use as labels</span>
+<span class="n">spot_diameter_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">spot_diameter</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">spot_centres</span><span class="p">)</span>
+
+<span class="c1"># Convert barcode_id to a list</span>
+<span class="n">barcode_id</span> <span class="o">=</span> <span class="n">barcode_id</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Now all our data is extracted and organised, we can create an empty MuSpAn domain, and add the Visium data using the standard methods (<code class="docutils literal notranslate"><span class="pre">add_points</span></code> etc).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a MuSpAn domain for the Visium dataset</span>
+<span class="n">vis_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;Visium CytAssist Gene Expression Libraries of Post-Xenium Human Colon Cancer (FFPE)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add the spot positions to the domain as point objects</span>
+<span class="n">vis_domain</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">spot_centres</span><span class="p">,</span> <span class="s1">&#39;Spots&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add the barcode labels to the domain</span>
+<span class="n">vis_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;Barcode&#39;</span><span class="p">,</span> <span class="n">barcode_id</span><span class="p">,</span> <span class="s1">&#39;Spots&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add the spot cluster labels to the domain</span>
+<span class="n">vis_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;Spot cluster&#39;</span><span class="p">,</span> <span class="n">cluster_id</span><span class="p">,</span> <span class="s1">&#39;Spots&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add the spot diameter labels to the domain as continuous labels</span>
+<span class="n">vis_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;Spot diameter&#39;</span><span class="p">,</span> <span class="n">spot_diameter_labels</span><span class="p">,</span> <span class="s1">&#39;Spots&#39;</span><span class="p">,</span> <span class="n">label_type</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add the deconvolution data to the domain as continuous labels</span>
+<span class="k">for</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">deconv_csv</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">col_name</span> <span class="o">!=</span> <span class="s1">&#39;Barcode&#39;</span><span class="p">:</span>
+        <span class="n">vis_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">col_name</span><span class="p">,</span> <span class="n">deconv</span><span class="p">[</span><span class="n">col_name</span><span class="p">],</span> <span class="s1">&#39;Spots&#39;</span><span class="p">,</span> <span class="n">label_type</span><span class="o">=</span><span class="s1">&#39;continuous&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="c1"># Print the domain to ensure everything is as expected</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vis_domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: Visium CytAssist Gene Expression Libraries of Post-Xenium Human Colon Cancer (FFPE)
+Number of objects: 6487
+Collections: [&#39;Spots&#39;]
+Labels: [&#39;Barcode&#39;, &#39;Spot cluster&#39;, &#39;Spot diameter&#39;, &#39;Topic 1&#39;, &#39;Topic 2&#39;, &#39;Topic 3&#39;, &#39;Topic 4&#39;, &#39;Topic 5&#39;, &#39;Topic 6&#39;, &#39;Topic 7&#39;, &#39;Topic 8&#39;, &#39;Topic 9&#39;, &#39;Topic 10&#39;, &#39;Topic 11&#39;, &#39;Topic 12&#39;, &#39;Topic 13&#39;, &#39;Topic 14&#39;, &#39;Topic 15&#39;, &#39;Topic 16&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>We can see we’ve added our spot barcode IDs, clusters, and diameters to the each point object. Also, each deconvolution topic ID has been added as an independent continuous label. Let’s make sure the data looks as we’d expect from using the Loupe Browser software.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize the Visium domain, coloring by spot cluster labels</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">vis_domain</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Spot cluster&#39;</span><span class="p">),</span>
+    <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2700x2700 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_importing_data_Importing_a_Visium_dataset_18_1.png" src="../../_images/_collections_importing_data_Importing_a_Visium_dataset_18_1.png" />
+</div>
+</div>
+<p>We should also check that the deconvolution data agrees with what we would expect. Let’s plot this to check.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize the Visium domain, coloring by Topic 16</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">vis_domain</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Topic 16&#39;</span><span class="p">),</span>
+    <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2700x2700 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_importing_data_Importing_a_Visium_dataset_20_1.png" src="../../_images/_collections_importing_data_Importing_a_Visium_dataset_20_1.png" />
+</div>
+</div>
+<p>Great, now we have our spots with their associated data and are ready to conduct some spatial analysis.</p>
+</section>
+<section id="Extra-information:-network-analysis">
+<h2>Extra information: network analysis<a class="headerlink" href="#Extra-information:-network-analysis" title="Link to this heading">#</a></h2>
+<p>As the Visium data is naturally embedded with a characteristic spatial length scale (spot diameter), we can easily use this to define networks that define spot neighbourhoods. For example, we can define a Delaunay network where the maximum edge length in the spatial network is matched to the radius of each spot.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the radius of each spot from the spot diameter</span>
+<span class="n">spot_radius</span> <span class="o">=</span> <span class="n">vis_domain</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="s1">&#39;Spot diameter&#39;</span><span class="p">][</span><span class="s1">&#39;labels&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="c1"># Generate a Delaunay-based network for the Visium domain</span>
+<span class="c1"># The network is distance-weighted with edges limited by the spot radius</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">vis_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Spot network&#39;</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;delaunay&#39;</span><span class="p">,</span>
+    <span class="n">distance_weighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="n">spot_radius</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>This network (which, following the documentation and tutorials on networks, is also stored in our domain <code class="docutils literal notranslate"><span class="pre">vis_domain</span></code>) will allow us to analyse the connectivity of adjacent spots (neighbourhood analysis) and their wider spatial structure. Let’s take a look at the resulting network.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for the plot with specified size</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize the network of spots in the Visium domain</span>
+<span class="c1"># Color the spots by their cluster labels, without adding a color bar</span>
+<span class="c1"># Set marker size and edge width for better visualization</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_network</span><span class="p">(</span>
+    <span class="n">vis_domain</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;Spot network&#39;</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Spot cluster&#39;</span><span class="p">),</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">edge_width</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_importing_data_Importing_a_Visium_dataset_26_0.png" src="../../_images/_collections_importing_data_Importing_a_Visium_dataset_26_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#What-to-look-for-in-a-Visium-dataset-to-import-to-MuSpAn">What to look for in a Visium dataset to import to MuSpAn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Extra-information:-network-analysis">Extra information: network analysis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

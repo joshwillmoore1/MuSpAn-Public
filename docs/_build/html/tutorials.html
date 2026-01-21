@@ -1,0 +1,1162 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tutorials &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/nbsphinx-gallery.css?v=26227f6e" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-carousel.min.css?v=fd277c8b" />
+    <link rel="stylesheet" type="text/css" href="_static/carousel-custom.css?v=d9fbae52" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/bootstrap-carousel.min.js?v=9a6c5d3e"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Making your first domain" href="_collections/getting_started/Getting%20Started%20-%201%20-%20Domains.html" />
+    <link rel="prev" title="object_to_object_distance_matrix" href="generated/muspan.helpers.object_to_object_distance_matrix.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "name": "Spatial Data Analysis Tutorials",
+                "description": "A collection of tutorials for spatial data analysis using MuSpAn, including methods from spatial statistics, network analysis, topology, optimal transport, and more. Provides a gentle introduction to the theory and practical application to spatial data using MuSpAn.",
+                "numberOfItems": 48,
+                "itemListElement": [
+                    {
+                        "@type": "HowTo",
+                        "name": "The cross pair correlation function (cross-PCF)",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html",
+                        "description": "Learn about the pair correlation function as an interpretable alternative to the Ripley's K function and how to compute this on spatial data with MuSpAn.",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "learningResourceType": "Tutorial",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_spatial_analysis_methods_Spatial_stats_-_1_-_pcf_6_0.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Computing and interpreting Ripley’s K function",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html",
+                        "description": "Learn about Ripley’s K function in the context of spatial biology for intrepretable analysis how to compute this on spatial data with MuSpAn.",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "learningResourceType": "Tutorial",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_spatial_analysis_methods_Spatial_stats_-_5_-_RipleysK_4_1.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+
+                    {
+                        "@type": "HowTo",
+                        "name": "Spatial autocorrelation (Hotspot Analysis)",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html",
+                        "description": "Learn about Moran's I and the Getis-Ord statistics as methods for identifying the existence of clustering in spatial data and locating hotspots and cold spots of activity.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "learningResourceType": "Tutorial",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_22_1.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Neighbourhood clustering",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html",
+                        "description": "Learn how about and compute the variety of approaches to neighbourhood analysis in spatial data using MuSpAn. Reproduce existing methods and design your own. Generate spatially-informed labels to objects.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_29_1.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Topological data analysis (TDA)",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/topology/Topology%201%20-%20persistent%20homology.html",
+                        "description": "An introduction to persistent homology from topological data analysis and learn how to compute persistent homology and interpret results on spatial data with MuSpAn.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_topology_Topology_1_-_persistent_homology_10_0.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Using MuSpAn with Xenium data",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/importing_data/Importing%20a%20Xenium%20dataset.html",
+                        "description": "A tutorial demonstrating how to export Xenium data from Xenium Explorer to a MuSpAn domain.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/Xen_exp_tut.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    }
+                ]
+            }
+        </script>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="_collections/misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Tutorials</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tutorials">
+<span id="id1"></span><h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h1>
+<p>A solid understanding of MuSpAn is crucial to fully leveraging its capabilities in spatial data analysis.
+To build a good foundational understanding of MuSpAn, we recommend starting with the Getting Started and Queries tutorial sets.
+Beyond this, each tutorial is largely self-contained, so you can dive into specific topics independently as needed.
+This flexible approach ensures you can learn at your own pace while focusing on the areas most relevant to your project.</p>
+<div class="carousel slide carousel-fade carousel-dark" id="carousel-0">
+<div class="carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="active scc-shadow-indicator" data-bs-slide-to="0" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 2" class="scc-shadow-indicator" data-bs-slide-to="1" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 3" class="scc-shadow-indicator" data-bs-slide-to="2" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 4" class="scc-shadow-indicator" data-bs-slide-to="3" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 5" class="scc-shadow-indicator" data-bs-slide-to="4" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 6" class="scc-shadow-indicator" data-bs-slide-to="5" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 7" class="scc-shadow-indicator" data-bs-slide-to="6" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 8" class="scc-shadow-indicator" data-bs-slide-to="7" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 9" class="scc-shadow-indicator" data-bs-slide-to="8" data-bs-target="#carousel-0" type="button"></button>
+</div>
+<div class="carousel-inner">
+<div class="carousel-item active">
+<a class="reference external image-reference" href="_collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html"><img alt="Conversion of communities of contiguous cells into shape objects using MuSpAn" class="d-block w-100" src="_images/comm_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/paper_tutorials/MuSpAn%20-%20Figure_6.html"><img alt="Computation of the Topographical Correlation Map between fibroblasts and macrophages in a colorectal tumour with regions annotated by carcinoma" class="d-block w-100" src="_images/tcm_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html"><img alt="Demonstration of the discs about transcripts used to compute cross-Ripley's function within a cell, correcting for boundaries" class="d-block w-100" src="_images/rip_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/topology/Topology%201%20-%20persistent%20homology.html"><img alt="Demonstration of the stages of the underlying connectivity in a Vietoris-Rips filteration (topological data analysis) in colorectal epithelium" class="d-block w-100" src="_images/ph_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html"><img alt="Demonstration of a workflow of generating a cropped MuSpAn domain from an existing domain using a hexagonal lattice" class="d-block w-100" src="_images/crop_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html"><img alt="Demonstration of the annuli about cells used to compute cross-Pair Correlation Function within a region of colon, correcting for boundaries" class="d-block w-100" src="_images/pcf_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/misc/2025%20Math%20Onco%20Art.html"><img alt="A creatative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels" class="d-block w-100" src="_images/art_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/paper_tutorials/MuSpAn%20-%20Figure_3.html"><img alt="Visual demonstration of the true shape-shape distance computations implemented in MuSpAn, showing nearest neighbourhoods from orange cells to purple cells." class="d-block w-100" src="_images/dist_1.png" /></a>
+</div>
+<div class="carousel-item">
+<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html"><img alt="Visualisation of a hexagonal lattice overlaid on a MuSpAn domain with individual hexagons colored by density of neutrophils and Getis Ord of macrophages" class="d-block w-100" src="_images/lattice_1.png" /></a>
+</div>
+</div>
+<button class="carousel-control-prev scc-shadow-control" data-bs-slide="prev" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="carousel-control-prev-icon"></span>
+<span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next scc-shadow-control" data-bs-slide="next" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="carousel-control-next-icon"></span>
+<span class="visually-hidden">Next</span>
+</button>
+</div>
+<p>While the MuSpAn tutorials are presented within the context of cellular biology, the methods and tools are broadly applicable to any form of spatial data.
+We hope these examples not only guide you through the software but also spark ideas for using MuSpAn in your own research—whatever your field may be!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MuSpAn is a broad framework for spatial analysis and these tutorials only cover a small subset of the available functionality.
+We’re working hard to expand the tutorial collection, so if you have a specific topic in mind that you’d like to see covered, <a class="reference external" href="https://app.gitter.im/#/room/#muspan-community:gitter.im">please let us know!</a></p>
+</div>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%201%20-%20Domains.html">
+  <div><img alt="" src="./_images/_collections_getting_started_Getting_Started_-_1_-_Domains_12_1.png"></div>
+  <div>Making your first domain</div>
+</a>
+<a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">
+  <div><img alt="" src="./_images/_collections_getting_started_Getting_Started_-_2_-_Introducing_labels_18_1.png"></div>
+  <div>Importing data from CSV files and labels</div>
+</a>
+<a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%203%20-%20Shapes.html">
+  <div><img alt="" src="./_images/_collections_getting_started_Getting_Started_-_3_-_Shapes_8_2.png"></div>
+  <div>Shapes</div>
+</a>
+<a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">
+  <div><img alt="" src="./_images/_collections_getting_started_Getting_Started_-_4_-_Saving_and_loading_domains_2_0.png"></div>
+  <div>Saving and loading domains</div>
+</a>
+<a class="reference internal" href="_collections/getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_getting_started_Getting_Started_-_5_-_Estimating_boundaries_10_1.png"></div>
+  <div>Estimating domain boundaries</div>
+</a>
+</div>
+</div>
+</section>
+<section id="queries">
+<h2>Queries<a class="headerlink" href="#queries" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/queries/Queries%20-%201%20-%20What%20is%20a%20query.html">
+  <div><img alt="" src="./_images/_collections_queries_Queries_-_1_-_What_is_a_query_8_1.png"></div>
+  <div>What is a query?</div>
+</a>
+<a class="reference internal" href="_collections/queries/Queries%20-%202%20-%20understanding%20a%20query.html">
+  <div><img alt="" src="./_images/_collections_queries_Queries_-_2_-_understanding_a_query_4_1.png"></div>
+  <div>Understanding a query</div>
+</a>
+<a class="reference internal" href="_collections/queries/Queries%20-%203%20-%20combining%20queries.html">
+  <div><img alt="" src="./_images/_collections_queries_Queries_-_3_-_combining_queries_10_1.png"></div>
+  <div>Combining queries: query containers</div>
+</a>
+<a class="reference internal" href="_collections/queries/Queries%20-%204%20-%20Containing%20query.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_queries_Queries_-_4_-_Containing_query_6_1.png"></div>
+  <div>Containment queries</div>
+</a>
+<a class="reference internal" href="_collections/queries/Queries%20-%205%20-%20Distance-based%20query.html">
+  <div><img alt="" src="./_images/_collections_queries_Queries_-_5_-_Distance-based_query_8_1.png"></div>
+  <div>Distance-based queries</div>
+</a>
+</div>
+</div>
+</section>
+<section id="working-with-objects">
+<h2>Working with Objects<a class="headerlink" href="#working-with-objects" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">
+  <div><img alt="" src="./_images/_collections_working_with_objects_WWO_-_1_-_shapes_to_points_6_1.png"></div>
+  <div>Converting shapes into points 1: Shapes to centroids</div>
+</a>
+<a class="reference internal" href="_collections/working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">
+  <div><img alt="" src="./_images/_collections_working_with_objects_WWO_-_2_-_shapes_to_points_2_10_1.png"></div>
+  <div>Converting shapes into points 2: Decomposing a shape to its vertices</div>
+</a>
+<a class="reference internal" href="_collections/working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">
+  <div><img alt="" src="./_images/_collections_working_with_objects_WWO_-_3_-_points_to_shape_3_8_1.png"></div>
+  <div>Converting points into a shape 1: Convex hull</div>
+</a>
+<a class="reference internal" href="_collections/working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">
+  <div><img alt="" src="./_images/_collections_working_with_objects_WWO_-_4_-_points_to_shape_1_10_1.png"></div>
+  <div>Converting points into shapes 2: Alpha shapes</div>
+</a>
+<a class="reference internal" href="_collections/working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">
+  <div><img alt="" src="./_images/_collections_working_with_objects_WWO_-_5_-_points_to_shape_2_6_1.png"></div>
+  <div>Converting points into shapes 3: Voronoi tessellation</div>
+</a>
+</div>
+</div>
+</section>
+<section id="spatial-networks">
+<h2>Spatial Networks<a class="headerlink" href="#spatial-networks" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_spatial_networks_Spatial_net_-_Creating_networks_1_15_1.png"></div>
+  <div>Creating networks from spatial data 1: Delaunay</div>
+</a>
+<a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_spatial_networks_Spatial_net_-_Creating_networks_2_13_1.png"></div>
+  <div>Creating networks from spatial data 2: Proximity</div>
+</a>
+<a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_spatial_networks_Spatial_net_-_Creating_networks_3_6_1.png"></div>
+  <div>Creating networks from spatial data 3: K-Nearest Neighbours</div>
+</a>
+<a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_spatial_networks_Spatial_net_-_Subnetworks_from_queries_14_1.png"></div>
+  <div>Subnetworks using queries</div>
+</a>
+</div>
+</div>
+</section>
+<section id="spatial-statistics">
+<h2>Spatial Statistics<a class="headerlink" href="#spatial-statistics" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">
+  <div><img alt="" src="./_images/_collections_spatial_analysis_methods_Spatial_stats_-_1_-_pcf_6_0.png"></div>
+  <div>The cross pair correlation function (cross-PCF)</div>
+</a>
+<a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">
+  <div><img alt="" src="./_images/_collections_spatial_analysis_methods_Spatial_stats_-_2_-_boundary_corrections_10_0.png"></div>
+  <div>Selecting boundaries for spatial statistics</div>
+</a>
+<a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">
+  <div><img alt="" src="./_images/_collections_spatial_analysis_methods_Spatial_stats_-_3_-_wPCF_4_1.png"></div>
+  <div>The weighted pair correlation function (wPCF)</div>
+</a>
+<a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">
+  <div><img alt="" src="./_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_22_1.png"></div>
+  <div>Spatial Autocorrelation (Hotspot Analysis)</div>
+</a>
+<a class="reference internal" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_spatial_analysis_methods_Spatial_stats_-_5_-_RipleysK_4_1.png"></div>
+  <div>Computing and interpreting Ripley’s K function</div>
+</a>
+</div>
+</div>
+</section>
+<section id="spatial-network-analysis">
+<h2>Spatial Network Analysis<a class="headerlink" href="#spatial-network-analysis" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_29_1.png"></div>
+  <div>Neighbourhood clustering (categorical labels)</div>
+</a>
+<a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">
+  <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_4_-_neighbourhood_analysis_continuous_10_1.png"></div>
+  <div>Neighbourhood clustering (numeric labels)</div>
+</a>
+<a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">
+  <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_0.png"></div>
+  <div>Tuning and Visualising Neighbourhood Clusters</div>
+</a>
+<a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">
+  <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_3_-_graph_filtrations_10_1.png"></div>
+  <div>Network filtrations</div>
+</a>
+<a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html">
+  <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_2_-_community_detection_16_1.png"></div>
+  <div>Community detection</div>
+</a>
+<a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Comparing%20networks.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_spatial_networks_Spatial_net_-_Comparing_networks_20_0.png"></div>
+  <div>Comparing networks</div>
+</a>
+</div>
+</div>
+</section>
+<section id="topological-data-analysis">
+<h2>Topological Data Analysis<a class="headerlink" href="#topological-data-analysis" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/topology/Topology%201%20-%20persistent%20homology.html">
+  <div><img alt="" src="./_images/_collections_topology_Topology_1_-_persistent_homology_10_0.png"></div>
+  <div>Persistent homology - Vietoris-Rips filtration</div>
+</a>
+<a class="reference internal" href="_collections/topology/Topology%202%20-%20level%20set%20filtration.html">
+  <div><img alt="" src="./_images/_collections_topology_Topology_2_-_level_set_filtration_7_1.png"></div>
+  <div>Persistent homology - Level-set filtration</div>
+</a>
+<a class="reference internal" href="_collections/topology/Topology%203%20-%20persistence%20vectorisation.html">
+  <div><img alt="" src="./_images/_collections_topology_Topology_3_-_persistence_vectorisation_8_1.png"></div>
+  <div>Persistent homology - Vectorisation</div>
+</a>
+</div>
+</div>
+</section>
+<section id="region-based-analysis">
+<h2>Region-based Analysis<a class="headerlink" href="#region-based-analysis" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/region_based_analysis/generating_hexgrids.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_region_based_analysis_generating_hexgrids_4_1.png"></div>
+  <div>Tiling a domain 1: Hexagonal lattice</div>
+</a>
+<a class="reference internal" href="_collections/region_based_analysis/generating_quadrats.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_region_based_analysis_generating_quadrats_4_1.png"></div>
+  <div>Tiling a domain 2: Quadrats</div>
+</a>
+<a class="reference internal" href="_collections/region_based_analysis/quadrat_correlation.html">
+  <div><img alt="" src="./_images/_collections_region_based_analysis_quadrat_correlation_19_0.png"></div>
+  <div>Quadrat correlation analysis</div>
+</a>
+</div>
+</div>
+</section>
+<section id="distribution-analysis">
+<h2>Distribution Analysis<a class="headerlink" href="#distribution-analysis" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/distribution_analysis/Distribution%201%20-%20KDE.html">
+  <div><img alt="" src="./_images/_collections_distribution_analysis_Distribution_1_-_KDE_8_0.png"></div>
+  <div>Converting points into a continuum</div>
+</a>
+<a class="reference internal" href="_collections/distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">
+  <div><img alt="" src="./_images/_collections_distribution_analysis_Distribution_2_-_Distributions_in_shapes_6_0.png"></div>
+  <div>Distributions within shapes</div>
+</a>
+<a class="reference internal" href="_collections/distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">
+  <div><img alt="" src="./_images/_collections_distribution_analysis_Distribution_3_-_Comparing_distributions_8_1.png"></div>
+  <div>Comparing distributions (KL-divergence)</div>
+</a>
+</div>
+</div>
+</section>
+<section id="quantifying-morphology">
+<h2>Quantifying Morphology<a class="headerlink" href="#quantifying-morphology" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/geometry/geometry%20-%201%20-%20standard%20metrics.html">
+  <div><img alt="" src="./_images/_collections_geometry_geometry_-_1_-_standard_metrics_10_1.png"></div>
+  <div>Standard shape descriptors</div>
+</a>
+<a class="reference internal" href="_collections/geometry/geometry%20-%202%20-%20principle%20axis.html">
+  <div><img alt="" src="./_images/_collections_geometry_geometry_-_2_-_principle_axis_8_1.png"></div>
+  <div>Shape orientation (principle axis)</div>
+</a>
+</div>
+</div>
+</section>
+<section id="workflows">
+<h2>Workflows<a class="headerlink" href="#workflows" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">
+  <div><img alt="" src="./_images/_collections_workflows_Workflows_-_1_-_Cropping_a_domain_25_1.png"></div>
+  <div>Cropping a domain</div>
+</a>
+<a class="reference internal" href="_collections/workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">
+  <div><img alt="" src="./_images/_collections_workflows_Workflows_-_2_-_Domain_to_csv_4_1.png"></div>
+  <div>Export a domain as csv (and dataframe)</div>
+</a>
+</div>
+</div>
+</section>
+<section id="importing-data-from-specific-platforms">
+<h2>Importing Data from Specific Platforms<a class="headerlink" href="#importing-data-from-specific-platforms" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/importing_data/Importing%20data%20from%20QuPath.html">
+  <div><img alt="" src="./_images/_collections_importing_data_Importing_data_from_QuPath_8_1.png"></div>
+  <div>MuSpAn with QuPath</div>
+</a>
+<a class="reference internal" href="_collections/importing_data/Importing%20a%20spatialData%20dataset.html">
+  <div><img alt="" src="./_images/_collections_importing_data_Importing_a_spatialData_dataset_14_1.png"></div>
+  <div>Importing a SpatialData dataset</div>
+</a>
+<a class="reference internal" href="_collections/importing_data/Importing%20a%20Xenium%20dataset.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_importing_data_Importing_a_Xenium_dataset_12_1.png"></div>
+  <div>MuSpAn with Xenium Explorer</div>
+</a>
+<a class="reference internal" href="_collections/importing_data/Importing%20a%20Visium%20dataset.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_importing_data_Importing_a_Visium_dataset_20_1.png"></div>
+  <div>Importing a Visium dataset</div>
+</a>
+</div>
+</div>
+</section>
+<section id="extras">
+<h2>Extras<a class="headerlink" href="#extras" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<div class="nbsphinx-gallery">
+<a class="reference internal" href="_collections/misc/2025%20Math%20Onco%20Art.html">
+  <div><img alt="" src="./_images/_collections_misc_2025_Math_Onco_Art_17_0.png"></div>
+  <div>This Week in Mathematical Oncology: MuSpAn artwork</div>
+</a>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#queries">Queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-objects">Working with Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-networks">Spatial Networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-statistics">Spatial Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-network-analysis">Spatial Network Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topological-data-analysis">Topological Data Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#region-based-analysis">Region-based Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-analysis">Distribution Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-morphology">Quantifying Morphology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflows">Workflows</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-data-from-specific-platforms">Importing Data from Specific Platforms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extras">Extras</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

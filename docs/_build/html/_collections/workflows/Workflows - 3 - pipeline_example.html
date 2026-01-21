@@ -1,0 +1,1166 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Aggregating statistics &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/workflows/Workflows - 3 - pipeline_example';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Aggregating...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Aggregating-statistics">
+<h1>Aggregating statistics<a class="headerlink" href="#Aggregating-statistics" title="Link to this heading">#</a></h1>
+<div class="line-block">
+<div class="line">In this tutorial, we’ll be working with data from <strong>Schürch (Cell, 2020)</strong> <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0092867420308709#abs0020">https://www.sciencedirect.com/science/article/pii/S0092867420308709#abs0020</a> —</div>
+<div class="line"><em>“Coordinated cellular neighborhoods orchestrate antitumoral immunity at the colorectal cancer invasive front.”</em></div>
+</div>
+<p>This dataset was generated using <strong>CODEX (CO-Detection by Indexing)</strong>, a highly multiplexed imaging technology that enables spatially resolved, single-cell profiling of many protein markers within intact tissue sections.</p>
+<hr class="docutils" />
+<section id="🧫-Data-summary">
+<h2>🧫 Data summary<a class="headerlink" href="#🧫-Data-summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>35 patients</strong> with colorectal cancer</p></li>
+<li><p><strong>140 tissue microarray (TMA) cores</strong>, sampled from regions near the <strong>invasive front</strong> of each tumour</p></li>
+<li><p>Each row in the dataset corresponds to a <strong>single cell</strong>, annotated with:</p>
+<ul>
+<li><p><strong>Spatial coordinates (X, Y)</strong></p></li>
+<li><p><strong>Cell type</strong> (from multiplexed immunofluorescence clustering)</p></li>
+<li><p><strong>TMA core / domain ID</strong></p></li>
+<li><p><strong>Patient group information</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="🧠-Biological-context">
+<h2>🧠 Biological context<a class="headerlink" href="#🧠-Biological-context" title="Link to this heading">#</a></h2>
+<p>The study identified two key immune microenvironment patterns:</p>
+<ul class="simple">
+<li><p><strong>Crohn’s-like reaction (CLR)</strong> — characterised by organised immune cell aggregates and a coordinated anti-tumour response.</p></li>
+<li><p><strong>Diffuse inflammatory infiltration (DII)</strong> — showing a more scattered, less coordinated immune cell presence.</p></li>
+</ul>
+<p>Patients exhibiting <strong>CLR</strong> have <strong>significantly better overall survival</strong> compared to those with <strong>DII</strong>.</p>
+<hr class="docutils" />
+<p>We’ll use this dataset to reproduce and extend aspects of the Nolan neighbourhood analysis, exploring how spatial organisation and cellular neighbourhoods can reveal functional structure within the tumour microenvironment.</p>
+</section>
+<hr class="docutils" />
+<section id="Data-Information">
+<h2>Data Information<a class="headerlink" href="#Data-Information" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Each row represents a <strong>single cell</strong>.</p></li>
+<li><p><strong>``spots``</strong> – unique ID for each TMA.</p></li>
+<li><p><strong>``groups``</strong> – patient group ID (<code class="docutils literal notranslate"><span class="pre">1</span></code> for CLR or <code class="docutils literal notranslate"><span class="pre">2</span></code> for DII).</p></li>
+<li><p><strong>``ClusterName``</strong> – cell type, as determined by clustering of immunofluorescence per cell.</p></li>
+<li><p><strong>``X:X``</strong> – x-coordinate of the cell.</p></li>
+<li><p><strong>``Y:Y``</strong> – y-coordinate of the cell.</p></li>
+</ul>
+<hr class="docutils" />
+<p>We’re providing the <strong>full dataset</strong> for this analysis so you can <strong>identify and extract only the relevant information</strong> required to address our questions.</p>
+</section>
+<section id="Aim-of-the-analysis">
+<h2>Aim of the analysis<a class="headerlink" href="#Aim-of-the-analysis" title="Link to this heading">#</a></h2>
+<p>We want to quantify the spatial association of X to Y</p>
+<ol class="arabic simple">
+<li><p><strong>Load the TMA data</strong> into a DataFrame.</p></li>
+<li><p><strong>Create domains</strong> for each TMA — be sure to include a way to identify groups (for example, using the domain name).</p></li>
+<li><p><strong>Run neighbourhood clustering</strong> across all samples.</p></li>
+<li><p><strong>Identify neighbourhood adjancecy</strong> by converting neighbourhoods to shapes</p></li>
+<li><p><strong>Compare groups</strong> in terms of neighbourhood composition in each sample and neighbourhood adjacency</p></li>
+<li><p><strong>Save the MuSpAn domains</strong> (either as <code class="docutils literal notranslate"><span class="pre">.muspan</span></code> files or as a <code class="docutils literal notranslate"><span class="pre">.csv</span></code>).</p></li>
+</ol>
+<p>💡 <em>Don’t forget to update the boundary for each core if needed.</em> Think loops for multiple samples!</p>
+<section id="Load-the-TMA-data">
+<h3>Load the TMA data<a class="headerlink" href="#Load-the-TMA-data" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">nolan_tma_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://docs.muspan.co.uk/workshops/data_for_workshops/Nolan_2020_data%201.csv&quot;</span><span class="p">)</span>
+<span class="n">nolan_tma_dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>CellID</th>
+      <th>ClusterID</th>
+      <th>EventID</th>
+      <th>File Name</th>
+      <th>Region</th>
+      <th>TMA_AB</th>
+      <th>TMA_12</th>
+      <th>Index in File</th>
+      <th>groups</th>
+      <th>...</th>
+      <th>CD68+Ki67+</th>
+      <th>CD68+PD-1+</th>
+      <th>CD8+ICOS+</th>
+      <th>CD8+Ki67+</th>
+      <th>CD8+PD-1+</th>
+      <th>Treg-ICOS+</th>
+      <th>Treg-Ki67+</th>
+      <th>Treg-PD-1+</th>
+      <th>neighborhood number final</th>
+      <th>neighborhood name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>10668</td>
+      <td>0</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>9.0</td>
+      <td>Granulocyte enriched</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10668</td>
+      <td>4</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>Macrophage enriched</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2</td>
+      <td>10668</td>
+      <td>5</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>Immune-infiltrated stroma</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>3</td>
+      <td>10668</td>
+      <td>6</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>6</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>Immune-infiltrated stroma</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>4</td>
+      <td>10668</td>
+      <td>30</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>30</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>Macrophage enriched</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>258380</th>
+      <td>258380</td>
+      <td>258380</td>
+      <td>10664</td>
+      <td>216709</td>
+      <td>reg057_B</td>
+      <td>reg057</td>
+      <td>B</td>
+      <td>2</td>
+      <td>1002</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>5.0</td>
+      <td>Follicle</td>
+    </tr>
+    <tr>
+      <th>258381</th>
+      <td>258381</td>
+      <td>258381</td>
+      <td>10664</td>
+      <td>222124</td>
+      <td>reg059_A</td>
+      <td>reg059</td>
+      <td>A</td>
+      <td>1</td>
+      <td>1272</td>
+      <td>2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>Immune-infiltrated stroma</td>
+    </tr>
+    <tr>
+      <th>258382</th>
+      <td>258382</td>
+      <td>258382</td>
+      <td>10664</td>
+      <td>234850</td>
+      <td>reg062_A</td>
+      <td>reg062</td>
+      <td>A</td>
+      <td>1</td>
+      <td>735</td>
+      <td>2</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>T cell enriched</td>
+    </tr>
+    <tr>
+      <th>258383</th>
+      <td>258383</td>
+      <td>258383</td>
+      <td>10664</td>
+      <td>249806</td>
+      <td>reg067_A</td>
+      <td>reg067</td>
+      <td>A</td>
+      <td>1</td>
+      <td>174</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6.0</td>
+      <td>Tumor boundary</td>
+    </tr>
+    <tr>
+      <th>258384</th>
+      <td>258384</td>
+      <td>258384</td>
+      <td>10664</td>
+      <td>254840</td>
+      <td>reg069_B</td>
+      <td>reg069</td>
+      <td>B</td>
+      <td>2</td>
+      <td>196</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>T cell enriched</td>
+    </tr>
+  </tbody>
+</table>
+<p>258385 rows × 99 columns</p>
+</div></div>
+</div>
+</section>
+<section id="Create-domains">
+<h3>Create domains<a class="headerlink" href="#Create-domains" title="Link to this heading">#</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spot_IDs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="s1">&#39;spots&#39;</span><span class="p">])</span>
+
+<span class="n">list_of_domains</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">spot</span> <span class="ow">in</span> <span class="n">spot_IDs</span><span class="p">:</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="s1">&#39;spots&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">spot</span>
+
+    <span class="n">points</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="n">mask</span><span class="p">][[</span><span class="s1">&#39;X:X&#39;</span><span class="p">,</span><span class="s1">&#39;Y:Y&#39;</span><span class="p">]]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;ClusterName&#39;</span><span class="p">]</span>
+    <span class="n">this_group</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;groups&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">this_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">spot</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_group_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">this_group</span><span class="p">)</span>
+
+    <span class="n">this_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="n">this_name</span><span class="p">)</span>
+    <span class="n">this_domain</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="s1">&#39;cells&#39;</span><span class="p">)</span>
+    <span class="n">this_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;cell type&#39;</span><span class="p">,</span><span class="n">labels</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">this_domain</span><span class="o">.</span><span class="n">estimate_boundary</span><span class="p">(</span><span class="s1">&#39;convex hull&#39;</span><span class="p">)</span>
+
+
+    <span class="n">list_of_domains</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">this_domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform cluster neighbourhood analysis</span>
+<span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span><span class="n">label_categories</span><span class="p">,</span><span class="n">cluster_categories</span><span class="o">=</span><span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">cluster_neighbourhoods</span><span class="p">(</span><span class="n">list_of_domains</span><span class="p">,</span>
+                                   <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;cell type&#39;</span><span class="p">,</span>
+                                   <span class="n">network_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span><span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+                                   <span class="n">k_hops</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                   <span class="n">transform_neighbourhood_composition</span><span class="o">=</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span>
+                                   <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span>
+                                   <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;kmeans&#39;</span><span class="p">,</span>
+                                   <span class="n">cluster_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+                                   <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;zscore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is simply visualising the neighbourhood enrichment matrix as a clustermap</span>
+
+<span class="c1"># Create a DataFrame from the neighbourhood enrichment matrix</span>
+<span class="n">df_ME_id</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">neighbourhood_enrichment_matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">cluster_categories</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">label_categories</span><span class="p">)</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Neighbourhood ID&#39;</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Labels&#39;</span>
+
+<span class="c1"># Visualize the neighbourhood enrichment matrix using a clustermap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
+    <span class="n">df_ME_id</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">label_categories</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">cluster_categories</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Enrichment&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">tree_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;seaborn.matrix.ClusterGrid at 0x159800cb0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_3_-_pipeline_example_8_1.png" src="../../_images/_collections_workflows_Workflows_-_3_-_pipeline_example_8_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">composition_of_neigh_group_1</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">composition_of_neigh_group_2</span><span class="o">=</span><span class="p">[]</span>
+
+
+<span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">list_of_domains</span><span class="p">:</span>
+    <span class="n">neigh_densities</span><span class="p">,</span><span class="n">these_labels</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">summary_statistics</span><span class="o">.</span><span class="n">label_counts</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span><span class="n">normalised</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">these_densities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_categories</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">these_labels</span><span class="p">):</span>
+        <span class="n">these_densities</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cluster_categories</span><span class="o">==</span><span class="n">lab</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">neigh_densities</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;_group_1&#39;</span><span class="p">):</span>
+        <span class="n">composition_of_neigh_group_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">these_densities</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;_group_2&#39;</span><span class="p">):</span>
+        <span class="n">composition_of_neigh_group_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">these_densities</span><span class="p">)</span>
+
+<span class="n">composition_of_neigh_group_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">composition_of_neigh_group_1</span><span class="p">)</span>
+<span class="n">composition_of_neigh_group_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">composition_of_neigh_group_2</span><span class="p">)</span>
+
+<span class="n">all_neigh_densities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">composition_of_neigh_group_1</span><span class="p">,</span><span class="n">composition_of_neigh_group_2</span><span class="p">])</span>
+<span class="n">group_indicator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">composition_of_neigh_group_1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">composition_of_neigh_group_2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cluster_label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cluster_categories</span><span class="p">):</span>
+
+    <span class="n">cluster_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cluster_categories</span><span class="o">==</span><span class="n">cluster_label</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">group_indicator</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">all_neigh_densities</span><span class="p">[:,</span><span class="n">cluster_index</span><span class="p">],</span><span class="n">hue</span><span class="o">=</span><span class="n">group_indicator</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab10&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+
+    <span class="c1"># Perform Mann-Whitney U test between the two groups for the current cluster</span>
+    <span class="n">group_1_data</span> <span class="o">=</span> <span class="n">all_neigh_densities</span><span class="p">[</span><span class="n">group_indicator</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cluster_index</span><span class="p">]</span>
+    <span class="n">group_2_data</span> <span class="o">=</span> <span class="n">all_neigh_densities</span><span class="p">[</span><span class="n">group_indicator</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cluster_index</span><span class="p">]</span>
+
+    <span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">group_1_data</span><span class="p">,</span> <span class="n">group_2_data</span><span class="p">)</span>
+
+    <span class="c1"># Display the results</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Mann-Whitney U test: U=</span><span class="si">{</span><span class="n">stat</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, </span><span class="se">\n</span><span class="s1"> p=</span><span class="si">{</span><span class="n">p_value</span><span class="si">:</span><span class="s1">.3e</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Neighbourhood composition: </span><span class="si">{</span><span class="n">cluster_label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_3_-_pipeline_example_10_0.png" src="../../_images/_collections_workflows_Workflows_-_3_-_pipeline_example_10_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🧫-Data-summary">🧫 Data summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#🧠-Biological-context">🧠 Biological context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Data-Information">Data Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Aim-of-the-analysis">Aim of the analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Load-the-TMA-data">Load the TMA data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Create-domains">Create domains</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

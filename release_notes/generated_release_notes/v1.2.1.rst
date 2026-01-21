@@ -1,0 +1,37 @@
+v1.2.1
+======
+
+We are pleased to announce the release of version **v1.2.1**! This update focuses on expanding neighbourhood analysis functionality, improving compatibility with the latest NumPy versions, and refining internal geometry operations for spatial object conversion. It also includes documentation updates and maintenance improvements.
+
+This release is compatible with and has been tested on Python **3.10** to **3.14**.
+
+New Features
+------------
+* **Continuous Label Support in Neighbourhood Clustering**: `cluster_neighbourhoods` now supports *continuous* (numeric) labels, allowing for more flexible spatial grouping and analysis.
+* **New Tutorial – Neighbourhoods with Numeric Labels**: Added a new Visium dataset and accompanying tutorial demonstrating neighbourhood analysis using numeric cluster IDs.
+
+Improvements
+------------
+* **Geometry and Distance Computations**: Refactored object-to-object distance calculations to use `rust-geo-python`, improving performance and numerical stability.
+* **Alpha Shape Conversion**: Added argument validation for `alpha_shape` and moved internal boundary handling to `convert_objects` for a cleaner API and improved consistency.
+* **NumPy Compatibility**: Fixed issues related to `numpy.reshape` to support **NumPy 2.0 and above**, replacing `shape` with `newshape` arguments for compatibility across versions.
+
+Bug Fixes
+---------
+* **Alpha Shape Conversion**: Improved internal boundary flag handling and argument validation.
+* **NumPy Reshape**: Fixed parameter mismatch affecting compatibility with NumPy 2.0+.
+* **General Stability**: Various minor fixes improving robustness and consistency of geometry-based conversions.
+
+Maintenance
+-----------
+* **Testing Workflow**: Added fail-fast logic to the CI test workflow to prevent excessive resource use.
+* **Version Management**: Updated version number to **v1.2.1** following compatibility and bugfix improvements.
+* **Documentation Clean-up**: Corrected typos and improved clarity across tutorials and core documentation.
+
+Documentation
+-------------
+* **Visium Neighbourhood Tutorial**: New tutorial on contact-based neighbourhood analysis using numeric labels.
+* **General Documentation Improvements**: Expanded and corrected network and geometry tutorials with clearer examples and better guidance.
+
+
+Thank you for using **muspan**! For full details, see the updated documentation and tutorials.

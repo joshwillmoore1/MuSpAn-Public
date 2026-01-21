@@ -1,0 +1,1117 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Spatial Autocorrelation (Hotspot Analysis) &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/spatial_analysis_methods/Spatial stats - 4 - Spatial autocorrelation';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computing and interpreting Ripley’s K function" href="Spatial%20stats%20-%205%20-%20RipleysK.html" />
+    <link rel="prev" title="The weighted pair correlation function (wPCF)" href="Spatial%20stats%20-%203%20-%20wPCF.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Spatial...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Spatial-Autocorrelation-(Hotspot-Analysis)">
+<h1>Spatial Autocorrelation (Hotspot Analysis)<a class="headerlink" href="#Spatial-Autocorrelation-(Hotspot-Analysis)" title="Link to this heading">#</a></h1>
+<p>Understanding where specific genes or markers are expressed within a tissue sample is just as important as knowing how much they are expressed. Certain genes may be highly active in one region of a tumor while nearly silent in another, and these spatial patterns can provide crucial insights into tumor heterogeneity, the tumor microenvironment, and treatment resistance.</p>
+<p>To detect and quantify these spatial patterns, we use <strong>spatial autocorrelation</strong>—a statistical approach that helps us determine whether high or low expression levels of a given gene or marker cluster together within a tissue sample or are randomly distributed. This type of analysis is often called <strong>hotspot analysis</strong> because it allows us to identify regions of significantly high or low expression—or “hot” and “cold” spots—within the spatial landscape of a tissue.</p>
+<p>In this tutorial, we’ll introduce two key tools for hotspot analysis: <strong>Moran’s I</strong> and <strong>Getis-Ord</strong>* statistics. Importantly, this tutorial is designed to provide intuition on these statistics and how to run these analyses with <strong>MuSpAn</strong>. The mathematical and statistical details of these methods are not addressed here; instead, we encourage the reader to see <a class="reference external" href="https://www.tandfonline.com/doi/abs/10.2307/143144">this paper</a> for further details.</p>
+<hr class="docutils" />
+<p><strong>Introducing Moran’s I and the Getis-Ord Statistic</strong></p>
+<p>Spatial autocorrelation metrics help us understand whether similar values in a dataset tend to be near each other in space. <strong>Local measures of spatial autocorrelation</strong>, called <strong>Local Indicators of Spatial Association (LISA)</strong>, allow us to explore how spatial relationships vary across different regions of a dataset. Moran’s I and Getis-Ord* are two of the most widely used spatial statistics for analysing these patterns.</p>
+<hr class="docutils" />
+<p><strong>Moran’s I: Measuring Spatial Clustering</strong></p>
+<p>Moran’s I is a statistical test that measures whether similar values are clustered together (<strong>positive spatial autocorrelation</strong>), dispersed (<strong>negative spatial autocorrelation</strong>), or randomly distributed.</p>
+<ul class="simple">
+<li><p>A <strong>high positive Moran’s I</strong> suggests that tissue regions with high marker expression tend to be near other high-expression regions, while low-expression regions are also clustered together.</p></li>
+<li><p>A <strong>negative Moran’s I</strong> suggests that areas of high expression are surrounded by low-expression areas, indicating spatial dispersion.</p></li>
+<li><p>A <strong>Moran’s I value close to zero</strong> indicates that there is no meaningful spatial pattern.</p></li>
+</ul>
+<p>Moran’s I can be computed <strong>globally</strong> (to assess overall spatial structure) or <strong>locally</strong> (to identify specific regions of clustering or dispersion).</p>
+<hr class="docutils" />
+<p><strong>Getis-Ord: Identifying Hotspots and Coldspots</strong></p>
+<p>While Moran’s I tells us <strong>whether</strong> clustering exists, Getis-Ord* identifies <strong>where</strong> these clusters occur (the * denotes its local nature). It helps pinpoint <strong>hotspots</strong> (regions with significantly high expression) and <strong>coldspots</strong> (regions with significantly low expression) by comparing local neighborhoods of data points. Critically, Getis-Ord* considers the <strong>raw expression values</strong> in the computations, rather than just the similarity of values across regions as in Moran’s I.</p>
+<ul class="simple">
+<li><p>A <strong>high Getis-Ord score</strong> indicates a statistically significant <strong>hotspot</strong>—an area where gene expression is consistently higher than expected.</p></li>
+<li><p>A <strong>low Getis-Ord score</strong> reveals a <strong>coldspot</strong>—an area where gene expression is significantly lower than expected.</p></li>
+</ul>
+<p>In <strong>MuSpAn</strong>, these statistics are computed assuming <strong>Complete Spatial Randomness (CSR)</strong> as a null model.</p>
+<hr class="docutils" />
+<p><strong>Comparing Moran’s I and Getis-Ord</strong></p>
+<p>Below is a brief summary of these spatial autocorrelation methods:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Moran’s I</p></th>
+<th class="head"><p>Getis-Ord*</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Purpose</strong></p></td>
+<td><p>Measures spatial autocorrelation (clustering vs. dispersion).</p></td>
+<td><p>Identifies exact locations of statistically significant hotspots and coldspots.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Global vs. Local</strong></p></td>
+<td><p>Can be both global and local.</p></td>
+<td><p>Primarily a local statistic.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Interpretation</strong></p></td>
+<td><p>Positive values = clustering; negative values = dispersion.</p></td>
+<td><p>High values = hotspots; low values = coldspots.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Focus</strong></p></td>
+<td><p>Looks at overall spatial similarity.</p></td>
+<td><p>Focuses on high or low values in local neighborhoods.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Inputs</strong></p></td>
+<td><p>Spatial data with continuous labels.</p></td>
+<td><p>Spatial data with continuous labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Assumptions</strong></p></td>
+<td><p>Null model is Complete Spatial Randomness (CSR).</p></td>
+<td><p>Null model is Complete Spatial Randomness (CSR).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p><strong>Global vs. Local Spatial Autocorrelation</strong></p>
+<p>Both <strong>Moran’s I</strong> and <strong>Getis-Ord</strong>* help us analyze spatial expression patterns at different levels:</p>
+<ul>
+<li><div class="line-block">
+<div class="line"><strong>Global measures</strong> (like Global Moran’s I) tell us whether, on average, a gene’s expression levels are spatially clustered or dispersed across an entire tissue section.</div>
+<div class="line"><em>Example: Do highly expressed immune checkpoint markers tend to be grouped together, or are they randomly spread throughout the tumor?</em></div>
+</div>
+</li>
+<li><p><strong>Local measures</strong> (like Local Moran’s I and Getis-Ord<em>) allow us to</em> <strong>pinpoint where</strong> <a href="#id1"><span class="problematic" id="id2">*</span></a>these clusters occur.
+<a href="#id3"><span class="problematic" id="id4">*</span></a>Example: These methods can highlight specific hotspots of high marker expression (e.g., regions dense with proliferative cells) or coldspots where expression is significantly lower than expected (e.g., regions with low immune activity).*</p></li>
+</ul>
+<hr class="docutils" />
+<p>In this tutorial, we’ll demonstrate how <strong>MuSpAn</strong> can be used to:</p>
+<ol class="arabic simple">
+<li><p>Compute <strong>Moran’s I</strong> and <strong>Getis-Ord</strong>* on grid-like data.</p></li>
+<li><p>Compute <strong>Moran’s I</strong> and <strong>Getis-Ord</strong>* directly on spatial data (point-like / any MuSpAn object).</p></li>
+</ol>
+<p>We’ll start by loading a dataset that contains both <strong>categorical</strong> and <strong>continuous (numeric) labels</strong>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Load an example domain dataset</span>
+<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Mouse-Colon-Carcinoma&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a figure with 2 subplots side by side</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="c1"># Visualise the example domain, colouring by &#39;Celltype&#39; in the first subplot</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Visualise the example domain, colouring by &#39;CD4&#39; in the second subplot</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;CD4&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: Mouse cells
+Number of objects: 6676
+Collections: [&#39;Cell centres&#39;]
+Labels: [&#39;Celltype&#39;, &#39;CD4&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1800x700 with 4 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_2_2.png" src="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_2_2.png" />
+</div>
+</div>
+<p><strong>Generating some lattice-like data</strong></p>
+<p>This dataset is composed of point-like data; however, hotspot analysis is typically conducted on lattice- or grid-like data (think states on a map of the US). More recently, hotspot analysis has emerged as a useful tool in cancer research for analysing regional transcriptomics datasets such as those produced using Visium HD. In fact, spatial autocorrelations can be computed on any type of spatial data - not just grid-like data! We’ll see this later in this tutorial.</p>
+<p>To get us started with a more familiar data for hotspot analysis, we’ll generate a lattice in a domain using the <code class="docutils literal notranslate"><span class="pre">generate_hexgrid</span></code> in the <code class="docutils literal notranslate"><span class="pre">region_based</span></code> MuSpAn submodule.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a hexagonal grid over the example domain</span>
+<span class="c1"># - side_length: length of the side of each hexagon</span>
+<span class="c1"># - regions_collection_name: name of the collection of hexagonal regions</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">region_based</span><span class="o">.</span><span class="n">generate_hexgrid</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span> <span class="n">side_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">regions_collection_name</span><span class="o">=</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Note when generating grids we count the number of the labels (for all labels by default) and is specified using the ‘region counts: …’ identifier. Let’s make sure these labels have been added to our domain by printing it.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: Mouse cells
+Number of objects: 6851
+Collections: [&#39;Cell centres&#39;, &#39;Hexgrids 50&#39;]
+Labels: [&#39;Celltype&#39;, &#39;CD4&#39;, &#39;ROI&#39;, &#39;region counts: Cytotoxic T Cell&#39;, &#39;region counts: Epithelium&#39;, &#39;region counts: Macrophage&#39;, &#39;region counts: Neutrophil&#39;, &#39;region counts: Regulatory T Cell&#39;, &#39;region counts: T Helper Cell&#39;, &#39;region counts: CD4&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>Great, we can see that we have generated a new collection of objects ‘Hexgrids 50’ and that each prior label category has now a ‘regions counts: …’ associated with it. Let’s visualise the counts of the T-Helper cell population on our lattice.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;region counts: T Helper Cell&#39;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>  <span class="c1"># plot the tiles</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell centres&#39;</span><span class="p">),</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># plot the points</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1300x600 with 3 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_8_1.png" src="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_8_1.png" />
+</div>
+</div>
+<p>The regions with the most orange points (T Helper cells) are indicated on the lattice. This is similar to what we might see with transcriptional expression in a Visium HD sample. But it now leaves us with an interesting question: are these expression levels found near each other? Is this statistically significant with respect to spatial randomness?</p>
+<p><strong>Using Moran’s I</strong></p>
+<p>To answer these questions, we can first employ the Moran’s I statistic (shocking). The <code class="docutils literal notranslate"><span class="pre">morans_i</span></code> function can be found in the <code class="docutils literal notranslate"><span class="pre">spatial_statistics</span></code> module of MuSpAn. <code class="docutils literal notranslate"><span class="pre">morans_i</span></code> has two main parameters that determine the measurements:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label_name</span></code>: the label name of the continuous data in the domain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">network_kwargs</span></code>: connectivity of each object is defined by a network. We can control how this network is defined through the <code class="docutils literal notranslate"><span class="pre">network_kwargs</span></code> which uses the <code class="docutils literal notranslate"><span class="pre">generate_network</span></code> function. For more information, see our documentation on <code class="docutils literal notranslate"><span class="pre">generate_network</span></code>.</p></li>
+</ol>
+<p>For lattice-like spatial data like we have above, we may want to define connectivity as the direct adjacent neighbours, i.e, any region that is touching another. We can construct this type of connectivity by using a ‘proximity network’ with a very small max_edge_distance. <strong>Note:</strong> We can examine the spatial clustering of the labels at different length scales by varying the ‘max_edge_distance’ and ‘max_edge_distance’ in our connectivity networks.</p>
+<p>In MuSpAn, the Moran’s I function produces both the global and local statistics (given as zscores) and the associated p-values with these zscores. In addition, object indices are also given ordered by the local Moran’s I.</p>
+<p>Phew… That’s a lot of information. Not to worry - it’s not as complicated as it might seem. To show this, we’ll compute the Moran’s I statistic on our generated lattice data using the number of T Hepler cell observations.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate Moran&#39;s I spatial autocorrelation statistics for the example domain</span>
+<span class="c1"># - population: specifies the collection of objects to analyse (&#39;Hexgrids 50&#39;)</span>
+<span class="c1"># - label_name: the label to use for the analysis (&#39;region counts: T Helper Cell&#39;)</span>
+<span class="c1"># - alpha: significance level for the statistical test</span>
+<span class="c1"># - network_kwargs: parameters for constructing the spatial network (Proximity network with min and max edge distances - set to max 1µm)</span>
+<span class="c1"># - add_local_value_as_label: whether to add the local Moran&#39;s I values as labels to the objects</span>
+<span class="c1"># - local_morans_label_name: name for the local Moran&#39;s I label to be added to the domain</span>
+
+<span class="n">global_morans_i_zscore</span><span class="p">,</span> <span class="n">global_morans_i_pval</span><span class="p">,</span> <span class="n">local_morans_i_zscore</span><span class="p">,</span> <span class="n">local_morans_i_pval</span><span class="p">,</span> <span class="n">object_indices</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">morans_i</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">population</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;region counts: T Helper Cell&#39;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;network_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Proximity&#39;</span><span class="p">,</span> <span class="s1">&#39;min_edge_distance&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max_edge_distance&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="n">add_local_value_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">local_morans_label_name</span><span class="o">=</span><span class="s2">&quot;Local Moran&#39;s I&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>As mentioned above, there are several outputs that come with computing Moran’s I. Let’s start with unpacking our global statistics.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The global Moran&#39;s I zscore = &quot;</span><span class="p">,</span><span class="n">global_morans_i_zscore</span><span class="p">,</span><span class="s1">&#39;(p-val = &#39;</span><span class="p">,</span><span class="n">global_morans_i_pval</span><span class="p">,</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The global Moran&#39;s I zscore =  5.965071168167877 (p-val =  2.445274389623247e-09 )
+</pre></div></div>
+</div>
+<p>A Moran’s I zscore &gt;0 suggests that our counts of T Helper Cells in the regions are similar in similar regions when compared to a null of complete spatial randomness. This indicates the existence of clustering of our T-Helper Cells in our domain. In addition, a very low p-value supports the statistical significance of this obervation. These results can tell us about the existance of spatial clustering within our domain but we do not know exactly where this clustering is taking place. For this we
+need to check our local Moran’s I values.</p>
+<p>The local Moran’s I provides a value to each object indicating the similarity of the labels that spatially connected to that object. MuSpAn provides these values as an output ‘local_morans_i_zscore’ with their p-val ‘local_morans_i_pval’, but these are also automatically added as labels to the objects. These labels are specified using the <code class="docutils literal notranslate"><span class="pre">local_morans_label_name</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">morans_i</span></code> function. Using this label name, MuSpAn adds labels for the Local Moran’s I values, the p-values, and
+the Local Moran’s I values filtered by p-value significance (controlled by the significance parameters <code class="docutils literal notranslate"><span class="pre">alpha</span></code>). Let’s just check these have been added.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: Mouse cells
+Number of objects: 6851
+Collections: [&#39;Cell centres&#39;, &#39;Hexgrids 50&#39;]
+Labels: [&#39;Celltype&#39;, &#39;CD4&#39;, &#39;ROI&#39;, &#39;region counts: Cytotoxic T Cell&#39;, &#39;region counts: Epithelium&#39;, &#39;region counts: Macrophage&#39;, &#39;region counts: Neutrophil&#39;, &#39;region counts: Regulatory T Cell&#39;, &#39;region counts: T Helper Cell&#39;, &#39;region counts: CD4&#39;, &#34;Local Moran&#39;s I&#34;, &#34;Local Moran&#39;s I : significant&#34;, &#34;Local Moran&#39;s I : p-values (adj)&#34;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>We can see that this has added “Local Moran’s I”, “Local Moran’s I : significant”, “Local Moran’s I : p-values (adj)” as labels. Let’s visualise these on the objects.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;region counts: T Helper Cell&#39;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Moran&#39;s I&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Moran&#39;s I : p-values (adj)&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Moran&#39;s I : significant&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2000x1600 with 8 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_16_1.png" src="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_16_1.png" />
+</div>
+</div>
+<p>From this, we can see that there is a significant mass of T-helper cells surrounding a tumour nest.</p>
+<p><strong>Using Getis-Ord</strong></p>
+<p>Instead, if we are more interested in the variations in local values of a continuous label, we could instead use the Getis Ord. The methodology of the Getis-Ord is very similar to Moran’s I and therefore the parameters that define its functionality are identical. Again, our two main parameters are 1) <code class="docutils literal notranslate"><span class="pre">label_name</span></code> and 2) <code class="docutils literal notranslate"><span class="pre">network_kwargs</span></code>. We’ll compute the local Getis-Ord statistic on the grid data using the <code class="docutils literal notranslate"><span class="pre">getis_ord</span></code> function in the <code class="docutils literal notranslate"><span class="pre">spatial_statistics</span></code> module, using identical
+parameters as above.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate Getis-Ord* spatial autocorrelation statistics for the example domain</span>
+<span class="c1"># - population: specifies the collection of objects to analyse (&#39;Hexgrids 50&#39;)</span>
+<span class="c1"># - label_name: the label to use for the analysis (&#39;region counts: T Helper Cell&#39;)</span>
+<span class="c1"># - alpha: significance level for the statistical test</span>
+<span class="c1"># - network_kwargs: parameters for constructing the spatial network (Proximity network with min and max edge distances)</span>
+<span class="c1"># - add_local_value_as_label: whether to add the local Getis-Ord* values as labels to the objects</span>
+<span class="c1"># - local_getis_label_name: name for the local Getis-Ord* label</span>
+
+<span class="n">local_getis_ord_zscore</span><span class="p">,</span> <span class="n">local_getis_ord_pvals</span><span class="p">,</span> <span class="n">object_indices</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">getis_ord</span><span class="p">(</span>
+    <span class="n">example_domain</span><span class="p">,</span>
+    <span class="n">population</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;region counts: T Helper Cell&#39;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;network_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Proximity&#39;</span><span class="p">,</span> <span class="s1">&#39;min_edge_distance&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;max_edge_distance&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+    <span class="n">add_local_value_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">local_getis_label_name</span><span class="o">=</span><span class="s1">&#39;Local Getis Ord&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>As with the Moran’s I, we are given the zscores and p-values associated with each object involved, but also the labels are automatically generated using the <code class="docutils literal notranslate"><span class="pre">local_getis_label_name</span></code> parameter.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">example_domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: Mouse cells
+Number of objects: 6851
+Collections: [&#39;Cell centres&#39;, &#39;Hexgrids 50&#39;]
+Labels: [&#39;Celltype&#39;, &#39;CD4&#39;, &#39;ROI&#39;, &#39;region counts: Cytotoxic T Cell&#39;, &#39;region counts: Epithelium&#39;, &#39;region counts: Macrophage&#39;, &#39;region counts: Neutrophil&#39;, &#39;region counts: Regulatory T Cell&#39;, &#39;region counts: T Helper Cell&#39;, &#39;region counts: CD4&#39;, &#34;Local Moran&#39;s I&#34;, &#34;Local Moran&#39;s I : significant&#34;, &#34;Local Moran&#39;s I : p-values (adj)&#34;, &#39;Local Getis Ord&#39;, &#39;Local Getis Ord : significant&#39;, &#39;Local Getis Ord : p-values (adj)&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>We can see this has added the labels ‘Local Getis Ord’, ‘Local Getis Ord : significant’, ‘Local Getis Ord : p-values (adj)’. We can visualise these as before.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;region counts: T Helper Cell&#39;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Getis Ord&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Getis Ord : p-values (adj)&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Getis Ord : significant&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span><span class="s1">&#39;Hexgrids 50&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2000x1600 with 8 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_22_1.png" src="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_22_1.png" />
+</div>
+</div>
+<p>In contrast to the local Moran’s I values, the Getis-Ord* has identified a significant <em>hotspot</em> of T-Helper cell counts surrounding the tumour nest. In addition, we observe <em>cold</em> regions of counts in the space surrounding the tumour nest. This exemplifies the sensitivity of the Getis-Ord* to the magnitude of the continuous data on the objects, encouraging its use for local hotspot identification.</p>
+<p><strong>Spatial autocorrelation on point-like data</strong></p>
+<p>Spatial autocorrelations (like the Moran’s I and Getis-Ord*) are not restricted to grid-like data but to any MuSpAn. Historically, these tools were used in field like Geography and Ecology where regions were usually defined by geographical maps and therefore, this is where we have most examples of their use. But their formal definitions allow for their application to any spatial data - all we have to do is define the spatial connectivity of the data and provided a continous label on these data.</p>
+<p>Luckily, we have a dataset contain a point cloud with a continous marker for CD4. Let’s compute both the Moran’s I and Getis-Ord on these data.</p>
+<p>The spatial connectivity of the data is defined by a network. We alter how we define the network using the <code class="docutils literal notranslate"><span class="pre">network_kwargs</span></code> parameter - which is sensible as we are no longer dealing with a lattice of shapes. Instead, we can represent the connectivity of the point through a ‘Delaunay Triangulation’ (see generating_networks tutorials), which will approximate local connectivity of the points.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">global_morans_i_zscore_cells</span><span class="p">,</span> <span class="n">global_morans_i_pval_cells</span><span class="p">,</span> <span class="n">local_morans_i_zscore_cells</span><span class="p">,</span> <span class="n">local_morans_i_pval_cells</span><span class="p">,</span> <span class="n">object_indices_cells</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">morans_i</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">population</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell centres&#39;</span><span class="p">),</span>
+                                                                                                                                                                        <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;CD4&#39;</span><span class="p">,</span>
+                                                                                                                                                                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                                                                                                                                                        <span class="n">network_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;network_type&#39;</span><span class="p">:</span><span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span><span class="s1">&#39;min_edge_distance&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;max_edge_distance&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">},</span>
+                                                                                                                                                                        <span class="n">add_local_value_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                                                                                                                                        <span class="n">local_morans_label_name</span><span class="o">=</span><span class="s2">&quot;Local Moran&#39;s I (cells)&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The global Moran&#39;s I zscore = &quot;</span><span class="p">,</span><span class="n">global_morans_i_zscore_cells</span><span class="p">,</span><span class="s1">&#39;(p-val = &#39;</span><span class="p">,</span><span class="n">global_morans_i_pval_cells</span><span class="p">,</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The global Moran&#39;s I zscore =  60.04758291352356 (p-val =  0.0 )
+</pre></div></div>
+</div>
+<p>Once again, we can see that similar CD4 values are clustered in our domain from the global Moran’s I statistic. In addition, we can compute the Getis-Ord* using the same parameters to identify hotspots of CD4 expression on our point cloud.</p>
+<p><strong>Note:</strong> we will change the <code class="docutils literal notranslate"><span class="pre">local_getis_label_name</span></code> to not mix labels with our above analysis.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_getis_ord_zscore</span><span class="p">,</span> <span class="n">local_getis_ord_pvals</span><span class="p">,</span> <span class="n">object_indices</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">getis_ord</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">population</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell centres&#39;</span><span class="p">),</span>
+                                                                                                <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;CD4&#39;</span><span class="p">,</span>
+                                                                                                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                                                                                                <span class="n">network_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;network_type&#39;</span><span class="p">:</span><span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span><span class="s1">&#39;min_edge_distance&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;max_edge_distance&#39;</span><span class="p">:</span><span class="mi">30</span><span class="p">},</span>
+                                                                                                <span class="n">add_local_value_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                                                                <span class="n">local_getis_label_name</span><span class="o">=</span><span class="s1">&#39;Local Getis Ord (cells)&#39;</span><span class="p">)</span>
+
+
+<span class="c1">#visualise the Getis-Ord* statistics on the point objects</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">16</span><span class="p">),</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;CD4&#39;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell centres&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Getis Ord (cells)&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell centres&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Getis Ord (cells) : p-values (adj)&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell centres&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span><span class="n">color_by</span><span class="o">=</span><span class="s2">&quot;Local Getis Ord (cells) : significant&quot;</span><span class="p">,</span><span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="s1">&#39;Cell centres&#39;</span><span class="p">),</span><span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 2000x1600 with 8 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_27_1.png" src="../../_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_27_1.png" />
+</div>
+</div>
+<p><strong>Conclusion</strong></p>
+<p>In this tutorial, we explored the use of Moran’s I and Getis-Ord* statistics to analyse spatial autocorrelation in tissue samples. We demonstrated how to compute these statistics on both shape-like and point-like data using the MuSpAn library.</p>
+<p>Key takeaways:</p>
+<ul class="simple">
+<li><p><strong>Moran’s I</strong> helps determine whether similar values are clustered together, dispersed, or randomly distributed. It provides both global and local measures of spatial autocorrelation.</p></li>
+<li><p><strong>Getis-Ord</strong> identifies specific locations of statistically significant hotspots and coldspots, focusing on the magnitude of continuous data values.</p></li>
+</ul>
+<p>By applying these methods, we can gain insights into the spatial patterns of gene or marker expression within tissue samples, which can be crucial for understanding tumor heterogeneity, the tumor microenvironment, and treatment resistance.</p>
+<p>We hope this tutorial has provided you with a solid understanding of how to perform hotspot analysis using Moran’s I and Getis-Ord* statistics with MuSpAn. For further details on the mathematical and statistical foundations of these methods, please refer to the recommended literature.</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

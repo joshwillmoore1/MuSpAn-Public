@@ -1,0 +1,1851 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MuSpAn: Figure 5. Quantification of tissue scale features &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/paper_tutorials/MuSpAn - Figure_5';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MuSpAn: Figure 6. Multiscale Spatial Profiling of Fibroblast–Immune Interactions in Colorectal Tumours" href="MuSpAn%20-%20Figure_6.html" />
+    <link rel="prev" title="MuSpAn: Figure 4. Quantification of intercellular relationships across length scales" href="MuSpAn%20-%20Figure_4.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_2.html">MuSpAn: Figure 2. Quantification at the cell scale</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_3.html">MuSpAn: Figure 3. Quantification of cell-cell proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_4.html">MuSpAn: Figure 4. Quantification of intercellular relationships across length scales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MuSpAn: Figure 5. Quantification of tissue scale features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MuSpAn%20-%20Figure_6.html">MuSpAn: Figure 6. Multiscale Spatial Profiling of Fibroblast–Immune Interactions in Colorectal Tumours</a></li>
+
+
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AdCar%20-%20Figure_1.html">Analysing Cell-Cell Interactions in Colorectal Neoplasia: Figure 1.</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../paper_examples.html" class="nav-link">Paper examples</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">MuSpAn:...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="MuSpAn:-Figure-5.-Quantification-of-tissue-scale-features">
+<h1>MuSpAn: Figure 5. Quantification of tissue scale features<a class="headerlink" href="#MuSpAn:-Figure-5.-Quantification-of-tissue-scale-features" title="Link to this heading">#</a></h1>
+<p>In this notebook we will reproduce analysis that is used to generate Figure 5 from MuSpAn: A Toolbox for Multiscale Spatial Analysis. This figure focues on analysis at the tissue scale using a spatial transcriptomics sample of healthy mouse colon. See reference paper for details, <a class="reference external" href="https://doi.org/10.1101/2024.12.06.627195">https://doi.org/10.1101/2024.12.06.627195</a>.</p>
+<p>NOTE: to run this tutorial, you’ll need to download the MuSpAn domains from <a class="github reference external" href="https://github.com/joshwillmoore1/Supporting_material_muspan_paper">joshwillmoore1/Supporting_material_muspan_paper</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports for analysis</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span> <span class="c1"># additional package - for making custom plot</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># for interaction with dataframes in sns plots</span>
+
+<span class="c1"># imports to make plots pretty</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.font_manager</span> <span class="k">as</span> <span class="nn">fm</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span> <span class="c1"># set the resolution of the figure</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># Fixed seed for reproducibility</span>
+</pre></div>
+</div>
+</div>
+<p>For reproducibility we use the io save-load functionality of muspan to load a premade domain of the sample.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path_to_domains_folder</span><span class="o">=</span><span class="s1">&#39;some/path/to/downloaded_folder/domains_for_figs_2_to_6/&#39;</span> <span class="c1"># EDIT THIS PATH TO WHERE THE DOMAIN FILES ARE STORED AFTER DOWNLOADING THEM</span>
+<span class="n">domain_path</span><span class="o">=</span><span class="n">path_to_domains_folder</span><span class="o">+</span><span class="s1">&#39;fig-5-domain.muspan&#39;</span>
+<span class="n">domain_4</span><span class="o">=</span><span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">load_domain</span><span class="p">(</span><span class="n">path_to_domain</span><span class="o">=</span><span class="n">domain_path</span><span class="p">,</span><span class="n">print_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MuSpAn domain loaded successfully. Domain summary:
+Domain name: whole_tissue_mouse
+Number of objects: 126147
+Collections: [&#39;Cell centroids&#39;]
+Labels: [&#39;Cell ID&#39;, &#39;Transcript Counts&#39;, &#39;Cell Area&#39;, &#39;Cluster ID&#39;, &#39;Nucleus Area&#39;]
+Networks: []
+Distance matrices: []
+version saved with: 1.0.0
+Data and time of save: 2024-11-18 16:34:49.787773
+Notes: A selected ROI from a sample of healthy colon tissue from a 10x Xenium dataset provided in the public resources repository. The domain contains cell boundaries, nuclei and a selection of transcripts: Mylk, Myl9, Cnn1, Mgll, Mustn1, Oit1, Cldn2, Nupr1, Sox9, Ccl9. The dataset also contains cell clustering labels produced by Xenium Onboard Analysis using the ‘Graph-based’ method. This dataset is licensed under the Creative Commons Attribution license.
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the order of cluster IDs</span>
+<span class="n">cluster_id_order</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Cluster 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 3&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 4&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 5&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 6&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cluster 7&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 8&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 9&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 10&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 11&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 12&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cluster 13&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 14&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 15&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 16&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 17&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 18&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cluster 19&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 20&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 21&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 22&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 23&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 24&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cluster 25&#39;</span><span class="p">,</span> <span class="s1">&#39;Unassigned&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Initialize an empty list to store colors</span>
+<span class="n">cell_colors</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Assign colors to clusters for consistency</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cluster_id_order</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">cell_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cell_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">20</span><span class="p">])</span>
+
+<span class="c1"># Create a dictionary to map cluster IDs to their respective colors</span>
+<span class="n">new_colors</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span><span class="p">:</span> <span class="n">cell_colors</span><span class="p">[</span><span class="n">cluster_id_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">][</span><span class="s1">&#39;categories&#39;</span><span class="p">]}</span>
+
+<span class="c1"># Update the colors in the domain object</span>
+<span class="n">domain_4</span><span class="o">.</span><span class="n">update_colors</span><span class="p">(</span><span class="n">new_colors</span><span class="p">,</span> <span class="n">colors_to_update</span><span class="o">=</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="c1"># Visualize the domain with specific settings</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span>  <span class="c1"># Color by cluster ID</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>  <span class="c1"># Set marker size</span>
+    <span class="n">scatter_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>  <span class="c1"># Scatter plot settings</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>  <span class="c1"># Shape settings</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Do not add color bar</span>
+    <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Add scale bar</span>
+    <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>  <span class="c1"># Set scale bar size</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1mm&#39;</span><span class="p">,</span>  <span class="c1"># Label for the scale bar</span>
+        <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>  <span class="c1"># Location of the scale bar</span>
+        <span class="n">pad</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Padding</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>  <span class="c1"># Color of the scale bar</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="c1"># Z-order</span>
+        <span class="n">size_vertical</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>  <span class="c1"># Vertical size</span>
+        <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># No frame</span>
+        <span class="n">fontproperties</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>  <span class="c1"># Font properties</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1500x3000 with 1 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_6_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_6_1.png" />
+</div>
+</div>
+<section id="Microenvironment-analysis">
+<h2>Microenvironment analysis<a class="headerlink" href="#Microenvironment-analysis" title="Link to this heading">#</a></h2>
+<p>Note 1: clustering neighbourhoods can be conducted in muspan using the ms.networks.cluster_neighbourhoods(…) function. This reduces this entire section into a single line of code. We explicity run through each step in the clustering process here to visualise the outputs at intermediate stages.</p>
+<p>Note 2: this is a large domain and the ME analysis may take some time to compute (~3min on M2 chip).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a network using the Delaunay triangulation method</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;centroid_delaunay&#39;</span><span class="p">,</span>
+    <span class="n">objects_as_nodes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell centroids&#39;</span><span class="p">),</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span>
+    <span class="n">distance_weighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">30</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate k-hop neighborhoods for the domain using the Delaunay triangulation network</span>
+<span class="c1"># k=3 specifies that we are considering neighborhoods up to 3 hops away</span>
+
+<span class="n">khop_neighbourhoods_prox</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">khop_neighbourhood</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;centroid_delaunay&#39;</span><span class="p">,</span>
+    <span class="n">source_objects</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="c1"># The resulting dictionary `khop_neighbourhoods_prox` contains the k-hop neighborhoods for each node in the network</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract labels and object indices for &#39;Cluster ID&#39;</span>
+<span class="n">labels</span><span class="p">,</span> <span class="n">object_indices_labels</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get_labels</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">)</span>
+
+<span class="c1"># Get unique labels from the domain</span>
+<span class="n">unique_labels</span> <span class="o">=</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">labels</span><span class="p">[</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">][</span><span class="s1">&#39;categories&#39;</span><span class="p">]</span>
+
+<span class="c1"># Initialize an array to store vectorized counts</span>
+<span class="n">vectorised_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">khop_neighbourhoods_prox</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">)))</span>
+
+<span class="c1"># Iterate over each k-hop neighborhood</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">khop_neighbourhoods_prox</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+    <span class="c1"># Find the intersection of object indices and k-hop neighborhood indices</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">object_indices_labels_indx</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">object_indices_labels</span><span class="p">,</span> <span class="n">khop_neighbourhoods_prox</span><span class="p">[</span><span class="nb">id</span><span class="p">],</span> <span class="n">return_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Get the labels for the intersected indices</span>
+    <span class="n">labels_new</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">object_indices_labels_indx</span><span class="p">]</span>
+
+    <span class="c1"># Initialize an array to store counts of unique labels</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">))</span>
+
+    <span class="c1"># Count occurrences of each unique label in the neighborhood</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ul</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">):</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">labels_new</span> <span class="o">==</span> <span class="n">ul</span><span class="p">)</span>
+
+    <span class="c1"># Apply square root transform to reduce the effect of large counts</span>
+    <span class="n">vectorised_counts</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform clustering on the vectorized counts using KMeans</span>
+<span class="n">khop_counts_kcluster</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">helpers</span><span class="o">.</span><span class="n">cluster_data</span><span class="p">(</span>
+    <span class="n">vectorised_counts</span><span class="p">,</span>  <span class="c1"># Data to cluster</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;KMeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
+    <span class="n">n_clusters</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Number of clusters</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># Random state for reproducibility</span>
+    <span class="n">n_init</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>  <span class="c1"># Number of initializations to perform</span>
+<span class="p">)</span>
+
+<span class="c1"># Add the resulting cluster labels to the domain object</span>
+<span class="n">domain_4</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;ME ID&#39;</span><span class="p">,</span>  <span class="c1"># Name of the new label</span>
+    <span class="n">labels</span><span class="o">=</span><span class="n">khop_counts_kcluster</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span>  <span class="c1"># Cluster labels</span>
+    <span class="n">add_labels_to</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell centroids&#39;</span><span class="p">),</span>  <span class="c1"># Where to add the labels</span>
+    <span class="n">label_type</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span>  <span class="c1"># Type of the label</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Dark2&#39;</span>  <span class="c1"># Colormap for the labels</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize the domain with the new &#39;ME ID&#39; labels</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;ME ID&#39;</span><span class="p">),</span>  <span class="c1"># Color by the new &#39;ME ID&#39; labels</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>  <span class="c1"># Set marker size</span>
+    <span class="n">scatter_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>  <span class="c1"># Scatter plot settings</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>  <span class="c1"># Shape settings</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Do not add color bar</span>
+    <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Add scale bar</span>
+    <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>  <span class="c1"># Set scale bar size</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1mm&#39;</span><span class="p">,</span>  <span class="c1"># Label for the scale bar</span>
+        <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>  <span class="c1"># Location of the scale bar</span>
+        <span class="n">pad</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Padding</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>  <span class="c1"># Color of the scale bar</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>  <span class="c1"># Z-order</span>
+        <span class="n">size_vertical</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>  <span class="c1"># Vertical size</span>
+        <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># No frame</span>
+        <span class="n">fontproperties</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>  <span class="c1"># Font properties</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1500x3000 with 1 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_13_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_13_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## This is purely for visualisation purposes</span>
+
+<span class="c1"># Import necessary libraries</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Perform PCA to reduce the dimensionality of the vectorised counts to 2 components</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca_embedding</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">vectorised_counts</span><span class="p">)</span>
+
+<span class="c1"># Extract the cluster labels from the k-hop counts clustering result</span>
+<span class="n">proximity_cluster_labels</span> <span class="o">=</span> <span class="n">khop_counts_kcluster</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="c1"># Get the unique cluster labels to plot</span>
+<span class="n">unique_labels_to_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">proximity_cluster_labels</span><span class="p">)</span>
+
+<span class="c1"># Plot the PCA embedding</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Define colors for each unique label</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Dark2&#39;</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_labels_to_plot</span><span class="p">))</span>
+
+<span class="c1"># Plot each cluster in the PCA embedding</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_labels_to_plot</span><span class="p">):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">pca_embedding</span><span class="p">[</span><span class="n">proximity_cluster_labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">pca_embedding</span><span class="p">[</span><span class="n">proximity_cluster_labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+        <span class="n">edgecolors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span>
+    <span class="p">)</span>
+
+<span class="c1"># Set the labels for the axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;PCA1&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;PCA2&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ensure the aspect ratio is equal</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_14_0.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_14_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary library</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Compute the mean of the vectorised counts across all samples</span>
+<span class="n">vectorised_counts_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">vectorised_counts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Initialize a matrix to store the log fold change for each cluster</span>
+<span class="n">ME_id_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_labels_to_plot</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">vectorised_counts_mean</span><span class="p">)))</span>
+
+<span class="c1"># Set a small constant to avoid division by zero</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># Initialize a list to store colors for each cluster</span>
+<span class="n">row_colors</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Compute the log fold change matrix for differential enrichment</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_labels_to_plot</span><span class="p">):</span>
+    <span class="c1"># Calculate the log fold change for each cluster</span>
+    <span class="n">ME_id_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">vectorised_counts</span><span class="p">[</span><span class="n">proximity_cluster_labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">vectorised_counts_mean</span> <span class="o">+</span> <span class="n">alpha</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Append the corresponding color for the cluster</span>
+    <span class="n">row_colors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+<span class="c1"># Define the clusters of interest</span>
+<span class="n">ClustersOfInterest</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Cluster 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 3&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 4&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cluster 6&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 7&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 8&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 9&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 10&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cluster 11&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 12&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 13&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 14&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 15&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Cluster 16&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 17&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 18&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 19&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Extract numeric labels from the cluster names</span>
+<span class="n">numeric_label_categories</span> <span class="o">=</span> <span class="p">[</span><span class="n">lab</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span> <span class="k">for</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">ClustersOfInterest</span><span class="p">]</span>
+
+<span class="c1"># Create a mask to filter the clusters of interest</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ClustersOfInterest</span><span class="p">:</span>
+    <span class="n">mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unique_labels</span> <span class="o">==</span> <span class="n">c</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Filter the ME_id_matrix to include only the clusters of interest</span>
+<span class="n">ME_id_matrix</span> <span class="o">=</span> <span class="n">ME_id_matrix</span><span class="p">[:,</span> <span class="n">mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Create a DataFrame for the clustermap</span>
+<span class="n">df_ME_id</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ME_id_matrix</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">unique_labels_to_plot</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">ClustersOfInterest</span><span class="p">)</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ME ID&#39;</span>
+<span class="n">df_ME_id</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Celltype ID&#39;</span>
+
+<span class="c1"># Plot the clustermap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">clustermap</span><span class="p">(</span>
+    <span class="n">df_ME_id</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">numeric_label_categories</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">unique_labels_to_plot</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="n">dendrogram_ratio</span><span class="o">=</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.3</span><span class="p">),</span>
+    <span class="n">col_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_cluster</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">row_colors</span><span class="o">=</span><span class="n">row_colors</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ME enrichment&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]),</span>
+    <span class="n">cbar_pos</span><span class="o">=</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">),</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">tree_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidths&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;seaborn.matrix.ClusterGrid at 0x127355a50&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_15_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_15_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the cell ID to plot</span>
+<span class="n">CELL_ID_TO_PLOT</span> <span class="o">=</span> <span class="s1">&#39;molpigdm-1&#39;</span>
+
+<span class="c1"># Retrieve the index of the cell to plot based on the cell ID</span>
+<span class="n">index_me_plot</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">return_object_IDs_from_query_like</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">CELL_ID_TO_PLOT</span><span class="p">)</span>
+<span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Generate k-hop neighborhoods for the specified cell</span>
+<span class="n">khop_neighbourhoods_prox</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">khop_neighbourhood</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;centroid_delaunay&#39;</span><span class="p">,</span>
+    <span class="n">source_objects</span><span class="o">=</span><span class="p">[</span><span class="n">index_me_plot</span><span class="p">],</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract the indices of the neighborhood cells</span>
+<span class="n">me_indices</span> <span class="o">=</span> <span class="n">khop_neighbourhoods_prox</span><span class="p">[</span><span class="n">index_me_plot</span><span class="p">]</span>
+
+<span class="c1"># Get the positions of all objects in the domain</span>
+<span class="n">object_positions</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">domain_4</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">keys</span><span class="p">())}</span>
+
+<span class="c1"># Plot the inset</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize the domain with the neighborhood cells highlighted</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">khop_neighbourhoods_prox</span><span class="p">[</span><span class="n">index_me_plot</span><span class="p">]),</span>
+    <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+    <span class="n">scatter_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Highlight the neighborhood cells</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">me_indices</span><span class="p">,</span>
+    <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+    <span class="n">scatter_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Highlight the central cell</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="p">[</span><span class="n">index_me_plot</span><span class="p">],</span>
+    <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+    <span class="n">scatter_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">),</span>
+    <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;25µm&#39;</span><span class="p">,</span>
+        <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">,</span>
+        <span class="n">pad</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">size_vertical</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">fontproperties</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Extract the subgraph for the neighborhood</span>
+<span class="n">subG</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">khop_neighbourhoods_prox</span><span class="p">[</span><span class="n">index_me_plot</span><span class="p">])</span>
+
+<span class="c1"># Get the list of edges in the subgraph</span>
+<span class="n">edge_list_me</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">subG</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+
+<span class="c1"># Draw the edges of the entire network in light gray</span>
+<span class="n">collection_0</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="o">.</span><span class="n">networks</span><span class="p">[</span><span class="s1">&#39;centroid_delaunay&#39;</span><span class="p">],</span>
+    <span class="n">object_positions</span><span class="p">,</span>
+    <span class="n">edge_color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">arrows</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># Draw the edges of the neighborhood in black</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="o">.</span><span class="n">networks</span><span class="p">[</span><span class="s1">&#39;centroid_delaunay&#39;</span><span class="p">],</span>
+    <span class="n">object_positions</span><span class="p">,</span>
+    <span class="n">edgelist</span><span class="o">=</span><span class="n">edge_list_me</span><span class="p">,</span>
+    <span class="n">edge_color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">arrows</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># Set the z-order for the edge collections</span>
+<span class="n">collection</span><span class="o">.</span><span class="n">set_zorder</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">collection_0</span><span class="o">.</span><span class="n">set_zorder</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span>
+
+<span class="c1"># Define the center point and region to plot</span>
+<span class="n">centrePoint</span> <span class="o">=</span> <span class="n">object_positions</span><span class="p">[</span><span class="n">index_me_plot</span><span class="p">]</span>
+<span class="n">region_about_centre</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="c1"># Set the axis limits and aspect ratio</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">centrePoint</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">region_about_centre</span><span class="p">,</span> <span class="n">centrePoint</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">region_about_centre</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">centrePoint</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">region_about_centre</span><span class="p">,</span> <span class="n">centrePoint</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">region_about_centre</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_16_0.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_16_0.png" />
+</div>
+</div>
+<p>Making ME regions into shapes</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the domain to get the IDs of objects with &#39;ME ID&#39; label equal to 0</span>
+<span class="n">qME_0_ids</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">interpret_query</span><span class="p">(</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;ME ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert the queried objects into shapes using the alpha shape method</span>
+<span class="c1"># The alpha parameter controls the shape&#39;s detail level, and internal_boundaries is set to True</span>
+<span class="n">new_IDs</span> <span class="o">=</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span>
+    <span class="n">population</span><span class="o">=</span><span class="n">qME_0_ids</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;ME 0&#39;</span><span class="p">,</span>
+    <span class="n">return_IDs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">object_type</span><span class="o">=</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">internal_boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the domain to get the IDs of objects with &#39;ME ID&#39; label equal to 1</span>
+<span class="n">qME_1_ids</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">interpret_query</span><span class="p">(</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;ME ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert the queried objects into shapes using the alpha shape method</span>
+<span class="c1"># The alpha parameter controls the shape&#39;s detail level, and internal_boundaries is set to True</span>
+<span class="n">new_IDs</span> <span class="o">=</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span>
+    <span class="n">population</span><span class="o">=</span><span class="n">qME_1_ids</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;ME 1&#39;</span><span class="p">,</span>
+    <span class="n">return_IDs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">object_type</span><span class="o">=</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">internal_boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the domain to get the IDs of objects with &#39;ME ID&#39; label equal to 2</span>
+<span class="n">qME_2_ids</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">interpret_query</span><span class="p">(</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;ME ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert the queried objects into shapes using the alpha shape method</span>
+<span class="c1"># The alpha parameter controls the shape&#39;s detail level</span>
+<span class="c1"># Setting internal_boundaries to False</span>
+<span class="n">new_IDs</span> <span class="o">=</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span>
+    <span class="n">population</span><span class="o">=</span><span class="n">qME_2_ids</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;ME 2&#39;</span><span class="p">,</span>
+    <span class="n">return_IDs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">object_type</span><span class="o">=</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">internal_boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the domain to get the IDs of objects with &#39;ME ID&#39; label equal to 3</span>
+<span class="n">qME_3_ids</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">interpret_query</span><span class="p">(</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;ME ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert the queried objects into shapes using the alpha shape method</span>
+<span class="c1"># The alpha parameter controls the shape&#39;s detail level, and internal_boundaries is set to True</span>
+<span class="n">new_IDs</span> <span class="o">=</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span>
+    <span class="n">population</span><span class="o">=</span><span class="n">qME_3_ids</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;ME 3&#39;</span><span class="p">,</span>
+    <span class="n">return_IDs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">object_type</span><span class="o">=</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">internal_boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query the domain to get the IDs of objects with &#39;ME ID&#39; label equal to 4</span>
+<span class="n">qME_4_ids</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">interpret_query</span><span class="p">(</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;ME ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert the queried objects into shapes using the alpha shape method</span>
+<span class="c1"># The alpha parameter controls the shape&#39;s detail level, and internal_boundaries is set to True</span>
+<span class="n">new_IDs</span> <span class="o">=</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span>
+    <span class="n">population</span><span class="o">=</span><span class="n">qME_4_ids</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;ME 4&#39;</span><span class="p">,</span>
+    <span class="n">return_IDs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">object_type</span><span class="o">=</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">internal_boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Note 3: Simplifying shapes can take some time (~3min on M2 chip). We simplify to make shape distances more efficient</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a list of microenvironment (ME) regions</span>
+<span class="n">ME_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ME 0&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 1&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 2&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 3&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 4&#39;</span><span class="p">]</span>
+
+<span class="c1"># Iterate over each ME region</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">me</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ME_list</span><span class="p">):</span>
+    <span class="c1"># Query the domain to get the shapes corresponding to the current ME region</span>
+    <span class="n">qMEshapes</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">me</span><span class="p">)</span>
+
+    <span class="c1"># Simplify the boundaries of the shapes using the Visvalingam-Whyatt algorithm</span>
+    <span class="c1"># The epsilon parameter controls the level of simplification</span>
+    <span class="n">domain_4</span><span class="o">.</span><span class="n">simplify_shape_boundaries</span><span class="p">(</span><span class="n">qMEshapes</span><span class="p">,</span> <span class="n">delete_original_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;Visvalingam-Whyatt&#39;</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># Re-query the domain to get the updated shapes after simplification</span>
+    <span class="n">qMEshapes</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">interpret_query</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">me</span><span class="p">))</span>
+
+    <span class="c1"># Add a new label &#39;shape ME ID&#39; to the simplified shapes</span>
+    <span class="c1"># The label is categorical and uses the &#39;Dark2&#39; colormap</span>
+    <span class="n">domain_4</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;shape ME ID&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">qMEshapes</span><span class="p">),</span> <span class="n">add_labels_to</span><span class="o">=</span><span class="n">qMEshapes</span><span class="p">,</span> <span class="n">label_type</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Dark2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query all shapes in the specified microenvironment (ME) regions</span>
+<span class="n">qMEshapes_all</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="n">ME_list</span><span class="p">)</span>
+
+<span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize the domain with the queried shapes</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">qMEshapes_all</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;shape ME ID&#39;</span><span class="p">),</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+    <span class="n">add_scalebar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scalebar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1mm&#39;</span><span class="p">,</span>
+        <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>
+        <span class="n">pad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">size_vertical</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">fontproperties</span><span class="o">=</span><span class="n">fm</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">100</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Set the x and y limits of the plot to the bounding box of the domain</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">domain_4</span><span class="o">.</span><span class="n">bounding_box</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">bounding_box</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">domain_4</span><span class="o">.</span><span class="n">bounding_box</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">bounding_box</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(12.0549783707, 7234.4599609375)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_25_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_25_1.png" />
+</div>
+</div>
+<p>Note 4: distances with shapes can take some time (~5min on a M2 chip)</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Query all shapes in the specified microenvironment (ME) regions</span>
+<span class="n">qMEshapes_all</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ME 0&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 3&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 2&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 1&#39;</span><span class="p">,</span> <span class="s1">&#39;ME 4&#39;</span><span class="p">])</span>
+
+<span class="c1"># Generate a network using the Proximity method</span>
+<span class="c1"># The network is created with shapes as nodes and edges based on proximity</span>
+<span class="n">ME_graph</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">generate_network</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;ME_shape&#39;</span><span class="p">,</span>
+    <span class="n">objects_as_nodes</span><span class="o">=</span><span class="n">qMEshapes_all</span><span class="p">,</span>
+    <span class="n">network_type</span><span class="o">=</span><span class="s1">&#39;Proximity&#39;</span><span class="p">,</span>
+    <span class="n">distance_weighted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">min_edge_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_edge_distance</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform adjacency permutation test to assess the significance of network adjacency</span>
+<span class="c1"># SES_net: Standardized effect size network</span>
+<span class="c1"># A_net: Adjacency matrix</span>
+<span class="c1"># unique_labels_net: Unique labels in the network</span>
+
+<span class="n">SES_net</span><span class="p">,</span> <span class="n">A_net</span><span class="p">,</span> <span class="n">unique_labels_net</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">adjacency_permutation_test</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">network_name</span><span class="o">=</span><span class="s1">&#39;ME_shape&#39;</span><span class="p">,</span>  <span class="c1"># Name of the network to use</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;shape ME ID&#39;</span><span class="p">,</span>  <span class="c1"># Label to use for adjacency</span>
+    <span class="n">adjacency_order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Order of adjacency to consider</span>
+    <span class="n">label_shuffle_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>  <span class="c1"># Number of label shuffling iterations</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>  <span class="c1"># Significance level</span>
+    <span class="n">transform_counts</span><span class="o">=</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span>  <span class="c1"># Transformation to apply to counts</span>
+    <span class="n">observation_threshold</span><span class="o">=</span><span class="mi">0</span>  <span class="c1"># Threshold for observations</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Visualize the correlation matrix using the SES_net and unique_labels_net</span>
+<span class="c1"># The correlation matrix is plotted with a lower triangle, using the &#39;RdBu_r&#39; colormap</span>
+<span class="c1"># The colorbar limits are set to [-5, 5] and labeled as &#39;Adjacency score&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_correlation_matrix</span><span class="p">(</span>
+    <span class="n">SES_net</span><span class="p">,</span>
+    <span class="n">unique_labels_net</span><span class="p">,</span>
+    <span class="n">triangle_to_plot</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span>
+    <span class="n">colorbar_limit</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">colorbar_label</span><span class="o">=</span><span class="s1">&#39;Adjacency score&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Set the x and y tick labels to the unique labels in the network</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">unique_labels_net</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">unique_labels_net</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[Text(0, 0.5, &#39;0&#39;),
+ Text(0, 1.5, &#39;1&#39;),
+ Text(0, 2.5, &#39;2&#39;),
+ Text(0, 3.5, &#39;3&#39;),
+ Text(0, 4.5, &#39;4&#39;)]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_29_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_29_1.png" />
+</div>
+</div>
+</section>
+<section id="Hotspot-analysis">
+<h2>Hotspot analysis<a class="headerlink" href="#Hotspot-analysis" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a hexagonal grid for spatial analysis</span>
+<span class="c1"># This grid will be used to analyze the spatial distribution of clusters within the domain</span>
+
+<span class="c1"># Parameters:</span>
+<span class="c1"># - domain_4: The domain object containing the spatial data</span>
+<span class="c1"># - side_length: The side length of each hexagon in the grid</span>
+<span class="c1"># - regions_collection_name: The name of the collection to store the hexagonal regions</span>
+<span class="c1"># - label_observations: The labels to observe within each hexagonal region</span>
+<span class="c1"># - region_include_method: The method to include regions (e.g., &#39;partial&#39; to include partially overlapping regions)</span>
+
+<span class="n">ms</span><span class="o">.</span><span class="n">region_based</span><span class="o">.</span><span class="n">generate_hexgrid</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">side_length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">regions_collection_name</span><span class="o">=</span><span class="s1">&#39;Hexgrids 100&#39;</span><span class="p">,</span>
+    <span class="n">label_observations</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Cluster ID&#39;</span><span class="p">],</span>
+    <span class="n">region_include_method</span><span class="o">=</span><span class="s1">&#39;partial&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the spatial distribution of clusters within the hexagonal grid</span>
+
+<span class="c1"># Create a figure with 3 subplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Plot the hexagonal grid colored by the count of &#39;Cluster 1&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;region counts: Cluster 1&#39;</span><span class="p">),</span>  <span class="c1"># Color by the count of &#39;Cluster 1&#39;</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Hexgrids 100&#39;</span><span class="p">),</span>  <span class="c1"># Plot the hexagonal grid</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Set marker size</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>  <span class="c1"># Use the first subplot</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>  <span class="c1"># Shape settings</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Do not add color bar</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot the hexagonal grid colored by the count of &#39;Cluster 12&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;region counts: Cluster 12&#39;</span><span class="p">),</span>  <span class="c1"># Color by the count of &#39;Cluster 12&#39;</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Hexgrids 100&#39;</span><span class="p">),</span>  <span class="c1"># Plot the hexagonal grid</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Set marker size</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>  <span class="c1"># Use the second subplot</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>  <span class="c1"># Shape settings</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Do not add color bar</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot the hexagonal grid colored by the count of &#39;Cluster 11&#39;</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;region counts: Cluster 11&#39;</span><span class="p">),</span>  <span class="c1"># Color by the count of &#39;Cluster 11&#39;</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Hexgrids 100&#39;</span><span class="p">),</span>  <span class="c1"># Plot the hexagonal grid</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Set marker size</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="c1"># Use the third subplot</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">),</span>  <span class="c1"># Shape settings</span>
+    <span class="n">add_cbar</span><span class="o">=</span><span class="kc">True</span>  <span class="c1"># Do not add color bar</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 3000x1500 with 6 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_32_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_32_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform Getis-Ord Gi* hotspot analysis</span>
+<span class="c1"># This analysis identifies spatial clusters of high or low values for &#39;Cluster 2&#39; within the hexagonal grid</span>
+
+<span class="c1"># Parameters:</span>
+<span class="c1"># - domain_4: The domain object containing the spatial data</span>
+<span class="c1"># - population: The population of objects to analyze (&#39;Hexgrids 100&#39;)</span>
+<span class="c1"># - label_name: The label to analyze (&#39;region counts: Cluster 2&#39;)</span>
+<span class="c1"># - include_boundaries: Boundaries to include in the analysis (None)</span>
+<span class="c1"># - exclude_boundaries: Boundaries to exclude from the analysis (None)</span>
+<span class="c1"># - boundary_exclude_distance: Distance to exclude around boundaries (0)</span>
+<span class="c1"># - distance_weight_function: Function to weight distances (None)</span>
+<span class="c1"># - network_kwargs: Additional arguments for network generation</span>
+<span class="c1"># - add_local_value_as_label: Whether to add the local Getis-Ord Gi* value as a label (True)</span>
+<span class="c1"># - local_getis_label_name: Name of the label for the local Getis-Ord Gi* value (&#39;Local Getis Ord G*: Celltype 2&#39;)</span>
+
+<span class="n">local_getis_ord_zscore</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">object_indices</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">spatial_statistics</span><span class="o">.</span><span class="n">getis_ord</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">population</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Hexgrids 100&#39;</span><span class="p">),</span>
+    <span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;region counts: Cluster 2&#39;</span><span class="p">,</span>
+    <span class="n">include_boundaries</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude_boundaries</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">boundary_exclude_distance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">distance_weight_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">network_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;network_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Delaunay&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;min_edge_distance&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;max_edge_distance&#39;</span><span class="p">:</span> <span class="mi">200</span>
+    <span class="p">},</span>
+    <span class="n">add_local_value_as_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">local_getis_label_name</span><span class="o">=</span><span class="s1">&#39;Local Getis Ord G*: Celltype 2&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Warning: Delauany networks are currently only implemented for point objects, object centroids will used for network construction
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="c1"># Visualize the spatial distribution of the Getis-Ord Gi* statistic for &#39;Cluster 2&#39;</span>
+<span class="c1"># within the hexagonal grid. The hexagons are colored based on the local Getis-Ord Gi* values.</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+    <span class="n">domain_4</span><span class="p">,</span>
+    <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Local Getis Ord G*: Celltype 2&#39;</span><span class="p">,</span>  <span class="c1"># Color by the local Getis-Ord Gi* values for &#39;Cluster 2&#39;</span>
+    <span class="n">objects_to_plot</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="s1">&#39;Hexgrids 100&#39;</span><span class="p">),</span>  <span class="c1"># Plot the hexagonal grid</span>
+    <span class="n">marker_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Set marker size</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>  <span class="c1"># Use the created axis</span>
+    <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>  <span class="c1"># Shape settings</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1050x1050 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_34_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_34_1.png" />
+</div>
+</div>
+</section>
+<section id="Continuum-analysis">
+<h2>Continuum analysis<a class="headerlink" href="#Continuum-analysis" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate the boundary of the domain using the alpha shape method</span>
+<span class="n">domain_4</span><span class="o">.</span><span class="n">estimate_boundary</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span> <span class="n">alpha_shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+
+<span class="c1"># Check if &#39;Alpha boundary&#39; collection exists and delete it if it does</span>
+<span class="k">if</span> <span class="s1">&#39;Alpha boundary&#39;</span> <span class="ow">in</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">collections</span><span class="p">:</span>
+    <span class="n">qBoundary</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Alpha boundary&#39;</span><span class="p">)</span>
+    <span class="n">domain_4</span><span class="o">.</span><span class="n">delete_objects</span><span class="p">(</span><span class="n">qBoundary</span><span class="p">)</span>
+
+<span class="c1"># Query the cell centroids in the domain</span>
+<span class="n">qPoints</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell centroids&#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert the cell centroids into shapes using the alpha shape method</span>
+<span class="n">new_IDs</span> <span class="o">=</span> <span class="n">domain_4</span><span class="o">.</span><span class="n">convert_objects</span><span class="p">(</span>
+    <span class="n">population</span><span class="o">=</span><span class="n">qPoints</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;Alpha boundary&#39;</span><span class="p">,</span>
+    <span class="n">return_IDs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">object_type</span><span class="o">=</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span>
+    <span class="n">conversion_method_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">internal_boundaries</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Query the newly created &#39;Alpha boundary&#39; shapes</span>
+<span class="n">qBoundary</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Alpha boundary&#39;</span><span class="p">)</span>
+
+<span class="c1"># Simplify the boundaries of the &#39;Alpha boundary&#39; shapes using the Visvalingam-Whyatt algorithm</span>
+<span class="n">domain_4</span><span class="o">.</span><span class="n">simplify_shape_boundaries</span><span class="p">(</span>
+    <span class="n">qBoundary</span><span class="p">,</span>
+    <span class="n">delete_original_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;Visvalingam-Whyatt&#39;</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mi">1500</span>
+<span class="p">)</span>
+
+<span class="c1"># Re-estimate the boundary of the domain using the alpha shape method</span>
+<span class="n">domain_4</span><span class="o">.</span><span class="n">estimate_boundary</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;alpha shape&#39;</span><span class="p">,</span> <span class="n">alpha_shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">30</span><span class="p">))</span>
+
+<span class="c1"># Query the &#39;Alpha boundary&#39; shapes again</span>
+<span class="n">qBoundary</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Alpha boundary&#39;</span><span class="p">)</span>
+
+<span class="c1"># Query the cell centroids in the domain again</span>
+<span class="n">qPoints</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;collection&#39;</span><span class="p">,),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;Cell centroids&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the clusters of interest</span>
+<span class="n">clusters_of_interest</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cluster 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster 11&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create a figure with 3 subplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Initialize an empty list to store kernel density estimation (KDE) maps</span>
+<span class="n">kde_maps</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Iterate over each cluster of interest</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters_of_interest</span><span class="p">):</span>
+    <span class="c1"># Query the domain to get the objects with the specified cluster ID</span>
+    <span class="n">qCluster2</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+    <span class="c1"># Perform kernel density estimation for the queried cluster</span>
+    <span class="n">kernel_density_matrix</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">kernel_density_estimation</span><span class="p">(</span>
+        <span class="n">domain_4</span><span class="p">,</span>
+        <span class="n">population</span><span class="o">=</span><span class="n">qCluster2</span><span class="p">,</span>
+        <span class="n">include_boundaries</span><span class="o">=</span><span class="n">qBoundary</span><span class="p">,</span>
+        <span class="n">mesh_step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">bw_method</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">visualise_output</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Append the KDE matrix to the list</span>
+    <span class="n">kde_maps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_density_matrix</span><span class="p">)</span>
+
+    <span class="c1"># Visualize the KDE heatmap</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise_heatmap</span><span class="p">(</span>
+        <span class="n">domain_4</span><span class="p">,</span>
+        <span class="n">kernel_density_matrix</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">colorbar_limit</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">4e-7</span><span class="p">],</span>
+        <span class="n">heatmap_zorder</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">visualise_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Overlay the domain boundary on the heatmap</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
+        <span class="n">domain_4</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">objects_to_plot</span><span class="o">=</span><span class="n">qBoundary</span><span class="p">,</span>
+        <span class="n">show_boundary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Customize the subplot appearance</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_37_0.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_37_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize matrices to store Wasserstein and KL divergence distances</span>
+<span class="n">Wass_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters_of_interest</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters_of_interest</span><span class="p">)))</span>
+<span class="n">KL_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters_of_interest</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters_of_interest</span><span class="p">)))</span>
+
+<span class="c1"># Loop through each pair of clusters to compute distances</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">clusterA</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters_of_interest</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">clusterB</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters_of_interest</span><span class="p">):</span>
+        <span class="c1"># Skip computation for the lower triangle and diagonal</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Query the domain for the objects belonging to the current clusters</span>
+        <span class="n">qPopA</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">clusterA</span><span class="p">)</span>
+        <span class="n">qPopB</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">domain_4</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;Cluster ID&#39;</span><span class="p">),</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">clusterB</span><span class="p">)</span>
+
+        <span class="c1"># Compute the Sliced Wasserstein Distance between the two clusters</span>
+        <span class="n">Wass_dist</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">sliced_wasserstein_distance</span><span class="p">(</span>
+            <span class="n">domain_4</span><span class="p">,</span> <span class="n">qPopA</span><span class="p">,</span> <span class="n">qPopB</span><span class="p">,</span> <span class="n">POT_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_projections&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Compute the KL Divergence between the kernel density estimates of the two clusters</span>
+        <span class="n">KL_dist</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">distribution</span><span class="o">.</span><span class="n">kl_divergence</span><span class="p">(</span><span class="n">kde_maps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">kde_maps</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract numeric labels from the cluster names for plotting</span>
+<span class="n">numeric_label_categories</span> <span class="o">=</span> <span class="p">[</span><span class="n">lab</span><span class="p">[</span><span class="mi">8</span><span class="p">:]</span> <span class="k">for</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">clusters_of_interest</span><span class="p">]</span>
+
+<span class="c1"># Create a figure and axis for the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Create masks for the upper triangle of the distance matrices</span>
+<span class="n">SES_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">Wass_dist</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">KL_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">KL_dist</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Plot a diagonal line for reference</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">numeric_label_categories</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">numeric_label_categories</span><span class="p">)],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Plot the KL divergence heatmap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">KL_dist</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">numeric_label_categories</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">numeric_label_categories</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;KL divergence&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">KL_mask</span><span class="p">,</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.1f&quot;</span><span class="p">,</span>
+    <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot the Wasserstein distance heatmap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">Wass_dist</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">numeric_label_categories</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">numeric_label_categories</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">use_gridspec</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wasserstein distance&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">SES_mask</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.1f&quot;</span><span class="p">,</span>
+    <span class="n">cbar</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="c1"># Set the labels for the axes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Celltype ID&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Celltype ID&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Text(43.62499999999999, 0.5, &#39;Celltype ID&#39;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_39_1.png" src="../../_images/_collections_paper_tutorials_MuSpAn_-_Figure_5_39_1.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Microenvironment-analysis">Microenvironment analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Hotspot-analysis">Hotspot analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Continuum-analysis">Continuum analysis</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

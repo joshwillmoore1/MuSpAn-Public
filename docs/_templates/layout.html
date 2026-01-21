@@ -1,0 +1,433 @@
+{# layout.html #}
+{% extends "!layout.html" %}
+
+{% block extrahead %}
+    {{ super() }}
+    {% if pagename == "tutorials" %}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "name": "Spatial Data Analysis Tutorials",
+                "description": "A collection of tutorials for spatial data analysis using MuSpAn, including methods from spatial statistics, network analysis, topology, optimal transport, and more. Provides a gentle introduction to the theory and practical application to spatial data using MuSpAn.",
+                "numberOfItems": 48,
+                "itemListElement": [
+                    {
+                        "@type": "HowTo",
+                        "name": "The cross pair correlation function (cross-PCF)",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html",
+                        "description": "Learn about the pair correlation function as an interpretable alternative to the Ripley's K function and how to compute this on spatial data with MuSpAn.",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "learningResourceType": "Tutorial",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_spatial_analysis_methods_Spatial_stats_-_1_-_pcf_6_0.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Computing and interpreting Ripley’s K function",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html",
+                        "description": "Learn about Ripley’s K function in the context of spatial biology for intrepretable analysis how to compute this on spatial data with MuSpAn.",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "learningResourceType": "Tutorial",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_spatial_analysis_methods_Spatial_stats_-_5_-_RipleysK_4_1.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+
+                    {
+                        "@type": "HowTo",
+                        "name": "Spatial autocorrelation (Hotspot Analysis)",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html",
+                        "description": "Learn about Moran's I and the Getis-Ord statistics as methods for identifying the existence of clustering in spatial data and locating hotspots and cold spots of activity.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "learningResourceType": "Tutorial",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_spatial_analysis_methods_Spatial_stats_-_4_-_Spatial_autocorrelation_22_1.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Neighbourhood clustering",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html",
+                        "description": "Learn how about and compute the variety of approaches to neighbourhood analysis in spatial data using MuSpAn. Reproduce existing methods and design your own. Generate spatially-informed labels to objects.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_29_1.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Topological data analysis (TDA)",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/topology/Topology%201%20-%20persistent%20homology.html",
+                        "description": "An introduction to persistent homology from topological data analysis and learn how to compute persistent homology and interpret results on spatial data with MuSpAn.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/_collections_topology_Topology_1_-_persistent_homology_10_0.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    },
+                    {
+                        "@type": "HowTo",
+                        "name": "Using MuSpAn with Xenium data",
+                        "url": "https://docs.muspan.co.uk/latest/_collections/importing_data/Importing%20a%20Xenium%20dataset.html",
+                        "description": "A tutorial demonstrating how to export Xenium data from Xenium Explorer to a MuSpAn domain.",
+                        "learningResourceType": "Tutorial",
+                        "isPartOf": {
+                            "@type": "LearningResource",
+                            "name": "MuSpAn Tutorials",
+                            "url": "https://docs.muspan.co.uk/latest/tutorials/"
+                        },
+                        "image": {
+                            "@type": "ImageObject",
+                            "url": "https://docs.muspan.co.uk/latest/_images/Xen_exp_tut.png",
+                            "height": 600,
+                            "width": 800
+                        }
+                    }
+                ]
+            }
+        </script>
+    {% elif pagename == "Documentation" %}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LearningResource",
+                "name": "MuSpAn Documentation",
+                "description": "Documentation for MuSpAn, a Python package for spatial data analysis. This documentation provides an overview of the package and a comprehensive API reference, along with tutorials covering spatial statistics, topological data analysis, and spatial networks.",
+                "url": "https://docs.muspan.co.uk/latest/Documentation.html",
+                "educationalLevel": ["Intermediate", "Graduate", "Postgraduate"],
+                "learningResourceType": ["Documentation", "API Reference"],
+                "educationalUse": "instruction",
+                "about": {
+                    "@type": "Thing",
+                    "name": "Spatial data analysis"
+                },
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@type": "SoftwareApplication",
+                    "name": "MuSpAn",
+                    "applicationCategory": "Scientific/Research Software"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "MuSpAn Team",
+                    "url": "https://muspan.co.uk"
+                },
+                "creator": [
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Bull",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.bull"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Moore",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.moore"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Prof Helen Byrne",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/helen.byrne"
+                    }
+                ],
+                "keywords": [
+                    "spatial data analysis",
+                    "spatial statistics",
+                    "spatial network analysis",
+                    "topological data analysis",
+                    "optimal transport",
+                    "Python package",
+                    "Spatial biology software",
+                    "spatial data science",
+                    "Quantitative spatial biology",
+                    "Neighbourhood analysis",
+                    "Multiscale spatial analysis",
+                    "Academic software",
+                    "Pipeline development",
+                    "Spatial analysis pipeline development",
+                    "MuSpAn"
+                ]
+            }
+        </script>
+    {% elif pagename == "Installation" %}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "HowTo",
+                "name": "MuSpAn Installation Guide",
+                "description": "A guide to installing MuSpAn, a Python package for spatial data analysis. This guide covers the simple installation process using pip. It also includes guides for issues around dependencies and environment setup.",
+                "url": "https://docs.muspan.co.uk/latest/Installation.html",
+                "educationalLevel": ["Intermediate", "Graduate", "Postgraduate"],
+                "learningResourceType": ["Guide", "Tutorial"],
+                "educationalUse": "instruction",
+                "about": {
+                    "@type": "Thing",
+                    "name": "Spatial data analysis"
+                },
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@type": "SoftwareApplication",
+                    "name": "MuSpAn",
+                    "applicationCategory": "Scientific/Research Software"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "MuSpAn Team",
+                    "url": "https://muspan.co.uk"
+                },
+                "creator": [
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Bull",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.bull"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Moore",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.moore"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Prof Helen Byrne",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/helen.byrne"
+                    }
+                ],
+                "keywords": [
+                    "spatial data analysis",
+                    "spatial statistics",
+                    "spatial network analysis",
+                    "topological data analysis",
+                    "optimal transport",
+                    "Python package",
+                    "Spatial biology software",
+                    "spatial data science",
+                    "Quantitative spatial biology",
+                    "Neighbourhood analysis",
+                    "Multiscale spatial analysis",
+                    "Academic software",
+                    "Pipeline development",
+                    "Spatial analysis pipeline development",
+                    "MuSpAn"
+                ]
+            }
+        </script>
+    {% elif pagename == "glossary" %}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LearningResource",
+                "name": "MuSpAn Glossary",
+                "description": "A glossary for all core terms used in MuSpAn, a Python package for spatial data analysis. This glossary provides definitions and explanation of MuSpAn specific terms, as well as general terms used in spatial data analysis.",
+                "url": "https://docs.muspan.co.uk/latest/glossary.html",
+                "educationalLevel": ["Intermediate", "Graduate", "Postgraduate"],
+                "learningResourceType": ["Documentation", "API Reference"],
+                "educationalUse": "instruction",
+                "about": {
+                    "@type": "Thing",
+                    "name": "Spatial data analysis"
+                },
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@type": "SoftwareApplication",
+                    "name": "MuSpAn",
+                    "applicationCategory": "Scientific/Research Software"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "MuSpAn Team",
+                    "url": "https://muspan.co.uk"
+                },
+                "creator": [
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Bull",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.bull"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Moore",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.moore"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Prof Helen Byrne",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/helen.byrne"
+                    }
+                ],
+                "keywords": [
+                    "spatial data analysis",
+                    "spatial statistics",
+                    "spatial network analysis",
+                    "topological data analysis",
+                    "optimal transport",
+                    "Python package",
+                    "Spatial biology software",
+                    "spatial data science",
+                    "Quantitative spatial biology",
+                    "Neighbourhood analysis",
+                    "Multiscale spatial analysis",
+                    "Academic software",
+                    "Pipeline development",
+                    "Spatial analysis pipeline development",
+                    "MuSpAn"
+                ]
+            }
+        </script>
+    {% elif pagename == "paper_examples" %}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "name": "MuSpAn Paper Examples",
+                "description": "A collection tutorials reproducing data spatial analysis using MuSpAn in published studies.",
+                "url": "https://docs.muspan.co.uk/latest/paper_examples.html",
+                "numberOfItems": 6
+            }
+        </script>
+    {% elif pagename == "references" %}
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "ScholarlyArticle",
+                "name": "MuSpAn References",
+                "description": "A collection of references for MuSpAn, a Python package for spatial data analysis. This page also provides a list of publications that have used MuSpAn.",
+                "url": "https://docs.muspan.co.uk/latest/glossary.html",
+                "about": {
+                    "@type": "Thing",
+                    "name": "Spatial data analysis"
+                },
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@type": "SoftwareApplication",
+                    "name": "MuSpAn",
+                    "applicationCategory": "Scientific/Research Software"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "MuSpAn Team",
+                    "url": "https://muspan.co.uk"
+                },
+                "creator": [
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Bull",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.bull"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Moore",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.moore"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Prof Helen Byrne",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/helen.byrne"
+                    }
+                ],
+                "keywords": [
+                    "spatial data analysis",
+                    "spatial statistics",
+                    "spatial network analysis",
+                    "topological data analysis",
+                    "optimal transport",
+                    "Python package",
+                    "Spatial biology software",
+                    "spatial data science",
+                    "Quantitative spatial biology",
+                    "Neighbourhood analysis",
+                    "Multiscale spatial analysis",
+                    "Academic software",
+                    "Pipeline development",
+                    "Spatial analysis pipeline development",
+                    "MuSpAn"
+                ]
+            }
+        </script>
+    {% endif %}
+{% endblock %}

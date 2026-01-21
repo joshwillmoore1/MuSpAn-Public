@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Importing a SpatialData dataset &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/importing_data/Importing a spatialData dataset';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MuSpAn with Xenium Explorer" href="Importing%20a%20Xenium%20dataset.html" />
+    <link rel="prev" title="MuSpAn with QuPath" href="Importing%20data%20from%20QuPath.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Importing a...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Importing-a-SpatialData-dataset">
+<h1>Importing a SpatialData dataset<a class="headerlink" href="#Importing-a-SpatialData-dataset" title="Link to this heading">#</a></h1>
+<p>SpatialData is a data framework for the access, alignment, and processing of uni- and multi-modal spatial omics datasets (<a class="reference external" href="https://doi.org/10.1038/s41592-024-02212-x">https://doi.org/10.1038/s41592-024-02212-x</a>). It builds upon the annData framework for spatially-resolved data and is becoming a common method of storing large multimodal datasets. In this tutorial, we’ll demonstrate how to import spatial data contained in a SpatialData object into a MuSpAn domain using the <code class="docutils literal notranslate"><span class="pre">spatialdata_to_domain</span></code> reader function.</p>
+<p>To reproduce this tutorial, download the MERFISH ‘Mouse brain’ dataset from SpatialData (<a class="reference external" href="https://spatialdata.scverse.org/en/stable/tutorials/notebooks/datasets/README.html">https://spatialdata.scverse.org/en/stable/tutorials/notebooks/datasets/README.html</a>).</p>
+<p>We’ll start by reading in the SpatialData object using the ‘spatialdata’ package.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import required</span>
+<span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="kn">import</span> <span class="nn">spatialdata</span> <span class="k">as</span> <span class="nn">sd</span>
+
+<span class="c1"># Path to the spatial data file (.zarr) -- EDIT THIS PATH FOR YOUR OWN LOCAL DOWNLOAD LOCATION</span>
+<span class="n">path_to_spatialData_file</span><span class="o">=</span><span class="s1">&#39;../../../spatialData_data/MERFISH-Mouse-brain.zarr&#39;</span>
+
+<span class="c1"># Load the spatial data file using the read_zarr function</span>
+<span class="n">test_sd</span><span class="o">=</span><span class="n">sd</span><span class="o">.</span><span class="n">read_zarr</span><span class="p">(</span><span class="n">path_to_spatialData_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_sd</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+SpatialData object, with associated Zarr store: /Users/joshuamoore/Dropbox/Ox_PostDoc/Code/spatialData_data/MERFISH-Mouse-brain.zarr
+├── Images
+│     └── &#39;rasterized&#39;: DataArray[cyx] (1, 522, 575)
+├── Points
+│     └── &#39;single_molecule&#39;: DataFrame with shape: (&lt;Delayed&gt;, 3) (2D points)
+├── Shapes
+│     ├── &#39;anatomical&#39;: GeoDataFrame shape: (6, 1) (2D shapes)
+│     └── &#39;cells&#39;: GeoDataFrame shape: (2389, 2) (2D shapes)
+└── Tables
+      └── &#39;table&#39;: AnnData (2389, 268)
+with coordinate systems:
+    ▸ &#39;global&#39;, with elements:
+        rasterized (Images), single_molecule (Points), anatomical (Shapes), cells (Shapes)
+</pre></div></div>
+</div>
+<p>We can see that the SpatialData object contains different partitions of data that we can access. In this example, we have ‘Images’,’Points’, ‘Shapes’ and ‘Tables’. The spatial objects in this dataset are stored under ‘Points’ and ‘Shapes’. These headers are further categorised by groups of objects predefined by the used. For example, under shapes, we have ‘anatomical’ and ‘cells’ which are annotated regions of the tissue and segmentated cells, respectively.</p>
+<p>We can import this SpatialData object into MuSpAn using the <code class="docutils literal notranslate"><span class="pre">spatialdata_to_domain</span></code> function. The main parameter we give to this function is a spatialData object. In our case, this is ‘test_sd’.</p>
+<p>MuSpAn is looking for anything under the ‘Points’ or ‘Shapes’ headings in the SpatialData object to grab. We have to be careful with unpacking too much data as MuSpAn currently stores all objects in memory.</p>
+<p>In this MERFISH experiment, there are a lot of spatially-resolved points under ‘single_molecule’ which might not be relevent for spatial analysis. For this we can specify the objects to load into our domain using the <code class="docutils literal notranslate"><span class="pre">include_elements</span></code> parameter, which takes a list of spatial elements (objects) we’d like to add. Let’s only include the ‘cells’ for now.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pass the spatial data object to the muspan io to convert into a domain</span>
+<span class="n">domain</span><span class="o">=</span><span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">spatialdata_to_domain</span><span class="p">(</span><span class="n">test_sd</span><span class="p">,</span><span class="n">include_elements</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cells&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: spatialData domain
+Number of objects: 2389
+Collections: [&#39;cells&#39;]
+Labels: [&#39;cell_id&#39;, &#39;radius&#39;, &#39;table: 1700022I11Rik&#39;, &#39;table: 1810046K07Rik&#39;, &#39;table: 5031425F14Rik&#39;, &#39;table: 5730522E02Rik&#39;, &#39;table: Acta2&#39;, &#39;table: Adam2&#39;, &#39;table: Adamts2&#39;, &#39;table: Adamts4&#39;, &#39;table: Adra1b&#39;, &#39;table: Alk&#39;, &#39;table: Ankfn1&#39;, &#39;table: Ano4&#39;, &#39;table: Aqp4&#39;, &#39;table: Asic4&#39;, &#39;table: B4galnt2&#39;, &#39;table: B4galnt3&#39;, &#39;table: Barx2&#39;, &#39;table: Bcl11b&#39;, &#39;table: Bdnf&#39;, &#39;table: Bgn&#39;, &#39;table: Blank-1&#39;, &#39;table: Blank-10&#39;, &#39;table: Blank-2&#39;, &#39;table: Blank-3&#39;, &#39;table: Blank-4&#39;, &#39;table: Blank-5&#39;, &#39;table: Blank-6&#39;, &#39;table: Blank-7&#39;, &#39;table: Blank-8&#39;, &#39;table: Blank-9&#39;, &#39;table: Blnk&#39;, &#39;table: Bmpr1b&#39;, &#39;table: Brinp3&#39;, &#39;table: C1ql3&#39;, &#39;table: C1qtnf7&#39;, &#39;table: Cacng5&#39;, &#39;table: Calb1&#39;, &#39;table: Calb2&#39;, &#39;table: Camk2d&#39;, &#39;table: Car3&#39;, &#39;table: Cbln2&#39;, &#39;table: Cbln4&#39;, &#39;table: Ccbe1&#39;, &#39;table: Ccdc162&#39;, &#39;table: Ccdc3&#39;, &#39;table: Ccdc80&#39;, &#39;table: Ccnb1&#39;, &#39;table: Cd14&#39;, &#39;table: Cd24a&#39;, &#39;table: Cd52&#39;, &#39;table: Cdca7&#39;, &#39;table: Cdcp1&#39;, &#39;table: Cdh12&#39;, &#39;table: Cdh13&#39;, &#39;table: Cdh20&#39;, &#39;table: Cdh9&#39;, &#39;table: Ceacam9&#39;, &#39;table: Cemip&#39;, &#39;table: Chat&#39;, &#39;table: Chn2&#39;, &#39;table: Chodl&#39;, &#39;table: Chrm2&#39;, &#39;table: Chrna2&#39;, &#39;table: Cldn5&#39;, &#39;table: Clrn1&#39;, &#39;table: Cnr1&#39;, &#39;table: Cntnap5b&#39;, &#39;table: Cobll1&#39;, &#39;table: Col14a1&#39;, &#39;table: Col15a1&#39;, &#39;table: Col23a1&#39;, &#39;table: Col24a1&#39;, &#39;table: Col25a1&#39;, &#39;table: Corin&#39;, &#39;table: Cplx3&#39;, &#39;table: Crhr2&#39;, &#39;table: Crispld2&#39;, &#39;table: Cspg4&#39;, &#39;table: Ctss&#39;, &#39;table: Cux2&#39;, &#39;table: Cxcl14&#39;, &#39;table: Daam2&#39;, &#39;table: Dmkn&#39;, &#39;table: Dnase1l3&#39;, &#39;table: Dscaml1&#39;, &#39;table: Egfem1&#39;, &#39;table: Egfr&#39;, &#39;table: Egln3&#39;, &#39;table: Egr2&#39;, &#39;table: Elfn1&#39;, &#39;table: Enpp6&#39;, &#39;table: Epha7&#39;, &#39;table: Fam19a2&#39;, &#39;table: Fam84b&#39;, &#39;table: Fbxl7&#39;, &#39;table: Fezf2&#39;, &#39;table: Flrt3&#39;, &#39;table: Flt1&#39;, &#39;table: Fndc7&#39;, &#39;table: Fosb&#39;, &#39;table: Foxp2&#39;, &#39;table: Frem2&#39;, &#39;table: Fst&#39;, &#39;table: Gad1&#39;, &#39;table: Gad2&#39;, &#39;table: Gfap&#39;, &#39;table: Glra1&#39;, &#39;table: Gpc6&#39;, &#39;table: Grik1&#39;, &#39;table: Grin3a&#39;, &#39;table: Grm1&#39;, &#39;table: Grm8&#39;, &#39;table: Hpse&#39;, &#39;table: Hs3st5&#39;, &#39;table: Igf2&#39;, &#39;table: Igfbp4&#39;, &#39;table: Igfbp5&#39;, &#39;table: Igfbp6&#39;, &#39;table: Ikzf2&#39;, &#39;table: Il1rapl2&#39;, &#39;table: Il4ra&#39;, &#39;table: Inpp4b&#39;, &#39;table: Iqgap2&#39;, &#39;table: Itgb8&#39;, &#39;table: Kcng1&#39;, &#39;table: Kcnj8&#39;, &#39;table: L3mbtl4&#39;, &#39;table: Lama3&#39;, &#39;table: Lamp5&#39;, &#39;table: Lhx6&#39;, &#39;table: Lmo1&#39;, &#39;table: Lsp1&#39;, &#39;table: Ltf&#39;, &#39;table: Luzp2&#39;, &#39;table: Lypd1&#39;, &#39;table: Lyzl4&#39;, &#39;table: March1&#39;, &#39;table: Marcksl1&#39;, &#39;table: Meis2&#39;, &#39;table: Moxd1&#39;, &#39;table: Mrc1&#39;, &#39;table: Mrgprx2&#39;, &#39;table: Muc20&#39;, &#39;table: Mup5&#39;, &#39;table: Myh14&#39;, &#39;table: Ndst4&#39;, &#39;table: Nhs&#39;, &#39;table: Nkain3&#39;, &#39;table: Nnmt&#39;, &#39;table: Nos1&#39;, &#39;table: Npas1&#39;, &#39;table: Npnt&#39;, &#39;table: Npsr1&#39;, &#39;table: Npy2r&#39;, &#39;table: Nr2f2&#39;, &#39;table: Nr4a1&#39;, &#39;table: Nr4a2&#39;, &#39;table: Ntng2&#39;, &#39;table: Nxph1&#39;, &#39;table: Nxph2&#39;, &#39;table: Nxph4&#39;, &#39;table: Olah&#39;, &#39;table: Olfm3&#39;, &#39;table: Opalin&#39;, &#39;table: Oprk1&#39;, &#39;table: Osr1&#39;, &#39;table: Otof&#39;, &#39;table: Parm1&#39;, &#39;table: Pcdh8&#39;, &#39;table: Pde11a&#39;, &#39;table: Pdgfc&#39;, &#39;table: Pdgfra&#39;, &#39;table: Pdlim5&#39;, &#39;table: Penk&#39;, &#39;table: Phactr2&#39;, &#39;table: Plch1&#39;, &#39;table: Plcxd3&#39;, &#39;table: Pld5&#39;, &#39;table: Plekhg3&#39;, &#39;table: Pou3f1&#39;, &#39;table: Pou3f3&#39;, &#39;table: Pou6f2&#39;, &#39;table: Prdm8&#39;, &#39;table: Prok2&#39;, &#39;table: Prokr2&#39;, &#39;table: Prox1&#39;, &#39;table: Prr16&#39;, &#39;table: Prss12&#39;, &#39;table: Prss23&#39;, &#39;table: Ptger3&#39;, &#39;table: Ptprk&#39;, &#39;table: Ptprm&#39;, &#39;table: Ptprt&#39;, &#39;table: Ptpru&#39;, &#39;table: Pvalb&#39;, &#39;table: Pxdc1&#39;, &#39;table: Rab3b&#39;, &#39;table: Ramp1&#39;, &#39;table: Reln&#39;, &#39;table: Rerg&#39;, &#39;table: Rfx3&#39;, &#39;table: Rgs5&#39;, &#39;table: Rgs6&#39;, &#39;table: Rnf152&#39;, &#39;table: Ror1&#39;, &#39;table: Rorb&#39;, &#39;table: Rprml&#39;, &#39;table: Rspo1&#39;, &#39;table: Rxfp1&#39;, &#39;table: Rxfp2&#39;, &#39;table: Satb2&#39;, &#39;table: Scgn&#39;, &#39;table: Sema3e&#39;, &#39;table: Sema5a&#39;, &#39;table: Serpinf1&#39;, &#39;table: Sertm1&#39;, &#39;table: Sgcd&#39;, &#39;table: Shisa9&#39;, &#39;table: Slc17a6&#39;, &#39;table: Slc17a7&#39;, &#39;table: Slc17a8&#39;, &#39;table: Slc25a13&#39;, &#39;table: Slc30a3&#39;, &#39;table: Slc32a1&#39;, &#39;table: Slc44a5&#39;, &#39;table: Slco5a1&#39;, &#39;table: Sncg&#39;, &#39;table: Sox10&#39;, &#39;table: Sox6&#39;, &#39;table: Sp8&#39;, &#39;table: Spon1&#39;, &#39;table: Sst&#39;, &#39;table: St6galnac5&#39;, &#39;table: Sulf1&#39;, &#39;table: Sulf2&#39;, &#39;table: Syndig1&#39;, &#39;table: Syt10&#39;, &#39;table: Syt6&#39;, &#39;table: Tac2&#39;, &#39;table: Tbc1d4&#39;, &#39;table: Tcap&#39;, &#39;table: Teddm3&#39;, &#39;table: Tenm3&#39;, &#39;table: Th&#39;, &#39;table: Thbs2&#39;, &#39;table: Thsd7a&#39;, &#39;table: Timp3&#39;, &#39;table: Tmem163&#39;, &#39;table: Tmtc2&#39;, &#39;table: Tnfaip6&#39;, &#39;table: Tox&#39;, &#39;table: Trp53i11&#39;, &#39;table: Trpc4&#39;, &#39;table: Trpc6&#39;, &#39;table: Tshz2&#39;, &#39;table: Tunar&#39;, &#39;table: Ubash3b&#39;, &#39;table: Unc13c&#39;, &#39;table: Unc5b&#39;, &#39;table: Unc5d&#39;, &#39;table: Ust&#39;, &#39;table: Vip&#39;, &#39;table: Vipr2&#39;, &#39;table: Vtn&#39;, &#39;table: Vwc2&#39;, &#39;table: Wipf3&#39;, &#39;table: Wnt7b&#39;, &#39;table: Zfp804b&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>Note that everything connected the spatial objects in the ‘Tables’ using the ‘cell id’ is unpacked from the annData tables and loaded into MuSpAn as labels. These labels are named by the annData table they are a part of. In this example, our SpatialData object has one addData data under the ‘Tables’ handing, named ‘table’, which contains transcript counts for all objects.</p>
+<p>Let’s visualise this domain colored by a specific transcript count.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the domain</span>
+<span class="c1"># We will color the visualization by the &#39;Sox10&#39; transcript count from the &#39;table&#39;</span>
+<span class="c1"># Set the marker size to 30 for better visibility</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;table: Sox10&#39;</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_importing_data_Importing_a_spatialData_dataset_7_1.png" src="../../_images/_collections_importing_data_Importing_a_spatialData_dataset_7_1.png" />
+</div>
+</div>
+<p>If there is a lot of information in the spatialData object, we might only want to select specific labels to load. We can do this using the <code class="docutils literal notranslate"><span class="pre">annData_tables_and_vars</span></code> parameter which takes a dictionary keyed by the name of the anndata table and the entries being the variables we’d like to select.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the spatial data object into a MuSpAn domain</span>
+<span class="c1"># We include specific elements (&#39;cells&#39;) and select specific variables (&#39;Sox10&#39;, &#39;Alk&#39;) from the annData table</span>
+<span class="n">domain_selected</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">spatialdata_to_domain</span><span class="p">(</span>
+    <span class="n">test_sd</span><span class="p">,</span>
+    <span class="n">include_elements</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cells&#39;</span><span class="p">],</span>
+    <span class="n">annData_tables_and_vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;table&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Sox10&#39;</span><span class="p">,</span> <span class="s1">&#39;Alk&#39;</span><span class="p">]}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: spatialData domain
+Number of objects: 2389
+Collections: [&#39;cells&#39;]
+Labels: [&#39;cell_id&#39;, &#39;radius&#39;, &#39;table: Sox10&#39;, &#39;table: Alk&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<p>We can see now that we only have the intrinic object information (id and radius) and the ‘Sox10’ and ‘Alk’ labels from the annData table.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the domain with selected labels</span>
+<span class="c1"># We will color the visualization by the &#39;Alk&#39; transcript count from the &#39;table&#39;</span>
+<span class="c1"># Set the marker size to 30 for better visibility</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_selected</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;table: Alk&#39;</span><span class="p">,</span> <span class="n">marker_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_importing_data_Importing_a_spatialData_dataset_11_1.png" src="../../_images/_collections_importing_data_Importing_a_spatialData_dataset_11_1.png" />
+</div>
+</div>
+<p>In addition, these cells are saved as shapes. For computational efficiency in downstream spatial analysis, we convert any shape-like data into point-like data, by default. If we wanted to keep these shapes, we can use the <code class="docutils literal notranslate"><span class="pre">import_shapes_as_points</span></code> parameter and set this to false.</p>
+<p>In this example, these cells are actually saved as shapes (circles of estimated radius).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the spatial data object into a MuSpAn domain, including specific elements and variables</span>
+<span class="c1"># Set import_shapes_as_points to False to keep the shapes as they are</span>
+<span class="n">domain_selected_shapes</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">spatialdata_to_domain</span><span class="p">(</span>
+    <span class="n">test_sd</span><span class="p">,</span>
+    <span class="n">include_elements</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cells&#39;</span><span class="p">],</span>
+    <span class="n">annData_tables_and_vars</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;table&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Sox10&#39;</span><span class="p">,</span> <span class="s1">&#39;Alk&#39;</span><span class="p">]},</span>
+    <span class="n">import_shapes_as_points</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Domain name: spatialData domain
+Number of objects: 2389
+Collections: [&#39;cells&#39;]
+Labels: [&#39;cell_id&#39;, &#39;radius&#39;, &#39;table: Sox10&#39;, &#39;table: Alk&#39;]
+Networks: []
+Distance matrices: []
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the domain with selected shapes, colored by &#39;Alk&#39; transcript count</span>
+<span class="c1"># Set the alpha parameter to 1 for full opacity</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_selected_shapes</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;table: Alk&#39;</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_importing_data_Importing_a_spatialData_dataset_14_1.png" src="../../_images/_collections_importing_data_Importing_a_spatialData_dataset_14_1.png" />
+</div>
+</div>
+<p>Now we can see the difference in cell ‘size’ as well as the counts of Alk.</p>
+<p>This functionality should allow for extended spatial analysis of your spatialData datasets in MuSpAn. As always, we encourage checking out our documentation on <code class="docutils literal notranslate"><span class="pre">spatialdata_to_domain</span></code> to get the most out of it’s functionality for your use case.</p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

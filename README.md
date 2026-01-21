@@ -6,8 +6,7 @@
 </div>
 
 
-This repository serves as the public-facing counterpart to our private repository for MuSpAn. While the core development happens in a private repository, this public space is designed to foster community engagement, track issues, and host open discussions. To stay updated, any announcements and updates to the project can be found at www.muspan.co.uk
-
+This is a public-facing repository for MuSpAn. While the core development happens in a private repository, this public space is designed to foster community engagement, track issues, and host open discussions. To stay updated, any announcements and updates to the project can be found at www.muspan.co.uk
 
 
 ## Purpose of This Repository

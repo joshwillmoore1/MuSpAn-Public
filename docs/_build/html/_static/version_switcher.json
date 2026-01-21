@@ -1,0 +1,13 @@
+[
+    {
+        "name": "v1.0.0 (latest)",
+        "version": "1.0.0",
+        "url": "https://docs.muspan.co.uk/latest/"
+    },
+
+    {   
+        "name": "dev",
+        "version": "1.0.1",
+        "url": "https://docs.muspan.co.uk/dev/"
+    }
+]

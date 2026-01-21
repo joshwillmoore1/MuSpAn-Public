@@ -1,0 +1,26 @@
+v1.1.1
+======
+
+MuSpAn v1.1.1 is a minor release that includes bug fixes and dependency updates. This release is compatible with Python 3.10 and above.
+
+
+Optimisations
+-------------
+* Improved computational efficiency for loading Xenium data using the Xenium_to_domain function.
+* Floating point errors in shape operations has been resolved.
+
+Bug Fixes
+---------
+* [#12] Fixed Type assertion error in xenium_to_domain.
+* domain_to_csv: indexing error corrected.
+* generate_hexgrid and generate_quadrats: categortical type assertion to string when counting labels in regions.
+* Update NetworkX dependency to version 3.4 for compatibility with Python 3.13.
+* Dropped numpy 2.0.0 contstraint as Simplification dependency is no longer required.
+* switched matplotlib.pylot.cm.get_cmap to matplotlib.pyplot.get_cmap for compatibility with matplotlib 3.9.0.
+
+
+All tutorials have been updated to reflect the changes in version **v1.1.1**. We appreciate all contributions and feedback that helped shape this release!
+
+For further details, refer to the documentation and upgrade guide.
+
+Thank you for using our software!

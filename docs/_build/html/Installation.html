@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Install &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Installation';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentation" href="Documentation.html" />
+    <link rel="prev" title="MuSpAn: Multiscale Spatial Analysis Toolbox" href="index.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "HowTo",
+                "name": "MuSpAn Installation Guide",
+                "description": "A guide to installing MuSpAn, a Python package for spatial data analysis. This guide covers the simple installation process using pip. It also includes guides for issues around dependencies and environment setup.",
+                "url": "https://docs.muspan.co.uk/latest/Installation.html",
+                "educationalLevel": ["Intermediate", "Graduate", "Postgraduate"],
+                "learningResourceType": ["Guide", "Tutorial"],
+                "educationalUse": "instruction",
+                "about": {
+                    "@type": "Thing",
+                    "name": "Spatial data analysis"
+                },
+                "inLanguage": "en",
+                "isPartOf": {
+                    "@type": "SoftwareApplication",
+                    "name": "MuSpAn",
+                    "applicationCategory": "Scientific/Research Software"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "MuSpAn Team",
+                    "url": "https://muspan.co.uk"
+                },
+                "creator": [
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Bull",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.bull"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Dr. Joshua Moore",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/joshua.moore"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Prof Helen Byrne",
+                        "affiliation": {
+                            "@type": "Organization",
+                            "name": "University of Oxford"
+                        },
+                        "url": "https://www.maths.ox.ac.uk/people/helen.byrne"
+                    }
+                ],
+                "keywords": [
+                    "spatial data analysis",
+                    "spatial statistics",
+                    "spatial network analysis",
+                    "topological data analysis",
+                    "optimal transport",
+                    "Python package",
+                    "Spatial biology software",
+                    "spatial data science",
+                    "Quantitative spatial biology",
+                    "Neighbourhood analysis",
+                    "Multiscale spatial analysis",
+                    "Academic software",
+                    "Pipeline development",
+                    "Spatial analysis pipeline development",
+                    "MuSpAn"
+                ]
+            }
+        </script>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Install</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="install">
+<span id="installation"></span><h1>Install<a class="headerlink" href="#install" title="Link to this heading">#</a></h1>
+<p>The MuSpAn package can be installed using the Python package manager <code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span></code>. Below are detailed instructions for installing MuSpAn. <strong>Minimum Requirements</strong>: Python 3.10-3.13 and pip: &gt;=21.0.1</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If you are already using <code class="xref py py-obj docutils literal notranslate"><span class="pre">conda</span></code> to manage your Python packages, you may encounter dependency conflicts when installing via <code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span></code>. If issues occur using our <code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span></code> installation, please follow the recommendations in the <strong>Handling Conda and Pip Compatibility Issues</strong> section.</p>
+</div>
+<img alt="Python 3.10–3.13" src="https://img.shields.io/badge/Python-3.10--3.13-blue" />
+<img alt="Package passing" src="https://img.shields.io/badge/Package-passing-brightgreen" />
+<a class="reference external image-reference" href="./release_notes.html#test-summary"><img alt="Tests passing" src="https://img.shields.io/badge/Tests-passing-brightgreen" /></a>
+<a class="reference external image-reference" href="https://doi.org/10.1101/2024.12.06.627195"><img alt="Package DOI" src="https://img.shields.io/badge/DOI-10.1101/2024.12.06.627195-blue" /></a>
+<a class="reference external image-reference" href="https://docs.muspan.co.uk/MuSpAn_Academic_use_licence.pdf?_gl=1*177bju1*_ga*Njg3NjY2MDU1LjE3MzMyMjA2NDc.*_ga_NYJKGWRYPR*czE3NDg4NTU1MTUkbzM3MiRnMSR0MTc0ODg1NjU4MSRqNTckbDAkaDA"><img alt="Licence Academic" src="https://img.shields.io/badge/Licence-Academic--Use-blue" /></a>
+<section id="installing-muspan">
+<h2>Installing MuSpAn<a class="headerlink" href="#installing-muspan" title="Link to this heading">#</a></h2>
+<p>Follow the steps below to install MuSpAn:</p>
+<ol class="arabic">
+<li><p><strong>Request the package</strong></p>
+<p>Visit our package request page (<a class="reference external" href="https://www.muspan.co.uk/get-the-code">https://www.muspan.co.uk/get-the-code</a>) and submit a request form.</p>
+</li>
+<li><p><strong>Receive credentials</strong></p>
+<p>Once your license has been approved by our team, you’ll be emailed by <a class="reference external" href="mailto:code&#37;&#52;&#48;muspan&#46;co&#46;uk">code<span>&#64;</span>muspan<span>&#46;</span>co<span>&#46;</span>uk</a> with a <strong>username</strong> and <strong>password</strong> to access to the MuSpAn package (check your spam folder).</p>
+</li>
+<li><p><strong>Pip install the package</strong></p>
+<p>Use your terminal to download and install the package using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>https://docs.muspan.co.uk/code/latest.zip
+</pre></div>
+</div>
+<p>You’ll be prompted to enter your <strong>username</strong> and <strong>password</strong>. Once entered, the package will be downloaded and installed.</p>
+</li>
+<li><p><strong>Verify the installation</strong></p>
+<p>Open a Python shell and try importing MuSpAn:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MuSpAn installed successfully!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To install a specific version of MuSpAn, replace ‘latest’ in the URL with an existing version number. For example, to install version 1.0.0, replace ‘latest’ with ‘v1.0.0’ as in the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>https://docs.muspan.co.uk/code/v1.0.0.zip
+</pre></div>
+</div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Once you have successfully installed MuSpAn, you can start analysing spatial data! We recommend checking out our <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">tutorials</span></a> to get started. For more information, refer to the <a class="reference internal" href="Documentation.html#documentation"><span class="std std-ref">documentation</span></a>.</p>
+<p>In addition, you can be a part of the MuSpAn discussion on our <a class="reference external" href="https://app.gitter.im/#/room/#muspan-community:gitter.im">Gitter community channel</a> which is our causal space for users to ask questions, share ideas and discuss the package. See you there!</p>
+</section>
+<section id="updating-muspan">
+<h2>Updating MuSpAn<a class="headerlink" href="#updating-muspan" title="Link to this heading">#</a></h2>
+<p>We recommend updating MuSpAn regularly to access the latest features and bug fixes. To update MuSpAn, run the following command in your terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>https://docs.muspan.co.uk/code/latest.zip<span class="w"> </span>-U
+</pre></div>
+</div>
+<p>You will be prompted to enter your <strong>Username</strong> and <strong>password</strong> given for your initial install. This process will update MuSpAn to the latest version. If conda environments are used, simply make a new environment with the updated version by following the <strong>Handling Conda and Pip Compatibility Issues</strong> procedure.</p>
+</section>
+<section id="handling-conda-and-pip-compatibility-issues">
+<h2>Handling Conda and Pip Compatibility Issues<a class="headerlink" href="#handling-conda-and-pip-compatibility-issues" title="Link to this heading">#</a></h2>
+<p>When using <code class="xref py py-obj docutils literal notranslate"><span class="pre">conda</span></code> environments, mixing <code class="xref py py-obj docutils literal notranslate"><span class="pre">conda</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span></code> installations can lead to dependency conflicts.
+If conflicts arise and MuSpAn installation fails, it is recommended to isolate MuSpAn in a virtual conda environment.
+Follow these steps to create a fresh conda environment for MuSpAn installation:</p>
+<ol class="arabic">
+<li><p><strong>Create a fresh conda environment</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>muspan_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+conda<span class="w"> </span>activate<span class="w"> </span>muspan_env
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install pip within the conda environment</strong></p>
+<p>Ensure <code class="xref py py-obj docutils literal notranslate"><span class="pre">pip</span></code> is up to date and tied to the environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>pip
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install MuSpAn using pip</strong></p>
+<p>Follow the steps 1-4 in <strong>Installing MuSpAn</strong> outlined above to install MuSpAn.</p>
+</li>
+</ol>
+<p>The full list of dependencies is given below to reference any potential conflicts. If conflicts persist, consider isolating <em class="xref py py-obj">MuSpAn</em> in a virtual environment or using a containerisation tool like Docker.</p>
+</section>
+<section id="installing-muspan-from-a-local-directory-legacy-installation">
+<h2>Installing MuSpAn from a local directory (legacy installation)<a class="headerlink" href="#installing-muspan-from-a-local-directory-legacy-installation" title="Link to this heading">#</a></h2>
+<p>Follow the steps below to install MuSpAn if you have the MuSpAn.zip saved on your local machine:</p>
+<ol class="arabic">
+<li><p><strong>Extract the package</strong></p>
+<p>Unzip the folder named ‘MuSpAn_vX.X.X’ somewhere locally on your machine.</p>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><p><strong>Navigate to the directory</strong></p>
+<p>Use the terminal to navigate to the folder containing the downloaded package - named ‘MuSpAn_vX.X.X’. Replace <em class="xref py py-obj">path/to/muspan_folder</em> with the actual path:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/to/MuSpAn_vX.X.X
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install the package</strong></p>
+<p>Run the following command to install MuSpAn along with its dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify the installation</strong></p>
+<p>Open a Python shell and try importing MuSpAn:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MuSpAn installed successfully!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="updating-llvm-on-macos-to-fix-clang-errors">
+<h2>Updating LLVM on macOS to Fix Clang Errors<a class="headerlink" href="#updating-llvm-on-macos-to-fix-clang-errors" title="Link to this heading">#</a></h2>
+<p>If you encounter errors like unsupported ‘fopenmp’ when installing MuSpAn on macOS, you’ll need to update LLVM (Low-Level Virtual Machine) on your system. Follow these simple steps:</p>
+<ol class="arabic">
+<li><p><strong>Install Homebrew</strong></p>
+<p>Homebrew is a package manager for macOS. If you don’t already have it installed, run this command in the Terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install LLVM Using Homebrew</strong></p>
+<p>Once Homebrew is installed, use it to install LLVM by running in the Terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>llvm
+</pre></div>
+</div>
+</li>
+<li><p><strong>Set clang as the Default Compiler</strong></p>
+<p>To use the updated clang provided by LLVM, set it as your default compiler by running the following commands in the Terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">CC</span><span class="o">=</span>/usr/local/opt/llvm/bin/clang
+<span class="nb">export</span><span class="w"> </span><span class="nv">CXX</span><span class="o">=</span>/usr/local/opt/llvm/bin/clang++
+</pre></div>
+</div>
+</li>
+</ol>
+<p>After running these commands, you should be able to install MuSpAn on your MacOS machine.</p>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
+<p>Dependencies for MuSpAn V1.2.2 include the following packages:</p>
+<ul class="simple">
+<li><p>geojson&gt;=3.1.0</p></li>
+<li><p>matplotlib&gt;=3.9.0</p></li>
+<li><p>miniball&gt;=1.2.0</p></li>
+<li><p>networkx&gt;= 3.4</p></li>
+<li><p>numpy&gt;=2.0</p></li>
+<li><p>pandas[parquet,feather,hdf5]&gt;=2.2.3</p></li>
+<li><p>POT&gt;=0.9.4</p></li>
+<li><p>ripser&gt;=0.6.8</p></li>
+<li><p>rust-geo-python==0.1.6</p></li>
+<li><p>scikit_learn&gt;=1.5.2</p></li>
+<li><p>scipy&gt;=1.14.1</p></li>
+<li><p>seaborn&gt;=0.13.2</p></li>
+<li><p>setuptools&gt;=72.1.0</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-muspan">Installing MuSpAn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-muspan">Updating MuSpAn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-conda-and-pip-compatibility-issues">Handling Conda and Pip Compatibility Issues</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-muspan-from-a-local-directory-legacy-installation">Installing MuSpAn from a local directory (legacy installation)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-llvm-on-macos-to-fix-clang-errors">Updating LLVM on macOS to Fix Clang Errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

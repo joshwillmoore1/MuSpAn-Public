@@ -1,0 +1,27 @@
+v1.0.0
+======
+
+We are excited to announce the release of version **v1.0.0**! This is the first public release of MuSpAn.
+
+New Features
+------------
+* Advanced Spatial Analysis: It provides easy-to-use, flexible, and interactive access to quantitative methods developed from mathematical fields that include spatial statistics.
+* Comprehensive Documentation and Tutorials: The toolbox offers over 40 in-depth user tutorials covering MuSpAn features, statistics, visualisation, and more, enabling users to effectively utilise its capabilities. 
+* Multiscale by Design: MuSpAn is designed to handle multiscale data, allowing users to analyse data at multiple scales and resolutions.
+* Ongoing Development: MuSpAn is under constant development, with a team of quantitative researchers continually developing new methodologies to tackle problems in analysing spatial transcriptomics, multiplex immunohistochemistry, imaging mass cytometry, and more. 
+* Interactive Data Visualisation: Users can explore colored points and polygons in their datasets, enhancing the understanding of spatial relationships within the data. 
+* User Support and Community Engagement: MuSpAn provides avenues for user support and encourages community engagement through mailing lists and contact options, fostering a collaborative environment for users to share insights and seek assistance.
+
+Optimisations
+-------------
+*This is the first public release of MuSpAn, and no optimisations have been made yet.*
+
+Bug Fixes
+---------
+*This is the first public release of MuSpAn, and no patches have been made yet.*
+
+We appreciate all contributions and feedback that helped shape this release!
+
+For further details, refer to the documentation and upgrade guide.
+
+Thank you for using our software!
