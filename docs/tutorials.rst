@@ -14,11 +14,14 @@ This flexible approach ensures you can learn at your own pace while focusing on 
     :show_fade:
     :show_shadows:
 
+    .. image:: images/carousel_images/art_1.png
+       :target: _collections/misc/2025%20Math%20Onco%20Art.html
+       :alt: A creatative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels
+
     .. image:: images/carousel_images/comm_1.png
        :target: _collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html
        :alt: Conversion of communities of contiguous cells into shape objects using MuSpAn
-
-          
+ 
     .. image:: images/carousel_images/tcm_1.png
        :target: _collections/paper_tutorials/MuSpAn%20-%20Figure_6.html
        :alt: Computation of the Topographical Correlation Map between fibroblasts and macrophages in a colorectal tumour with regions annotated by carcinoma
@@ -42,10 +45,6 @@ This flexible approach ensures you can learn at your own pace while focusing on 
     .. image:: images/carousel_images/net2_1.png
        :target: _collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html
        :alt: Demonstration of various network models available in MuSpAn. (Left) Delaunay Triangulation (Middle) K-nearest neighbours (right) Proximity-based
-
-    .. image:: images/carousel_images/art_1.png
-       :target: _collections/misc/2025%20Math%20Onco%20Art.html
-       :alt: A creatative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels
 
     .. image:: images/carousel_images/dist_1.png
        :target: _collections/paper_tutorials/MuSpAn%20-%20Figure_3.html
