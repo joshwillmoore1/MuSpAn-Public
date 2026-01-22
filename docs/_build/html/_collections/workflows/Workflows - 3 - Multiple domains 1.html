@@ -1,0 +1,1306 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Working with multiple domains 1: Simple cohort comparision &#8212; Multiscale Spatial Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=fe207193" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=cbcfbdad"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-NYJKGWRYPR"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-NYJKGWRYPR');
+            </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/workflows/Workflows - 3 - Multiple domains 1';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MuSpAn with QuPath" href="../importing_data/Importing%20data%20from%20QuPath.html" />
+    <link rel="prev" title="Export a domain as csv (and dataframe)" href="Workflows%20-%202%20-%20Domain%20to%20csv.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+  <aside class="bd-header-announcement d-print-none d-none" aria-label="Announcement" data-pst-announcement-url="https://raw.githubusercontent.com/joshwillmoore1/MuSpAn-Public/refs/heads/main/announcements/muspan_announce.html"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+     
+  
+
+<a class="navbar-brand logo" href="https://www.muspan.co.uk">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/muspan_logo_lightmode.png" class="logo__image only-light" alt="Multiscale Spatial Analysis - Home"/>
+    <script>document.write(`<img src="../../_static/muspan_logo_darkmode.png" class="logo__image only-dark" alt="Multiscale Spatial Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Installation.html">
+    Install
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Documentation.html">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../paper_examples.html">
+    Paper examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../glossary.html">
+    Glossary
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../references.html">
+    References
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../release_notes.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Quick Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://app.gitter.im/#/room/#muspan-community:gitter.im" title="Gitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-gitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Gitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/joshwillmoore1/MuSpAn-Public" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github-square fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+    <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+    <div class="bd-toc-item navbar-nav">
+      <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%201%20-%20Domains.html">Making your first domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%202%20-%20Introducing%20labels.html">Importing data from CSV files and labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%203%20-%20Shapes.html">Shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%204%20-%20Saving%20and%20loading%20domains.html">Saving and loading domains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/Getting%20Started%20-%205%20-%20Estimating%20boundaries.html">Estimating domain boundaries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%201%20-%20What%20is%20a%20query.html">What is a query?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%202%20-%20understanding%20a%20query.html">Understanding a query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%203%20-%20combining%20queries.html">Combining queries: query containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%204%20-%20Containing%20query.html">Containment queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../queries/Queries%20-%205%20-%20Distance-based%20query.html">Distance-based queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%201%20-%20shapes%20to%20points.html">Converting shapes into points 1: Shapes to centroids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%202%20-%20shapes%20to%20points%202.html">Converting shapes into points 2: Decomposing a shape to its vertices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%203%20-%20points%20to%20shape%203.html">Converting points into a shape 1: Convex hull</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%204%20-%20points%20to%20shape%201.html">Converting points into shapes 2: Alpha shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../working_with_objects/WWO%20-%205%20-%20points%20to%20shape%202.html">Converting points into shapes 3: Voronoi tessellation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html">Creating networks from spatial data 1: Delaunay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%202.html">Creating networks from spatial data 2: Proximity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Creating%20networks%203.html">Creating networks from spatial data 3: K-Nearest Neighbours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Subnetworks%20from%20queries.html">Subnetworks using queries</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html">The cross pair correlation function (cross-PCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%202%20-%20boundary%20corrections.html">Selecting boundaries for spatial statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%203%20-%20wPCF.html">The weighted pair correlation function (wPCF)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html">Spatial Autocorrelation (Hotspot Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html">Computing and interpreting Ripley’s K function</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%202%20-%20level%20set%20filtration.html">Persistent homology - Level-set filtration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../topology/Topology%203%20-%20persistence%20vectorisation.html">Persistent homology - Vectorisation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_hexgrids.html">Tiling a domain 1: Hexagonal lattice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/generating_quadrats.html">Tiling a domain 2: Quadrats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../region_based_analysis/quadrat_correlation.html">Quadrat correlation analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%201%20-%20KDE.html">Converting points into a continuum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%202%20-%20Distributions%20in%20shapes.html">Distributions within shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../distribution_analysis/Distribution%203%20-%20Comparing%20distributions.html">Comparing distributions (KL-divergence)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%201%20-%20standard%20metrics.html">Standard shape descriptors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry/geometry%20-%202%20-%20principle%20axis.html">Shape orientation (principle axis)</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with multiple domains 1: Simple cohort comparision</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
+</ul>
+
+    </div>
+  </nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item"><nav class="sidebar-indices-items" aria-labelledby="pst-indices-navigation-heading-2">
+  <p id="pst-indices-navigation-heading-2" class="sidebar-indices-items__title" role="heading" aria-level="1">Indices</p>
+  <ul class="indices-link">
+        <li class="toctree-l1">
+          <a class="reference internal"
+             href="../../genindex.html"
+             accesskey="I">General Index</a>
+        </li>
+        <li class="toctree-l1">
+          <a class="reference internal" href="../../py-modindex.html">Python Module Index</a>
+        </li>
+  </ul>
+</nav></div>
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Working...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Working-with-multiple-domains-1:-Simple-cohort-comparision">
+<h1>Working with multiple domains 1: Simple cohort comparision<a class="headerlink" href="#Working-with-multiple-domains-1:-Simple-cohort-comparision" title="Link to this heading">#</a></h1>
+<p>In spatial biology, analyses rarely involve a single spatial region in isolation. More commonly, we work with multiple spatial domains: replicate samples from the same biological source, samples drawn from distinct cohorts, control versus treatment conditions, comparisons across mouse lines, or different cancer types. In these settings, the objective is not merely to compute spatial metrics for individual samples, but to do so at scale—and, critically, to compare those measurements across many
+spatially distinct regions.</p>
+<p>This tutorial series focuses on strategies for analysing and comparing multiple spatial samples using MuSpAn. While this may seem straightforward at first glance, cohort-level spatial analysis is a non-trivial problem. The appropriate way to aggregate or compare spatial metrics across domains depends on the metric itself and on properties of each spatial region. Assumptions underlying a given statistic may not propagate cleanly across heterogeneous domains, and naïve aggregation can lead to
+misleading results. For this reason, subsequent tutorials will concentrate on specific spatial metrics and discuss principled approaches to aggregating and comparing them across samples.</p>
+<p>Before addressing the technical details of individual metrics, such as the pair correlation function (PCF) or quadrat count-based measures (QCM), this introductory tutorial demonstrates how to set up a high-throughput cohort analysis workflow in MuSpAn. We will load multiple spatial domains, assign them to experimental groups, compute summary properties, and perform basic comparisons.</p>
+<hr class="docutils" />
+<section id="Focus-of-this-tutorial">
+<h2>Focus of this tutorial<a class="headerlink" href="#Focus-of-this-tutorial" title="Link to this heading">#</a></h2>
+<p>The emphasis here is on the underlying infrastructure: how MuSpAn leverages native Python data structures and idioms to enable scalable, flexible analysis of many spatial domains simultaneously</p>
+<p>Note that there are different ways to handle mutliple domains for analysis - this tutorial is just one example!</p>
+<hr class="docutils" />
+<section id="A-cohort-dataset">
+<h3>A cohort dataset<a class="headerlink" href="#A-cohort-dataset" title="Link to this heading">#</a></h3>
+<div class="line-block">
+<div class="line">To In this tutorial series, we’ll be working with data from <strong>Schürch (Cell, 2020)</strong> <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0092867420308709#abs0020">https://www.sciencedirect.com/science/article/pii/S0092867420308709#abs0020</a> —</div>
+<div class="line"><em>“Coordinated cellular neighborhoods orchestrate antitumoral immunity at the colorectal cancer invasive front.”</em></div>
+</div>
+<p>This dataset was generated using <strong>CODEX (CO-Detection by Indexing)</strong>, a highly multiplexed imaging technology that enables spatially resolved, single-cell profiling of many protein markers within intact tissue sections.</p>
+<hr class="docutils" />
+<section id="🧫-Data-summary">
+<h4>🧫 Data summary<a class="headerlink" href="#🧫-Data-summary" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>35 patients</strong> with colorectal cancer</p></li>
+<li><p><strong>140 tissue microarray (TMA) cores</strong>, sampled from regions near the <strong>invasive front</strong> of each tumour</p></li>
+<li><p>Each row in the dataset corresponds to a <strong>single cell</strong>, annotated with:</p>
+<ul>
+<li><p><strong>Spatial coordinates (X, Y)</strong></p></li>
+<li><p><strong>Cell type</strong> (from multiplexed immunofluorescence clustering)</p></li>
+<li><p><strong>TMA core / domain ID</strong></p></li>
+<li><p><strong>Patient group information</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="🧠-Biological-context">
+<h4>🧠 Biological context<a class="headerlink" href="#🧠-Biological-context" title="Link to this heading">#</a></h4>
+<p>The study identified two key immune microenvironment patterns:</p>
+<ul class="simple">
+<li><p><strong>Crohn’s-like reaction (CLR)</strong> — characterised by organised immune cell aggregates and a coordinated anti-tumour response.</p></li>
+<li><p><strong>Diffuse inflammatory infiltration (DII)</strong> — showing a more scattered, less coordinated immune cell presence.</p></li>
+</ul>
+<p>Patients exhibiting <strong>CLR</strong> have <strong>significantly better overall survival</strong> compared to those with <strong>DII</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="📊-Data-Information">
+<h4>📊 Data Information<a class="headerlink" href="#📊-Data-Information" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Each row represents a <strong>single cell</strong>.</p></li>
+<li><p><strong>``spots``</strong> – unique ID for each TMA.</p></li>
+<li><p><strong>``groups``</strong> – patient group ID (<code class="docutils literal notranslate"><span class="pre">1</span></code> for CLR or <code class="docutils literal notranslate"><span class="pre">2</span></code> for DII).</p></li>
+<li><p><strong>``ClusterName``</strong> – cell type, as determined by clustering of immunofluorescence per cell.</p></li>
+<li><p><strong>``X:X``</strong> – x-coordinate of the cell.</p></li>
+<li><p><strong>``Y:Y``</strong> – y-coordinate of the cell.</p></li>
+</ul>
+<hr class="docutils" />
+<p>We’re providing the <strong>full dataset</strong> for this analysis so you can <strong>identify and extract only the relevant information</strong> required to address our questions.</p>
+</section>
+<section id="Starting-simple:-comparing-cell-densities-across-cohorts">
+<h4>Starting simple: comparing cell densities across cohorts<a class="headerlink" href="#Starting-simple:-comparing-cell-densities-across-cohorts" title="Link to this heading">#</a></h4>
+<p>To get a hang of handling multiple domains, we start simple by just comparing cell type densities in the TMAs across patient groups. For this we’ll need to:</p>
+<ol class="arabic simple">
+<li><p><strong>Load the TMA data</strong> into a DataFrame.</p></li>
+<li><p><strong>Create domains</strong> for each TMA — be sure to include a way to identify groups (for example, using the domain name).</p></li>
+<li><p><strong>Compute cell type densities</strong> across all samples and collate information for each group</p></li>
+<li><p><strong>Compare groups</strong> in terms of cell type density, computing statistical tests for identifying significant differences between groups and visualise results to summarise our cohort analysis.</p></li>
+</ol>
+<p>This notebook tutorial will be structured using these steps.</p>
+<hr class="docutils" />
+</section>
+</section>
+</section>
+<section id="1.-Load-the-TMA-data">
+<h2>1. Load the TMA data<a class="headerlink" href="#1.-Load-the-TMA-data" title="Link to this heading">#</a></h2>
+<p>Don’t worry about finding any data, everything we need is stored online. The following cell gets all required imports and loads in a csv file wiht the cohort data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span>
+
+
+<span class="c1"># Load the Nolan et al. (2020) TMA dataset from the provided URL</span>
+<span class="n">nolan_tma_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://docs.muspan.co.uk/workshops/data_for_workshops/Nolan_2020_data%201.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Display the first few rows of the dataframe</span>
+<span class="n">nolan_tma_dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>CellID</th>
+      <th>ClusterID</th>
+      <th>EventID</th>
+      <th>File Name</th>
+      <th>Region</th>
+      <th>TMA_AB</th>
+      <th>TMA_12</th>
+      <th>Index in File</th>
+      <th>groups</th>
+      <th>...</th>
+      <th>CD68+Ki67+</th>
+      <th>CD68+PD-1+</th>
+      <th>CD8+ICOS+</th>
+      <th>CD8+Ki67+</th>
+      <th>CD8+PD-1+</th>
+      <th>Treg-ICOS+</th>
+      <th>Treg-Ki67+</th>
+      <th>Treg-PD-1+</th>
+      <th>neighborhood number final</th>
+      <th>neighborhood name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>10668</td>
+      <td>0</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>9.0</td>
+      <td>Granulocyte enriched</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10668</td>
+      <td>4</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>Macrophage enriched</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2</td>
+      <td>10668</td>
+      <td>5</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>Immune-infiltrated stroma</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>3</td>
+      <td>10668</td>
+      <td>6</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>6</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>Immune-infiltrated stroma</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>4</td>
+      <td>10668</td>
+      <td>30</td>
+      <td>reg001_A</td>
+      <td>reg001</td>
+      <td>A</td>
+      <td>1</td>
+      <td>30</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>Macrophage enriched</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 99 columns</p>
+</div></div>
+</div>
+<p>We’re providing the <strong>full dataset</strong> in this csv file, so we can <strong>identify and extract only the relevant information</strong> required to address our questions below</p>
+</section>
+<section id="2.-Create-domains">
+<h2>2. Create domains<a class="headerlink" href="#2.-Create-domains" title="Link to this heading">#</a></h2>
+<p>Now we have all the cohort data loaded in, let’s generate domains for each sample using the necessary data. We’ll name each sample by it’s TMA ID and patient group ID. This will allow us to identify the domains that match the the respective patient groups</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># Get unique spot IDs</span>
+<span class="n">spot_IDs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="s1">&#39;spots&#39;</span><span class="p">])</span>
+
+<span class="c1"># Initialise an empty list to hold domain objects</span>
+<span class="n">list_of_domains</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Create a color map for cell types to be consistent across domains</span>
+<span class="n">unique_cell_types</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="s1">&#39;ClusterName&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">cell_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;tab20&#39;</span><span class="p">)[</span><span class="n">i</span> <span class="o">%</span> <span class="mi">20</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_cell_types</span><span class="p">))]</span>
+<span class="n">cmap_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">unique_cell_types</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span> <span class="n">cell_colors</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_cell_types</span><span class="p">))}</span>
+
+<span class="c1"># loop over each unique spot ID to create domain objects</span>
+<span class="k">for</span> <span class="n">spot</span> <span class="ow">in</span> <span class="n">spot_IDs</span><span class="p">:</span>
+
+    <span class="c1"># Create a mask to filter the dataframe for the current spot</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="s1">&#39;spots&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">spot</span>
+
+    <span class="c1"># get the points and labels for the current spot</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="n">mask</span><span class="p">][[</span><span class="s1">&#39;X:X&#39;</span><span class="p">,</span><span class="s1">&#39;Y:Y&#39;</span><span class="p">]]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;ClusterName&#39;</span><span class="p">]</span>
+    <span class="n">this_group</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;groups&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">this_name</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">spot</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_group_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">this_group</span><span class="p">)</span>
+
+    <span class="c1"># Create a domain object for the current spot</span>
+    <span class="n">this_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="n">this_name</span><span class="p">)</span>
+
+    <span class="c1"># Add points and labels to the domain object</span>
+    <span class="n">this_domain</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="s1">&#39;cells&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Add cell type labels to the domain object</span>
+    <span class="n">this_domain</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;cell type&#39;</span><span class="p">,</span><span class="n">labels</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="c1"># Estimate the convex hull boundary for the domain</span>
+    <span class="n">this_domain</span><span class="o">.</span><span class="n">estimate_boundary</span><span class="p">(</span><span class="s1">&#39;convex hull&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Set the color map for cell types</span>
+    <span class="n">this_domain</span><span class="o">.</span><span class="n">update_colors</span><span class="p">(</span><span class="n">cmap_dict</span><span class="p">,</span><span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;cell type&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Append the domain object to the list</span>
+    <span class="n">list_of_domains</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">this_domain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s just check what these domains look like before we run any analysis to make sure we’ve imported correctly:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">list_of_domains</span><span class="p">])</span>
+<span class="n">group_1_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">group_id</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">group_2_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">group_id</span><span class="o">==</span><span class="s1">&#39;2&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of group 1 domains: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">group_1_indices</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of group 2 domains: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">group_2_indices</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of group 1 domains: 68
+Number of group 2 domains: 72
+</pre></div></div>
+</div>
+<p>We’ll just visualise the domains from patient group 1 first:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise all group 1 domains in a grid layout</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group_1_indices</span><span class="p">):</span>
+    <span class="c1"># Get the current axis</span>
+    <span class="n">this_ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># Get the current domain</span>
+    <span class="n">this_domain</span> <span class="o">=</span> <span class="n">list_of_domains</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+
+    <span class="c1"># Visualise the domain</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">this_domain</span><span class="p">,</span>
+                            <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;cell type&#39;</span><span class="p">,</span>
+                            <span class="n">marker_size</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+                            <span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">boundary_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">),</span>
+                            <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">ax</span><span class="o">=</span><span class="n">this_ax</span><span class="p">)</span>
+
+    <span class="c1"># Set the title of the subplot</span>
+    <span class="n">this_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">this_domain</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Turn off any unused subplots</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(np.float64(0.0), np.float64(1.0), np.float64(0.0), np.float64(1.0))
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_11_1.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_11_1.png" />
+</div>
+</div>
+<p>Now group 2:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise group 2 domains</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Loop over group 2 indices and plot each domain</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="nb">id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">group_2_indices</span><span class="p">):</span>
+    <span class="c1"># Get the current axis</span>
+    <span class="n">this_ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># Get the current domain</span>
+    <span class="n">this_domain</span> <span class="o">=</span> <span class="n">list_of_domains</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+
+    <span class="c1"># Visualise the domain</span>
+    <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">this_domain</span><span class="p">,</span>
+                            <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;cell type&#39;</span><span class="p">,</span>
+                            <span class="n">marker_size</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
+                            <span class="n">show_boundary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">boundary_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">),</span>
+                            <span class="n">add_cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                            <span class="n">ax</span><span class="o">=</span><span class="n">this_ax</span><span class="p">)</span>
+
+    <span class="c1"># Set the title of the subplot</span>
+    <span class="n">this_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">this_domain</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Turn off any unused subplots</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_13_0.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_13_0.png" />
+</div>
+</div>
+<p>These domains all look consistent with the data published by Schürch et al. (2020) therefore let’s go ahead with some analysis.</p>
+</section>
+<section id="3.-Compute-cell-type-densities">
+<h2>3. Compute cell type densities<a class="headerlink" href="#3.-Compute-cell-type-densities" title="Link to this heading">#</a></h2>
+<p>With all our domains now stored within a python list, we can loop through this to compute our densities. We need to be careful we are keeping our data consistent across samples, namely the ordering of density computations which may change if a cell type is not present in any given sample, so we need a global reference for ordering.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">densities_of_celltype_group_1</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">densities_of_celltype_group_2</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="c1"># get unique cluster categories - this will define the order of cell type densities across the samples</span>
+<span class="n">unique_labels</span> <span class="o">=</span> <span class="n">nolan_tma_dataframe</span><span class="p">[</span><span class="s1">&#39;ClusterName&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># loop through the domains</span>
+<span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">list_of_domains</span><span class="p">:</span>
+    <span class="c1"># compute the density of the cell types</span>
+    <span class="n">sample_density</span><span class="p">,</span><span class="n">_</span><span class="p">,</span><span class="n">sample_label_categories</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">summary_statistics</span><span class="o">.</span><span class="n">label_density</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span><span class="n">label_name</span><span class="o">=</span><span class="s1">&#39;cell type&#39;</span><span class="p">)</span>
+
+    <span class="c1"># initialise an array to collect densities for this domain</span>
+    <span class="n">these_densities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">))</span>
+
+    <span class="c1"># for each label category, populate the corresponding density ordered by unique_labels</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample_label_categories</span><span class="p">):</span>
+        <span class="n">these_densities</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unique_labels</span><span class="o">==</span><span class="n">lab</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">sample_density</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># append to the appropriate group list</span>
+    <span class="k">if</span> <span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;_group_1&#39;</span><span class="p">):</span>
+        <span class="n">densities_of_celltype_group_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">these_densities</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;_group_2&#39;</span><span class="p">):</span>
+        <span class="n">densities_of_celltype_group_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">these_densities</span><span class="p">)</span>
+
+<span class="c1"># convert lists to numpy arrays - rows are samples, columns are cell type densities</span>
+<span class="n">densities_of_celltype_group_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">densities_of_celltype_group_1</span><span class="p">)</span>
+<span class="n">densities_of_celltype_group_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">densities_of_celltype_group_2</span><span class="p">)</span>
+
+<span class="c1"># combine all densities and create group indicator array</span>
+<span class="n">all_neigh_densities</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">densities_of_celltype_group_1</span><span class="p">,</span><span class="n">densities_of_celltype_group_2</span><span class="p">])</span>
+<span class="n">group_indicator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">densities_of_celltype_group_1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">densities_of_celltype_group_2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="4.-Compare-groups">
+<h2>4. Compare groups<a class="headerlink" href="#4.-Compare-groups" title="Link to this heading">#</a></h2>
+<p>Following the computation of the densities across all domains and globally aligning our results, we can now easily compare between the patient groups. For this, we will test the difference in density distributions between the patient groups using a Mann-Whitney U test. To start, let’s just compare the density of our tumour cells.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compare densities for B cells</span>
+<span class="n">alpha_level</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">cell_type_of_interest</span> <span class="o">=</span> <span class="s1">&#39;tumor cells&#39;</span>
+<span class="n">cell_type_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unique_labels</span><span class="o">==</span><span class="n">cell_type_of_interest</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># create boxplot comparing the two groups for the current cluster</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">group_indicator</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">all_neigh_densities</span><span class="p">[:,</span><span class="n">cell_type_index</span><span class="p">],</span><span class="n">hue</span><span class="o">=</span><span class="n">group_indicator</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab10&#39;</span><span class="p">,</span><span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="c1"># clean up the boxplot</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">*</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Patient Group&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend_</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cell_type_of_interest</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Perform Mann-Whitney U test between the two groups for the current cluster</span>
+<span class="n">group_1_data</span> <span class="o">=</span> <span class="n">all_neigh_densities</span><span class="p">[</span><span class="n">group_indicator</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cell_type_index</span><span class="p">]</span>
+<span class="n">group_2_data</span> <span class="o">=</span> <span class="n">all_neigh_densities</span><span class="p">[</span><span class="n">group_indicator</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cell_type_index</span><span class="p">]</span>
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">group_1_data</span><span class="p">,</span> <span class="n">group_2_data</span><span class="p">)</span>
+
+<span class="c1"># add significance annotation if p-value is below alpha level and set axis color to red</span>
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha_level</span><span class="p">:</span>
+    <span class="c1"># color the axis red</span>
+    <span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">spine</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+    <span class="c1"># add significance annotation</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span>
+                <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.91</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_18_0.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_18_0.png" />
+</div>
+</div>
+<p>So we see an significant increase in the density of tumour cells within the patient group 2 (Diffuse inflammatory infiltration classified group). Let’s do the same from all our cell types and isolate those that have significantly changed.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list to hold significant cell types</span>
+<span class="n">sig_density_cell_types</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># create a figure with subplots for each cell type</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span><span class="n">constrained_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">cell_type_of_interest</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_labels</span><span class="p">):</span>
+
+    <span class="n">cell_type_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">unique_labels</span><span class="o">==</span><span class="n">cell_type_of_interest</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">this_ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="c1"># create boxplot comparing the two groups for the current cluster</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">group_indicator</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">all_neigh_densities</span><span class="p">[:,</span><span class="n">cell_type_index</span><span class="p">],</span><span class="n">hue</span><span class="o">=</span><span class="n">group_indicator</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="s1">&#39;tab10&#39;</span><span class="p">,</span><span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">this_ax</span><span class="p">)</span>
+
+    <span class="c1"># clean up the boxplot</span>
+    <span class="n">ymax</span> <span class="o">=</span> <span class="n">this_ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">this_ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">*</span><span class="mf">1.1</span><span class="p">)</span>
+    <span class="n">this_ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Patient Group&#39;</span><span class="p">)</span>
+    <span class="n">this_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+    <span class="n">this_ax</span><span class="o">.</span><span class="n">legend_</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+    <span class="n">this_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">cell_type_of_interest</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Perform Mann-Whitney U test between the two groups for the current cluster</span>
+    <span class="n">group_1_data</span> <span class="o">=</span> <span class="n">all_neigh_densities</span><span class="p">[</span><span class="n">group_indicator</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cell_type_index</span><span class="p">]</span>
+    <span class="n">group_2_data</span> <span class="o">=</span> <span class="n">all_neigh_densities</span><span class="p">[</span><span class="n">group_indicator</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cell_type_index</span><span class="p">]</span>
+    <span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">group_1_data</span><span class="p">,</span> <span class="n">group_2_data</span><span class="p">)</span>
+
+    <span class="c1"># add significance annotation if p-value is below alpha level and set axis color to red</span>
+    <span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="n">alpha_level</span><span class="p">:</span>
+        <span class="c1"># append to significant list</span>
+        <span class="n">sig_density_cell_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell_type_of_interest</span><span class="p">)</span>
+
+        <span class="c1"># color the axis red</span>
+        <span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">this_ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">spine</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+        <span class="c1"># add significance annotation</span>
+        <span class="n">this_ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span>
+                    <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">this_ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.91</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">this_ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_20_0.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_20_0.png" />
+</div>
+</div>
+<p>And we can print out the significantly changing distributions below:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cell types with significant differences in density between patient groups:&quot;</span><span class="p">,</span> <span class="n">sig_density_cell_types</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Cell types with significant differences in density between patient groups: [&#39;granulocytes&#39;, &#39;tumor cells&#39;, &#39;stroma&#39;, &#39;CD68+CD163+ macrophages&#39;, &#39;adipocytes&#39;, &#39;CD8+ T cells&#39;, &#39;Tregs&#39;, &#39;CD11b+CD68+ macrophages&#39;, &#39;smooth muscle&#39;, &#39;tumor cells / immune cells&#39;, &#39;immune cells&#39;, &#39;CD68+ macrophages&#39;, &#39;lymphatics&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>In this tutorial, we demonstrated how MuSpAn can be used to carry out a simple but representative cohort-level spatial analysis. By comparing cell type densities across TMAs from different patient groups, we illustrated how multiple spatial domains can be loaded, organised, and analysed together within a single, coherent workflow. The emphasis throughout was not on the complexity of the spatial metric itself, but on the structure of the analysis: how domains are constructed, how group-level
+metadata is propagated, and how results from individual samples can be collated, compared, and summarised. These steps form the foundation of any high-throughput spatial analysis, regardless of the specific statistic being computed.</p>
+<p>Importantly, this workflow highlights how MuSpAn leverages native Python concepts to scale naturally from single-sample analyses to cohort-level studies. Once this structure is in place, more sophisticated spatial metrics—such as those capturing spatial interaction or higher-order organisation—can be applied using the same underlying patterns. In subsequent tutorials, we will build on this framework to explore more complex spatial statistics and discuss the additional considerations required
+when aggregating and comparing these metrics across heterogeneous spatial domains.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Focus-of-this-tutorial">Focus of this tutorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#A-cohort-dataset">A cohort dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#🧫-Data-summary">🧫 Data summary</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#🧠-Biological-context">🧠 Biological context</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#📊-Data-Information">📊 Data Information</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#Starting-simple:-comparing-cell-densities-across-cohorts">Starting simple: comparing cell densities across cohorts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Load-the-TMA-data">1. Load the TMA data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Create-domains">2. Create domains</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Compute-cell-type-densities">3. Compute cell type densities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Compare-groups">4. Compare groups</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2026, Joshua A. Bull, Joshua W. Moore  &amp; Helen M. Byrne.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>

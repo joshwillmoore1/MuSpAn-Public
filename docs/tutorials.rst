@@ -162,6 +162,7 @@ Workflows
 .. nbgallery::
      _collections/workflows/Workflows - 1 - Cropping a domain
      _collections/workflows/Workflows - 2 - Domain to csv
+     _collections/workflows/Workflows - 3 - Multiple domains 1
 
 
 Importing Data from Specific Platforms
