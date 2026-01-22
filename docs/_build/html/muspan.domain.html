@@ -1311,7 +1311,9 @@ Options are ‘Visvalingam-Whyatt’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>new_colors</strong><span class="classifier">dict</span></dt><dd><p>A dictionary where keys are the names of the items to update and values are the new colors.</p>
+<dt><strong>new_colors</strong><span class="classifier">dict, str</span></dt><dd><p>For categorical classes, a dictionary where keys are the names of the items to update and values are the new colors.
+For continuous labels, the name of a matplotlib colormap (or a Colormap object).
+To update the null color for a label, use {‘NULL_COLOR’:color} as the dictionary (for both categorical and continuous labels). For continuous labels, any other entries in the dictionary will be ignored.</p>
 </dd>
 <dt><strong>colors_to_update</strong><span class="classifier">str, optional</span></dt><dd><p>Specifies what type of colors to update. Must be one of ‘labels’, ‘objects’, or ‘collections’. 
 Default is ‘labels’.</p>
