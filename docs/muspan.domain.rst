@@ -45,6 +45,7 @@ Updating domain properties
    :nosignatures:
 
    domain.estimate_boundary
+   domain.add_objects_to_collection
    domain.simplify_shape_boundaries
    domain.update_colors
    domain.convert_objects
