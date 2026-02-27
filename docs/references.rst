@@ -40,7 +40,7 @@ Publications using MuSpAn
 Researchers who have used MuSpAn in their work are encouraged to contact us at `info@muspan.co.uk <info@muspan.co.uk>`_ so we can add your publication to the list below.
 We are always interested in hearing about how MuSpAn is being used in research.
 
-The following publications have used or discuss MuSpAn:
+The following papers have used or discuss MuSpAn:
 
 .. bibliography::
     :list: enumerated

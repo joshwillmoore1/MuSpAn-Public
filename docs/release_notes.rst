@@ -1,7 +1,6 @@
 Release notes
 =============
 
-
 .. tip::
     To report an issue or request a feature, please use the `issue tracker <https://github.com/joshwillmoore1/MuSpAn-Public>`_ on our public GitHub page.
     Alternatively you can join the MuSpAn discussion on our `Gitter community channel <https://app.gitter.im/#/room/#muspan-community:gitter.im>`_.
@@ -12,6 +11,7 @@ This is the list of changes to MuSpAn between each version:
     :glob:
     :maxdepth: 1
 
+    _collections/release_notes/v1.2.3.rst
     _collections/release_notes/v1.2.2.rst
     _collections/release_notes/v1.2.1.rst
     _collections/release_notes/v1.2.0.rst

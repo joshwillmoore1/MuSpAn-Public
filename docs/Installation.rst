@@ -195,7 +195,7 @@ After running these commands, you should be able to install MuSpAn on your MacOS
 Dependencies
 ------------
 
-Dependencies for MuSpAn V1.2.2 include the following packages:
+Dependencies for MuSpAn V1.2.3 include the following packages:
 
 * geojson>=3.1.0
 * matplotlib>=3.9.0

@@ -43,7 +43,7 @@
 
     <script src="_static/jquery.js?v=5d32c60e"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="_static/documentation_options.js?v=29f23dcf"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -67,7 +67,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.3';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
@@ -1174,7 +1174,7 @@ are query, list, tuple, array, or int.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="muspan.domain.domain.estimate_boundary">
-<span class="sig-name descname"><span class="pre">estimate_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rectangle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_shape_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specify_boundary_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.estimate_boundary" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">estimate_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rectangle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_shape_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specify_boundary_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_objects_outside_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.estimate_boundary" title="Link to this definition">#</a></dt>
 <dd><p>Estimate the boundary of the domain using the specified method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1185,6 +1185,8 @@ Default is ‘rectangle’.</p>
 <dt><strong>alpha_shape_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Keyword arguments to pass to the alpha shape function. Default is an empty dictionary.</p>
 </dd>
 <dt><strong>specify_boundary_coords</strong><span class="classifier">array-like, optional</span></dt><dd><p>An array of coordinates to specify the boundary. specify_boundary_coords must be a (nx2) array.  Required if <em class="xref py py-obj">method</em> is ‘specify’.</p>
+</dd>
+<dt><strong>remove_objects_outside_boundary</strong><span class="classifier">bool, optional</span></dt><dd><p>Only relevant for alpha shape boundaries. If True, any objects with vertices that lie outside the estimated boundary will be removed from the domain. Default is False.</p>
 </dd>
 </dl>
 </dd>

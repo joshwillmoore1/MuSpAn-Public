@@ -1,0 +1,107 @@
+v1.2.3
+======
+
+We are pleased to announce the release of version **v1.2.3**.
+
+This is a focused maintenance and performance release that improves
+numerical robustness, memory efficiency, spatial boundary filtering, and
+region assignment performance. It also resolves several edge-case bugs
+in QCM/TCM workflows and cross-function confidence interval
+calculations.
+
+This release is compatible with and has been tested on Python **3.10**
+to **3.13**.
+
+New Features
+------------
+
+-  **Object Filtering by Alpha Boundary**:
+
+   -  Added the ability to automatically remove objects lying outside
+      alpha-shape boundaries. This provides a cleaner and more
+      principled preprocessing step for spatial analyses where strict
+      boundary adherence is required.
+
+-  **Improved Convex Region Identification**:
+
+   -  Implemented a safer scaling strategy for q-ball distance
+      calculations used in convex region identification, improving
+      robustness across datasets with varying spatial scales.
+
+Improvements
+------------
+
+-  **TCM Memory Optimisation**:
+
+   -  Replaced ``scipy.spatial.distance.cdist`` with KD-tree–based
+      neighbour queries in TCM workflows, significantly reducing memory
+      overhead and improving scalability for large datasets.
+
+-  **Faster Region Assignment (Hexgrid & Quadrats)**:
+
+   -  Region assignment now uses KD-tree acceleration, resulting in more
+      efficient object-to-region mapping for both hexagonal grids and
+      quadrilateral tiling.
+
+-  **Modular Region Generation Refactor**:
+
+   -  Refactored region-generation logic into a more modular internal
+      structure, improving maintainability and reducing coupling between
+      components.
+
+-  **Boundary Filtering Checkpoints**:
+
+   -  Improved internal boundary filtering logic with additional
+      validation steps to ensure consistent object inclusion/exclusion
+      behaviour.
+
+-  **Codebase Maintenance**:
+
+   -  Tidied imports and removed unnecessary test visualisation
+      components.
+   -  Added docstrings and licence headers to new helper functions.
+   -  General internal clean-up for improved consistency and
+      readability.
+
+Bug Fixes
+---------
+
+-  **QCM NumPy Slice Hotfix**:
+
+   -  Fixed a legacy NumPy array interpretation issue affecting slicing
+      behaviour in QCM workflows. This resolves edge cases where array
+      views were incorrectly handled.
+
+-  **Include/Exclude Logic Correction**:
+
+   -  Fixed a bug where include/exclude arguments were incorrectly
+      compared to ``None`` when passed as arrays, leading to unintended
+      filtering behaviour.
+
+-  **Cross-PCF Confidence Intervals**:
+
+   -  Corrected computation of confidence intervals for cross
+      pair-correlation functions (cross-PCF), ensuring statistically
+      valid interval estimation.
+
+-  **Minor Corrections**:
+
+   -  Fixed typographical errors in version metadata and QCM-related
+      components.
+   -  Additional small stability improvements across spatial statistics
+      routines.
+
+Documentation
+-------------
+
+-  Added docstrings and licence headers for newly introduced helper
+   utilities.
+-  Minor documentation corrections and consistency updates.
+
+--------------
+
+This release further strengthens the numerical stability and performance
+of neighbourhood, boundary, and spatial statistical workflows while
+addressing important edge-case bugs identified in recent analyses.
+
+Thank you for using **muspan**!
