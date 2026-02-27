@@ -43,7 +43,7 @@
 
     <script src="_static/jquery.js?v=5d32c60e"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=4d3ded8b"></script>
+    <script src="_static/documentation_options.js?v=29f23dcf"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -67,7 +67,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.2';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.3';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
@@ -958,7 +958,7 @@ for geometric operations. The function uses helper functions <a class="reference
 <span id="muspan-shape-operations-helpers-point-in-polygon-module"></span><h2>muspan.shape_operations.helpers.point_in_polygon module<a class="headerlink" href="#module-muspan.shape_operations.helpers.point_in_polygon" title="Link to this heading">#</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="muspan.shape_operations.helpers.point_in_polygon.point_in_polygon">
-<span class="sig-name descname"><span class="pre">point_in_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon_edges</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.shape_operations.helpers.point_in_polygon.point_in_polygon" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">point_in_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polygon_edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_rust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.shape_operations.helpers.point_in_polygon.point_in_polygon" title="Link to this definition">#</a></dt>
 <dd><p>Determine if a 2D polygon contains a point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -966,6 +966,8 @@ for geometric operations. The function uses helper functions <a class="reference
 <dt><strong>point</strong><span class="classifier">tuple</span></dt><dd><p>A tuple representing the point (px, py).</p>
 </dd>
 <dt><strong>polygon_edges</strong><span class="classifier">list</span></dt><dd><p>A list of polygon edges, where each edge is represented as a tuple of two vertices (v1, v2).</p>
+</dd>
+<dt><strong>use_rust</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to use the Rust implementation for point-in-polygon testing. Default is True.</p>
 </dd>
 </dl>
 </dd>
