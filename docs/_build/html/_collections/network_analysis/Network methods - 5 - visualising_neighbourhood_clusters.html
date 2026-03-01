@@ -44,7 +44,7 @@
 
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../_static/documentation_options.js?v=29f23dcf"></script>
+    <script src="../../_static/documentation_options.js?v=ccec0a52"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -70,7 +70,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.4';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
@@ -699,7 +699,7 @@ Distance matrices: []
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x136b08d10&gt;
+&lt;seaborn.matrix.ClusterGrid at 0x12f0dda60&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -948,7 +948,7 @@ structure.</p>
 neighbourhoods agreement when using UMAP).</p>
 <p>As before, we’ll return both the observation matrix and the cluster labels so we can explore and compare the structure revealed by our clustering.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the example domain dataset</span>
@@ -988,7 +988,7 @@ Distance matrices: []
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1005,7 +1005,7 @@ Distance matrices: []
 </div>
 <p>Because these continuous labels may exhibit non-linear relationships, we can use UMAP to visualise the neighbourhood composition of each topic for each spot.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">umap</span>
@@ -1031,11 +1031,19 @@ Distance matrices: []
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_0.png" src="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_0.png" />
+<img alt="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_1.png" />
 </div>
 </div>
 <p>Each point in the embedding represents the topic composition of a spot in the Visium HD dataset. This allows us to visualise how neighbourhoods relate to one another in terms of similarity, while keeping in mind the usual caveats of non-linear dimensionality-reduction methods.</p>
