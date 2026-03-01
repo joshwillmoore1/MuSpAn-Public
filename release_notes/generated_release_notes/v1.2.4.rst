@@ -1,0 +1,29 @@
+v1.2.4
+======
+
+We are pleased to announce the release of the minor update version **v1.2.4**.
+This release is compatible with and has been tested on Python **3.10**
+to **3.13**.
+
+Bug Fixes
+---------
+
+-  **Crop domain object assumption**:
+
+   -  Fixed a bug in the crop domain function where it incorrectly assumed that
+      the domain always contained at least one point-like object. This has been 
+      corrected to handle cases where the domain may be empty or contain only 
+      non-point-like objects, preventing errors during cropping operations.
+
+
+Documentation
+-------------
+
+-  Crop domain returns documentation corrected and now accurate to the funcitonality.
+
+--------------
+
+We sincerely thank all contributors and users who provided feedback to help shape this release. 
+For detailed guidance on updating MuSpAn, please refer to our installation page.
+
+Thank you for using **muspan**!
