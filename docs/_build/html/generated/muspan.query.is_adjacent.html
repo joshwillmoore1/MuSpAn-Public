@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>get_minimum_distances_centroids &#8212; Multiscale Spatial Analysis</title>
+    <title>is_adjacent &#8212; Multiscale Spatial Analysis</title>
   
   
   
@@ -63,7 +63,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/muspan.query.get_minimum_distances_centroids';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/muspan.query.is_adjacent';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
@@ -73,8 +73,8 @@
     <script src="../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="get_object_components" href="muspan.query.get_object_components.html" />
-    <link rel="prev" title="get_minimum_distances_boundaries" href="muspan.query.get_minimum_distances_boundaries.html" />
+    <link rel="next" title="filter_objects_to_included_regions" href="muspan.query.filter_objects_to_included_regions.html" />
+    <link rel="prev" title="is_A_contained_by_B" href="muspan.query.is_A_contained_by_B.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -478,7 +478,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.is_query_like.html">is_query_like</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.validate_query.html">validate_query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.is_A_contained_by_B.html">is_A_contained_by_B</a></li>
-<li class="toctree-l2"><a class="reference internal" href="muspan.query.is_adjacent.html">is_adjacent</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">is_adjacent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.filter_objects_to_included_regions.html">filter_objects_to_included_regions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_centroids.html">get_centroids</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_children.html">get_children</a></li>
@@ -487,7 +487,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_family_tree.html">get_family_tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_labels.html">get_labels</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_minimum_distances_boundaries.html">get_minimum_distances_boundaries</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">get_minimum_distances_centroids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="muspan.query.get_minimum_distances_centroids.html">get_minimum_distances_centroids</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_object_components.html">get_object_components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_object_types.html">get_object_types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.query.get_parents.html">get_parents</a></li>
@@ -560,7 +560,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../muspan.query.html" class="nav-link">muspan.query</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">get_minimum_...</li>
+    <li class="breadcrumb-item active" aria-current="page">is_adjacent</li>
   </ul>
 </nav>
 </div>
@@ -577,46 +577,32 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="get-minimum-distances-centroids">
-<h1>get_minimum_distances_centroids<a class="headerlink" href="#get-minimum-distances-centroids" title="Link to this heading">#</a></h1>
+  <section id="is-adjacent">
+<h1>is_adjacent<a class="headerlink" href="#is-adjacent" title="Link to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="muspan.query.get_minimum_distances_centroids">
-<span class="sig-name descname"><span class="pre">get_minimum_distances_centroids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_exclude_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bypass_checks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.query.get_minimum_distances_centroids" title="Link to this definition">#</a></dt>
-<dd><p>Calculates the smallest distance from each object specified by objects_identifier_A to an object specified by objects_identifier_B.</p>
-<p>Be aware, this function uses the centroid of each object - for shapes, this will be the shape centroid, not the boundary of the shape.</p>
+<dt class="sig sig-object py" id="muspan.query.is_adjacent">
+<span class="sig-name descname"><span class="pre">is_adjacent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_A</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_B</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bypass_checks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.query.is_adjacent" title="Link to this definition">#</a></dt>
+<dd><p>Get a boolean array indicating whether each object in population_A is adjacent to at least one object in population_B in the specified network.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>domain</strong><span class="classifier">muspan.domain</span></dt><dd><p>A muspan domain.</p>
+<dt><strong>domain</strong><span class="classifier">object</span></dt><dd><p>The domain containing the objects and network of interest.</p>
 </dd>
-<dt><strong>population_A</strong><span class="classifier">query-like</span></dt><dd><p>The first population of objects or a query to select them.</p>
+<dt><strong>network_name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the network within the domain from which to get edges, by default None.</p>
 </dd>
-<dt><strong>population_B</strong><span class="classifier">query-like</span></dt><dd><p>The second population of objects or a query to select them.</p>
+<dt><strong>population_A</strong><span class="classifier">query-like, optional</span></dt><dd><p>The set of objects in the networks of interest to query for adjacency to objects from population_B. If None, all objects in the domain are selected, by default None.</p>
 </dd>
-<dt><strong>include_boundaries</strong><span class="classifier">array-like, query-like, or None, optional</span></dt><dd><p>Boundaries used to filter the populations for analysis; objects outside include_boundaries will be excluded. Defaults to None, which includes the entire domain.</p>
+<dt><strong>population_B</strong><span class="classifier">query-like, optional</span></dt><dd><p>The set of objects in the networks of interest to query for adjacency to objects from population_A. If None, all objects in the domain are selected, by default None.</p>
 </dd>
-<dt><strong>exclude_boundaries</strong><span class="classifier">array-like, query-like, or None, optional</span></dt><dd><p>Boundaries used to filter populations to exclude from the analysis; objects inside exclude_boundaries will be excluded. Defaults to None.</p>
-</dd>
-<dt><strong>boundary_exclude_distance</strong><span class="classifier">float, optional</span></dt><dd><p>Buffer to exclude objects located within boundary_exclude_distance from the boundaries. Defaults to 0.</p>
-</dd>
-<dt><strong>bypass_checks</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, standard checks on whether the queries can be interpreted are bypassed.
-May generate unexpected crashes if objects that can’t be interpreted as a query 
-are passed in, but generates a substantial speed increase for large datasets when 
-we’re confident the query is formatted correctly. Defaults to False.</p>
+<dt><strong>bypass_checks</strong><span class="classifier">list of str, optional</span></dt><dd><p>A list of checks to bypass when interpreting the queries. This is passed to the return_object_IDs_from_query_like function. If None, no checks are bypassed, by default None.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>distance_array</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Array containing minimum distances from each object in object_indices_A to an object centroid specified in objects_identifier_B.</p>
+<dt><strong>is_connected_to_B</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>A boolean array of the same length as the number of objects in population_A, where each element is True if the corresponding object in population_A is adjacent to at least one object in population_B, and False otherwise.</p>
 </dd>
-<dt><strong>object_indices_A</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Array containing object indices specified by objects_identifier_A.</p>
-</dd>
-<dt><strong>nearest_B</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Array containing object indices of the nearest object in objects_identifier_B for each object in object_indices_A.</p>
-</dd>
-<dt><strong>centroids_A</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Array of centroids for objects in object_indices_A.</p>
-</dd>
-<dt><strong>centroids_B</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Array of centroids for objects in object_indices_B.</p>
+<dt><strong>object_indices_A</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>The indices of the objects in population_A that were checked for adjacency to population_B.</p>
 </dd>
 </dl>
 </dd>
@@ -647,7 +633,7 @@ we’re confident the query is formatted correctly. Defaults to False.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.query.get_minimum_distances_centroids"><code class="docutils literal notranslate"><span class="pre">get_minimum_distances_centroids</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.query.is_adjacent"><code class="docutils literal notranslate"><span class="pre">is_adjacent</span></code></a></li>
 </ul>
   </nav></div>
 

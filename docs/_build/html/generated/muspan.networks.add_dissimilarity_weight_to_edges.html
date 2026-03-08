@@ -577,7 +577,7 @@ document.write(`
 <h1>add_dissimilarity_weight_to_edges<a class="headerlink" href="#add-dissimilarity-weight-to-edges" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="muspan.networks.add_dissimilarity_weight_to_edges">
-<span class="sig-name descname"><span class="pre">add_dissimilarity_weight_to_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_network'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_weight_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'new</span> <span class="pre">weight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dissimilarity_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_distance_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.networks.add_dissimilarity_weight_to_edges" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add_dissimilarity_weight_to_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_network'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_weight_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'new</span> <span class="pre">weight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dissimilarity_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.networks.add_dissimilarity_weight_to_edges" title="Link to this definition">#</a></dt>
 <dd><p>Adds edge weight to all connected nodes that is valued as a dissimilarity of node features. 
 Node features can be provided as a label in the domain or as an array of values representing features for each node and are compared using a dissimilarity function.</p>
 <dl class="field-list simple">
@@ -589,12 +589,10 @@ Node features can be provided as a label in the domain or as an array of values 
 </dd>
 <dt><strong>edge_weight_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name given to new edge weights, defaults to ‘new weight’.</p>
 </dd>
-<dt><strong>node_features</strong><span class="classifier">str or array-like, optional</span></dt><dd><p>A name of a label existing in the domain or an array of values representing features for each node, 
-note n x d where n is the number of nodes and d is the dimension of node feature. If array is provided, it is assumed that array features are ordered corresponding to node order in network. defaults to None.</p>
+<dt><strong>label_name</strong><span class="classifier">str or array-like, optional</span></dt><dd><p>A name of a label existing in the domain used to compute dissimilarity between adjacent objects.</p>
 </dd>
-<dt><strong>dissimilarity_function</strong><span class="classifier">callable, optional</span></dt><dd><p>A function that takes a feature distance and returns a dissimilarity value, defaults to None.</p>
-</dd>
-<dt><strong>feature_distance_metric</strong><span class="classifier">str, optional</span></dt><dd><p>The metric used to calculate the distance between features, defaults to ‘Euclidean’.</p>
+<dt><strong>dissimilarity_function</strong><span class="classifier">callable, optional</span></dt><dd><p>A function that takes a feature distance and returns a dissimilarity value, defaults to None.
+If None, a default function is used that scales the feature distance to a value between 0 and 1 and is of the form: (invDistScale*feature_distance)/(1+invDistScale*feature_distance) where invDistScale is 4 divided by the maximum feature distance between any two nodes in the network.</p>
 </dd>
 </dl>
 </dd>
@@ -608,6 +606,10 @@ If the dissimilarity function provided is not callable.</p>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>The function assumes that the node features are either categorical or continuous and calculates feature distance accordingly.
+For categorical features, the feature distance is 1 if the features are different and 0 if they are the same. 
+For continuous features, the feature distance is the absolute difference between the feature values.</p>
 </dd></dl>
 
 </section>

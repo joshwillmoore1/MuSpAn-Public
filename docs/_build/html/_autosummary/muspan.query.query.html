@@ -560,6 +560,8 @@ we’re confident the query is formatted correctly. Defaults to False.</p>
 <li><p>(‘distance’, (‘boundary’, objects_1, objects_2)) - get the distance between the boundaries of each objects_1 and the nearest object in objects_2 (if an object is a point, the boundary is taken to be the coordinates of the point)</p></li>
 <li><p>(‘collection’,) - get the collections associated with each object. Note the comma, which is required (no second argument is required here, but we need MuSpAn to recognise this as a tuple)</p></li>
 <li><p>(‘contains’, (contained_objects, containing_objects)) - get a boolean (True or False) for each contained_object, which is true if it is inside an element of containing_objects.</p></li>
+<li><p>(‘edge’,(‘network_name’,’edge_weight_name’)) - get the edges in the network with the name ‘network_name’ using the ‘edge_weight_name’. If ‘edge_weight_name’ is blank, then unweighted edges used (not yet implemented)</p></li>
+<li><p>(‘adjacency’,(‘network_name’,objects_1,objects_2)) - get objects_1 that are adjacent to objects_2 in ‘network_name’ (not yet implemented)</p></li>
 </ul>
 </dd>
 <dt>For single value comparsions, available options for the relations argument are:</dt><dd><ul class="simple">
