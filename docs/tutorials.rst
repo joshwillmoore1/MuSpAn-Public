@@ -172,6 +172,7 @@ Importing Data from Specific Platforms
      _collections/importing_data/Importing a spatialData dataset
      _collections/importing_data/Importing a Xenium dataset
      _collections/importing_data/Importing a Visium dataset
+     _collections/importing_data/Importing from labeled tiff
 
 Extras
 ------

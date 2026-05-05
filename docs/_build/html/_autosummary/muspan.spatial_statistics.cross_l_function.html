@@ -43,7 +43,7 @@
 
     <script src="../_static/jquery.js?v=5d32c60e"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../_static/documentation_options.js?v=ccec0a52"></script>
+    <script src="../_static/documentation_options.js?v=a823da16"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -69,7 +69,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.5';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="../_static/carousel_autoplay.js?v=a4b85356"></script>
@@ -531,7 +531,7 @@ document.write(`
 <dt class="sig sig-object py" id="muspan.spatial_statistics.cross_l_function">
 <span class="sig-name descname"><span class="pre">cross_l_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_B</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_R</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_exclude_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remain_within_connected_component</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_confidence_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualise_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualise_spatial_statistic_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.spatial_statistics.cross_l_function" title="Link to this definition">#</a></dt>
 <dd><p>Calculate the L function between population_A and population_B. 
-The L function is a rescaled version of Ripley’s K function, with <span class="math notranslate nohighlight">\(L(r) = \sqrt(K(r)/pi)\)</span>.</p>
+The L function is a rescaled version of Ripley’s K function, with <span class="math notranslate nohighlight">\(L(r) = \sqrt{(K(r)/\pi)}\)</span>.</p>
 <p>Similar to the K function, it measures spatial co-location of objects within a domain.
 For the standard L function, set population_B to be the same as population_A.</p>
 <p>L function values greater than 1 indicate clustering, whereas values less than 1 indicate exclusion.</p>
