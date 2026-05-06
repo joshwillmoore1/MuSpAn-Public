@@ -707,7 +707,7 @@ object_id
 <p>So we can see the diameter of the spots is around 220µm, we can use this to correctly define the direct adjacency of the spots in this sample. That is, let’s use a Delaunay network model with a 3-hop region to define the neighbouhood for each spot.</p>
 <p><strong>Important:</strong> The way we tell <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> to use numeric labels is to pass the label names we’d like to use in a <strong>list</strong>, and pass this this to the <code class="docutils literal notranslate"><span class="pre">label_name</span></code> parameter. Before calling <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code>, we’ll quickly make this list for all our ‘Topic’ numeric labels.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a list of all numeric labels we want to use for neighbourhood clustering - these are the topic labels</span>
@@ -721,7 +721,7 @@ object_id
                                    <span class="n">transform_neighbourhood_composition</span><span class="o">=</span><span class="s1">&#39;sqrt&#39;</span><span class="p">,</span>
                                    <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span>
                                    <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;kmeans&#39;</span><span class="p">,</span>
-                                   <span class="n">cluster_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">9</span><span class="p">),</span>
+                                   <span class="n">cluster_parameters</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
                                    <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;zscore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -729,7 +729,7 @@ object_id
 <p>Now we’ve generated our spatially resolved labels using our numeric labels called here ‘Neighbourhood ID’, we can take a look at what these actually represent in terms of the Topics we gave to the function.</p>
 <p>Namely, we can use the <code class="docutils literal notranslate"><span class="pre">neighbourhood_enrichment_matrix</span></code> to produce a clustered heatmap of Topic expression per neighbourhood group, similar to the Neighbourhood clustering (categorical labels) tutorial**.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is simply visualising the neighbourhood enrichment matrix as a clustermap</span>
@@ -760,12 +760,12 @@ object_id
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x1435a1370&gt;
+&lt;seaborn.matrix.ClusterGrid at 0x168971a90&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -777,7 +777,7 @@ object_id
 </div>
 <p>In addition, as these neighbourhood clusters get added as labels to the objects, we can view them on this tissue directly by visualising with the ‘Neighbourhood ID’ label name.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualise the neighbourhood clusters on the spatial domain</span>
@@ -786,7 +786,7 @@ object_id
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">

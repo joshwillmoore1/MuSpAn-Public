@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>domain_to_csv &#8212; Multiscale Spatial Analysis</title>
+    <title>segmentation_mask_to_domain &#8212; Multiscale Spatial Analysis</title>
   
   
   
@@ -63,7 +63,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/muspan.io.domain_to_csv';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/muspan.io.segmentation_mask_to_domain';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
@@ -73,8 +73,8 @@
     <script src="../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="domain_to_parquet" href="muspan.io.domain_to_parquet.html" />
-    <link rel="prev" title="load_domain" href="muspan.io.load_domain.html" />
+    <link rel="next" title="xenium_to_domain" href="muspan.io.xenium_to_domain.html" />
+    <link rel="prev" title="qupath_to_domain" href="muspan.io.qupath_to_domain.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -481,11 +481,11 @@ document.write(`
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../muspan.io.html">muspan.io</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.save_domain.html">save_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.load_domain.html">load_domain</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">domain_to_csv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="muspan.io.domain_to_csv.html">domain_to_csv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.domain_to_parquet.html">domain_to_parquet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.domain_to_hdf.html">domain_to_hdf</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.qupath_to_domain.html">qupath_to_domain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="muspan.io.segmentation_mask_to_domain.html">segmentation_mask_to_domain</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">segmentation_mask_to_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.xenium_to_domain.html">xenium_to_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.spatialdata_to_domain.html">spatialdata_to_domain</a></li>
 <li class="toctree-l2"><a class="reference internal" href="muspan.io.helpers.domain_to_dataframe.html">domain_to_dataframe</a></li>
@@ -550,7 +550,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../muspan.io.html" class="nav-link">muspan.io</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">domain_to_csv</li>
+    <li class="breadcrumb-item active" aria-current="page">segmentation...</li>
   </ul>
 </nav>
 </div>
@@ -567,60 +567,60 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="domain-to-csv">
-<h1>domain_to_csv<a class="headerlink" href="#domain-to-csv" title="Link to this heading">#</a></h1>
+  <section id="segmentation-mask-to-domain">
+<h1>segmentation_mask_to_domain<a class="headerlink" href="#segmentation-mask-to-domain" title="Link to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="muspan.io.domain_to_csv">
-<span class="sig-name descname"><span class="pre">domain_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_of_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_dataframe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.io.domain_to_csv" title="Link to this definition">#</a></dt>
-<dd><p>Export a domain object as a CSV file. 
-All object properties will be saved as columns in the CSV file including labels and collections associated with the object. 
-Optionally, the function can return the pandas dataframe that was saved to the CSV file.
-If the domain contains shape objects, the dataframe will include the vertices of the shapes instead of the shape centroids. 
-There will be an additional column ‘hole_id’ to identify vertices that belong to internal holes of shapes.</p>
+<dt class="sig sig-object py" id="muspan.io.segmentation_mask_to_domain">
+<span class="sig-name descname"><span class="pre">segmentation_mask_to_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'masked_objects'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'object_label'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_muspan_and_mask_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.io.segmentation_mask_to_domain" title="Link to this definition">#</a></dt>
+<dd><p>Extracts masked objects from an image file and creates a MuSpAn domain with those objects as shapes or points, along with their corresponding masked labels.
+Objects are extracted based on their labels in the image file, and the contours of the labeled regions are used to create shapes in the MuSpAn domain. 
+Enables the import of objects from generic segmentation masks from segmentation tools that output labeled image files such as Cellpose, Stardist, DeepCell, QuPath, ImageJ etc.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>domain</strong><span class="classifier">muspan.domain</span></dt><dd><p>The domain object to be exported as csv.</p>
+<dt><strong>mask_path</strong><span class="classifier">str</span></dt><dd><p>Path to the input image file containing the masked image. The image can be any of the following formats: TIFF / TIF, PNG, JPEG / JPG, BMP.</p>
 </dd>
-<dt><strong>name_of_file</strong><span class="classifier">str or None, optional</span></dt><dd><p>The name of the saved csv file. If None, the domain’s name will be used. Default is None.</p>
+<dt><strong>background_value</strong><span class="classifier">int, optional</span></dt><dd><p>The value that represents the background in the masked image. Default is 0.</p>
 </dd>
-<dt><strong>path_to_save</strong><span class="classifier">str or None, optional</span></dt><dd><p>The path to the folder where the file will be saved. If None, the current directory will be used. Default is None.</p>
+<dt><strong>x_scale</strong><span class="classifier">float, optional</span></dt><dd><p>Scaling factor for the x-axis. Default is 1 (no scaling).</p>
 </dd>
-<dt><strong>save_summary</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, a summary message will be printed after saving the file. Default is True.</p>
+<dt><strong>y_scale</strong><span class="classifier">float, optional</span></dt><dd><p>Scaling factor for the y-axis. Default is 1 (no scaling).</p>
 </dd>
-<dt><strong>return_dataframe</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the pandas.dataframe will be returned. Default is False.</p>
+<dt><strong>domain_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name for the MuSpAn domain to be created. If None, the filename (without extension) will be used as the domain name. Default is None.</p>
+</dd>
+<dt><strong>as_points</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the label objects will be imported as points (using the centroid of the shape). If False, they will be imported as shapes. Default is False.</p>
+</dd>
+<dt><strong>simplify_shapes</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to simplify the shapes using the Ramer-Douglas-Peucker algorithm. Only used if as_points is False. Default is False.</p>
+</dd>
+<dt><strong>simplify_tolerance</strong><span class="classifier">float, optional</span></dt><dd><p>Tolerance for shape simplification (only used if simplify_shapes is True). Default is 1.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name for the collection in the MuSpAn domain where the objects will be added. Default is ‘masked_objects’.</p>
+</dd>
+<dt><strong>mask_label_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name for the mask label in the MuSpAn domain. Default is ‘object_label’.</p>
+</dd>
+<dt><strong>return_muspan_and_mask_ids</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the function will return the MuSpAn object IDs and their corresponding mask label IDs in addition to the domain. Default is False.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>pandas.DataFrame</dt><dd><p>The dataframe that was saved to the CSV file. Only returned if <em class="xref py py-obj">return_df</em> is True.</p>
+<dt>muspan.domain</dt><dd><p>A muspan domain object.</p>
 </dd>
-</dl>
+<dt>if return_muspan_and_mask_ids is True, also returns:</dt><dd><dl class="simple">
+<dt>muspan_object_ids<span class="classifier">np.ndarray</span></dt><dd><p>An array of MuSpAn object IDs corresponding to the imported objects.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>If <em class="xref py py-obj">domain</em> is not of type <code class="xref py py-obj docutils literal notranslate"><span class="pre">muspan.domain</span></code>.
-If <em class="xref py py-obj">path_to_save</em> is not a string or None.
-If <em class="xref py py-obj">name_of_file</em> is not a string or None.</p>
+<dt>mask_ids<span class="classifier">np.ndarray</span></dt><dd><p>An array of mask label IDs corresponding to the imported objects, in the same order as muspan_object_ids.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
-
-<span class="c1"># load an example domain</span>
-<span class="n">example_domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Xenium-Healthy-Colon&#39;</span><span class="p">)</span>
-
-<span class="c1"># save the domain locally to the current working directory with a specified file name</span>
-<span class="n">path_to_save</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span>
-<span class="n">name_of_file</span> <span class="o">=</span> <span class="s1">&#39;saved_example_domain.csv&#39;</span>
-
-<span class="c1"># save the domain</span>
-<span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">domain_to_csv</span><span class="p">(</span><span class="n">example_domain</span><span class="p">,</span> <span class="n">name_of_file</span><span class="o">=</span><span class="n">name_of_file</span><span class="p">,</span> <span class="n">path_to_save</span><span class="o">=</span><span class="n">path_to_save</span><span class="p">)</span>
-</pre></div>
-</div>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>This function assumes that the input is an 2D label image file where each pixel’s value corresponds to a label for the object it belongs to.</p></li>
+<li><p>Mask IDs are added to the MuSpAn objects as a categorical annotation label, with the name specified by <em class="xref py py-obj">mask_label_name</em>.</p></li>
+</ul>
 </dd></dl>
 
 </section>
@@ -647,7 +647,7 @@ If <em class="xref py py-obj">name_of_file</em> is not a string or None.</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.io.domain_to_csv"><code class="docutils literal notranslate"><span class="pre">domain_to_csv</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.io.segmentation_mask_to_domain"><code class="docutils literal notranslate"><span class="pre">segmentation_mask_to_domain</span></code></a></li>
 </ul>
   </nav></div>
 

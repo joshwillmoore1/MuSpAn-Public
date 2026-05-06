@@ -332,6 +332,10 @@ document.write(`
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -612,17 +616,21 @@ document.write(`
                   
   <section id="Importing-from-a-segmentation-mask">
 <h1>Importing from a segmentation mask<a class="headerlink" href="#Importing-from-a-segmentation-mask" title="Link to this heading">#</a></h1>
-<p>In modern image analysis, a wide range of powerful segmentation methods are available, many of which come from advances in computer vision and machine learning. In biological imaging, for example, tools such as Cellpose, StarDist, and QuPath are commonly used to identify and segment individual cells from microscopy images.</p>
-<p>These segmentation algorithms typically produce an output image where each pixel is assigned an integer label corresponding to a specific object (e.g. a cell). This is often stored as a TIFF file, where pixels with the same value belong to the same segmented region.</p>
-<p>In this tutorial, we’ll walk through how to take one of these labeled TIFF segmentation masks and convert it into a MuSpAn domain, where each labeled region becomes an object that can be analysed further.</p>
+<p>In modern image analysis, a wide range of powerful segmentation methods are available, many of which come from advances in computer vision and machine learning. In biological imaging, for example, tools such as Cellpose, StarDist and DeepCell are commonly used to identify and segment individual cells from microscopy images.</p>
+<p>These segmentation algorithms typically produce an output image where each pixel is assigned an integer label corresponding to a specific object (e.g. a cell). This is often stored as a TIFF file or similar, where pixels with the same value belong to the same segmented region.</p>
+<p>In this tutorial, we’ll walk through how to take one of these segmentation masks images (here it’ll be a .tif but this could be any image file type) and convert it into a MuSpAn domain, where each labeled mask becomes an object that can be analysed further.</p>
 <p>For demonstration purposes, we’ll use an example segmentation generated with Cellpose, available here: <a class="reference external" href="https://huggingface.co/spaces/mouseland/cellpose">https://huggingface.co/spaces/mouseland/cellpose</a></p>
 <p>Although MuSpAn provides utilities to load this data directly, we’ll first take a look at the image itself to better understand its structure before importing it.</p>
+<section id="Basic-import-from-a-segmentation-mask-image">
+<h2>Basic import from a segmentation mask image<a class="headerlink" href="#Basic-import-from-a-segmentation-mask-image" title="Link to this heading">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
 <span class="kn">import</span> <span class="nn">skimage</span> <span class="k">as</span> <span class="nn">sk</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
@@ -643,7 +651,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -655,18 +663,18 @@ Text(0.5, 1.0, &#39;Conic 1564 masks (TIFF)&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_2_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_2_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_3_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_3_1.png" />
 </div>
 </div>
 <p>The example we’ll use comes from the CoNIC challenge (Colon Nuclei Identification and Counting) and shows a region of colon histopathology tissue. What you’re looking at here is not the original microscopy image, but its corresponding segmentation mask.</p>
 <p>In this mask, each object (for example, an individual nucleus) is represented by a unique integer value, meaning that all pixels with the same value belong to the same segmented region. To make this easier to interpret visually, we’ve applied a colour map so that different objects appear in different colours.</p>
-<p>MuSpAn provides a convenient importer for this type of data. Using the labeled_tiff_to_domain function from the io submodule, we can convert each labeled pixel region into a MuSpAn shape, allowing us to work with these objects directly within a domain.</p>
+<p>MuSpAn provides a convenient importer for this type of data. Using the <code class="docutils literal notranslate"><span class="pre">segmentation_mask_to_domain</span></code> function from the io submodule, we can convert each labeled pixel region into a MuSpAn shape, allowing us to work with these objects directly within a domain.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert the TIFF file to a domain</span>
-<span class="n">domain_from_tiff</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">labeled_tiff_to_domain</span><span class="p">(</span><span class="n">path_to_tiff_file</span><span class="p">,</span><span class="n">annotation_label_name</span><span class="o">=</span><span class="s1">&#39;Cellpose IDs&#39;</span><span class="p">,</span><span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;annotated_objects&#39;</span><span class="p">)</span>
+<span class="n">domain_from_tiff</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">segmentation_mask_to_domain</span><span class="p">(</span><span class="n">path_to_tiff_file</span><span class="p">,</span><span class="n">mask_label_name</span><span class="o">=</span><span class="s1">&#39;Cellpose IDs&#39;</span><span class="p">,</span><span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;mask_objects&#39;</span><span class="p">)</span>
 
 <span class="c1"># print the domain</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">domain_from_tiff</span><span class="p">)</span>
@@ -680,16 +688,16 @@ Text(0.5, 1.0, &#39;Conic 1564 masks (TIFF)&#39;)
 <div class="highlight"><pre>
 Domain name: conic_1564_masks
 Number of objects: 254
-Collections: [&#39;annotated_objects&#39;]
+Collections: [&#39;mask_objects&#39;]
 Labels: [&#39;Cellpose IDs&#39;]
 Networks: []
 Distance matrices: []
 </pre></div></div>
 </div>
-<p>The generated domain contains a collection called annotated_objects, which holds the 254 segmented objects extracted from the mask. Each object is also assigned a label (Cellpose IDs), allowing us to retain a link back to the original pixel values in the segmentation mask.</p>
+<p>The generated domain contains a collection called ‘mask_objects’, which holds the 254 segmented objects extracted from the mask. Each object is also assigned a label (here we call this Cellpose IDs as the segmentation was performed by Cellpose), allowing us to retain a link back to the original pixel values in the segmentation mask.</p>
 <p>Let’s now explore this domain and compare it with the original segmentation mask to see how the regions have been translated into MuSpAn objects.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -705,7 +713,7 @@ Distance matrices: []
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -717,17 +725,20 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_6_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_6_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_7_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_7_1.png" />
 </div>
 </div>
 <p>We can see that each segmented region has been converted into a shape within the domain, and the corresponding mask ID has been preserved as a label (Cellpose IDs), as described earlier. This makes it straightforward to link any additional information about the segmented regions back to the corresponding MuSpAn objects.</p>
+</section>
+<section id="Import-objects-as-points">
+<h2>Import objects as points<a class="headerlink" href="#Import-objects-as-points" title="Link to this heading">#</a></h2>
 <p>In some cases, you may prefer a simpler representation and import these objects as points rather than full shapes. This can be done by enabling the as_points parameter in the importer.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert the TIFF file to a domain as points</span>
-<span class="n">domain_from_tiff_as_points</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">labeled_tiff_to_domain</span><span class="p">(</span><span class="n">path_to_tiff_file</span><span class="p">,</span><span class="n">annotation_label_name</span><span class="o">=</span><span class="s1">&#39;Cellpose IDs&#39;</span><span class="p">,</span><span class="n">as_points</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">domain_from_tiff_as_points</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">segmentation_mask_to_domain</span><span class="p">(</span><span class="n">path_to_tiff_file</span><span class="p">,</span><span class="n">mask_label_name</span><span class="o">=</span><span class="s1">&#39;Cellpose IDs&#39;</span><span class="p">,</span><span class="n">as_points</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="c1"># plot the TIFF file</span>
@@ -740,7 +751,7 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -752,17 +763,22 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_8_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_8_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_9_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_9_1.png" />
 </div>
 </div>
+</section>
+<section id="Simplify-imported-shapes">
+<h2>Simplify imported shapes<a class="headerlink" href="#Simplify-imported-shapes" title="Link to this heading">#</a></h2>
 <p>In some cases, you may want to retain objects as shapes, but find that the pixel-level boundaries are overly detailed or noisy. To address this, MuSpAn provides options to simplify the geometry of each shape.</p>
-<p>By using the simplify_shapes parameter, along with simplify_tolerance, you can reduce the complexity of the polygons. This process uses the Ramer–Douglas–Peucker algorithm, where the tolerance controls the degree of simplification, higher values result in simpler, less detailed shapes. In practice, this removes small jagged edges and pixelation artefacts while preserving the overall structure of each object.</p>
+<p>By using the <code class="docutils literal notranslate"><span class="pre">simplify_shapes</span></code> parameter, along with <code class="docutils literal notranslate"><span class="pre">simplify_tolerance</span></code>, you can reduce the complexity of the polygons. This process uses the Ramer–Douglas–Peucker algorithm, where the tolerance controls the degree of simplification, higher values result in simpler, less detailed shapes. In practice, this removes small jagged edges and pixelation artefacts while preserving the overall structure of each object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain_from_tiff_simp_shapes</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">labeled_tiff_to_domain</span><span class="p">(</span><span class="n">path_to_tiff_file</span><span class="p">,</span><span class="n">annotation_label_name</span><span class="o">=</span><span class="s1">&#39;Cellpose IDs&#39;</span><span class="p">,</span><span class="n">simplify_shapes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">simplify_tolerance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert the TIFF file to a domain as simplified shapes</span>
+<span class="n">domain_from_tiff_simp_shapes</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">segmentation_mask_to_domain</span><span class="p">(</span><span class="n">path_to_tiff_file</span><span class="p">,</span><span class="n">mask_label_name</span><span class="o">=</span><span class="s1">&#39;Cellpose IDs&#39;</span><span class="p">,</span><span class="n">simplify_shapes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">simplify_tolerance</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
+<span class="c1"># plot the TIFF file and the domain as simplified shapes</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">label_image</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -774,7 +790,7 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -786,10 +802,254 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_10_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_10_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_11_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_11_1.png" />
+</div>
+</div>
+</section>
+<section id="Aligning-external-data-to-objects">
+<h2>Aligning external data to objects<a class="headerlink" href="#Aligning-external-data-to-objects" title="Link to this heading">#</a></h2>
+<p>There will be instances where external analysis has been conducted on the labeled image and information corresponding to these labeled objects should be added as labels. For this situtation, we also return the ordered arrays of muspan object IDs and the provided mask IDs from the segmentation image directly. We can return these additional outputs using the <code class="docutils literal notranslate"><span class="pre">return_muspan_and_annotation_ids</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">labeled_tiff_to_domain()</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert the TIFF file to a domain and return the muspan_ids and mask_ids</span>
+<span class="n">domain_from_tiff</span><span class="p">,</span><span class="n">muspan_ids</span><span class="p">,</span><span class="n">mask_ids</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">segmentation_mask_to_domain</span><span class="p">(</span><span class="n">path_to_tiff_file</span><span class="p">,</span><span class="n">mask_label_name</span><span class="o">=</span><span class="s1">&#39;Cellpose IDs&#39;</span><span class="p">,</span><span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;annotated_objects&#39;</span><span class="p">,</span><span class="n">return_muspan_and_mask_ids</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a DataFrame to display muspan_ids and tiff_ids (use to visualising the table)</span>
+<span class="n">ids_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;MuSpAn IDs&#39;</span><span class="p">:</span> <span class="n">muspan_ids</span><span class="p">,</span> <span class="s1">&#39;Mask IDs&#39;</span><span class="p">:</span> <span class="n">mask_ids</span><span class="p">})</span>
+
+<span class="c1"># Print the table</span>
+<span class="n">ids_table</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MuSpAn IDs</th>
+      <th>Mask IDs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>249</th>
+      <td>249</td>
+      <td>250</td>
+    </tr>
+    <tr>
+      <th>250</th>
+      <td>250</td>
+      <td>251</td>
+    </tr>
+    <tr>
+      <th>251</th>
+      <td>251</td>
+      <td>252</td>
+    </tr>
+    <tr>
+      <th>252</th>
+      <td>252</td>
+      <td>253</td>
+    </tr>
+    <tr>
+      <th>253</th>
+      <td>253</td>
+      <td>254</td>
+    </tr>
+  </tbody>
+</table>
+<p>254 rows × 2 columns</p>
+</div></div>
+</div>
+<p>This can be useful for aligning external data to the objects using the mask IDs. For example, if cell phenotyping has been performed in using another plathform, then we would like to add cell types to each of the objects that define cells. Let’s make a set random of labels to add objects in our domain.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a set of random labels</span>
+<span class="n">random_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">mask_ids</span><span class="p">))</span>
+
+<span class="c1"># Create a DataFrame to minmic typical label table with the random labels</span>
+<span class="n">example_cell_type_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Mask IDs&#39;</span><span class="p">:</span> <span class="n">mask_ids</span><span class="p">,</span><span class="s1">&#39;Random label&#39;</span><span class="p">:</span><span class="n">random_labels</span><span class="p">})</span>
+
+<span class="c1"># Print the example label table</span>
+<span class="n">example_cell_type_table</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mask IDs</th>
+      <th>Random label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>249</th>
+      <td>250</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>250</th>
+      <td>251</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>251</th>
+      <td>252</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>252</th>
+      <td>253</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>253</th>
+      <td>254</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+<p>254 rows × 2 columns</p>
+</div></div>
+</div>
+<p>Let’s add these labels to the corresponding muspan objects and visualise</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># align the labels to the MuSpAn IDs using the mask IDs as a reference</span>
+<span class="n">labels_aligned_to_muspan_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">example_cell_type_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">example_cell_type_table</span><span class="p">[</span><span class="s1">&#39;Mask IDs&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">mask_id</span><span class="p">,</span> <span class="s1">&#39;Random label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">mask_id</span> <span class="ow">in</span> <span class="n">mask_ids</span><span class="p">]</span>
+
+<span class="c1"># add the labels to the domain using the aligned labels and the corresponding MuSpAn IDs</span>
+<span class="n">domain_from_tiff</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;Random label&#39;</span><span class="p">,</span> <span class="n">labels_aligned_to_muspan_ids</span><span class="p">,</span><span class="n">add_labels_to</span><span class="o">=</span><span class="n">muspan_ids</span><span class="p">)</span>
+
+<span class="c1"># plot the domain with the cell type labels</span>
+<span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_from_tiff</span><span class="p">,</span> <span class="s1">&#39;Random label&#39;</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(&lt;Figure size 1000x800 with 2 Axes&gt;, &lt;Axes: &gt;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_17_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_17_1.png" />
 </div>
 </div>
 <p>For more advanced usage, we recommend exploring the full MuSpAn documentation on importing domains from segmentation masks. In particular, you can align and attach additional metadata to each object during import using parameters such as annotated_label_name, making it easier to incorporate external annotations or measurements into your analysis.</p>
+</section>
 </section>
 
 
@@ -802,6 +1062,26 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Basic-import-from-a-segmentation-mask-image">Basic import from a segmentation mask image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Import-objects-as-points">Import objects as points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Simplify-imported-shapes">Simplify imported shapes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Aligning-external-data-to-objects">Aligning external data to objects</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -30,7 +30,7 @@ The muspan.io module provides tools for reading and writing data to and from the
    :nosignatures:
 
    qupath_to_domain
-   labeled_tiff_to_domain
+   segmentation_mask_to_domain
    xenium_to_domain
    spatialdata_to_domain
 
