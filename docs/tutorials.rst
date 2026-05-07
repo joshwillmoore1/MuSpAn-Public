@@ -126,6 +126,7 @@ Spatial Network Analysis
      _collections/network_analysis/Network methods - 3 - graph_filtrations
      _collections/network_analysis/Network methods - 2 - community_detection
      _collections/spatial_networks/Spatial net - Comparing networks
+     _collections/network_analysis/Network methods - 6 - adjacency_permutation_test
 
 
 Topological Data Analysis
