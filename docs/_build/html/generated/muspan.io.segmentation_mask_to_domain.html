@@ -329,6 +329,10 @@ document.write(`
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -565,6 +569,60 @@ document.write(`
                   
   <section id="segmentation-mask-to-domain">
 <h1>segmentation_mask_to_domain<a class="headerlink" href="#segmentation-mask-to-domain" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="muspan.io.segmentation_mask_to_domain">
+<span class="sig-name descname"><span class="pre">segmentation_mask_to_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplify_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'masked_objects'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'object_label'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_muspan_and_mask_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.io.segmentation_mask_to_domain" title="Link to this definition">#</a></dt>
+<dd><p>Extracts masked objects from an image file and creates a MuSpAn domain with those objects as shapes or points, along with their corresponding masked labels.
+Objects are extracted based on their labels in the image file, and the contours of the labeled regions are used to create shapes in the MuSpAn domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mask_path</strong><span class="classifier">str</span></dt><dd><p>Path to the input image file containing the masked image. The image can be any of the following formats: TIFF / TIF, PNG, JPEG / JPG, BMP.</p>
+</dd>
+<dt><strong>background_value</strong><span class="classifier">int, optional</span></dt><dd><p>The value that represents the background in the masked image. Default is 0.</p>
+</dd>
+<dt><strong>x_scale</strong><span class="classifier">float, optional</span></dt><dd><p>Scaling factor for the x-axis. Default is 1 (no scaling).</p>
+</dd>
+<dt><strong>y_scale</strong><span class="classifier">float, optional</span></dt><dd><p>Scaling factor for the y-axis. Default is 1 (no scaling).</p>
+</dd>
+<dt><strong>domain_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name for the MuSpAn domain to be created. If None, the filename (without extension) will be used as the domain name. Default is None.</p>
+</dd>
+<dt><strong>as_points</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the label objects will be imported as points (using the centroid of the shape). If False, they will be imported as shapes. Default is False.</p>
+</dd>
+<dt><strong>simplify_shapes</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to simplify the shapes using the Ramer-Douglas-Peucker algorithm. Only used if as_points is False. Default is False.</p>
+</dd>
+<dt><strong>simplify_tolerance</strong><span class="classifier">float, optional</span></dt><dd><p>Tolerance for shape simplification (only used if simplify_shapes is True). Default is 1.</p>
+</dd>
+<dt><strong>collection_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name for the collection in the MuSpAn domain where the objects will be added. Default is ‘masked_objects’.</p>
+</dd>
+<dt><strong>mask_label_name</strong><span class="classifier">str, optional</span></dt><dd><p>Name for the mask label in the MuSpAn domain. Default is ‘object_label’.</p>
+</dd>
+<dt><strong>return_muspan_and_mask_ids</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the function will return the MuSpAn object IDs and their corresponding mask label IDs in addition to the domain. Default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>muspan.domain</dt><dd><p>A muspan domain object.</p>
+</dd>
+<dt>if return_muspan_and_mask_ids is True, also returns:</dt><dd><dl class="simple">
+<dt>muspan_object_ids<span class="classifier">np.ndarray</span></dt><dd><p>An array of MuSpAn object IDs corresponding to the imported objects.</p>
+</dd>
+<dt>mask_ids<span class="classifier">np.ndarray</span></dt><dd><p>An array of mask label IDs corresponding to the imported objects, in the same order as muspan_object_ids.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>This function assumes that the input is an 2D label image file where each pixel’s value corresponds to a label for the object it belongs to.</p></li>
+<li><p>Mask IDs are added to the MuSpAn objects as a categorical annotation label, with the name specified by <em class="xref py py-obj">mask_label_name</em>.</p></li>
+<li><p>Enables the import of objects from generic segmentation masks from segmentation tools that output labeled image files such as Cellpose, Stardist, DeepCell, QuPath, ImageJ etc.</p></li>
+</ul>
+</dd></dl>
+
 </section>
 
 
@@ -577,6 +635,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#muspan.io.segmentation_mask_to_domain"><code class="docutils literal notranslate"><span class="pre">segmentation_mask_to_domain</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
