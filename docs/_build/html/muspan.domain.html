@@ -1235,15 +1235,22 @@ Default is ‘rectangle’.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="muspan.domain.domain.print_collections">
-<span class="sig-name descname"><span class="pre">print_collections</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.print_collections" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">print_collections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">return_df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.print_collections" title="Link to this definition">#</a></dt>
 <dd><p>Print a table of collections in the domain.</p>
 <p>This method creates a DataFrame where each column represents a collection,
 and each row represents an object. The DataFrame indicates whether each 
 object belongs to each collection.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt>None</dt><dd></dd>
+<dt><strong>return_df</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the function will return the DataFrame of collections instead of printing it. Default is False.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>colllection_df</strong><span class="classifier">pandas.DataFrame, optional</span></dt><dd><p>A DataFrame containing the collections of objects in the domain, if <em class="xref py py-obj">return_df</em> is True. The index of the DataFrame is ‘object_id’, and each column corresponds to the collection.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -1253,18 +1260,21 @@ object belongs to each collection.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="muspan.domain.domain.print_labels">
-<span class="sig-name descname"><span class="pre">print_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.print_labels" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">print_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.domain.domain.print_labels" title="Link to this definition">#</a></dt>
 <dd><p>Print a table of labels of objects in the domain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>label_name</strong><span class="classifier">str, optional</span></dt><dd><p>The name of the label to print. If None, all labels are printed. Default is None.</p>
+<dt><strong>label_name</strong><span class="classifier">str,list, optional</span></dt><dd><p>The name, or list of names, of the label to print. If None, all labels are printed. Default is None.</p>
+</dd>
+<dt><strong>return_df</strong><span class="classifier">bool, optional</span></dt><dd><p>If True, the function will return the DataFrame of labels instead of printing it. Default is False.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt>None</dt><dd></dd>
+<dt><strong>label_df</strong><span class="classifier">pandas.DataFrame, optional</span></dt><dd><p>A DataFrame containing the labels of objects in the domain, if <em class="xref py py-obj">return_df</em> is True. The index of the DataFrame is ‘object_id’, and each column corresponds to a label.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises<span class="colon">:</span></dt>

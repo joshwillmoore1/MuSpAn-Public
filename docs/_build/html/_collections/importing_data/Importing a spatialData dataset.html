@@ -528,15 +528,16 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Importing%20from%20labeled%20tiff.html">Importing from a segmentation mask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -656,7 +657,7 @@ with coordinate systems:
 <p>We can see that the SpatialData object contains different partitions of data that we can access. In this example, we have ‘Images’,’Points’, ‘Shapes’ and ‘Tables’. The spatial objects in this dataset are stored under ‘Points’ and ‘Shapes’. These headers are further categorised by groups of objects predefined by the used. For example, under shapes, we have ‘anatomical’ and ‘cells’ which are annotated regions of the tissue and segmentated cells, respectively.</p>
 <p>We can import this SpatialData object into MuSpAn using the <code class="docutils literal notranslate"><span class="pre">spatialdata_to_domain</span></code> function. The main parameter we give to this function is a spatialData object. In our case, this is ‘test_sd’.</p>
 <p>MuSpAn is looking for anything under the ‘Points’ or ‘Shapes’ headings in the SpatialData object to grab. We have to be careful with unpacking too much data as MuSpAn currently stores all objects in memory.</p>
-<p>In this MERFISH experiment, there are a lot of spatially-resolved points under ‘single_molecule’ which might not be relevent for spatial analysis. For this we can specify the objects to load into our domain using the <code class="docutils literal notranslate"><span class="pre">include_elements</span></code> parameter, which takes a list of spatial elements (objects) we’d like to add. Let’s only include the ‘cells’ for now.</p>
+<p>In this MERFISH experiment, there are a lot of spatially-resolved points under ‘single_molecule’ which might not be relevant for spatial analysis. For this we can specify the objects to load into our domain using the <code class="docutils literal notranslate"><span class="pre">include_elements</span></code> parameter, which takes a list of spatial elements (objects) we’d like to add. Let’s only include the ‘cells’ for now.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -680,7 +681,7 @@ Distance matrices: []
 </pre></div></div>
 </div>
 <p>Note that everything connected the spatial objects in the ‘Tables’ using the ‘cell id’ is unpacked from the annData tables and loaded into MuSpAn as labels. These labels are named by the annData table they are a part of. In this example, our SpatialData object has one addData data under the ‘Tables’ handing, named ‘table’, which contains transcript counts for all objects.</p>
-<p>Let’s visualise this domain colored by a specific transcript count.</p>
+<p>Let’s visualise this domain coloured by a specific transcript count.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -736,7 +737,7 @@ Networks: []
 Distance matrices: []
 </pre></div></div>
 </div>
-<p>We can see now that we only have the intrinic object information (id and radius) and the ‘Sox10’ and ‘Alk’ labels from the annData table.</p>
+<p>We can see now that we only have the intrinsic object information (id and radius) and the ‘Sox10’ and ‘Alk’ labels from the annData table.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -795,18 +796,17 @@ Distance matrices: []
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the domain with selected shapes, colored by &#39;Alk&#39; transcript count</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the domain with selected shapes, coloured by &#39;Alk&#39; transcript count</span>
 <span class="c1"># Set the alpha parameter to 1 for full opacity</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain_selected_shapes</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;table: Alk&#39;</span><span class="p">,</span> <span class="n">shape_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>

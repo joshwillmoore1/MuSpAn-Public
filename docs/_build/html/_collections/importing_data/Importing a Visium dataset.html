@@ -76,7 +76,7 @@
     <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Importing from a segmentation mask" href="Importing%20from%20labeled%20tiff.html" />
+    <link rel="next" title="Importing from a segmentation mask" href="Importing%20from%20labelled%20tiff.html" />
     <link rel="prev" title="MuSpAn with Xenium Explorer" href="Importing%20a%20Xenium%20dataset.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -532,15 +532,16 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Importing a Visium dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Importing%20from%20labeled%20tiff.html">Importing from a segmentation mask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -624,7 +625,7 @@ dedicated function as for Xenium, therefore we will require to know a little mor
 <h2>What to look for in a Visium dataset to import to MuSpAn<a class="headerlink" href="#What-to-look-for-in-a-Visium-dataset-to-import-to-MuSpAn" title="Link to this heading">#</a></h2>
 <p>Once we have downloaded our dataset and saved it to a local directory on your machine, open the dataset folder to check what is inside. For this example, our folder is named ‘Visium CytAssist Gene Expression Libraries of Post-Xenium Human Colon Cancer (FFPE)’. As with our Xenium tutorial, we recommend using the 10x Visium viewer software <a class="reference external" href="https://www.10xgenomics.com/support/software/loupe-browser/latest">Loupe Browser</a> alongside MuSpAn to get an interactive understanding of the dataset that
 is being analysed.</p>
-<p>For now, we will import the spatial and spot clustering data into MuSpAn. For this, we will open our Visum data folder (for me this is <code class="docutils literal notranslate"><span class="pre">path/to/my/data/Visium</span> <span class="pre">CytAssist</span> <span class="pre">Gene</span> <span class="pre">Expression</span> <span class="pre">Libraries</span> <span class="pre">of</span> <span class="pre">Post-Xenium</span> <span class="pre">Human</span> <span class="pre">Colon</span> <span class="pre">Cancer</span> <span class="pre">(FFPE)</span></code>) and find the location of the relevent folders we’ll need. These folders <strong>end</strong> with the are the following:</p>
+<p>For now, we will import the spatial and spot clustering data into MuSpAn. For this, we will open our Visium data folder (for me this is <code class="docutils literal notranslate"><span class="pre">path/to/my/data/Visium</span> <span class="pre">CytAssist</span> <span class="pre">Gene</span> <span class="pre">Expression</span> <span class="pre">Libraries</span> <span class="pre">of</span> <span class="pre">Post-Xenium</span> <span class="pre">Human</span> <span class="pre">Colon</span> <span class="pre">Cancer</span> <span class="pre">(FFPE)</span></code>) and find the location of the relevant folders we’ll need. These folders <strong>end</strong> with the are the following:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Folder</p></th>
@@ -644,7 +645,7 @@ is being analysed.</p>
 </tbody>
 </table>
 </div>
-<p>Once we have located all these files, we are ready to import the data. We’ll start with our usual imports and some additonal Python standard librarys that will allow use to extract the relevent data from the Visium files.</p>
+<p>Once we have located all these files, we are ready to import the data. We’ll start with our usual imports and some additional Python standard libraries that will allow use to extract the relevant data from the Visium files.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -682,7 +683,7 @@ is being analysed.</p>
 </pre></div>
 </div>
 </div>
-<p>Next we will find the path for the relevent the folders in the table above.</p>
+<p>Next we will find the path for the relevant the folders in the table above.</p>
 <p><strong>Warning!</strong> This is where your datasets may differ in file structure, and the path to each file will have to match the location of where the relevant files are saved with the Visium output file. For this example dataset, it is fairly simple as all folders are located directly in the main data folder. However, depending on the type of experiment they could be tucked away in a deeper folder, so you may have to look for the relevant paths.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -695,7 +696,7 @@ is being analysed.</p>
 </pre></div>
 </div>
 </div>
-<p>Now let’s import the data. We will use the spot identifier <code class="docutils literal notranslate"><span class="pre">barcode</span></code> to align and link the relevent data.</p>
+<p>Now let’s import the data. We will use the spot identifier <code class="docutils literal notranslate"><span class="pre">barcode</span></code> to align and link the relevant data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>

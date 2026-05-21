@@ -77,7 +77,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Importing a SpatialData dataset" href="Importing%20a%20spatialData%20dataset.html" />
-    <link rel="prev" title="Working with multiple domains 1: Simple cohort comparision" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html" />
+    <link rel="prev" title="Working with multiple domains 1: Simple cohort comparison" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -528,15 +528,16 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Importing%20from%20labeled%20tiff.html">Importing from a segmentation mask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -616,9 +617,9 @@ document.write(`
 <p>QuPath (<a class="reference external" href="https://qupath.github.io">https://qupath.github.io</a>) is a powerful tool for exploring imaging data in digital pathology. In this tutorial, we’ll demonstrate how to import objects generated in QuPath into MuSpAn for spatial analysis. This process leverages the GeoJSON file format, which is designed for transferring spatial data efficiently.</p>
 <p>Below is a flowchart outlining the workflow for creating and exporting a GeoJSON file from QuPath:</p>
 <p><img alt="A flow chart of exporting regions of interest from QuPath" src="../../_images/QuPath_tutorial.png" /></p>
-<p>In this demonstration, we’ll explore a region of murine colorectal cancer (CRC) images analyzed using multiplex immunofluorescence (IF). The flowchart above outlines the steps:</p>
+<p>In this demonstration, we’ll explore a region of murine colorectal cancer (CRC) images analysed using multiplex immunofluorescence (IF). The flowchart above outlines the steps:</p>
 <ol class="arabic simple">
-<li><p>In QuPath, we defined a square boundary (labeled “boundary”) and performed cell segmentation within this area (“cells”).</p></li>
+<li><p>In QuPath, we defined a square boundary (labelled “boundary”) and performed cell segmentation within this area (“cells”).</p></li>
 <li><p>Additionally, we created another shape called “Region 1.”</p></li>
 <li><p>After defining and naming these objects, we exported them as a GeoJSON file, named <code class="docutils literal notranslate"><span class="pre">qupath_example_data.geojson</span></code>. This exported file has been preloaded into MuSpAn for this demonstration, allowing us to showcase the process of loading QuPath output data.</p></li>
 </ol>

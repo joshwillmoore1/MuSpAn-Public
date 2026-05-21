@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Export a domain as csv (and dataframe) &#8212; Multiscale Spatial Analysis</title>
+    <title>Export a domain as CSV (and DataFrame) &#8212; Multiscale Spatial Analysis</title>
   
   
   
@@ -76,7 +76,7 @@
     <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Working with multiple domains 1: Simple cohort comparision" href="Workflows%20-%203%20-%20Multiple%20domains%201.html" />
+    <link rel="next" title="Identifying spatial niches" href="Workflows%20-%203%20-%20Identifying%20spatial%20niches.html" />
     <link rel="prev" title="Cropping a domain" href="Workflows%20-%201%20-%20Cropping%20a%20domain.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -528,15 +528,16 @@ document.write(`
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labeled%20tiff.html">Importing from a segmentation mask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -611,13 +612,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="Export-a-domain-as-csv-(and-dataframe)">
-<h1>Export a domain as csv (and dataframe)<a class="headerlink" href="#Export-a-domain-as-csv-(and-dataframe)" title="Link to this heading">#</a></h1>
+  <section id="Export-a-domain-as-CSV-(and-DataFrame)">
+<h1>Export a domain as CSV (and DataFrame)<a class="headerlink" href="#Export-a-domain-as-CSV-(and-DataFrame)" title="Link to this heading">#</a></h1>
 <p>Analysing spatial data is often just one piece of a larger research workflow. To facilitate integration with other tools and enable further analysis, exporting a MuSpAn domain as a CSV file can be incredibly useful.</p>
 <p>In this tutorial, we’ll walk through the process of exporting a MuSpAn domain to a .csv file using the <code class="docutils literal notranslate"><span class="pre">domain_to_csv</span></code> function from the <code class="docutils literal notranslate"><span class="pre">io</span></code> submodule of MuSpAn. This will allow you to easily share, manipulate, and analyse your spatial data in spreadsheet applications or other programming environments.</p>
 <p>We’ll begin by loading a standard example domain from the MuSpAn library and then demonstrate how to export it seamlessly.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the muspan library</span>
@@ -626,7 +627,7 @@ document.write(`
 <span class="c1"># Load a standard example domain stored within the library</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
 
-<span class="c1"># Visualise the domain, coloring the points by their &#39;Celltype&#39;</span>
+<span class="c1"># Visualise the domain, colouring the points by their &#39;Celltype&#39;</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">color_by</span><span class="o">=</span><span class="s1">&#39;Celltype&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -646,8 +647,7 @@ Distance matrices: []
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -665,7 +665,7 @@ Distance matrices: []
 <p>Don’t worry about the details of the TCM - this is just generating us some additional labels to the D cells. If you’d like more information on the TCM, see our documentation and tutorial on the spatial statistic.</p>
 <p>Let’s compute a TCM from the D cells to the C cells and check that new labels have been added.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the Topographical Correlation Map (TCM) for the domain</span>
@@ -679,7 +679,7 @@ Distance matrices: []
     <span class="n">contribution_label_name</span><span class="o">=</span><span class="s1">&#39;TCM contributions&#39;</span>
 <span class="p">)</span>
 
-<span class="c1"># Visualise the domain, coloring the points by their &#39;TCM contributions&#39;</span>
+<span class="c1"># Visualise the domain, colouring the points by their &#39;TCM contributions&#39;</span>
 <span class="c1"># We are plotting only the objects of Celltype &#39;D&#39; to see the TCM contributions</span>
 <span class="n">ms</span><span class="o">.</span><span class="n">visualise</span><span class="o">.</span><span class="n">visualise</span><span class="p">(</span>
     <span class="n">domain</span><span class="p">,</span>
@@ -744,8 +744,8 @@ Domain Example_domain exported as csv successfully to ..
 </div>
 <p>This csv file will contain all user-relevant information stored within the domain: object_id, (x,y) coordinates, object_type, labels and collections.</p>
 <p>If the object is not point-like, then all vertices defining that object are provided. Collections are given as booleans of whether the object is or is not within that collection.</p>
-<p>We can check this out by returning the pandas dataframe associated with this csv file. This also allows for muspan integration in python native workflows without the need to export and import the csv file.</p>
-<p>Let’s export the domain again but this time return the dataframe.</p>
+<p>We can check this out by returning the pandas DataFrame associated with this csv file. This also allows for muspan integration in python native workflows without the need to export and import the csv file.</p>
+<p>Let’s export the domain again but this time return the DataFrame.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -917,7 +917,7 @@ Domain Example_domain exported as csv successfully to ..
 <p>5991 rows × 7 columns</p>
 </div></div>
 </div>
-<p>In this tutorial, we have shown how a MuSpAn domain can be export as a csv file and a pandas dataframe. This functionality allows for greater flexibility in analysing and processing MuSpAn domain output data using standard data science tools. For more information on the <code class="docutils literal notranslate"><span class="pre">domain_to_csv</span></code> check out our documentation on the function.</p>
+<p>In this tutorial, we have shown how a MuSpAn domain can be exported as a csv file or as a pandas DataFrame. This functionality allows for greater flexibility in analysing and processing MuSpAn domain output data using standard data science tools. For more information on the <code class="docutils literal notranslate"><span class="pre">domain_to_csv</span></code> check out our documentation on the function.</p>
 </section>
 
 
