@@ -44,7 +44,7 @@
 
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../_static/documentation_options.js?v=ccec0a52"></script>
+    <script src="../../_static/documentation_options.js?v=a823da16"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -70,14 +70,14 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.5';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Paper examples" href="../../paper_examples.html" />
-    <link rel="prev" title="Importing a Visium dataset" href="../importing_data/Importing%20a%20Visium%20dataset.html" />
+    <link rel="prev" title="Importing from a segmentation mask" href="../importing_data/Importing%20from%20labelled%20tiff.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -502,6 +502,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
@@ -527,14 +528,16 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -616,7 +619,7 @@ document.write(`
 length on the right (with a transition region in the middle to make things even prettier). Let’s take it step by step!</p>
 <p>First, we load in some modules that we’re going to need, including MuSpAn, and we set some styles for pyplot and seaborn.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
@@ -636,7 +639,7 @@ length on the right (with a transition region in the middle to make things even 
 </div>
 <p>Now that the housekeeping’s out of the way, let’s make some data! We’ll start by choosing a load of random points, and making sure that they have the aspect ratio required for the MathOnco newsletter (1:1.5).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make an empty MuSpAn domain</span>
@@ -655,7 +658,7 @@ length on the right (with a transition region in the middle to make things even 
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -673,7 +676,7 @@ length on the right (with a transition region in the middle to make things even 
 <p>Beautiful. In a minute, we’ll want to know which points are on the left and right hand sides, so we’ll assign each point a label that tells us this. Points whose x coordinate is less than 0.65 will be on the LHS, and those with x greater than 0.85 will be on the RHS. Since we don’t want a perfect cut down the middle (it’d be nice to have a transitionary region in which some points are part of the LHS and some part of the RHS), we’ll assign points with <span class="math notranslate nohighlight">\(0.65 \leq x &lt; 0.85\)</span> to either the LHS
 or RHS randomly (with a probability proportionate to their <span class="math notranslate nohighlight">\(x\)</span> coordinate, so that we get a relatively smooth transition).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assign points a label describing whether they&#39;re on the left side of the domain or not</span>
@@ -690,7 +693,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -708,10 +711,11 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 <p>Great, now we can easily look at either the LHS or RHS points just by using the label. That’ll come in handy later.</p>
 <p>For now, let’s focus on our giant <span class="math notranslate nohighlight">\(\mu\)</span>. Let’s load in a .png image which contains the shape. We’ll only need one colour channel, so we’ll turn it into an array by taking only the blue colour channel. We only want the boundary of the shape to read it into MuSpAn, so we’ll take the contours of this array.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://docs.muspan.co.uk/misc/mu_for_logo.png&#39;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/JABull1066/muspan-assets/main/mu_for_logo.png&#39;</span>
+
 <span class="n">mu_logo</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">grayscale</span><span class="o">=</span><span class="n">mu_logo</span><span class="p">[:,:,</span><span class="mi">3</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">grayscale</span><span class="p">)</span>
@@ -731,7 +735,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 <p>Now, rescale the shape so that it fits into our domain, and add it to the domain as a shape. Then visualise it so we can see everything all at once.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rescale the shape to fit over our points, and then add it to the domain</span>
@@ -749,7 +753,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -766,7 +770,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 <p>There’s our <span class="math notranslate nohighlight">\(\mu\)</span> shape, peeking out from behind all those lovely points! We can now easily define a MuSpAn query that gets all the points which are outside the <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use MuSpAn&#39;s &#39;query&#39; infrastructure to get only the points outside of the Mu</span>
@@ -779,7 +783,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -796,7 +800,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 <p>Now that we’ve got a shape, let’s think about colour. There’s a lot of different ways we could choose to colour our points. First, let’s add a label that describes the distance of each point from <span class="math notranslate nohighlight">\((x,y) = (0.75, 0.75)\)</span>, the middle of the domain.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add a smoothly varying label describing distance from the centre of the image</span>
@@ -807,7 +811,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -824,7 +828,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 <p>Gorgeous! For another interpretation, we’ll create a Delaunay network on all of the points that aren’t inside the <span class="math notranslate nohighlight">\(\mu\)</span>, and weight each edge according to how long it is.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct a weighted Delaunay network on the RHS points, weighted by edge length</span>
@@ -834,7 +838,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -851,7 +855,7 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 <p>Nice! And to finish, let’s combine this with our Left/Right label from earlier to get the final artwork.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now combine the two - show the points for cells on the Left, and the network for those on the right</span>
@@ -876,14 +880,6 @@ or RHS randomly (with a probability proportionate to their <span class="math not
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/_collections_misc_2025_Math_Onco_Art_17_0.png" src="../../_images/_collections_misc_2025_Math_Onco_Art_17_0.png" />
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
 </div>
 </div>
 </section>

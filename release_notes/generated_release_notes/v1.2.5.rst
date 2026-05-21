@@ -1,0 +1,74 @@
+v1.2.5
+======
+
+We are pleased to announce the release of the minor update version **v1.2.5**.
+
+This release focuses on performance improvements, new functionality, and a number of bug fixes across boundary handling, network cropping, and query behavior.
+
+Features
+--------
+
+- **Labeled TIFF support**:
+
+  - Added ``segmentation_mask_to_domain`` for converting labeled TIFF files into MuSpAn domains.
+  - Added a small TIFF-to-dataset example to help demonstrate the workflow.
+
+- **Version string support**:
+
+  - Added a version string to the package for easier version tracking.
+
+- **Expanded query and network functionality**:
+
+  - Added more efficient similarity-weight-to-edge and network-based query handling.
+  - ``print labels`` and ``print collections`` now return DataFrames.
+
+Performance Improvements
+------------------------
+
+- **Vectorised geometry operations**:
+
+  - Polygon distance calculations have been vectorised.
+  - Point-to-line distance calculations have been optimised.
+  - point in poly operations have been accelerated using Cython.
+
+- **Improved spatial and neighbourhood computations**:
+
+  - ``cluster_neighbourhoods`` has been optimised for continuous labels.
+  - Moran's I and Getis-Ord calculations have been improved for both adjacency lookup and memory usage.
+  - ``adjacency_permutation_test`` has been optimised.
+
+- **Boundary and shape handling**:
+
+  - ``update_circle_boundaries`` received a small optimisation.
+  - Boundary shape reconstruction has been improved when rebuilding from updated boundaries.
+
+Bug Fixes
+---------
+
+- **Crop domain and network handling**:
+
+  - Fixed updating of networks following clipping.
+  - Fixed frozen graphs in crop domain operations following deepcopy.
+  - Added a test for cropping domains with networks.
+
+- **Query and colour bar handling**:
+
+  - Fixed duplicate collection entries in queries.
+  - Improved edge weight queries to minimise duplicates in the special case where this is required.
+  - Fixed null colour bar handling.
+
+- **Plotting**:
+
+  - Fixed plotting of PCF confidence intervals.
+
+Maintenance
+-----------
+
+- Merged several upstream branches and internal fixes.
+- Updated the package version number to **1.2.5**.
+
+--------------
+
+We sincerely thank all contributors and users who provided feedback to help shape this release. For detailed guidance on updating MuSpAn, please refer to the installation page.
+
+Thank you for using **muspan**!

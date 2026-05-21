@@ -43,7 +43,7 @@
 
     <script src="_static/jquery.js?v=5d32c60e"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=ccec0a52"></script>
+    <script src="_static/documentation_options.js?v=a823da16"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -67,7 +67,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.5';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
@@ -578,47 +578,56 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Synthetic-Points-Random</p></td>
-<td><a class="reference internal image-reference" href="_images/Synth-Density.png"><img alt="_images/Synth-Density.png" class="align-center" src="_images/Synth-Density.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+<td><a class="reference internal image-reference" href="_images/Synth-Density.png"><img alt="_images/Synth-Density.png" class="align-center" src="_images/Synth-Density.png" style="width: 222.45px; height: 229.79999999999998px;" />
+</a>
 </td>
 <td><p>A synthetic dataset of points randomly distributed (poisson point process) in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’ equally distributed.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Synthetic-Points-Aggregation</p></td>
-<td><a class="reference internal image-reference" href="_images/Synth-Agg.png"><img alt="_images/Synth-Agg.png" class="align-center" src="_images/Synth-Agg.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+<td><a class="reference internal image-reference" href="_images/Synth-Agg.png"><img alt="_images/Synth-Agg.png" class="align-center" src="_images/Synth-Agg.png" style="width: 222.45px; height: 229.79999999999998px;" />
+</a>
 </td>
 <td><p>A synthetic dataset of points in aggregated clusters in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’. Points with labels ‘A’, ‘B’ and ‘C’ are aggregated in clusters, while points with label ‘D’ are randomly distributed (poisson point process).</p></td>
 </tr>
 <tr class="row-even"><td><p>Synthetic-Points-Exclusion</p></td>
-<td><a class="reference internal image-reference" href="_images/Synth-Ex.png"><img alt="_images/Synth-Ex.png" class="align-center" src="_images/Synth-Ex.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+<td><a class="reference internal image-reference" href="_images/Synth-Ex.png"><img alt="_images/Synth-Ex.png" class="align-center" src="_images/Synth-Ex.png" style="width: 222.45px; height: 229.79999999999998px;" />
+</a>
 </td>
 <td><p>A synthetic dataset of points defining a region of exclusion in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’.  Points with labels ‘A’, ‘B’ and ‘D’  are aggregated in central region with label ‘C’ points excluded from this region.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Synthetic-Points-Architecture</p></td>
-<td><a class="reference internal image-reference" href="_images/Synth-Arch.png"><img alt="_images/Synth-Arch.png" class="align-center" src="_images/Synth-Arch.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+<td><a class="reference internal image-reference" href="_images/Synth-Arch.png"><img alt="_images/Synth-Arch.png" class="align-center" src="_images/Synth-Arch.png" style="width: 222.45px; height: 229.79999999999998px;" />
+</a>
 </td>
 <td><p>A synthetic dataset of points with different spatial architectures in a square region. The points have labels ‘Celltype’ with four categories: ‘A’, ‘B’, ‘C’, ‘D’.  Points with labels ‘A’ and ‘B’ form small regular annulus structures. Points in label ‘C’ form a large circle structure. Points in label ‘D’ are randomly distributed (poisson point process).</p></td>
 </tr>
 <tr class="row-even"><td><p>Xenium-Healthy-Colon</p></td>
-<td><a class="reference internal image-reference" href="_images/Xenium.png"><img alt="_images/Xenium.png" class="align-center" src="_images/Xenium.png" style="width: 222.45px; height: 228.15px;" /></a>
+<td><a class="reference internal image-reference" href="_images/Xenium.png"><img alt="_images/Xenium.png" class="align-center" src="_images/Xenium.png" style="width: 222.45px; height: 228.15px;" />
+</a>
 </td>
 <td><p>A selected ROI from a sample of healthy colon tissue from a 10x Xenium dataset provided in the public resources repository, <a class="reference external" href="https://www.10xgenomics.com/datasets/fresh-frozen-mouse-colon-with-xenium-multimodal-cell-segmentation-1-standard">see link</a>. The domain contains cell boundaries, nuclei and a selection of transcripts: Mylk, Myl9, Cnn1, Mgll, Mustn1, Oit1, Cldn2, Nupr1, Sox9, Ccl9. The dataset also contains cell clustering labels produced by Xenium Onboard Analysis using the ‘Graph-based’ method. This dataset is licensed under the Creative Commons Attribution license.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Macrophage-Hypoxia-ROI</p></td>
-<td><a class="reference internal image-reference" href="_images/Hypoxia.png"><img alt="_images/Hypoxia.png" class="align-center" src="_images/Hypoxia.png" style="width: 219.45px; height: 229.79999999999998px;" /></a>
+<td><a class="reference internal image-reference" href="_images/Hypoxia.png"><img alt="_images/Hypoxia.png" class="align-center" src="_images/Hypoxia.png" style="width: 219.45px; height: 229.79999999999998px;" />
+</a>
 </td>
 <td><p>A 1.5mm square region of interest formed from a stack of aligned IHC slides in a human head and neck cancer image, <a class="reference external" href="https://doi.org/10.1038/s41598-020-75180-9">see link</a>. The domain contains cell centre locations of macrophages (CD68+), and shapes which denote boundaries of PanCK (a tumour marker), CAIX (a marker for hypoxia) and Pimonidazole (a marker for severe hypoxia).</p></td>
 </tr>
 <tr class="row-even"><td><p>Mouse-Colon-Carcinoma</p></td>
-<td><a class="reference internal image-reference" href="_images/Mouse-Colon-Carc.png"><img alt="_images/Mouse-Colon-Carc.png" class="align-center" src="_images/Mouse-Colon-Carc.png" style="width: 222.45px; height: 229.79999999999998px;" /></a>
+<td><a class="reference internal image-reference" href="_images/Mouse-Colon-Carc.png"><img alt="_images/Mouse-Colon-Carc.png" class="align-center" src="_images/Mouse-Colon-Carc.png" style="width: 222.45px; height: 229.79999999999998px;" />
+</a>
 </td>
 <td><p>A 1mm square image of mouse colorectal carcinoma containing 5 different immune markers and one epithelial marker. This dataset was used the paper <a class="reference external" href="https://doi.org/10.1017/S2633903X24000011">Extended correlation functions for spatial analysis of multiplex imaging data</a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Visium-Colon-Adenocarcinoma</p></td>
-<td><a class="reference internal image-reference" href="_images/visium_dataset.png"><img alt="_images/visium_dataset.png" class="align-center" src="_images/visium_dataset.png" style="width: 219.4px; height: 242.8px;" /></a>
+<td><a class="reference internal image-reference" href="_images/visium_dataset.png"><img alt="_images/visium_dataset.png" class="align-center" src="_images/visium_dataset.png" style="width: 219.4px; height: 242.8px;" />
+</a>
 </td>
 <td><p>A sample of mouse stage 2a colon adenocarcinoma generated using the Visium CytAssist Spatial Gene Expression workflow as a 10x resource. This sample was processed using the Human Whole Transcriptome probe set with a spot diameter of 219µm. Gene expression was processed using Space Ranger v2.1 with gene signature Topic similarity included as continuous labels. This dataset is licensed under the Creative Commons Attribution license, <a class="reference external" href="https://www.10xgenomics.com/datasets/visium-cytassist-gene-expression-libraries-of-post-xenium-human-colon-cancer-ffpe-using-the-human-whole-transcriptome-probe-set-2-standard">see link</a>.</p></td>
 </tr>
 <tr class="row-even"><td><p>Earth-Land-Map</p></td>
-<td><a class="reference internal image-reference" href="_images/map.png"><img alt="_images/map.png" class="align-center" src="_images/map.png" style="width: 221.75px; height: 115.25px;" /></a>
+<td><a class="reference internal image-reference" href="_images/map.png"><img alt="_images/map.png" class="align-center" src="_images/map.png" style="width: 221.75px; height: 115.25px;" />
+</a>
 </td>
 <td><p>A dataset that represents a world map showing Earth’s landmasses. Each country or region is stored as a shape object. The dataset includes labels for each country and groups them into continent collections. This dataset was sourced from <a class="reference external" href="https://datahub.io/core/geo-countries">this link</a>.</p></td>
 </tr>

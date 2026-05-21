@@ -46,7 +46,7 @@
 
     <script src="_static/jquery.js?v=5d32c60e"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=ccec0a52"></script>
+    <script src="_static/documentation_options.js?v=a823da16"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -73,7 +73,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.5';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="_static/carousel_autoplay.js?v=a4b85356"></script>
@@ -631,6 +631,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
@@ -656,14 +657,16 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_collections/importing_data/Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="_collections/misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -737,8 +740,8 @@ document.write(`
                   
   <section id="tutorials">
 <span id="id1"></span><h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h1>
-<p>A solid understanding of MuSpAn is crucial to fully leveraging its capabilities in spatial data analysis.
-To build a good foundational understanding of MuSpAn, we recommend starting with the Getting Started and Queries tutorial sets.
+<p>A solid understanding of MuSpAn is crucial for fully leveraging its capabilities in spatial data analysis.
+To build a good foundational understanding of MuSpAn, we recommend starting with the “Getting Started” and “Queries” tutorial sets.
 Beyond this, each tutorial is largely self-contained, so you can dive into specific topics independently as needed.
 This flexible approach ensures you can learn at your own pace while focusing on the areas most relevant to your project.</p>
 <div class="carousel slide carousel-fade carousel-dark" id="carousel-0">
@@ -757,37 +760,48 @@ This flexible approach ensures you can learn at your own pace while focusing on 
 </div>
 <div class="carousel-inner">
 <div class="carousel-item active">
-<a class="reference external image-reference" href="_collections/misc/2025%20Math%20Onco%20Art.html"><img alt="A creatative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels" class="d-block w-100" src="_images/art_1.png" /></a>
+<a class="reference external image-reference" href="_collections/misc/2025%20Math%20Onco%20Art.html"><img alt="A creative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels" class="d-block w-100" src="_images/art_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html"><img alt="Conversion of communities of contiguous cells into shape objects using MuSpAn" class="d-block w-100" src="_images/comm_1.png" /></a>
+<a class="reference external image-reference" href="_collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html"><img alt="Conversion of communities of contiguous cells into shape objects using MuSpAn" class="d-block w-100" src="_images/comm_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/paper_tutorials/MuSpAn%20-%20Figure_6.html"><img alt="Computation of the Topographical Correlation Map between fibroblasts and macrophages in a colorectal tumour with regions annotated by carcinoma" class="d-block w-100" src="_images/tcm_1.png" /></a>
+<a class="reference external image-reference" href="_collections/paper_tutorials/MuSpAn%20-%20Figure_6.html"><img alt="Computation of the Topographical Correlation Map between fibroblasts and macrophages in a colorectal tumour with regions annotated by carcinoma" class="d-block w-100" src="_images/tcm_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html"><img alt="Demonstration of the discs about transcripts used to compute cross-Ripley's function within a cell, correcting for boundaries" class="d-block w-100" src="_images/rip_1.png" /></a>
+<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%205%20-%20RipleysK.html"><img alt="Demonstration of the discs about transcripts used to compute cross-Ripley's function within a cell, correcting for boundaries" class="d-block w-100" src="_images/rip_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/topology/Topology%201%20-%20persistent%20homology.html"><img alt="Demonstration of the stages of the underlying connectivity in a Vietoris-Rips filteration (topological data analysis) in colorectal epithelium" class="d-block w-100" src="_images/ph_1.png" /></a>
+<a class="reference external image-reference" href="_collections/topology/Topology%201%20-%20persistent%20homology.html"><img alt="Demonstration of the stages of the underlying connectivity in a Vietoris-Rips filtration (topological data analysis) in colorectal epithelium" class="d-block w-100" src="_images/ph_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html"><img alt="Demonstration of a workflow of generating a cropped MuSpAn domain from an existing domain using a hexagonal lattice" class="d-block w-100" src="_images/crop_1.png" /></a>
+<a class="reference external image-reference" href="_collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html"><img alt="Demonstration of a workflow of generating a cropped MuSpAn domain from an existing domain using a hexagonal lattice" class="d-block w-100" src="_images/crop_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html"><img alt="Demonstration of the annuli about cells used to compute cross-Pair Correlation Function within a region of colon, correcting for boundaries" class="d-block w-100" src="_images/pcf_1.png" /></a>
+<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%201%20-%20pcf.html"><img alt="Demonstration of the annuli about cells used to compute cross-Pair Correlation Function within a region of colon, correcting for boundaries" class="d-block w-100" src="_images/pcf_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html"><img alt="Demonstration of various network models available in MuSpAn. (Left) Delaunay Triangulation (Middle) K-nearest neighbours (right) Proximity-based" class="d-block w-100" src="_images/net2_1.png" /></a>
+<a class="reference external image-reference" href="_collections/spatial_networks/Spatial%20net%20-%20Creating%20networks%201.html"><img alt="Demonstration of various network models available in MuSpAn. (Left) Delaunay Triangulation (Middle) K-nearest neighbours (right) Proximity-based" class="d-block w-100" src="_images/net2_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/paper_tutorials/MuSpAn%20-%20Figure_3.html"><img alt="Visual demonstration of the true shape-shape distance computations implemented in MuSpAn, showing nearest neighbourhoods from orange cells to purple cells." class="d-block w-100" src="_images/dist_1.png" /></a>
+<a class="reference external image-reference" href="_collections/paper_tutorials/MuSpAn%20-%20Figure_3.html"><img alt="Visual demonstration of the true shape-shape distance computations implemented in MuSpAn, showing nearest neighbourhoods from orange cells to purple cells." class="d-block w-100" src="_images/dist_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html"><img alt="Visual demonstration of k-hop neighbourhoods about a cell (node) in a Delaunay Triangulation. (left) 1-hop neighbourhood (right) 3-hop neighbourhood" class="d-block w-100" src="_images/khop_1.png" /></a>
+<a class="reference external image-reference" href="_collections/network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html"><img alt="Visual demonstration of k-hop neighbourhoods about a cell (node) in a Delaunay Triangulation. (left) 1-hop neighbourhood (right) 3-hop neighbourhood" class="d-block w-100" src="_images/khop_1.png" />
+</a>
 </div>
 <div class="carousel-item">
-<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html"><img alt="Visualisation of a hexagonal lattice overlaid on a MuSpAn domain with individual hexagons colored by density of neutrophils and Getis Ord of macrophages" class="d-block w-100" src="_images/lattice_1.png" /></a>
+<a class="reference external image-reference" href="_collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html"><img alt="Visualisation of a hexagonal lattice overlaid on a MuSpAn domain with individual hexagons coloured by density of neutrophils and Getis-Ord of macrophages" class="d-block w-100" src="_images/lattice_1.png" />
+</a>
 </div>
 </div>
 <button class="carousel-control-prev scc-shadow-control" data-bs-slide="prev" data-bs-target="#carousel-0" type="button">
@@ -953,6 +967,10 @@ We’re working hard to expand the tutorial collection, so if you have a specifi
   <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_5_-_visualising_neighbourhood_clusters_16_1.png"></div>
   <div>Tuning and Visualising Neighbourhood Clusters</div>
 </a>
+<a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">
+  <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_6_-_adjacency_permutation_test_13_0.png"></div>
+  <div>Adjacency Permutation Test (neighbourhood enrichment)</div>
+</a>
 <a class="reference internal" href="_collections/network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">
   <div><img alt="" src="./_images/_collections_network_analysis_Network_methods_-_3_-_graph_filtrations_10_1.png"></div>
   <div>Network filtrations</div>
@@ -1050,11 +1068,15 @@ We’re working hard to expand the tutorial collection, so if you have a specifi
 </a>
 <a class="reference internal" href="_collections/workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">
   <div><img alt="" src="./_images/_collections_workflows_Workflows_-_2_-_Domain_to_csv_4_1.png"></div>
-  <div>Export a domain as csv (and dataframe)</div>
+  <div>Export a domain as CSV (and DataFrame)</div>
 </a>
-<a class="reference internal" href="_collections/workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html" title="This tooltip message was defined in cell metadata">
-  <div><img alt="" src="./_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_13_0.png"></div>
-  <div>Working with multiple domains 1: Simple cohort comparision</div>
+<a class="reference internal" href="_collections/workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">
+  <div><img alt="" src="./_images/_collections_workflows_Workflows_-_3_-_Identifying_spatial_niches_14_1.png"></div>
+  <div>Identifying spatial niches</div>
+</a>
+<a class="reference internal" href="_collections/workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html" title="This tooltip message was defined in cell metadata">
+  <div><img alt="" src="./_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_13_0.png"></div>
+  <div>Working with multiple domains 1: Simple cohort comparison</div>
 </a>
 </div>
 </div>
@@ -1078,6 +1100,10 @@ We’re working hard to expand the tutorial collection, so if you have a specifi
 <a class="reference internal" href="_collections/importing_data/Importing%20a%20Visium%20dataset.html" title="This tooltip message was defined in cell metadata">
   <div><img alt="" src="./_images/_collections_importing_data_Importing_a_Visium_dataset_20_1.png"></div>
   <div>Importing a Visium dataset</div>
+</a>
+<a class="reference internal" href="_collections/importing_data/Importing%20from%20labelled%20tiff.html">
+  <div><img alt="" src="./_images/_collections_importing_data_Importing_from_labelled_tiff_17_1.png"></div>
+  <div>Importing from a segmentation mask</div>
 </a>
 </div>
 </div>

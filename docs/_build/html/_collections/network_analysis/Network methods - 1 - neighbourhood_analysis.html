@@ -44,7 +44,7 @@
 
     <script src="../../_static/jquery.js?v=5d32c60e"></script>
     <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../../_static/documentation_options.js?v=ccec0a52"></script>
+    <script src="../../_static/documentation_options.js?v=a823da16"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -70,7 +70,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.2.5';
         DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
         </script>
     <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
@@ -506,6 +506,7 @@ document.write(`
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Neighbourhood clustering (categorical labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
@@ -531,14 +532,16 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -634,6 +637,7 @@ neighbourhoods to both the spatial networks and clustering method used. Before u
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Load an example domain dataset</span>
 <span class="n">pc</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_example_domain</span><span class="p">(</span><span class="s1">&#39;Synthetic-Points-Architecture&#39;</span><span class="p">)</span>
@@ -687,7 +691,7 @@ Distance matrices: []
     <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># The number of hops to consider for the neighbourhood</span>
     <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
     <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
-    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
     <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;log-fold&#39;</span> <span class="c1"># Neighbourhood enrichment as log-fold</span>
 <span class="p">)</span>
 <br/></pre></div>
@@ -715,10 +719,10 @@ Distance matrices: []
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([[-6.78088476, -0.62997828,  0.74087455,  0.73933233],
-       [ 1.61811039, -0.07781313, -7.06418825, -7.26832641],
-       [-5.08023127,  0.69259576,  0.38561409,  0.41135332],
-       [-2.42650773,  1.29696344, -1.94789019, -2.20705993]])
+array([[-5.11091795,  0.6506114 , -5.3872183 ,  1.39939137],
+       [ 0.69911835, -0.32145692,  0.7013739 , -6.58405839],
+       [-9.55188939, -0.4814346 , -9.53996149,  1.68492694],
+       [-0.66330645,  1.17327507, -0.68595916, -4.75712615]])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -758,7 +762,7 @@ array([[-6.78088476, -0.62997828,  0.74087455,  0.73933233],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x106e1d8b0&gt;
+&lt;seaborn.matrix.ClusterGrid at 0x10975b470&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -768,7 +772,8 @@ array([[-6.78088476, -0.62997828,  0.74087455,  0.73933233],
 <img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_7_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_7_1.png" />
 </div>
 </div>
-<p>We can see this neigbourhood clustering method has found two very similar clusters (4 and 0) and the rest picking a dominant celltype. This makes sense as there are only 4 celltypes in our dataset. The <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> function automatically adds these cluster labels to the objects that were used in the computation using the and is identified by the <code class="docutils literal notranslate"><span class="pre">neighbourhood_label_name</span></code> parameter.</p>
+<p>We can see this neigbourhood clustering workflow has produced four clusters, consistent with the dominant feature of the dataset. We have cells with label A and B forming one cluster, with is natural as they are always found in close proximity within the rings. Two clusters with points C enriched, with and without the background noise D, and finally, a cluster with only the background noise.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> function automatically adds these cluster labels to the objects that were used in the computation using the and is identified by the <code class="docutils literal notranslate"><span class="pre">neighbourhood_label_name</span></code> parameter.</p>
 <p>Using this label, let’s see the result of the clustering spatially-resolved on our dataset.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -795,7 +800,7 @@ array([[-6.78088476, -0.62997828,  0.74087455,  0.73933233],
 <img alt="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_9_1.png" src="../../_images/_collections_network_analysis_Network_methods_-_1_-_neighbourhood_analysis_9_1.png" />
 </div>
 </div>
-<p>Great, we can now see that Neighbourhoods 0 and 2 are identifying similar compositions of the crypt-like structures, Neighbourhood 3 is picking up the background noise celltype, and 1 and 3 are the aggregated masses of celltype C.</p>
+<p>Great, we can now see that Neighbourhood 1 is identifying similar compositions of the crypt-like structures, Neighbourhood 3 is picking up the background noise celltype, and 0 and 2 are the aggregated masses of celltype C.</p>
 <p><strong>Note:</strong> It’s always recommended to visualise these neighbourhood clusters on the data as a method of quality control. MuSpAn make this easy by automatically aligning neighbourhood labels with spatial data. In addition, assigning labels also allows for querying based on neighbourhood cluster for downstream spatial analysis.</p>
 <p>Though we have clustered the localised counts of our celltypes, this is just one method of a vast range of possibilities facilitated by MuSpAn. Critically, this implementation ignores the spatial structure of the spatial domain and prescribes a number of resultant clusters. Later in this tutorial, we’ll show alternative implementations that address these limitations.</p>
 <section id="Neighbourhood-clustering-on-specific-objects">
@@ -824,7 +829,7 @@ array([[-6.78088476, -0.62997828,  0.74087455,  0.73933233],
     <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Number of hops for KNN</span>
     <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (not D)&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
     <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
-    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
     <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;log-fold&#39;</span> <span class="c1"># Neighbourhood enrichment as log-fold</span>
 <span class="p">)</span>
 </pre></div>
@@ -891,7 +896,7 @@ array([[-6.78088476, -0.62997828,  0.74087455,  0.73933233],
     <span class="n">k_hops</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Number of hops for KNN</span>
     <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (KNN)&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
     <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
-    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span>  <span class="c1"># Parameters for the clustering method</span>
     <span class="n">neighbourhood_enrichment_as</span><span class="o">=</span><span class="s1">&#39;log-fold&#39;</span> <span class="c1"># Neighbourhood enrichment as log-fold</span>
 <span class="p">)</span>
 <br/></pre></div>
@@ -1002,7 +1007,7 @@ Distance matrices: []
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x11ecff260&gt;
+&lt;seaborn.matrix.ClusterGrid at 0x167f79040&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1032,7 +1037,7 @@ Distance matrices: []
     <span class="n">k_hops</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># Number of hops for Delaunay</span>
     <span class="n">neighbourhood_label_name</span><span class="o">=</span><span class="s1">&#39;Neighbourhood ID (Delaunay)&#39;</span><span class="p">,</span>  <span class="c1"># Name for the neighbourhood label</span>
     <span class="n">cluster_method</span><span class="o">=</span><span class="s1">&#39;minibatchkmeans&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
-    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>  <span class="c1"># Parameters for the clustering method</span>
+    <span class="n">cluster_parameters</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;n_clusters&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span><span class="s1">&#39;random_state&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>  <span class="c1"># Parameters for the clustering method</span>
 <span class="p">)</span>
 <br/></pre></div>
 </div>
@@ -1105,7 +1110,7 @@ Distance matrices: []
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x12c23fc50&gt;
+&lt;seaborn.matrix.ClusterGrid at 0x167b619a0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1122,7 +1127,7 @@ Distance matrices: []
 <p>We can also change our clustering method to any provided in the sklearn package (<a class="reference external" href="https://scikit-learn.org/1.5/modules/clustering.html">https://scikit-learn.org/1.5/modules/clustering.html</a>). Each clustering method comes equipped assumptions and is designed to detect specific features in the data. We recommend checking out the sklearn site before using clustering.</p>
 <p>In this example, we’ll change our clustering method to a unsupervised-type (does not require prescibed number of groups). Namely, we’ll use HDBSCAN which is a heiracharical distance-based clustering algorthim (<a class="reference external" href="https://scikit-learn.org/1.5/modules/clustering.html#hdbscan">https://scikit-learn.org/1.5/modules/clustering.html#hdbscan</a>). This is process can produce unassigned data (those without clusters) which are labelled with a -1.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform neighbourhood clustering on the list of domains using Delaunay network and HDBSCAN clustering</span>
@@ -1141,7 +1146,7 @@ Distance matrices: []
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a figure with 2x2 subplots for visualizing the neighbourhood clustering results</span>
@@ -1156,7 +1161,7 @@ Distance matrices: []
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1174,7 +1179,7 @@ Distance matrices: []
 <p>HDBSCAN found only 3 representative neighbourhoods across our four domains (as opposed to our prescribed k=4 previously). Critically, we this neighbourhood clustering has identified the locality of changeing cells types, emphasises in the ‘exlusion’ and ‘architecture’ domains (bottom row). When using an unsupervised approach, we should always check the resultant clusters both spatially and differential expression. We can see below we now have a ‘noise’ cluster which is denoted by -1 where the
 clustering algorithm could not confidently assign these data.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DataFrame from the neighbourhood enrichment matrix</span>
@@ -1205,12 +1210,12 @@ clustering algorithm could not confidently assign these data.</p>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.matrix.ClusterGrid at 0x11f04b620&gt;
+&lt;seaborn.matrix.ClusterGrid at 0x168a8a2a0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

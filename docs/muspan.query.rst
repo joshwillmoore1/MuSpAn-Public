@@ -20,6 +20,7 @@ The muspan.query module provides tools for querying spatial data. This module in
    is_query_like
    validate_query
    is_A_contained_by_B
+   is_adjacent
    filter_objects_to_included_regions
 
 
@@ -34,6 +35,7 @@ The muspan.query module provides tools for querying spatial data. This module in
    get_centroids
    get_children
    get_collections
+   get_edges
    get_family_tree
    get_labels
    get_minimum_distances_boundaries
