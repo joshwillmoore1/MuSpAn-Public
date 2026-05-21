@@ -163,7 +163,8 @@ Workflows
 .. nbgallery::
      _collections/workflows/Workflows - 1 - Cropping a domain
      _collections/workflows/Workflows - 2 - Domain to csv
-     _collections/workflows/Workflows - 3 - Multiple domains 1
+     _collections/workflows/Workflows - 3 - Identifying spatial niches
+     _collections/workflows/Workflows - 4 - Multiple domains 1
 
 
 Importing Data from Specific Platforms
@@ -173,7 +174,7 @@ Importing Data from Specific Platforms
      _collections/importing_data/Importing a spatialData dataset
      _collections/importing_data/Importing a Xenium dataset
      _collections/importing_data/Importing a Visium dataset
-     _collections/importing_data/Importing from labeled tiff
+     _collections/importing_data/Importing from labelled tiff
 
 Extras
 ------
