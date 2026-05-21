@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>v1.2.1 &#8212; Multiscale Spatial Analysis</title>
+    <title>v1.2.5 &#8212; Multiscale Spatial Analysis</title>
   
   
   
@@ -63,7 +63,7 @@
                 gtag('js', new Date());
                 gtag('config', 'G-NYJKGWRYPR');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/release_notes/v1.2.1';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/release_notes/v1.2.5';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
@@ -73,8 +73,8 @@
     <script src="../../_static/carousel_autoplay.js?v=a4b85356"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="v1.2.0" href="v1.2.0.html" />
-    <link rel="prev" title="v1.2.2" href="v1.2.2.html" />
+    <link rel="next" title="v1.2.4" href="v1.2.4.html" />
+    <link rel="prev" title="Release notes" href="../../release_notes.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -466,11 +466,11 @@ document.write(`
     <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
     <div class="bd-toc-item navbar-nav">
       <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="v1.2.5.html">v1.2.5</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">v1.2.5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.2.4.html">v1.2.4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.2.3.html">v1.2.3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.2.2.html">v1.2.2</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">v1.2.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="v1.2.1.html">v1.2.1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.2.0.html">v1.2.0</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.1.2.html">v1.1.2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="v1.1.1.html">v1.1.1</a></li>
@@ -530,7 +530,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../release_notes.html" class="nav-link">Release notes</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">v1.2.1</li>
+    <li class="breadcrumb-item active" aria-current="page">v1.2.5</li>
   </ul>
 </nav>
 </div>
@@ -547,48 +547,90 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="v1-2-1">
-<h1>v1.2.1<a class="headerlink" href="#v1-2-1" title="Link to this heading">#</a></h1>
-<p>We are pleased to announce the release of version <strong>v1.2.1</strong>! This update focuses on expanding neighbourhood analysis functionality, improving compatibility with the latest NumPy versions, and refining internal geometry operations for spatial object conversion. It also includes documentation updates and maintenance improvements.</p>
-<p>This release is compatible with and has been tested on Python <strong>3.10</strong> to <strong>3.14</strong>.</p>
-<section id="new-features">
-<h2>New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h2>
+  <section id="v1-2-5">
+<h1>v1.2.5<a class="headerlink" href="#v1-2-5" title="Link to this heading">#</a></h1>
+<p>We are pleased to announce the release of the minor update version <strong>v1.2.5</strong>.</p>
+<p>This release focuses on performance improvements, new functionality, and a number of bug fixes across boundary handling, network cropping, and query behavior.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Continuous Label Support in Neighbourhood Clustering</strong>: <em class="xref py py-obj">cluster_neighbourhoods</em> now supports <em>continuous</em> (numeric) labels, allowing for more flexible spatial grouping and analysis.</p></li>
-<li><p><strong>New Tutorial – Neighbourhoods with Numeric Labels</strong>: Added a new Visium dataset and accompanying tutorial demonstrating neighbourhood analysis using numeric cluster IDs.</p></li>
+<li><p><strong>Labeled TIFF support</strong>:</p>
+<ul>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">segmentation_mask_to_domain</span></code> for converting labeled TIFF files into MuSpAn domains.</p></li>
+<li><p>Added a small TIFF-to-dataset example to help demonstrate the workflow.</p></li>
+</ul>
+</li>
+<li><p><strong>Version string support</strong>:</p>
+<ul>
+<li><p>Added a version string to the package for easier version tracking.</p></li>
+</ul>
+</li>
+<li><p><strong>Expanded query and network functionality</strong>:</p>
+<ul>
+<li><p>Added more efficient similarity-weight-to-edge and network-based query handling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">collections</span></code> now return DataFrames.</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<section id="improvements">
-<h2>Improvements<a class="headerlink" href="#improvements" title="Link to this heading">#</a></h2>
+<section id="performance-improvements">
+<h2>Performance Improvements<a class="headerlink" href="#performance-improvements" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Geometry and Distance Computations</strong>: Refactored object-to-object distance calculations to use <em class="xref py py-obj">rust-geo-python</em>, improving performance and numerical stability.</p></li>
-<li><p><strong>Alpha Shape Conversion</strong>: Added argument validation for <em class="xref py py-obj">alpha_shape</em> and moved internal boundary handling to <em class="xref py py-obj">convert_objects</em> for a cleaner API and improved consistency.</p></li>
-<li><p><strong>NumPy Compatibility</strong>: Fixed issues related to <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.reshape</span></code> to support <strong>NumPy 2.0 and above</strong>, replacing <em class="xref py py-obj">shape</em> with <em class="xref py py-obj">newshape</em> arguments for compatibility across versions.</p></li>
+<li><p><strong>Vectorised geometry operations</strong>:</p>
+<ul>
+<li><p>Polygon distance calculations have been vectorised.</p></li>
+<li><p>Point-to-line distance calculations have been optimised.</p></li>
+<li><p>point in poly operations have been accelerated using Cython.</p></li>
+</ul>
+</li>
+<li><p><strong>Improved spatial and neighbourhood computations</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">cluster_neighbourhoods</span></code> has been optimised for continuous labels.</p></li>
+<li><p>Moran’s I and Getis-Ord calculations have been improved for both adjacency lookup and memory usage.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">adjacency_permutation_test</span></code> has been optimised.</p></li>
+</ul>
+</li>
+<li><p><strong>Boundary and shape handling</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_circle_boundaries</span></code> received a small optimisation.</p></li>
+<li><p>Boundary shape reconstruction has been improved when rebuilding from updated boundaries.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="bug-fixes">
 <h2>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Alpha Shape Conversion</strong>: Improved internal boundary flag handling and argument validation.</p></li>
-<li><p><strong>NumPy Reshape</strong>: Fixed parameter mismatch affecting compatibility with NumPy 2.0+.</p></li>
-<li><p><strong>General Stability</strong>: Various minor fixes improving robustness and consistency of geometry-based conversions.</p></li>
+<li><p><strong>Crop domain and network handling</strong>:</p>
+<ul>
+<li><p>Fixed updating of networks following clipping.</p></li>
+<li><p>Fixed frozen graphs in crop domain operations following deepcopy.</p></li>
+<li><p>Added a test for cropping domains with networks.</p></li>
+</ul>
+</li>
+<li><p><strong>Query and colour bar handling</strong>:</p>
+<ul>
+<li><p>Fixed duplicate collection entries in queries.</p></li>
+<li><p>Improved edge weight queries to minimise duplicates in the special case where this is required.</p></li>
+<li><p>Fixed null colour bar handling.</p></li>
+</ul>
+</li>
+<li><p><strong>Plotting</strong>:</p>
+<ul>
+<li><p>Fixed plotting of PCF confidence intervals.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="maintenance">
 <h2>Maintenance<a class="headerlink" href="#maintenance" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Testing Workflow</strong>: Added fail-fast logic to the CI test workflow to prevent excessive resource use.</p></li>
-<li><p><strong>Version Management</strong>: Updated version number to <strong>v1.2.1</strong> following compatibility and bugfix improvements.</p></li>
-<li><p><strong>Documentation Clean-up</strong>: Corrected typos and improved clarity across tutorials and core documentation.</p></li>
+<li><p>Merged several upstream branches and internal fixes.</p></li>
+<li><p>Updated the package version number to <strong>1.2.5</strong>.</p></li>
 </ul>
-</section>
-<section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><strong>Visium Neighbourhood Tutorial</strong>: New tutorial on contact-based neighbourhood analysis using numeric labels.</p></li>
-<li><p><strong>General Documentation Improvements</strong>: Expanded and corrected network and geometry tutorials with clearer examples and better guidance.</p></li>
-</ul>
-<p>Thank you for using <strong>muspan</strong>! For full details, see the updated documentation and tutorials.</p>
+<hr class="docutils" />
+<p>We sincerely thank all contributors and users who provided feedback to help shape this release. For detailed guidance on updating MuSpAn, please refer to the installation page.</p>
+<p>Thank you for using <strong>muspan</strong>!</p>
 </section>
 </section>
 
@@ -614,11 +656,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-features">New Features</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improvements">Improvements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-improvements">Performance Improvements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-fixes">Bug Fixes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maintenance">Maintenance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
 </ul>
   </nav></div>
 
