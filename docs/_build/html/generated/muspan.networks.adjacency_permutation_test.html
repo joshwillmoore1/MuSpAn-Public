@@ -578,8 +578,8 @@ document.write(`
 <dl class="py function">
 <dt class="sig sig-object py" id="muspan.networks.adjacency_permutation_test">
 <span class="sig-name descname"><span class="pre">adjacency_permutation_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_boundaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary_exclude_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjacency_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_shuffle_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observation_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualise_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visualise_correlation_matrix_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muspan.networks.adjacency_permutation_test" title="Link to this definition">#</a></dt>
-<dd><p>Test the correlation between adjacency labels in a network, also referred to as neighbourhood enrichment.
-This function computes the adjacency correlation matrix by considering the k-hop neighborhood of each object within the network by performing
+<dd><p>Test the correlation between adjacent labels in a network, also sometimes referred to as “neighbourhood enrichment analysis”.
+This function computes the adjacency correlation matrix by considering the k-hop neighbourhood of each object within the network by performing
 label shuffling to generate a null distribution and computing the standard effect size (SES) and corrected p-values (Benjamini-Hochberg) to identify significant adjacent label correlations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -598,7 +598,7 @@ label shuffling to generate a null distribution and computing the standard effec
 </dd>
 <dt><strong>boundary_exclude_distance</strong><span class="classifier">float, optional</span></dt><dd><p>Buffer to exclude objects located within boundary_exclude_distance from the boundaries. Defaults to 0.</p>
 </dd>
-<dt><strong>adjacency_order</strong><span class="classifier">int, optional</span></dt><dd><p>The order of adjacency to consider for neighborhood. Default is 1.</p>
+<dt><strong>adjacency_order</strong><span class="classifier">int, optional</span></dt><dd><p>The order of adjacency to consider for neighbourhood. Default is 1.</p>
 </dd>
 <dt><strong>label_shuffle_iterations</strong><span class="classifier">int, optional</span></dt><dd><p>The number of iterations for label shuffling. Default is 100.</p>
 </dd>
@@ -618,7 +618,7 @@ label shuffling to generate a null distribution and computing the standard effec
 <dd class="field-even"><dl class="simple">
 <dt><strong>SES</strong><span class="classifier">ndarray</span></dt><dd><p>The standardized effect size matrix. Ordering of labels is the same as unique_labels_following_query.</p>
 </dd>
-<dt><strong>SES_p_val_filtered</strong><span class="classifier">ndarray</span></dt><dd><p>The standardized effect size matrix filtered by values where p&lt;alpha. Ordering of labels is the same as unique_labels_following_query.</p>
+<dt><strong>A</strong><span class="classifier">ndarray</span></dt><dd><p>The p-value matrix. Ordering of labels is the same as unique_labels_following_query.</p>
 </dd>
 <dt><strong>unique_labels_following_query</strong><span class="classifier">ndarray</span></dt><dd><p>The unique labels considered after applying the query.</p>
 </dd>

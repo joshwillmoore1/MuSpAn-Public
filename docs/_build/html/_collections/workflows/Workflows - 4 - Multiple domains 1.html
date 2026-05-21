@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Working with multiple domains 1: Simple cohort comparision &#8212; Multiscale Spatial Analysis</title>
+    <title>Working with multiple domains 1: Simple cohort comparison &#8212; Multiscale Spatial Analysis</title>
   
   
   
@@ -66,7 +66,7 @@
             </script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/workflows/Workflows - 3 - Multiple domains 1';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/workflows/Workflows - 4 - Multiple domains 1';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
@@ -77,7 +77,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="MuSpAn with QuPath" href="../importing_data/Importing%20data%20from%20QuPath.html" />
-    <link rel="prev" title="Export a domain as csv (and dataframe)" href="Workflows%20-%202%20-%20Domain%20to%20csv.html" />
+    <link rel="prev" title="Identifying spatial niches" href="Workflows%20-%203%20-%20Identifying%20spatial%20niches.html" />
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -506,10 +506,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
@@ -532,15 +532,16 @@ document.write(`
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labeled%20tiff.html">Importing from a segmentation mask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -615,8 +616,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="Working-with-multiple-domains-1:-Simple-cohort-comparision">
-<h1>Working with multiple domains 1: Simple cohort comparision<a class="headerlink" href="#Working-with-multiple-domains-1:-Simple-cohort-comparision" title="Link to this heading">#</a></h1>
+  <section id="Working-with-multiple-domains-1:-Simple-cohort-comparison">
+<h1>Working with multiple domains 1: Simple cohort comparison<a class="headerlink" href="#Working-with-multiple-domains-1:-Simple-cohort-comparison" title="Link to this heading">#</a></h1>
 <p>In spatial biology, analyses rarely involve a single spatial region in isolation. More commonly, we work with multiple spatial domains: replicate samples from the same biological source, samples drawn from distinct cohorts, control versus treatment conditions, comparisons across mouse lines, or different cancer types. In these settings, the objective is not merely to compute spatial metrics for individual samples, but to do so at scale—and, critically, to compare those measurements across many
 spatially distinct regions.</p>
 <p>This tutorial series focuses on strategies for analysing and comparing multiple spatial samples using MuSpAn. While this may seem straightforward at first glance, cohort-level spatial analysis is a non-trivial problem. The appropriate way to aggregate or compare spatial metrics across domains depends on the metric itself and on properties of each spatial region. Assumptions underlying a given statistic may not propagate cleanly across heterogeneous domains, and naïve aggregation can lead to
@@ -626,7 +627,7 @@ misleading results. For this reason, subsequent tutorials will concentrate on sp
 <section id="Focus-of-this-tutorial">
 <h2>Focus of this tutorial<a class="headerlink" href="#Focus-of-this-tutorial" title="Link to this heading">#</a></h2>
 <p>The emphasis here is on the underlying infrastructure: how MuSpAn leverages native Python data structures and idioms to enable scalable, flexible analysis of many spatial domains simultaneously</p>
-<p>Note that there are different ways to handle mutliple domains for analysis - this tutorial is just one example!</p>
+<p>Note that there are different ways to handle multiple domains for analysis - this tutorial is just one example!</p>
 <hr class="docutils" />
 <section id="A-cohort-dataset">
 <h3>A cohort dataset<a class="headerlink" href="#A-cohort-dataset" title="Link to this heading">#</a></h3>
@@ -691,9 +692,9 @@ misleading results. For this reason, subsequent tutorials will concentrate on sp
 </section>
 <section id="1.-Load-the-TMA-data">
 <h2>1. Load the TMA data<a class="headerlink" href="#1.-Load-the-TMA-data" title="Link to this heading">#</a></h2>
-<p>Don’t worry about finding any data, everything we need is stored online. The following cell gets all required imports and loads in a csv file wiht the cohort data.</p>
+<p>Don’t worry about finding any data, everything we need is stored online. The following cell gets all required imports and loads in a csv file with the cohort data.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">muspan</span> <span class="k">as</span> <span class="nn">ms</span>
@@ -714,8 +715,7 @@ misleading results. For this reason, subsequent tutorials will concentrate on sp
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
@@ -891,7 +891,7 @@ misleading results. For this reason, subsequent tutorials will concentrate on sp
 <h2>2. Create domains<a class="headerlink" href="#2.-Create-domains" title="Link to this heading">#</a></h2>
 <p>Now we have all the cohort data loaded in, let’s generate domains for each sample using the necessary data. We’ll name each sample by it’s TMA ID and patient group ID. This will allow us to identify the domains that match the the respective patient groups</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># Get unique spot IDs</span>
@@ -939,7 +939,7 @@ misleading results. For this reason, subsequent tutorials will concentrate on sp
 </div>
 <p>Let’s just check what these domains look like before we run any analysis to make sure we’ve imported correctly:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">group_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">domain</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">domain</span> <span class="ow">in</span> <span class="n">list_of_domains</span><span class="p">])</span>
@@ -962,7 +962,7 @@ Number of group 2 domains: 72
 </div>
 <p>We’ll just visualise the domains from patient group 1 first:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise all group 1 domains in a grid layout</span>
@@ -994,8 +994,7 @@ Number of group 2 domains: 72
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
@@ -1006,12 +1005,12 @@ Number of group 2 domains: 72
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_11_1.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_11_1.png" />
+<img alt="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_11_1.png" src="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_11_1.png" />
 </div>
 </div>
 <p>Now group 2:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise group 2 domains</span>
@@ -1048,7 +1047,7 @@ Number of group 2 domains: 72
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_13_0.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_13_0.png" />
+<img alt="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_13_0.png" src="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_13_0.png" />
 </div>
 </div>
 <p>These domains all look consistent with the data published by Schürch et al. (2020) therefore let’s go ahead with some analysis.</p>
@@ -1057,7 +1056,7 @@ Number of group 2 domains: 72
 <h2>3. Compute cell type densities<a class="headerlink" href="#3.-Compute-cell-type-densities" title="Link to this heading">#</a></h2>
 <p>With all our domains now stored within a python list, we can loop through this to compute our densities. We need to be careful we are keeping our data consistent across samples, namely the ordering of density computations which may change if a cell type is not present in any given sample, so we need a global reference for ordering.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">densities_of_celltype_group_1</span><span class="o">=</span><span class="p">[]</span>
@@ -1099,7 +1098,7 @@ Number of group 2 domains: 72
 <h2>4. Compare groups<a class="headerlink" href="#4.-Compare-groups" title="Link to this heading">#</a></h2>
 <p>Following the computation of the densities across all domains and globally aligning our results, we can now easily compare between the patient groups. For this, we will test the difference in density distributions between the patient groups using a Mann-Whitney U test. To start, let’s just compare the density of our tumour cells.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compare densities for B cells</span>
@@ -1141,12 +1140,12 @@ Number of group 2 domains: 72
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_18_0.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_18_0.png" />
+<img alt="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_18_0.png" src="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_18_0.png" />
 </div>
 </div>
 <p>So we see an significant increase in the density of tumour cells within the patient group 2 (Diffuse inflammatory infiltration classified group). Let’s do the same from all our cell types and isolate those that have significantly changed.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list to hold significant cell types</span>
@@ -1196,12 +1195,12 @@ Number of group 2 domains: 72
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_20_0.png" src="../../_images/_collections_workflows_Workflows_-_3_-_Multiple_domains_1_20_0.png" />
+<img alt="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_20_0.png" src="../../_images/_collections_workflows_Workflows_-_4_-_Multiple_domains_1_20_0.png" />
 </div>
 </div>
 <p>And we can print out the significantly changing distributions below:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cell types with significant differences in density between patient groups:&quot;</span><span class="p">,</span> <span class="n">sig_density_cell_types</span><span class="p">)</span>

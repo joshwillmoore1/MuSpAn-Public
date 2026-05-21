@@ -66,7 +66,7 @@
             </script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/importing_data/Importing from labeled tiff';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_collections/importing_data/Importing from labelled tiff';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://docs.muspan.co.uk/version_switcher.json';
@@ -506,10 +506,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
@@ -532,8 +532,9 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
@@ -619,7 +620,7 @@ document.write(`
 <h1>Importing from a segmentation mask<a class="headerlink" href="#Importing-from-a-segmentation-mask" title="Link to this heading">#</a></h1>
 <p>In modern image analysis, a wide range of powerful segmentation methods are available, many of which come from advances in computer vision and machine learning. In biological imaging, for example, tools such as Cellpose, StarDist and DeepCell are commonly used to identify and segment individual cells from microscopy images.</p>
 <p>These segmentation algorithms typically produce an output image where each pixel is assigned an integer label corresponding to a specific object (e.g. a cell). This is often stored as a TIFF file or similar, where pixels with the same value belong to the same segmented region.</p>
-<p>In this tutorial, we’ll walk through how to take one of these segmentation masks images (here it’ll be a .tif but this could be any image file type) and convert it into a MuSpAn domain, where each labeled mask becomes an object that can be analysed further.</p>
+<p>In this tutorial, we’ll walk through how to take one of these segmentation masks images (here it’ll be a .tif but this could be any image file type) and convert it into a MuSpAn domain, where each labelled mask becomes an object that can be analysed further.</p>
 <p>For demonstration purposes, we’ll use an example segmentation generated with Cellpose, available here: <a class="reference external" href="https://huggingface.co/spaces/mouseland/cellpose">https://huggingface.co/spaces/mouseland/cellpose</a></p>
 <p>Although MuSpAn provides utilities to load this data directly, we’ll first take a look at the image itself to better understand its structure before importing it.</p>
 <section id="Basic-import-from-a-segmentation-mask-image">
@@ -664,12 +665,12 @@ Text(0.5, 1.0, &#39;Conic 1564 masks (TIFF)&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_3_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_3_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labelled_tiff_3_1.png" src="../../_images/_collections_importing_data_Importing_from_labelled_tiff_3_1.png" />
 </div>
 </div>
 <p>The example we’ll use comes from the CoNIC challenge (Colon Nuclei Identification and Counting) and shows a region of colon histopathology tissue. What you’re looking at here is not the original microscopy image, but its corresponding segmentation mask.</p>
 <p>In this mask, each object (for example, an individual nucleus) is represented by a unique integer value, meaning that all pixels with the same value belong to the same segmented region. To make this easier to interpret visually, we’ve applied a colour map so that different objects appear in different colours.</p>
-<p>MuSpAn provides a convenient importer for this type of data. Using the <code class="docutils literal notranslate"><span class="pre">segmentation_mask_to_domain</span></code> function from the io submodule, we can convert each labeled pixel region into a MuSpAn shape, allowing us to work with these objects directly within a domain.</p>
+<p>MuSpAn provides a convenient importer for this type of data. Using the <code class="docutils literal notranslate"><span class="pre">segmentation_mask_to_domain</span></code> function from the io submodule, we can convert each labelled pixel region into a MuSpAn shape, allowing us to work with these objects directly within a domain.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -726,7 +727,7 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_7_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_7_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labelled_tiff_7_1.png" src="../../_images/_collections_importing_data_Importing_from_labelled_tiff_7_1.png" />
 </div>
 </div>
 <p>We can see that each segmented region has been converted into a shape within the domain, and the corresponding mask ID has been preserved as a label (Cellpose IDs), as described earlier. This makes it straightforward to link any additional information about the segmented regions back to the corresponding MuSpAn objects.</p>
@@ -764,7 +765,7 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_9_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_9_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labelled_tiff_9_1.png" src="../../_images/_collections_importing_data_Importing_from_labelled_tiff_9_1.png" />
 </div>
 </div>
 </section>
@@ -803,13 +804,13 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_11_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_11_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labelled_tiff_11_1.png" src="../../_images/_collections_importing_data_Importing_from_labelled_tiff_11_1.png" />
 </div>
 </div>
 </section>
 <section id="Aligning-external-data-to-objects">
 <h2>Aligning external data to objects<a class="headerlink" href="#Aligning-external-data-to-objects" title="Link to this heading">#</a></h2>
-<p>There will be instances where external analysis has been conducted on the labeled image and information corresponding to these labeled objects should be added as labels. For this situtation, we also return the ordered arrays of muspan object IDs and the provided mask IDs from the segmentation image directly. We can return these additional outputs using the <code class="docutils literal notranslate"><span class="pre">return_muspan_and_annotation_ids</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">labeled_tiff_to_domain()</span></code>.</p>
+<p>There will be instances where external analysis has been conducted on the labelled image and information corresponding to these labelled objects should be added as labels. For this situation, we also return the ordered arrays of muspan object IDs and the provided mask IDs from the segmentation image directly. We can return these additional outputs using the <code class="docutils literal notranslate"><span class="pre">return_muspan_and_annotation_ids</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">segmentation_mask_to_domain()</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -913,15 +914,15 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <p>254 rows × 2 columns</p>
 </div></div>
 </div>
-<p>This can be useful for aligning external data to the objects using the mask IDs. For example, if cell phenotyping has been performed in using another plathform, then we would like to add cell types to each of the objects that define cells. Let’s make a set random of labels to add objects in our domain.</p>
+<p>This can be useful for aligning external data to the objects using the mask IDs. For example, if cell phenotyping has been performed in using another platform, then we would like to add cell types to each of the objects that define cells. Let’s make a set random of labels to add objects in our domain.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a set of random labels</span>
 <span class="n">random_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">mask_ids</span><span class="p">))</span>
 
-<span class="c1"># Create a DataFrame to minmic typical label table with the random labels</span>
+<span class="c1"># Create a DataFrame to mimic typical label table with the random labels</span>
 <span class="n">example_cell_type_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Mask IDs&#39;</span><span class="p">:</span> <span class="n">mask_ids</span><span class="p">,</span><span class="s1">&#39;Random label&#39;</span><span class="p">:</span><span class="n">random_labels</span><span class="p">})</span>
 
 <span class="c1"># Print the example label table</span>
@@ -930,8 +931,7 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
 <div>
@@ -1017,7 +1017,7 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <p>254 rows × 2 columns</p>
 </div></div>
 </div>
-<p>Let’s add these labels to the corresponding muspan objects and visualise</p>
+<p>Let’s add these labels to the corresponding MuSpAn objects and visualise</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
@@ -1046,7 +1046,7 @@ Text(0.5, 1.0, &#39;MuSpAn Domain&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/_collections_importing_data_Importing_from_labeled_tiff_17_1.png" src="../../_images/_collections_importing_data_Importing_from_labeled_tiff_17_1.png" />
+<img alt="../../_images/_collections_importing_data_Importing_from_labelled_tiff_17_1.png" src="../../_images/_collections_importing_data_Importing_from_labelled_tiff_17_1.png" />
 </div>
 </div>
 <p>For more advanced usage, we recommend exploring the full MuSpAn documentation on importing domains from segmentation masks. In particular, you can align and attach additional metadata to each object during import using parameters such as annotated_label_name, making it easier to incorporate external annotations or measurements into your analysis.</p>

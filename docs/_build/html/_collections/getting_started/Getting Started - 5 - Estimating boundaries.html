@@ -506,10 +506,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%201%20-%20neighbourhood_analysis.html">Neighbourhood clustering (categorical labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%204%20-%20neighbourhood_analysis_continuous.html">Neighbourhood clustering (numeric labels)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%205%20-%20visualising_neighbourhood_clusters.html">Tuning and Visualising Neighbourhood Clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%203%20-%20graph_filtrations.html">Network filtrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%202%20-%20community_detection.html">Community detection</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spatial_networks/Spatial%20net%20-%20Comparing%20networks.html">Comparing networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../network_analysis/Network%20methods%20-%206%20-%20adjacency_permutation_test.html">Adjacency Permutation Test (neighbourhood enrichment)</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../topology/Topology%201%20-%20persistent%20homology.html">Persistent homology - Vietoris-Rips filtration</a></li>
@@ -532,15 +532,16 @@ document.write(`
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html">Cropping a domain</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as csv (and dataframe)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%202%20-%20Domain%20to%20csv.html">Export a domain as CSV (and DataFrame)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%203%20-%20Identifying%20spatial%20niches.html">Identifying spatial niches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/Workflows%20-%204%20-%20Multiple%20domains%201.html">Working with multiple domains 1: Simple cohort comparison</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20data%20from%20QuPath.html">MuSpAn with QuPath</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20spatialData%20dataset.html">Importing a SpatialData dataset</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Xenium%20dataset.html">MuSpAn with Xenium Explorer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20a%20Visium%20dataset.html">Importing a Visium dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labeled%20tiff.html">Importing from a segmentation mask</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../importing_data/Importing%20from%20labelled%20tiff.html">Importing from a segmentation mask</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../misc/2025%20Math%20Onco%20Art.html">This Week in Mathematical Oncology: MuSpAn artwork</a></li>
@@ -712,8 +713,9 @@ Distance matrices: []
 </section>
 <section id="Alpha-shapes">
 <h2>Alpha shapes<a class="headerlink" href="#Alpha-shapes" title="Link to this heading">#</a></h2>
-<p>If our tissue region was not best presented by a convex shape (more irregular) then we could the alpha shape method. An alpha shape is a generalisation of the convex hull that captures the shape of a set of points by controlling the level of detail with a parameter α, allowing for both convex and concave boundaries. Intuitively, α controls the distance between objects that are able to form a boundary - the smaller the distance the tighter the boundary will to the data.</p>
-<p>Again we estimate our boundary by now using the ‘alpha shape’ method where we have to specify the radius parameter ‘alpha’ as shown below.</p>
+<p>If our tissue region is concave then it may not be well represented by a convex shape; in this case, we could instead use the ‘alpha shape’ method. An alpha shape is a generalisation of the convex hull that captures the shape of a set of points by controlling the level of detail with a parameter α, allowing for both convex and concave boundaries. Intuitively, α controls the distance between objects that are able to form a boundary - the smaller the distance the tighter the boundary will to the
+data. Think of an alpha shape as though you’re rolling a ball of radius α around your dataset - if there’s a gap that can fit this ball in, then the boundary will go around it!</p>
+<p>Let’s re-estimate our boundary using the ‘alpha shape’ method, where we have to specify the radius parameter ‘alpha’ as shown below.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -747,11 +749,11 @@ Distance matrices: []
 </div>
 </div>
 <p>Now we have a boundary that very closely matches the outline of our objects with a non-convex shape.</p>
-<p><strong>Note:</strong> Complex boundaries (those with many edges) will increase the computational time for those spatial statistics that require the use of a boundary and therefore it’s best to find a sweet spot between a good representation of a tissue boundary and simplicity.</p>
+<p><strong>Note:</strong> Complex boundaries (those with many edges) will increase the computational time for those spatial statistics that require the use of a boundary, and therefore it’s best to find a sweet spot between a good representation of a tissue boundary and simplicity. It’s important to specify boundaries that match your intuition though, as many spatial statistics may be incorrect if calculated using incorrect boundary assumptions!</p>
 </section>
 <section id="Specifying-a-boundary-from-coordinates">
 <h2>Specifying a boundary from coordinates<a class="headerlink" href="#Specifying-a-boundary-from-coordinates" title="Link to this heading">#</a></h2>
-<p>Finally, if we extracted an ROI from a larger tissue, we might have boundary coordinates produced from an external software - no approximation needed! In this case, we can specify the boundary using the ‘specify’ method, passing an arrary of boundary coordinates as shown below.</p>
+<p>Finally, if we extracted an ROI from a larger tissue, we might have boundary coordinates produced from an external software - no approximation needed! In this case, we can specify the boundary using the ‘specify’ method, passing an array of boundary coordinates as shown below.</p>
 <p>For this example, we’ll just make up some arbitrary polygon that could represent a boundary.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
