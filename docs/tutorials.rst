@@ -2,8 +2,8 @@
 Tutorials
 =========
 
-A solid understanding of MuSpAn is crucial to fully leveraging its capabilities in spatial data analysis.
-To build a good foundational understanding of MuSpAn, we recommend starting with the Getting Started and Queries tutorial sets. 
+A solid understanding of MuSpAn is crucial for fully leveraging its capabilities in spatial data analysis.
+To build a good foundational understanding of MuSpAn, we recommend starting with the "Getting Started" and "Queries" tutorial sets. 
 Beyond this, each tutorial is largely self-contained, so you can dive into specific topics independently as needed. 
 This flexible approach ensures you can learn at your own pace while focusing on the areas most relevant to your project.
 
@@ -16,7 +16,7 @@ This flexible approach ensures you can learn at your own pace while focusing on 
 
     .. image:: images/carousel_images/art_1.png
        :target: _collections/misc/2025%20Math%20Onco%20Art.html
-       :alt: A creatative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels
+       :alt: A creative MuSpAn domain with points and networks filtered by a large MuSpAn logo demonstration the control of interactions between point objects, shape objects, networks and labels
 
     .. image:: images/carousel_images/comm_1.png
        :target: _collections/network_analysis/Network%20methods%20-%202%20-%20community_detection.html
@@ -32,7 +32,7 @@ This flexible approach ensures you can learn at your own pace while focusing on 
 
     .. image:: images/carousel_images/ph_1.png
        :target: _collections/topology/Topology%201%20-%20persistent%20homology.html
-       :alt: Demonstration of the stages of the underlying connectivity in a Vietoris-Rips filteration (topological data analysis) in colorectal epithelium
+       :alt: Demonstration of the stages of the underlying connectivity in a Vietoris-Rips filtration (topological data analysis) in colorectal epithelium
 
     .. image:: images/carousel_images/crop_1.png
        :target: _collections/workflows/Workflows%20-%201%20-%20Cropping%20a%20domain.html
@@ -56,7 +56,7 @@ This flexible approach ensures you can learn at your own pace while focusing on 
 
     .. image:: images/carousel_images/lattice_1.png
        :target: _collections/spatial_analysis_methods/Spatial%20stats%20-%204%20-%20Spatial%20autocorrelation.html
-       :alt: Visualisation of a hexagonal lattice overlaid on a MuSpAn domain with individual hexagons colored by density of neutrophils and Getis Ord of macrophages
+       :alt: Visualisation of a hexagonal lattice overlaid on a MuSpAn domain with individual hexagons coloured by density of neutrophils and Getis-Ord of macrophages
 
 
      
